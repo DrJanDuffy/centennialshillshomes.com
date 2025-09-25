@@ -1,5 +1,6 @@
 {
-  "buildCommand": "npm run build:vercel",
+  "buildCommand": "pnpm run build.client && pnpm run build.server",
+  "outputDirectory": ".vercel/output",
   "headers": [
     {
       "source": "/build/(.*)",
