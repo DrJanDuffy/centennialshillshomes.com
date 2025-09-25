@@ -22,7 +22,7 @@ export default component$<RealScoutOfficeListingsProps>((props) => {
   } = props;
 
   useVisibleTask$(() => {
-    // Add page-specific styles for RealScout office listings
+    // Add page-specific styles for RealScout office listings (only once)
     if (!document.querySelector('style[data-realscout-office-listings]')) {
       const style = document.createElement('style');
       style.setAttribute('data-realscout-office-listings', 'true');

@@ -14,7 +14,7 @@ export default component$<RealScoutSearchWidgetProps>((props) => {
   } = props;
 
   useVisibleTask$(() => {
-    // Add page-specific styles for RealScout advanced search
+    // Add page-specific styles for RealScout advanced search (only once)
     if (!document.querySelector('style[data-realscout-advanced-search]')) {
       const style = document.createElement('style');
       style.setAttribute('data-realscout-advanced-search', 'true');

@@ -28,8 +28,16 @@ export const RouterHead = component$(() => {
         <style key={s.key} {...s.props} dangerouslySetInnerHTML={s.style} />
       ))}
 
-      {/* RealScout Web Components Script - Load globally */}
-      <script src="https://em.realscout.com/widgets/realscout-web-components.umd.js" type="module"></script>
+      {/* RealScout Web Components Script - Load globally only once */}
+      <script dangerouslySetInnerHTML={`
+        if (!document.querySelector('script[src="https://em.realscout.com/widgets/realscout-web-components.umd.js"]')) {
+          const script = document.createElement('script');
+          script.src = 'https://em.realscout.com/widgets/realscout-web-components.umd.js';
+          script.type = 'module';
+          script.async = true;
+          document.head.appendChild(script);
+        }
+      `}></script>
     </>
   );
 });
