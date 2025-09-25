@@ -1,7 +1,5 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
-import { HiHomeMini, HiMapPinMini, HiPhoneMini, HiStarMini } from '@qwikest/icons/heroicons';
-import { LuTrendingUp, LuSearch, LuHeart, LuCalendar } from '@qwikest/icons/lucide';
 import RealScoutOfficeListings from '../../components/realscout-office-listings';
 
 export default component$(() => {
@@ -19,7 +17,9 @@ export default component$(() => {
           </p>
           <div class="hero-search">
             <div class="search-box">
-              <LuSearch class="search-icon" />
+              <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
               <input type="text" placeholder="Search Centennial Hills homes by price, bedrooms, or ZIP code..." />
               <button class="btn btn-primary">Search Homes</button>
             </div>
@@ -63,22 +63,30 @@ export default component$(() => {
           <h2>Why Choose Centennial Hills Homes?</h2>
           <div class="features-grid">
             <div class="feature-card">
-              <HiMapPinMini class="feature-icon" />
+              <svg class="feature-icon" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+              </svg>
               <h3>Prime Northwest Location</h3>
               <p>Centennial Hills homes offer the perfect blend of suburban tranquility and urban convenience. Located in Northwest Las Vegas, residents enjoy easy access to major highways, shopping centers, and entertainment venues while maintaining a peaceful residential atmosphere.</p>
             </div>
             <div class="feature-card">
-              <HiStarMini class="feature-icon" />
+              <svg class="feature-icon" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
               <h3>Master-Planned Community</h3>
               <p>Centennial Hills is a carefully planned community featuring modern amenities, well-maintained parks, and family-friendly neighborhoods. The area boasts excellent schools, recreational facilities, and a strong sense of community that makes it ideal for families and professionals.</p>
             </div>
             <div class="feature-card">
-              <LuTrendingUp class="feature-icon" />
+              <svg class="feature-icon" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" clip-rule="evenodd"/>
+              </svg>
               <h3>Strong Investment Potential</h3>
               <p>Centennial Hills real estate has shown consistent appreciation and strong market performance. With new developments, infrastructure improvements, and growing demand, Centennial Hills homes represent excellent long-term investment opportunities.</p>
             </div>
             <div class="feature-card">
-              <LuCalendar class="feature-icon" />
+              <svg class="feature-icon" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+              </svg>
               <h3>New Construction Available</h3>
               <p>Centennial Hills continues to expand with new construction projects offering modern floor plans, energy-efficient features, and contemporary designs. Buyers can choose from established neighborhoods or brand-new Centennial Hills homes.</p>
             </div>
@@ -136,25 +144,33 @@ export default component$(() => {
           <h2>Centennial Hills Real Estate Market Analysis</h2>
           <div class="market-stats">
             <div class="stat-card">
-              <LuTrendingUp class="stat-icon" />
+              <svg class="stat-icon" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" clip-rule="evenodd"/>
+              </svg>
               <h3>Market Trend</h3>
               <p class="stat-value">+12.5%</p>
               <p class="stat-label">Year over Year Growth</p>
             </div>
             <div class="stat-card">
-              <HiHomeMini class="stat-icon" />
+              <svg class="stat-icon" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+              </svg>
               <h3>Average Price</h3>
               <p class="stat-value">$525,000</p>
               <p class="stat-label">Centennial Hills Homes</p>
             </div>
             <div class="stat-card">
-              <LuCalendar class="stat-icon" />
+              <svg class="stat-icon" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+              </svg>
               <h3>Days on Market</h3>
               <p class="stat-value">22 days</p>
               <p class="stat-label">Average Time to Sell</p>
             </div>
             <div class="stat-card">
-              <LuHeart class="stat-icon" />
+              <svg class="stat-icon" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/>
+              </svg>
               <h3>Inventory Level</h3>
               <p class="stat-value">1.8 months</p>
               <p class="stat-label">Supply of Homes</p>
@@ -169,25 +185,33 @@ export default component$(() => {
           <h2>Centennial Hills Real Estate Services</h2>
           <div class="services-grid">
             <div class="service-card">
-              <HiHomeMini class="service-icon" />
+              <svg class="service-icon" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+              </svg>
               <h3>Centennial Hills Home Buying</h3>
               <p>Expert guidance for finding your perfect Centennial Hills home. From first-time buyers to luxury home purchases, Dr. Janet Duffy provides personalized service and deep local market knowledge.</p>
               <a href="/buy-a-home" class="service-link">Start Your Search →</a>
             </div>
             <div class="service-card">
-              <LuTrendingUp class="service-icon" />
+              <svg class="service-icon" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" clip-rule="evenodd"/>
+              </svg>
               <h3>Centennial Hills Home Selling</h3>
               <p>Maximize your Centennial Hills home's value with professional marketing, staging, and pricing strategies. Get top dollar for your property with Dr. Janet Duffy's proven selling approach.</p>
               <a href="/sell-a-home" class="service-link">Get Free Valuation →</a>
             </div>
             <div class="service-card">
-              <HiStarMini class="service-icon" />
+              <svg class="service-icon" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
               <h3>Market Analysis</h3>
               <p>Comprehensive Centennial Hills market analysis including recent sales, price trends, and neighborhood insights. Stay informed about your local real estate market with detailed reports.</p>
               <a href="/market-analysis" class="service-link">Request Analysis →</a>
             </div>
             <div class="service-card">
-              <LuCalendar class="service-icon" />
+              <svg class="service-icon" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+              </svg>
               <h3>Same-Day Showings</h3>
               <p>Available 24/7 for Centennial Hills property showings. Whether you're buying or selling, Dr. Janet Duffy provides flexible scheduling to accommodate your busy lifestyle.</p>
               <a href="/contact" class="service-link">Schedule Now →</a>
@@ -203,7 +227,9 @@ export default component$(() => {
           <p>Contact Dr. Janet Duffy today for expert guidance in the Centennial Hills real estate market. With 30+ years of experience and deep local knowledge, she'll help you find the perfect home or sell your current property for maximum value.</p>
           <div class="cta-buttons">
             <a href="/contact" class="btn btn-primary btn-large">
-              <HiPhoneMini class="btn-icon" />
+              <svg class="btn-icon" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+              </svg>
               Call (702) 555-0123
             </a>
             <a href="/contact" class="btn btn-secondary btn-large">Get Free Consultation</a>
