@@ -101,10 +101,9 @@ export default component$(() => {
             
             {/* RealScout Search Widget Integration */}
             <RealScoutSearchWidget
-              agentId="dr-janet-duffy"
-              marketArea="centennial-hills-las-vegas"
-              defaultLocation="Centennial Hills, Las Vegas, NV"
+              agentEncodedId="QWdlbnQtMjI1MDUw"
               height="600px"
+              width="100%"
             />
             
             {/* Alternative Search Options */}

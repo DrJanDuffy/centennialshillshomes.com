@@ -40,10 +40,9 @@ export default component$(() => {
             </div>
             
             <RealScoutSearchWidget
-              agentId="dr-janet-duffy"
-              marketArea="las-vegas-metro"
-              defaultLocation="Las Vegas, NV"
+              agentEncodedId="QWdlbnQtMjI1MDUw"
               height="800px"
+              width="100%"
             />
           </div>
         </div>
