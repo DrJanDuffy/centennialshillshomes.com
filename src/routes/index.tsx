@@ -1,4 +1,4 @@
-import { component$, useSignal } from '@builder.io/qwik';
+import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import SimpleMapsWidget from '../components/simple-maps-widget';
 import SEOStructuredData from '../components/seo-structured-data';
@@ -6,8 +6,6 @@ import { centennialHillsProperties } from '../data/sample-properties';
 import { janetDuffyStructuredData } from '../components/seo-structured-data';
 
 export default component$(() => {
-  const email = useSignal('');
-  const phone = useSignal('');
 
   return (
     <>
