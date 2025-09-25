@@ -36,47 +36,25 @@ export default component$<RealScoutOfficeListingsProps>((props) => {
     try {
       console.log('Loading RealScout office listings widget...');
       
-      // Load RealScout Web Components
+      // Add the RealScout script and styles exactly as provided
       const script = document.createElement('script');
-      script.type = 'module';
       script.src = 'https://em.realscout.com/widgets/realscout-web-components.umd.js';
+      script.type = 'module';
       script.async = true;
-      script.crossOrigin = 'anonymous';
+      
+      const style = document.createElement('style');
+      style.textContent = `
+        realscout-office-listings {
+          --rs-listing-divider-color: #1e40af;
+          width: 100%;
+        }
+      `;
+      document.head.appendChild(style);
 
       script.onload = () => {
         console.log('RealScout script loaded successfully');
         
-        // Add custom styles for RealScout office listings widget
-        const style = document.createElement('style');
-        style.textContent = `
-          realscout-office-listings {
-            --rs-listing-divider-color: #1e40af;
-            width: 100%;
-            margin: 0 auto;
-            min-height: 400px;
-          }
-          
-          realscout-office-listings .listing-card {
-            border: 1px solid #e5e7eb;
-            border-radius: 0.5rem;
-            overflow: hidden;
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-          }
-          
-          realscout-office-listings .listing-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-          }
-          
-          realscout-office-listings img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 0.375rem;
-          }
-        `;
-        document.head.appendChild(style);
-
-        // Create the widget immediately after script loads
+        // Create the widget immediately
         if (widgetRef.value) {
           widgetRef.value.innerHTML = `
             <realscout-office-listings 
@@ -124,6 +102,11 @@ export default component$<RealScoutOfficeListingsProps>((props) => {
       };
 
       document.head.appendChild(script);
+      
+      // Also append script to document head immediately for better loading
+      if (!document.querySelector('script[src="https://em.realscout.com/widgets/realscout-web-components.umd.js"]')) {
+        document.head.appendChild(script);
+      }
     } catch (error) {
       console.error('Error loading RealScout office listings:', error);
       hasError.value = true;
