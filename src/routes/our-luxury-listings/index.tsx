@@ -1,5 +1,6 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
+import RealScoutOfficeListings from '../../components/realscout-office-listings';
 import { HiHomeMini, HiMapPinMini, HiPhoneMini, HiStarMini } from '@qwikest/icons/heroicons';
 import { LuSearch, LuHeart, LuCalendar, LuTrendingUp } from '@qwikest/icons/lucide';
 
@@ -19,6 +20,36 @@ export default component$(() => {
           <div class="hero-buttons">
             <a href="/mls-search" class="btn btn-primary">Search All Properties</a>
             <a href="/contact" class="btn btn-secondary">Schedule Private Showing</a>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Luxury Properties - Primary Lead Generator */}
+      <section class="featured-properties-section bg-gray-50 py-16">
+        <div class="container container-center">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">
+              Featured Luxury Centennial Hills Homes
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              Browse our curated collection of luxury homes and premium properties
+            </p>
+          </div>
+          
+          {/* RealScout Office Listings - Primary Lead Generator */}
+          <RealScoutOfficeListings
+            agentEncodedId="QWdlbnQtMjI1MDUw"
+            sortOrder="NEWEST"
+            listingStatus="For Sale"
+            propertyTypes=",SFR"
+            priceMin="800000"
+            priceMax="3000000"
+          />
+          
+          <div class="text-center mt-8">
+            <a href="/contact" class="btn btn-primary btn-lg">
+              Schedule Private Luxury Home Tour
+            </a>
           </div>
         </div>
       </section>

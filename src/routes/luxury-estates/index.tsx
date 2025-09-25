@@ -1,12 +1,59 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
+import RealScoutOfficeListings from '../../components/realscout-office-listings';
+import RealScoutSearchWidget from '../../components/realscout-search-widget';
 
 export default component$(() => {
   return (
     <>
+      {/* Hero Section */}
+      <section class="hero-section">
+        <div class="container container-center">
+          <h1 class="hero-title">
+            Luxury Estates - <span class="highlight">Premium Las Vegas Properties</span>
+          </h1>
+          <p class="hero-subtitle">
+            Discover Las Vegas' most prestigious luxury estates featuring custom architecture, premium finishes, and unparalleled amenities. 
+            Our portfolio includes properties from $1M to multi-million dollar estates in Centennial Hills, The Ridges, and exclusive communities.
+          </p>
+          <div class="hero-buttons">
+            <a href="/contact" class="btn btn-primary">Private Estate Consultation</a>
+            <a href="/our-luxury-listings" class="btn btn-secondary">View Luxury Collection</a>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Luxury Properties - Primary Lead Generator */}
+      <section class="featured-properties-section bg-gray-50 py-16">
+        <div class="container container-center">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">
+              Featured Luxury Estates
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              Browse our exclusive collection of luxury estates and premium properties
+            </p>
+          </div>
+          
+          {/* RealScout Office Listings - Primary Lead Generator */}
+          <RealScoutOfficeListings
+            agentEncodedId="QWdlbnQtMjI1MDUw"
+            sortOrder="NEWEST"
+            listingStatus="For Sale"
+            propertyTypes=",SFR"
+            priceMin="1000000"
+            priceMax="5000000"
+          />
+          
+          <div class="text-center mt-8">
+            <a href="/contact" class="btn btn-primary btn-lg">
+              Schedule Private Estate Tour
+            </a>
+          </div>
+        </div>
+      </section>
+
       <div class="container container-center">
-        <h1>Luxury Estates - Premium Las Vegas Properties</h1>
-        
         <h2>Exclusive Luxury Estate Collection</h2>
         <p>Discover Las Vegas' most prestigious luxury estates featuring custom architecture, premium finishes, and unparalleled amenities. Our luxury estate portfolio includes properties from $1 million to multi-million dollar estates in Centennial Hills, The Ridges, and other exclusive Las Vegas communities with resort-style living and mountain views.</p>
 

@@ -1,12 +1,58 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
+import RealScoutOfficeListings from '../../components/realscout-office-listings';
 
 export default component$(() => {
   return (
     <>
+      {/* Hero Section */}
+      <section class="hero-section">
+        <div class="container container-center">
+          <h1 class="hero-title">
+            Sky Canyon Real Estate - <span class="highlight">Modern New Development</span>
+          </h1>
+          <p class="hero-subtitle">
+            Discover Sky Canyon, North Las Vegas' newest master-planned community featuring modern homes, 
+            contemporary designs, and innovative amenities with energy-efficient homes and smart technology.
+          </p>
+          <div class="hero-buttons">
+            <a href="/contact" class="btn btn-primary">Find Sky Canyon Homes</a>
+            <a href="/new-construction" class="btn btn-secondary">New Construction</a>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Sky Canyon Properties - Lead Generator */}
+      <section class="featured-properties-section bg-gray-50 py-16">
+        <div class="container container-center">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">
+              Available Sky Canyon Homes
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              Browse current Sky Canyon properties for sale in this modern new development
+            </p>
+          </div>
+          
+          {/* RealScout Office Listings - Primary Lead Generator */}
+          <RealScoutOfficeListings
+            agentEncodedId="QWdlbnQtMjI1MDUw"
+            sortOrder="NEWEST"
+            listingStatus="For Sale"
+            propertyTypes=",SFR"
+            priceMin="450000"
+            priceMax="900000"
+          />
+          
+          <div class="text-center mt-8">
+            <a href="/contact" class="btn btn-primary btn-lg">
+              Schedule Sky Canyon Community Tour
+            </a>
+          </div>
+        </div>
+      </section>
+
       <div class="container container-center">
-        <h1>Sky Canyon Real Estate - Modern New Development</h1>
-        
         <h2>Contemporary Living in Sky Canyon</h2>
         <p>Discover Sky Canyon, North Las Vegas' newest master-planned community featuring modern homes, contemporary designs, and innovative amenities. Sky Canyon represents the future of Las Vegas living with energy-efficient homes, smart home technology, and community features designed for modern lifestyles and environmental sustainability.</p>
 

@@ -1,12 +1,58 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
+import RealScoutOfficeListings from '../../components/realscout-office-listings';
 
 export default component$(() => {
   return (
     <>
+      {/* Hero Section */}
+      <section class="hero-section">
+        <div class="container container-center">
+          <h1 class="hero-title">
+            Aliante Real Estate - <span class="highlight">Master-Planned Community</span>
+          </h1>
+          <p class="hero-subtitle">
+            Experience the best of master-planned community living in Aliante, North Las Vegas' premier residential development. 
+            Carefully designed neighborhoods, extensive amenities, and a strong sense of community.
+          </p>
+          <div class="hero-buttons">
+            <a href="/contact" class="btn btn-primary">Find Aliante Homes</a>
+            <a href="/properties" class="btn btn-secondary">View All Properties</a>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Aliante Properties - Lead Generator */}
+      <section class="featured-properties-section bg-gray-50 py-16">
+        <div class="container container-center">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">
+              Available Aliante Homes
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              Browse current Aliante properties for sale in this premier master-planned community
+            </p>
+          </div>
+          
+          {/* RealScout Office Listings - Primary Lead Generator */}
+          <RealScoutOfficeListings
+            agentEncodedId="QWdlbnQtMjI1MDUw"
+            sortOrder="NEWEST"
+            listingStatus="For Sale"
+            propertyTypes=",SFR"
+            priceMin="400000"
+            priceMax="800000"
+          />
+          
+          <div class="text-center mt-8">
+            <a href="/contact" class="btn btn-primary btn-lg">
+              Schedule Aliante Community Tour
+            </a>
+          </div>
+        </div>
+      </section>
+
       <div class="container container-center">
-        <h1>Aliante Real Estate - Master-Planned Community</h1>
-        
         <h2>Premier Master-Planned Living</h2>
         <p>Experience the best of master-planned community living in Aliante, North Las Vegas' premier residential development. Aliante features carefully designed neighborhoods, extensive amenities, and a strong sense of community, making it one of Las Vegas' most desirable places to live with homes ranging from starter properties to luxury estates.</p>
 

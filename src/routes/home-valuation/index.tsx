@@ -1,12 +1,58 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
+import RealScoutOfficeListings from '../../components/realscout-office-listings';
 
 export default component$(() => {
   return (
     <>
+      {/* Hero Section */}
+      <section class="hero-section">
+        <div class="container container-center">
+          <h1 class="hero-title">
+            Free Home Valuation - <span class="highlight">Las Vegas Property Values</span>
+          </h1>
+          <p class="hero-subtitle">
+            Get a comprehensive home valuation for your Las Vegas property with Dr. Janet Duffy's expert analysis. 
+            Our valuation process combines MLS data, recent sales comparisons, market trends, and local expertise.
+          </p>
+          <div class="hero-buttons">
+            <a href="/contact" class="btn btn-primary">Get Free Home Valuation</a>
+            <a href="/sell-a-home" class="btn btn-secondary">Selling Services</a>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Properties - Lead Generator */}
+      <section class="featured-properties-section bg-gray-50 py-16">
+        <div class="container container-center">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">
+              Recent Sales & Market Data
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              View recent sales and current market data to understand your property's value
+            </p>
+          </div>
+          
+          {/* RealScout Office Listings - Primary Lead Generator */}
+          <RealScoutOfficeListings
+            agentEncodedId="QWdlbnQtMjI1MDUw"
+            sortOrder="NEWEST"
+            listingStatus="For Sale"
+            propertyTypes=",SFR"
+            priceMin="400000"
+            priceMax="1500000"
+          />
+          
+          <div class="text-center mt-8">
+            <a href="/contact" class="btn btn-primary btn-lg">
+              Get Your Free Home Valuation
+            </a>
+          </div>
+        </div>
+      </section>
+
       <div class="container container-center">
-        <h1>Free Home Valuation - Las Vegas Property Values</h1>
-        
         <h2>Accurate Property Valuation Services</h2>
         <p>Get a comprehensive home valuation for your Las Vegas property with Dr. Janet Duffy's expert analysis. Our valuation process combines MLS data, recent sales comparisons, market trends, and local expertise to provide accurate property values for Centennial Hills and surrounding Las Vegas neighborhoods.</p>
 

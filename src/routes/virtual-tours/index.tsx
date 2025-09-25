@@ -1,12 +1,58 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
+import RealScoutOfficeListings from '../../components/realscout-office-listings';
 
 export default component$(() => {
   return (
     <>
+      {/* Hero Section */}
+      <section class="hero-section">
+        <div class="container container-center">
+          <h1 class="hero-title">
+            Virtual Tours - <span class="highlight">Las Vegas Property Walkthroughs</span>
+          </h1>
+          <p class="hero-subtitle">
+            Explore Las Vegas properties through our comprehensive virtual tour collection featuring 360-degree walkthroughs, 
+            detailed property photography, and interactive floor plans from anywhere in the world.
+          </p>
+          <div class="hero-buttons">
+            <a href="/properties" class="btn btn-primary">View All Properties</a>
+            <a href="/contact" class="btn btn-secondary">Schedule Live Tour</a>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Properties - Lead Generator */}
+      <section class="featured-properties-section bg-gray-50 py-16">
+        <div class="container container-center">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">
+              Properties with Virtual Tours
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              Browse our latest listings with professional virtual tours and 360-degree walkthroughs
+            </p>
+          </div>
+          
+          {/* RealScout Office Listings - Primary Lead Generator */}
+          <RealScoutOfficeListings
+            agentEncodedId="QWdlbnQtMjI1MDUw"
+            sortOrder="NEWEST"
+            listingStatus="For Sale"
+            propertyTypes=",SFR"
+            priceMin="500000"
+            priceMax="2000000"
+          />
+          
+          <div class="text-center mt-8">
+            <a href="/properties" class="btn btn-primary btn-lg">
+              View All Properties with Virtual Tours
+            </a>
+          </div>
+        </div>
+      </section>
+
       <div class="container container-center">
-        <h1>Virtual Tours - Las Vegas Property Walkthroughs</h1>
-        
         <h2>Immersive Property Experiences</h2>
         <p>Explore Las Vegas properties through our comprehensive virtual tour collection featuring 360-degree walkthroughs, detailed property photography, and interactive floor plans. Our virtual tours allow you to experience Centennial Hills homes, luxury estates, and investment properties from anywhere in the world with professional-quality presentations.</p>
 
