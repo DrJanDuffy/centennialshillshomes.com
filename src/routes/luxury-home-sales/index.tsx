@@ -1,6 +1,7 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import MapsWidget from '../../components/maps-widget';
+import RealScoutOfficeListings from '../../components/realscout-office-listings';
 import { luxuryProperties } from '../../data/sample-properties';
 
 export default component$(() => {
@@ -17,6 +18,40 @@ export default component$(() => {
           <p class="hero-subtitle">
             Expert guidance for high-end property transactions in Las Vegas' most prestigious neighborhoods and communities.
           </p>
+          <div class="hero-buttons">
+            <a href="/contact" class="btn btn-primary">Luxury Sales Consultation</a>
+            <a href="/sell-a-home" class="btn btn-secondary">Selling Services</a>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Luxury Properties - Lead Generator */}
+      <section class="featured-properties-section bg-gray-50 py-16">
+        <div class="container container-center">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">
+              Current Luxury Listings
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              Browse our exclusive luxury properties for sale in Las Vegas
+            </p>
+          </div>
+          
+          {/* RealScout Office Listings - Primary Lead Generator */}
+          <RealScoutOfficeListings
+            agentEncodedId="QWdlbnQtMjI1MDUw"
+            sortOrder="NEWEST"
+            listingStatus="For Sale"
+            propertyTypes=",SFR"
+            priceMin="1000000"
+            priceMax="5000000"
+          />
+          
+          <div class="text-center mt-8">
+            <a href="/contact" class="btn btn-primary btn-lg">
+              Schedule Luxury Sales Consultation
+            </a>
+          </div>
         </div>
       </section>
 

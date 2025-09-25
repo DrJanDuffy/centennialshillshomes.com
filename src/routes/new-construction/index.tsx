@@ -1,12 +1,58 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
+import RealScoutOfficeListings from '../../components/realscout-office-listings';
 
 export default component$(() => {
   return (
     <>
+      {/* Hero Section */}
+      <section class="hero-section">
+        <div class="container container-center">
+          <h1 class="hero-title">
+            New Construction Homes - <span class="highlight">Las Vegas Real Estate</span>
+          </h1>
+          <p class="hero-subtitle">
+            Discover the latest new construction homes throughout Las Vegas featuring modern designs, energy-efficient features, 
+            and the latest home technology with warranties and move-in ready convenience.
+          </p>
+          <div class="hero-buttons">
+            <a href="/contact" class="btn btn-primary">New Construction Consultation</a>
+            <a href="/properties" class="btn btn-secondary">View New Homes</a>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured New Construction Properties - Lead Generator */}
+      <section class="featured-properties-section bg-gray-50 py-16">
+        <div class="container container-center">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">
+              New Construction Opportunities
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              Browse current new construction homes and development opportunities in Las Vegas
+            </p>
+          </div>
+          
+          {/* RealScout Office Listings - Primary Lead Generator */}
+          <RealScoutOfficeListings
+            agentEncodedId="QWdlbnQtMjI1MDUw"
+            sortOrder="NEWEST"
+            listingStatus="For Sale"
+            propertyTypes=",SFR"
+            priceMin="400000"
+            priceMax="1200000"
+          />
+          
+          <div class="text-center mt-8">
+            <a href="/contact" class="btn btn-primary btn-lg">
+              Get New Construction Guidance
+            </a>
+          </div>
+        </div>
+      </section>
+
       <div class="container container-center">
-        <h1>New Construction Homes - Las Vegas Real Estate</h1>
-        
         <h2>Brand New Homes Across Las Vegas</h2>
         <p>Discover the latest new construction homes throughout Las Vegas featuring modern designs, energy-efficient features, and the latest home technology. From starter homes to luxury estates, explore new construction opportunities in Centennial Hills, Summerlin, Henderson, and other premier Las Vegas communities with warranties and move-in ready convenience.</p>
 

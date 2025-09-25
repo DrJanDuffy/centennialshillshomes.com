@@ -1,5 +1,6 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
+import RealScoutOfficeListings from '../../components/realscout-office-listings';
 
 export default component$(() => {
   return (
@@ -15,6 +16,40 @@ export default component$(() => {
           <p class="hero-subtitle">
             Specialized assistance for California residents looking to maximize their equity investment in Las Vegas real estate.
           </p>
+          <div class="hero-buttons">
+            <a href="/contact" class="btn btn-primary">California Buyer Consultation</a>
+            <a href="/properties" class="btn btn-secondary">View Las Vegas Properties</a>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Properties for California Buyers - Lead Generator */}
+      <section class="featured-properties-section bg-gray-50 py-16">
+        <div class="container container-center">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">
+              Perfect Properties for California Equity Buyers
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              Browse Las Vegas properties ideal for California equity buyers
+            </p>
+          </div>
+          
+          {/* RealScout Office Listings - Primary Lead Generator */}
+          <RealScoutOfficeListings
+            agentEncodedId="QWdlbnQtMjI1MDUw"
+            sortOrder="NEWEST"
+            listingStatus="For Sale"
+            propertyTypes=",SFR"
+            priceMin="500000"
+            priceMax="1500000"
+          />
+          
+          <div class="text-center mt-8">
+            <a href="/contact" class="btn btn-primary btn-lg">
+              Get California Equity Analysis
+            </a>
+          </div>
         </div>
       </section>
 
