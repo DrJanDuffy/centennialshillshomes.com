@@ -1,5 +1,7 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
+import RealScoutOfficeListings from '../../components/realscout-office-listings';
+import RealScoutSearchWidget from '../../components/realscout-search-widget';
 import { HiHomeMini, HiMapPinMini, HiPhoneMini, HiStarMini } from '@qwikest/icons/heroicons';
 import { LuSearch, LuTrendingUp, LuUsers, LuCalendar } from '@qwikest/icons/lucide';
 
@@ -16,16 +18,47 @@ export default component$(() => {
             Dr. Janet Duffy's comprehensive home buying services help you find the perfect Centennial Hills home. 
             From first-time buyers to luxury home purchases, we provide personalized service and deep local market expertise.
           </p>
-          <div class="hero-search">
-            <div class="search-box">
-              <LuSearch class="search-icon" />
-              <input type="text" placeholder="Search Centennial Hills homes by price, bedrooms, or ZIP code..." />
-              <button class="btn btn-primary">Search Properties</button>
-            </div>
+          {/* RealScout Advanced Search Widget */}
+          <div class="hero-search-widget">
+            <RealScoutSearchWidget
+              agentEncodedId="QWdlbnQtMjI1MDUw"
+              height="400px"
+              width="100%"
+            />
           </div>
           <div class="hero-buttons">
             <a href="/centennial-hills-homes-for-sale" class="btn btn-primary">View All Centennial Hills Homes</a>
             <a href="/contact" class="btn btn-secondary">Get Free Buyer Consultation</a>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Properties - Primary Lead Generator */}
+      <section class="featured-properties-section bg-gray-50 py-16">
+        <div class="container container-center">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">
+              Featured Centennial Hills Homes for Sale
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              Browse our latest listings perfect for home buyers
+            </p>
+          </div>
+          
+          {/* RealScout Office Listings - Primary Lead Generator */}
+          <RealScoutOfficeListings
+            agentEncodedId="QWdlbnQtMjI1MDUw"
+            sortOrder="NEWEST"
+            listingStatus="For Sale"
+            propertyTypes=",SFR"
+            priceMin="400000"
+            priceMax="1200000"
+          />
+          
+          <div class="text-center mt-8">
+            <a href="/mls-search" class="btn btn-primary btn-lg">
+              View All Available Properties
+            </a>
           </div>
         </div>
       </section>

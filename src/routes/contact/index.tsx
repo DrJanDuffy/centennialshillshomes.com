@@ -1,6 +1,7 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import MapsWidget from '../../components/maps-widget';
+import RealScoutOfficeListings from '../../components/realscout-office-listings';
 
 export default component$(() => {
   return (
@@ -10,6 +11,28 @@ export default component$(() => {
         
         <h2>Get In Touch Today</h2>
         <p>Ready to buy or sell real estate in Centennial Hills or Las Vegas? Contact Dr. Janet Duffy for personalized service and expert guidance. With 30+ years of research expertise and Top 1% REALTOR® status, Dr. Duffy provides the knowledge and dedication needed for successful real estate transactions.</p>
+
+        {/* Featured Properties - Lead Generator */}
+        <section class="featured-properties-section bg-gray-50 py-16">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">
+              Featured Las Vegas Properties
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              Browse our latest luxury homes while you're here
+            </p>
+          </div>
+          
+          {/* RealScout Office Listings - Primary Lead Generator */}
+          <RealScoutOfficeListings
+            agentEncodedId="QWdlbnQtMjI1MDUw"
+            sortOrder="NEWEST"
+            listingStatus="For Sale"
+            propertyTypes=",SFR"
+            priceMin="500000"
+            priceMax="1500000"
+          />
+        </section>
 
         <h2>Phone and Email</h2>
         <p>Call Dr. Janet Duffy directly at (702) 903-1952 for immediate assistance with your real estate needs. Available 24/7 for executive clients and urgent inquiries. Email for detailed questions, property information, or to schedule consultations. Dr. Duffy personally responds to all inquiries to ensure you receive the attention and expertise you deserve.</p>
