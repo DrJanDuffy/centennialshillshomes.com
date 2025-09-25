@@ -30,20 +30,6 @@ export const RouterHead = component$(() => {
 
       {/* RealScout Web Components Script - Load globally */}
       <script src="https://em.realscout.com/widgets/realscout-web-components.umd.js" type="module"></script>
-      
-      {/* RealScout Widget Styles */}
-      <style dangerouslySetInnerHTML={`
-        realscout-office-listings {
-          --rs-listing-divider-color: #0e64c8;
-          width: 100%;
-        }
-        realscout-advanced-search {
-          --rs-as-button-text-color: #ffffff;
-          --rs-as-background-color: #ffffff;
-          --rs-as-button-color: #1e40af;
-          width: 100%;
-        }
-      `}></style>
     </>
   );
 });

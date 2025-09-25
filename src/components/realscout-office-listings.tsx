@@ -1,4 +1,4 @@
-import { component$ } from '@builder.io/qwik';
+import { component$, useVisibleTask$ } from '@builder.io/qwik';
 
 interface RealScoutOfficeListingsProps {
   agentEncodedId?: string;
@@ -20,6 +20,21 @@ export default component$<RealScoutOfficeListingsProps>((props) => {
     priceMax = '600000', // Fixed: was 60000, now 600K for luxury homes
     height = 'auto'
   } = props;
+
+  useVisibleTask$(() => {
+    // Add page-specific styles for RealScout office listings
+    if (!document.querySelector('style[data-realscout-office-listings]')) {
+      const style = document.createElement('style');
+      style.setAttribute('data-realscout-office-listings', 'true');
+      style.textContent = `
+        realscout-office-listings {
+          --rs-listing-divider-color: #0e64c8;
+          width: 100%;
+        }
+      `;
+      document.head.appendChild(style);
+    }
+  });
 
   return (
     <div style={{ height: height }} class="realscout-office-listings-container">
