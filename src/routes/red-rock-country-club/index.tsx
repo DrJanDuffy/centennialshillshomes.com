@@ -1,6 +1,7 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import CommuteWidget from '../../components/commute-widget';
+import RealScoutOfficeListings from '../../components/realscout-office-listings';
 
 export default component$(() => {
   return (
@@ -16,6 +17,40 @@ export default component$(() => {
           <p class="hero-subtitle">
             Experience exclusive gated community living with world-class golf, stunning mountain views, and resort-style amenities.
           </p>
+          <div class="hero-buttons">
+            <a href="/contact" class="btn btn-primary">Find Red Rock Homes</a>
+            <a href="/luxury-estates" class="btn btn-secondary">Luxury Estates</a>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Red Rock Properties - Lead Generator */}
+      <section class="featured-properties-section bg-gray-50 py-16">
+        <div class="container container-center">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">
+              Available Red Rock Country Club Homes
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              Browse current Red Rock Country Club properties for sale in this exclusive golf community
+            </p>
+          </div>
+          
+          {/* RealScout Office Listings - Primary Lead Generator */}
+          <RealScoutOfficeListings
+            agentEncodedId="QWdlbnQtMjI1MDUw"
+            sortOrder="NEWEST"
+            listingStatus="For Sale"
+            propertyTypes=",SFR"
+            priceMin="800000"
+            priceMax="3000000"
+          />
+          
+          <div class="text-center mt-8">
+            <a href="/contact" class="btn btn-primary btn-lg">
+              Schedule Private Red Rock Tour
+            </a>
+          </div>
         </div>
       </section>
 

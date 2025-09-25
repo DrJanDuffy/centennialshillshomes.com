@@ -1,12 +1,58 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
+import RealScoutOfficeListings from '../../components/realscout-office-listings';
 
 export default component$(() => {
   return (
     <>
+      {/* Hero Section */}
+      <section class="hero-section">
+        <div class="container container-center">
+          <h1 class="hero-title">
+            Providence Real Estate - <span class="highlight">Luxury Community Living</span>
+          </h1>
+          <p class="hero-subtitle">
+            Experience luxury living in Providence, Centennial Hills' premier gated community featuring custom estates, 
+            resort-style amenities, and breathtaking mountain views with exclusive lifestyle and privacy.
+          </p>
+          <div class="hero-buttons">
+            <a href="/contact" class="btn btn-primary">Find Providence Homes</a>
+            <a href="/luxury-estates" class="btn btn-secondary">Luxury Estates</a>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Providence Properties - Lead Generator */}
+      <section class="featured-properties-section bg-gray-50 py-16">
+        <div class="container container-center">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">
+              Available Providence Homes
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              Browse current Providence properties for sale in this exclusive gated community
+            </p>
+          </div>
+          
+          {/* RealScout Office Listings - Primary Lead Generator */}
+          <RealScoutOfficeListings
+            agentEncodedId="QWdlbnQtMjI1MDUw"
+            sortOrder="NEWEST"
+            listingStatus="For Sale"
+            propertyTypes=",SFR"
+            priceMin="750000"
+            priceMax="2500000"
+          />
+          
+          <div class="text-center mt-8">
+            <a href="/contact" class="btn btn-primary btn-lg">
+              Schedule Private Providence Tour
+            </a>
+          </div>
+        </div>
+      </section>
+
       <div class="container container-center">
-        <h1>Providence Real Estate - Luxury Community Living</h1>
-        
         <h2>Exclusive Providence Community</h2>
         <p>Experience luxury living in Providence, Centennial Hills' premier gated community featuring custom estates, resort-style amenities, and breathtaking mountain views. Providence offers an exclusive lifestyle with private security, community parks, and access to some of Las Vegas' most spectacular natural landscapes, making it ideal for discerning buyers seeking privacy and luxury.</p>
 
