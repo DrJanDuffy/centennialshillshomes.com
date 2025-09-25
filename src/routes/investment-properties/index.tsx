@@ -1,12 +1,58 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
+import RealScoutOfficeListings from '../../components/realscout-office-listings';
 
 export default component$(() => {
   return (
     <>
+      {/* Hero Section */}
+      <section class="hero-section">
+        <div class="container container-center">
+          <h1 class="hero-title">
+            Investment Properties - <span class="highlight">Las Vegas Real Estate Investments</span>
+          </h1>
+          <p class="hero-subtitle">
+            Build wealth through Las Vegas real estate investments with Dr. Janet Duffy's expertise in investment property analysis and portfolio development. 
+            Rental properties, fix-and-flip opportunities, and long-term appreciation strategies.
+          </p>
+          <div class="hero-buttons">
+            <a href="/contact" class="btn btn-primary">Investment Consultation</a>
+            <a href="/properties" class="btn btn-secondary">View Investment Properties</a>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Investment Properties - Lead Generator */}
+      <section class="featured-properties-section bg-gray-50 py-16">
+        <div class="container container-center">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">
+              Investment Property Opportunities
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              Browse current investment properties and rental opportunities in Las Vegas
+            </p>
+          </div>
+          
+          {/* RealScout Office Listings - Primary Lead Generator */}
+          <RealScoutOfficeListings
+            agentEncodedId="QWdlbnQtMjI1MDUw"
+            sortOrder="NEWEST"
+            listingStatus="For Sale"
+            propertyTypes=",SFR"
+            priceMin="300000"
+            priceMax="800000"
+          />
+          
+          <div class="text-center mt-8">
+            <a href="/contact" class="btn btn-primary btn-lg">
+              Get Investment Analysis
+            </a>
+          </div>
+        </div>
+      </section>
+
       <div class="container container-center">
-        <h1>Investment Properties - Las Vegas Real Estate Investments</h1>
-        
         <h2>Strategic Real Estate Investment Opportunities</h2>
         <p>Build wealth through Las Vegas real estate investments with Dr. Janet Duffy's expertise in investment property analysis and portfolio development. Our investment services cover rental properties, fix-and-flip opportunities, and long-term appreciation strategies in Centennial Hills and other high-growth Las Vegas neighborhoods.</p>
 

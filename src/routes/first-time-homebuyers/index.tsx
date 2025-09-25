@@ -1,12 +1,58 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
+import RealScoutOfficeListings from '../../components/realscout-office-listings';
 
 export default component$(() => {
   return (
     <>
+      {/* Hero Section */}
+      <section class="hero-section">
+        <div class="container container-center">
+          <h1 class="hero-title">
+            First-Time Homebuyers Guide - <span class="highlight">Las Vegas Real Estate</span>
+          </h1>
+          <p class="hero-subtitle">
+            Navigate the Las Vegas real estate market with confidence as a first-time homebuyer. 
+            Dr. Janet Duffy provides comprehensive guidance through every step of the homebuying process.
+          </p>
+          <div class="hero-buttons">
+            <a href="/contact" class="btn btn-primary">First-Time Buyer Consultation</a>
+            <a href="/buy-a-home" class="btn btn-secondary">Buying Process</a>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured First-Time Buyer Properties - Lead Generator */}
+      <section class="featured-properties-section bg-gray-50 py-16">
+        <div class="container container-center">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">
+              Perfect First-Time Buyer Homes
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              Browse homes ideal for first-time buyers in Las Vegas
+            </p>
+          </div>
+          
+          {/* RealScout Office Listings - Primary Lead Generator */}
+          <RealScoutOfficeListings
+            agentEncodedId="QWdlbnQtMjI1MDUw"
+            sortOrder="NEWEST"
+            listingStatus="For Sale"
+            propertyTypes=",SFR"
+            priceMin="350000"
+            priceMax="600000"
+          />
+          
+          <div class="text-center mt-8">
+            <a href="/contact" class="btn btn-primary btn-lg">
+              Get First-Time Buyer Guidance
+            </a>
+          </div>
+        </div>
+      </section>
+
       <div class="container container-center">
-        <h1>First-Time Homebuyers Guide - Las Vegas Real Estate</h1>
-        
         <h2>Your Complete First-Time Homebuyer Journey</h2>
         <p>Navigate the Las Vegas real estate market with confidence as a first-time homebuyer. Dr. Janet Duffy provides comprehensive guidance through every step of the homebuying process, from pre-approval to closing, with specialized expertise in Centennial Hills and northwest Las Vegas neighborhoods perfect for first-time buyers.</p>
 
