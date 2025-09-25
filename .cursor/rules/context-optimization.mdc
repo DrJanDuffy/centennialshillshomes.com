@@ -40,7 +40,9 @@ alwaysApply: true
 - **Response time**: Quick rule application and processing
 
 ### Optimization Triggers
-- **Context > 80%**: Immediate optimization required
+- **Context > 80%**: **AUTOMATIC NEW AGENT SESSION REQUIRED**
+- **Context > 70%**: Consider starting new session
+- **Context > 60%**: Monitor closely, prepare for new session
 - **Loading > 50ms**: Reduce rule complexity
 - **Memory issues**: Split large rules into smaller ones
 
@@ -67,21 +69,21 @@ alwaysApply: true
 ## Emergency Context Reduction
 
 ### Immediate Actions
-1. **Start new agent session** - Most effective when context > 80%
+1. **🚨 AUTOMATIC NEW AGENT SESSION** - **MANDATORY when context > 80%**
 2. **Split large rules** - Break into smaller files
 3. **Remove examples** - Keep only essential patterns
 4. **Eliminate redundancy** - Remove duplicate content
 5. **Simplify explanations** - Use bullet points instead of paragraphs
 
 ### Agent Session Management
-- ✅ **Context > 80%**: Start new agent session immediately
+- 🚨 **Context > 80%**: **AUTOMATIC NEW AGENT SESSION - NO EXCEPTIONS**
 - ✅ **Context > 70%**: Consider starting new session
 - ✅ **Context > 60%**: Monitor closely, prepare for new session
 - ✅ **Performance issues**: New session often resolves them
 - ✅ **Memory errors**: New session clears context cache
 
 ### When to Start New Agent Session
-- **High context percentage** (> 80%)
+- 🚨 **High context percentage** (> 80%) - **AUTOMATIC TRIGGER**
 - **Slow response times** (> 5 seconds)
 - **Terminal command failures** or interruptions
 - **Memory-related errors** in Cursor
