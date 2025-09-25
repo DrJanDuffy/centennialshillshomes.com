@@ -12,7 +12,7 @@ export default component$<RealScoutSearchWidgetProps>((props) => {
   const hasError = useSignal(false);
 
   const {
-    agentEncodedId = 'QWdlbnQtMjI1MDUw', // Dr. Janet Duffy's RealScout agent ID
+    agentEncodedId = 'QWdlbnQtMjI1MDUw', // Dr. Jan Duffy's RealScout agent ID
     height = '600px',
     width = '100%'
   } = props;
@@ -33,6 +33,8 @@ export default component$<RealScoutSearchWidgetProps>((props) => {
       script.async = true;
 
       script.onload = () => {
+        console.log('RealScout search script loaded successfully');
+        
         // Add custom styles for RealScout widget
         const style = document.createElement('style');
         style.textContent = `
@@ -53,15 +55,13 @@ export default component$<RealScoutSearchWidgetProps>((props) => {
         `;
         document.head.appendChild(style);
 
-        // Wait a bit for the custom element to be defined
-        setTimeout(() => {
-          if (widgetRef.value) {
-            widgetRef.value.innerHTML = `
-              <realscout-advanced-search agent-encoded-id="${agentEncodedId}"></realscout-advanced-search>
-            `;
-            isLoaded.value = true;
-          }
-        }, 100);
+        // Create the widget immediately after script loads
+        if (widgetRef.value) {
+          widgetRef.value.innerHTML = `
+            <realscout-advanced-search agent-encoded-id="${agentEncodedId}"></realscout-advanced-search>
+          `;
+          isLoaded.value = true;
+        }
       };
 
       script.onerror = () => {

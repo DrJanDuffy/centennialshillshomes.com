@@ -16,7 +16,7 @@ export default component$<RealScoutOfficeListingsProps>((props) => {
   const hasError = useSignal(false);
 
   const {
-    agentEncodedId = 'QWdlbnQtMjI1MDUw', // Dr. Janet Duffy's RealScout agent ID
+    agentEncodedId = 'QWdlbnQtMjI1MDUw', // Dr. Jan Duffy's RealScout agent ID
     sortOrder = 'NEWEST',
     listingStatus = 'For Sale',
     propertyTypes = ',SFR', // Single Family Residential
@@ -34,13 +34,18 @@ export default component$<RealScoutOfficeListingsProps>((props) => {
     if (typeof window === 'undefined') return;
 
     try {
+      console.log('Loading RealScout office listings widget...');
+      
       // Load RealScout Web Components
       const script = document.createElement('script');
       script.type = 'module';
       script.src = 'https://em.realscout.com/widgets/realscout-web-components.umd.js';
       script.async = true;
+      script.crossOrigin = 'anonymous';
 
       script.onload = () => {
+        console.log('RealScout script loaded successfully');
+        
         // Add custom styles for RealScout office listings widget
         const style = document.createElement('style');
         style.textContent = `
@@ -71,25 +76,24 @@ export default component$<RealScoutOfficeListingsProps>((props) => {
         `;
         document.head.appendChild(style);
 
-        // Wait a bit for the custom element to be defined
-        setTimeout(() => {
-          if (widgetRef.value) {
-            widgetRef.value.innerHTML = `
-              <realscout-office-listings 
-                agent-encoded-id="${agentEncodedId}" 
-                sort-order="${sortOrder}" 
-                listing-status="${listingStatus}" 
-                property-types="${propertyTypes}" 
-                price-min="${priceMin}" 
-                price-max="${priceMax}"
-              ></realscout-office-listings>
-            `;
-            isLoaded.value = true;
-          }
-        }, 100);
+        // Create the widget immediately after script loads
+        if (widgetRef.value) {
+          widgetRef.value.innerHTML = `
+            <realscout-office-listings 
+              agent-encoded-id="${agentEncodedId}" 
+              sort-order="${sortOrder}" 
+              listing-status="${listingStatus}" 
+              property-types="${propertyTypes}" 
+              price-min="${priceMin}" 
+              price-max="${priceMax}"
+            ></realscout-office-listings>
+          `;
+          isLoaded.value = true;
+        }
       };
 
-      script.onerror = () => {
+      script.onerror = (error) => {
+        console.error('Failed to load RealScout script:', error);
         hasError.value = true;
         isLoaded.value = true;
         
