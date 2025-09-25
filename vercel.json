@@ -1,6 +1,28 @@
 {
   "buildCommand": "pnpm run build.client && pnpm run build.server",
   "outputDirectory": ".vercel/output",
+  "redirects": [
+    {
+      "source": "/tule-springs.html",
+      "destination": "/tule-springs",
+      "permanent": true
+    },
+    {
+      "source": "/skye-canyon.html",
+      "destination": "/sky-canyon",
+      "permanent": true
+    },
+    {
+      "source": "/listings",
+      "destination": "/mls-search",
+      "permanent": true
+    },
+    {
+      "source": "/listings/",
+      "destination": "/mls-search",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/build/(.*)",

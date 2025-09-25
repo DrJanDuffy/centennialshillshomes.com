@@ -1,14 +1,25 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
+import SEOStructuredData from '../../components/seo-structured-data';
+import { pageSchemas } from '../../components/seo-structured-data';
 
 export default component$(() => {
+  // Schema data for Dr. Janet Duffy person page
+  const janetDuffySchema = pageSchemas.personPage({});
+
   return (
     <>
+      {/* SEO Structured Data */}
+      <SEOStructuredData 
+        type="Person" 
+        data={janetDuffySchema} 
+      />
+
       <div class="container container-center">
         <h1>Dr. Janet Duffy - Top 1% Las Vegas REALTOR®</h1>
         
         <h2>Meet Your Real Estate Expert</h2>
-        <p>Dr. Janet Duffy brings over 30 years of research expertise and real estate experience to serve Las Vegas homebuyers and sellers. As a Top 1% REALTOR®, Dr. Duffy specializes in luxury real estate, corporate relocations, and California equity buyers, providing personalized service and market insights for Centennial Hills and northwest Las Vegas properties.</p>
+        <p>Dr. Janet Duffy brings over 30 years of research expertise and real estate experience to serve Las Vegas homebuyers and sellers. As a Top 1% REALTOR®, Dr. Duffy specializes in luxury real estate, corporate relocations, and California equity buyers, providing personalized service and market insights for Centennial Hills and northwest Las Vegas properties. Available 24/7 for executive clients and luxury home investments, Dr. Duffy offers same-day showings and complimentary market analysis.</p>
 
         <h2>Professional Credentials and Achiements</h2>
         <p>Dr. Janet Duffy holds advanced degrees in research and has achieved recognition as a Top 1% REALTOR® in Las Vegas. Her credentials include specialized training in luxury home sales, investment properties, and relocation services. Dr. Duffy's research background provides clients with data-driven market analysis and strategic real estate guidance.</p>
@@ -34,7 +45,7 @@ export const head: DocumentHead = {
   meta: [
     {
       name: 'description',
-      content: 'Meet Dr. Janet Duffy, Top 1% Las Vegas REALTOR® with 30+ years of research expertise. Specializing in Centennial Hills luxury real estate and corporate relocations.',
+      content: 'Meet Dr. Janet Duffy, Top 1% Las Vegas REALTOR® with 30+ years of research expertise. Specializing in Centennial Hills luxury real estate and corporate relocations. Available 24/7 for executive clients with same-day showings and complimentary market analysis.',
     },
   ],
 };

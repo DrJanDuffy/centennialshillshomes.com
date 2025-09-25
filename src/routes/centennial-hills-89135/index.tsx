@@ -284,7 +284,7 @@ export default component$(() => {
           <div class="cta-buttons">
             <a href="/contact" class="btn btn-primary btn-large">
               <HiPhoneMini class="btn-icon" />
-              Call (702) 555-0123
+              Call (702) 903-1952
             </a>
             <a href="/contact" class="btn btn-secondary btn-large">Get Free Consultation</a>
           </div>

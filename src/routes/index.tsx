@@ -28,8 +28,7 @@ export default component$(() => {
               Find Your Dream Home in <span class="text-blue-600">Centennial Hills</span>
             </h1>
             <p class="hero-subtitle">
-              Top 1% Las Vegas REALTOR® with 30+ years of research expertise. 
-              Specializing in luxury homes and new construction in Northwest Las Vegas.
+              Luxury real estate specialist serving West Summerlin's premier neighborhoods including ZIP codes 89138, 89144, and 89135. Dr. Jan Duffy, REALTOR® offers 30+ years of research expertise in luxury homes $400K-$750K. Specializing in Red Rock Country Club, The Ridges, and Summerlin West communities for California equity buyers and corporate relocations. Top 1% Las Vegas REALTOR® providing same-day showings and complimentary market analysis. Available 24/7 for executive clients and luxury home investments.
             </p>
             <div class="hero-stats">
               <div class="stat">
@@ -435,11 +434,11 @@ export default component$(() => {
 });
 
 export const head: DocumentHead = {
-  title: 'Centennial Hills Real Estate | Dr. Janet Duffy - Top 1% Las Vegas REALTOR®',
+  title: 'Centennial Hills Real Estate | Homes by Dr. Jan Duffy - Top 1% Las Vegas REALTOR®',
   meta: [
     {
       name: 'description',
-      content: 'Find your dream home in Centennial Hills, Las Vegas with Dr. Janet Duffy, Top 1% REALTOR®. 30+ years expertise in luxury homes, new construction, and California equity buyer relocations.',
+      content: 'Luxury real estate specialist serving West Summerlin\'s premier neighborhoods including ZIP codes 89138, 89144, and 89135. Dr. Jan Duffy, REALTOR® offers 30+ years of research expertise in luxury homes $400K-$750K. Specializing in Red Rock Country Club, The Ridges, and Summerlin West communities for California equity buyers and corporate relocations. Top 1% Las Vegas REALTOR® providing same-day showings and complimentary market analysis. Available 24/7 for executive clients and luxury home investments.',
     },
     {
       name: 'keywords',

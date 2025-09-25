@@ -16,7 +16,7 @@ export default component$(() => {
             Las Vegas' Most Exclusive Properties
           </h1>
           <p class="hero-subtitle">
-            Expert guidance for high-end property transactions in Las Vegas' most prestigious neighborhoods and communities.
+            Expert guidance for high-end property transactions in Las Vegas' most prestigious neighborhoods and communities. Top 1% REALTOR® with 30+ years of research expertise, available 24/7 for executive clients and luxury home investments.
           </p>
           <div class="hero-buttons">
             <a href="/contact" class="btn btn-primary">Luxury Sales Consultation</a>
@@ -250,7 +250,7 @@ export const head: DocumentHead = {
   meta: [
     {
       name: 'description',
-      content: 'Expert luxury home sales in Las Vegas\' most exclusive communities. Dr. Janet Duffy specializes in high-end properties with personalized service.',
+      content: 'Expert luxury home sales in Las Vegas\' most exclusive communities. Dr. Janet Duffy specializes in high-end properties with personalized service. Top 1% REALTOR® with 30+ years of research expertise, available 24/7 for executive clients.',
     },
     {
       name: 'keywords',

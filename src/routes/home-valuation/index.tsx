@@ -1,10 +1,26 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import RealScoutOfficeListings from '../../components/realscout-office-listings';
+import SEOStructuredData from '../../components/seo-structured-data';
+import { pageSchemas } from '../../components/seo-structured-data';
 
 export default component$(() => {
+  // Schema data for home valuation service page
+  const valuationSchema = pageSchemas.servicePage({
+    name: "Free Home Valuation Service",
+    description: "Get a comprehensive home valuation for your Las Vegas property with Dr. Janet Duffy's expert analysis. Our valuation process combines MLS data, recent sales comparisons, market trends, and local expertise.",
+    slug: "home-valuation",
+    serviceType: "Property Valuation Services"
+  });
+
   return (
     <>
+      {/* SEO Structured Data */}
+      <SEOStructuredData 
+        type="Service" 
+        data={valuationSchema} 
+      />
+
       {/* Hero Section */}
       <section class="hero-section">
         <div class="container container-center">

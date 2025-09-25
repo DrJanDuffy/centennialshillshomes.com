@@ -3,11 +3,31 @@ import type { DocumentHead } from '@builder.io/qwik-city';
 import CommuteWidget from '../../components/commute-widget';
 import MapsWidget from '../../components/maps-widget';
 import RealScoutOfficeListings from '../../components/realscout-office-listings';
+import SEOStructuredData from '../../components/seo-structured-data';
 import { centennialHillsProperties, luxuryProperties } from '../../data/sample-properties';
+import { pageSchemas } from '../../components/seo-structured-data';
 
 export default component$(() => {
+  // Schema data for properties page
+  const propertiesSchema = pageSchemas.propertyListing({
+    name: "Las Vegas Luxury Properties",
+    description: "Browse luxury homes and investment properties in Las Vegas premier communities including Centennial Hills, Red Rock Country Club, and Summerlin",
+    url: "http://centennialhillshomesforsale.com/properties",
+    price: "500000",
+    bedrooms: 4,
+    bathrooms: 3,
+    squareFeet: "3200",
+    yearBuilt: "2020"
+  });
+
   return (
     <>
+      {/* SEO Structured Data */}
+      <SEOStructuredData 
+        type="RealEstateListing" 
+        data={propertiesSchema} 
+      />
+
       {/* Hero Section */}
       <section class="hero-section">
         <div class="container container-center">

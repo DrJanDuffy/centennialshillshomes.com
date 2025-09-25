@@ -1,0 +1,13 @@
+# Netlify-style redirects (backup for Vercel)
+# These will be handled by vercel.json, but kept as backup
+
+# Domain canonicalization redirects
+http://centennialhillshomesforsale.com/* https://www.centennialhillshomesforsale.com/:splat 301!
+http://www.centennialhillshomesforsale.com/* https://www.centennialhillshomesforsale.com/:splat 301!
+https://centennialhillshomesforsale.com/* https://www.centennialhillshomesforsale.com/:splat 301!
+
+# Specific page redirects
+/listings /mls-search 301!
+/listings/ /mls-search 301!
+/tule-springs.html /tule-springs 301!
+/skye-canyon.html /sky-canyon 301!

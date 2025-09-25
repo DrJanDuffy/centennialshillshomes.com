@@ -14,7 +14,7 @@ export default component$(() => {
             Leverage Your California Equity in Nevada
           </h1>
           <p class="hero-subtitle">
-            Specialized assistance for California residents looking to maximize their equity investment in Las Vegas real estate.
+            Specialized assistance for California residents looking to maximize their equity investment in Las Vegas real estate. Dr. Jan Duffy, Top 1% Las Vegas REALTOR® with 30+ years of research expertise, specializes in California equity buyers and corporate relocations.
           </p>
           <div class="hero-buttons">
             <a href="/contact" class="btn btn-primary">California Buyer Consultation</a>
@@ -259,7 +259,7 @@ export const head: DocumentHead = {
   meta: [
     {
       name: 'description',
-      content: 'Specialized assistance for California residents leveraging home equity in Nevada real estate. Expert guidance on tax benefits and investment opportunities.',
+      content: 'Specialized assistance for California residents leveraging home equity in Nevada real estate. Dr. Jan Duffy, Top 1% Las Vegas REALTOR® with 30+ years of research expertise, provides expert guidance on tax benefits and investment opportunities.',
     },
     {
       name: 'keywords',

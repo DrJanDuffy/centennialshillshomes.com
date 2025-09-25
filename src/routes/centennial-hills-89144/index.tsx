@@ -8,7 +8,7 @@ export default component$(() => {
         <h1>Centennial Hills 89144 - West Centennial Hills Homes</h1>
         
         <h2>West Centennial Hills 89144 Living</h2>
-        <p>Experience the best of West Centennial Hills in ZIP code 89144, featuring established neighborhoods, mature landscaping, and proximity to Red Rock Canyon. This area offers a mix of traditional single-family homes, luxury estates, and newer developments with mountain views and resort-style amenities.</p>
+        <p>Experience the best of West Centennial Hills in ZIP code 89144, featuring established neighborhoods, mature landscaping, and proximity to Red Rock Canyon. This area offers a mix of traditional single-family homes, luxury estates, and newer developments with mountain views and resort-style amenities. Dr. Jan Duffy, Top 1% Las Vegas REALTOR® with 30+ years of research expertise, specializes in this premier northwest Las Vegas community.</p>
 
         <h2>Community Features</h2>
         <p>Centennial Hills 89144 includes the western portion of the community, featuring established neighborhoods with mature trees, custom homes, and newer developments like Providence. The area offers a sense of permanence with well-established communities and access to premier amenities.</p>
@@ -34,7 +34,7 @@ export const head: DocumentHead = {
   meta: [
     {
       name: 'description',
-      content: 'Explore Centennial Hills 89144 with Dr. Janet Duffy. West Centennial Hills homes, established neighborhoods, and luxury properties near Red Rock Canyon.',
+      content: 'Explore Centennial Hills 89144 with Dr. Janet Duffy, Top 1% Las Vegas REALTOR®. West Centennial Hills homes, established neighborhoods, and luxury properties near Red Rock Canyon. Available 24/7 for executive clients.',
     },
   ],
 };

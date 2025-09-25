@@ -2,11 +2,30 @@ import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import CommuteWidget from '../../components/commute-widget';
 import MapsWidget from '../../components/maps-widget';
+import SEOStructuredData from '../../components/seo-structured-data';
 import { centennialHillsProperties } from '../../data/sample-properties';
+import { pageSchemas } from '../../components/seo-structured-data';
 
 export default component$(() => {
+  // Schema data for Centennial Hills neighborhood page
+  const centennialHillsSchema = pageSchemas.neighborhoodPage({
+    name: "Centennial Hills",
+    slug: "centennial-hills",
+    geo: {
+      "@type": "GeoCoordinates",
+      "latitude": 36.3047,
+      "longitude": -115.3019
+    }
+  });
+
   return (
     <>
+      {/* SEO Structured Data */}
+      <SEOStructuredData 
+        type="LocalBusiness" 
+        data={centennialHillsSchema} 
+      />
+
       {/* Hero Section */}
       <section class="hero-section">
         <div class="container container-center">

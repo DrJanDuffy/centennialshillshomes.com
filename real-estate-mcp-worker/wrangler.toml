@@ -2,8 +2,20 @@ name = "real-estate-mcp-worker"
 main = "src/index.ts"
 compatibility_date = "2024-12-24"
 
+# Cloudflare FREE Tier Optimizations (September 2025)
+# - 100,000 requests/day
+# - 10ms CPU time per request
+# - Global edge network
+# - Basic security features
+
 [ai]
 binding = "AI"
+
+# KV Namespace for DNS record caching (FREE tier: 100,000 reads/day)
+[[kv_namespaces]]
+binding = "DNS_CACHE"
+id = "dns_cache_namespace"
+preview_id = "dns_cache_preview"
 
 # Environment variables for API keys and configuration
 [vars]
@@ -15,4 +27,6 @@ REAL_ESTATE_API_KEY = ""
 # GOOGLE_MAPS_API_KEY
 # OPENAI_API_KEY
 # REAL_ESTATE_API_KEY
+# CLOUDFLARE_API_TOKEN
+# CLOUDFLARE_ZONE_ID
 

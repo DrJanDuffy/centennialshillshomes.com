@@ -14,7 +14,7 @@ export default component$(() => {
           </h1>
           <p class="hero-subtitle">
             Experience white-glove service for luxury home buyers in Las Vegas with Dr. Janet Duffy's specialized expertise in premium properties. 
-            Private showings, off-market opportunities, and access to exclusive luxury communities.
+            Private showings, off-market opportunities, and access to exclusive luxury communities. Top 1% Las Vegas REALTOR® with 30+ years of research expertise, available 24/7 for executive clients.
           </p>
           <div class="hero-buttons">
             <a href="/contact" class="btn btn-primary">Luxury Buyer Consultation</a>
@@ -101,7 +101,7 @@ export const head: DocumentHead = {
   meta: [
     {
       name: 'description',
-      content: 'Exclusive luxury home buyer services with Dr. Janet Duffy. Premium Las Vegas properties, off-market opportunities, and custom estates in Centennial Hills.',
+      content: 'Exclusive luxury home buyer services with Dr. Janet Duffy, Top 1% Las Vegas REALTOR®. Premium Las Vegas properties, off-market opportunities, and custom estates in Centennial Hills. Available 24/7 for executive clients.',
     },
   ],
 };

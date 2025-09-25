@@ -8,7 +8,7 @@ export default component$(() => {
         <h1>Centennial Hills 89138 - North Centennial Hills Homes</h1>
         
         <h2>Discover North Centennial Hills 89138</h2>
-        <p>Explore the northern section of Centennial Hills in ZIP code 89138, featuring newer developments, mountain views, and convenient access to major highways. This area offers a perfect blend of established neighborhoods and new construction, with homes ranging from modern townhouses to luxury single-family estates.</p>
+        <p>Explore the northern section of Centennial Hills in ZIP code 89138, featuring newer developments, mountain views, and convenient access to major highways. This area offers a perfect blend of established neighborhoods and new construction, with homes ranging from modern townhouses to luxury single-family estates. Dr. Jan Duffy, Top 1% Las Vegas REALTOR® with 30+ years of research expertise, specializes in this premier northwest Las Vegas community.</p>
 
         <h2>Neighborhood Characteristics</h2>
         <p>Centennial Hills 89138 encompasses the northern reaches of the community, including areas near Sky Canyon and newer developments along Grand Teton Drive. The area features newer infrastructure, planned communities with HOA amenities, and proximity to recreational facilities and shopping centers.</p>
@@ -34,7 +34,7 @@ export const head: DocumentHead = {
   meta: [
     {
       name: 'description',
-      content: 'Explore Centennial Hills 89138 with Dr. Janet Duffy. North Centennial Hills homes, new construction, and luxury properties in Las Vegas\' premier northwest ZIP code.',
+      content: 'Explore Centennial Hills 89138 with Dr. Janet Duffy, Top 1% Las Vegas REALTOR®. North Centennial Hills homes, new construction, and luxury properties in Las Vegas\' premier northwest ZIP code. Available 24/7 for executive clients.',
     },
   ],
 };

@@ -2,15 +2,26 @@ import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import MapsWidget from '../../components/maps-widget';
 import RealScoutOfficeListings from '../../components/realscout-office-listings';
+import SEOStructuredData from '../../components/seo-structured-data';
+import { pageSchemas } from '../../components/seo-structured-data';
 
 export default component$(() => {
+  // Schema data for contact page
+  const contactSchema = pageSchemas.personPage({});
+
   return (
     <>
+      {/* SEO Structured Data */}
+      <SEOStructuredData 
+        type="Person" 
+        data={contactSchema} 
+      />
+
       <div class="container container-center">
-        <h1>Contact Dr. Janet Duffy - Las Vegas Real Estate Expert</h1>
+        <h1>Contact Dr. Jan Duffy - Las Vegas Real Estate Expert</h1>
         
         <h2>Get In Touch Today</h2>
-        <p>Ready to buy or sell real estate in Centennial Hills or Las Vegas? Contact Dr. Janet Duffy for personalized service and expert guidance. With 30+ years of research expertise and Top 1% REALTOR® status, Dr. Duffy provides the knowledge and dedication needed for successful real estate transactions.</p>
+        <p>Ready to buy or sell real estate in Centennial Hills or Las Vegas? Contact Dr. Jan Duffy for personalized service and expert guidance. Luxury real estate specialist serving West Summerlin's premier neighborhoods including ZIP codes 89138, 89144, and 89135. Dr. Jan Duffy, REALTOR® offers 30+ years of research expertise in luxury homes $400K-$750K. Specializing in Red Rock Country Club, The Ridges, and Summerlin West communities for California equity buyers and corporate relocations. Top 1% Las Vegas REALTOR® providing same-day showings and complimentary market analysis. Available 24/7 for executive clients and luxury home investments.</p>
 
         {/* Featured Properties - Lead Generator */}
         <section class="featured-properties-section bg-gray-50 py-16">
@@ -66,11 +77,11 @@ export default component$(() => {
 });
 
 export const head: DocumentHead = {
-  title: 'Contact Dr. Janet Duffy - Las Vegas Real Estate Expert',
+  title: 'Contact Dr. Jan Duffy - Las Vegas Real Estate Expert',
   meta: [
     {
       name: 'description',
-      content: 'Contact Dr. Janet Duffy for Las Vegas real estate expertise. Call (702) 903-1952 for luxury homes, Centennial Hills properties, and personalized service.',
+      content: 'Contact Dr. Jan Duffy for Las Vegas real estate expertise. Call (702) 903-1952 for luxury homes, Centennial Hills properties, and personalized service. Luxury real estate specialist serving West Summerlin\'s premier neighborhoods. Top 1% Las Vegas REALTOR® providing same-day showings and complimentary market analysis. Available 24/7 for executive clients.',
     },
   ],
 };

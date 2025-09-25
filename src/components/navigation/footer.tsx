@@ -41,12 +41,11 @@ export default component$(() => {
           {/* Company Info */}
           <div class="footer-section company-section">
             <div class="footer-logo">
-              <h3>Dr. Jan Duffy</h3>
-              <p class="footer-subtitle">REALTOR®</p>
+              <h3>Centennial Hills Real Estate</h3>
+              <p class="footer-subtitle">Homes by Dr. Jan Duffy</p>
             </div>
             <p class="footer-description">
-              Top 1% Las Vegas REALTOR® with 30+ years of research expertise. 
-              Luxury real estate specialist serving West Summerlin's premier neighborhoods.
+              Luxury real estate specialist serving West Summerlin's premier neighborhoods including ZIP codes 89138, 89144, and 89135. Dr. Jan Duffy, REALTOR® offers 30+ years of research expertise in luxury homes $400K-$750K. Specializing in Red Rock Country Club, The Ridges, and Summerlin West communities for California equity buyers and corporate relocations.
             </p>
             
             {/* Contact Info */}
@@ -85,20 +84,44 @@ export default component$(() => {
               <h4>Business Hours</h4>
               <div class="hours-list">
                 <div class="hours-item">
-                  <span class="day">Monday - Friday</span>
+                  <span class="day">Sunday</span>
+                  <span class="time">6:00 AM - 9:00 PM</span>
+                </div>
+                <div class="hours-item">
+                  <span class="day">Monday</span>
+                  <span class="time">6:00 AM - 9:00 PM</span>
+                </div>
+                <div class="hours-item">
+                  <span class="day">Tuesday</span>
+                  <span class="time">6:00 AM - 9:00 PM</span>
+                </div>
+                <div class="hours-item">
+                  <span class="day">Wednesday</span>
+                  <span class="time">6:00 AM - 9:00 PM</span>
+                </div>
+                <div class="hours-item">
+                  <span class="day">Thursday</span>
+                  <span class="time">6:00 AM - 9:00 PM</span>
+                </div>
+                <div class="hours-item">
+                  <span class="day">Friday</span>
                   <span class="time">6:00 AM - 9:00 PM</span>
                 </div>
                 <div class="hours-item">
                   <span class="day">Saturday</span>
                   <span class="time">6:00 AM - 9:00 PM</span>
                 </div>
-                <div class="hours-item">
-                  <span class="day">Sunday</span>
-                  <span class="time">6:00 AM - 9:00 PM</span>
-                </div>
                 <div class="hours-item special">
                   <span class="day">Same-Day Showings</span>
                   <span class="time">Available 24/7</span>
+                </div>
+                <div class="hours-item special">
+                  <span class="day">Executive Clients</span>
+                  <span class="time">24/7 Service</span>
+                </div>
+                <div class="hours-item special">
+                  <span class="day">Special Hours</span>
+                  <span class="time">Closed: Jul 4, Sep 1 (Labor Day)</span>
                 </div>
               </div>
             </div>
@@ -120,12 +143,26 @@ export default component$(() => {
             <div class="service-areas">
               <h5>Service Areas</h5>
               <div class="areas-grid">
-                <span>ZIP 89138</span>
-                <span>ZIP 89144</span>
-                <span>ZIP 89135</span>
-                <span>Summerlin</span>
                 <span>Centennial Hills</span>
+                <span>Summerlin</span>
+                <span>Summerlin West</span>
+                <span>Summerlin North</span>
+                <span>Summerlin South</span>
                 <span>North Las Vegas</span>
+                <span>Lone Mountain</span>
+                <span>Providence</span>
+                <span>Tule Springs</span>
+                <span>Kyle Canyon</span>
+                <span>Elkhorn</span>
+                <span>Antelope</span>
+                <span>Los Prados</span>
+                <span>The Springs</span>
+                <span>Wyeth Ranch</span>
+                <span>La Madre Foothills</span>
+                <span>Carmel Canyon</span>
+                <span>Silverstone Ranch</span>
+                <span>Iron Mountain Ranch</span>
+                <span>Lone Mountain Heights</span>
               </div>
             </div>
           </div>
@@ -184,6 +221,22 @@ export default component$(() => {
                   <span class="cert-icon">🇺🇸</span>
                   <span class="cert-text">Veteran-Owned Business</span>
                 </div>
+                <div class="cert-badge">
+                  <span class="cert-icon">♿</span>
+                  <span class="cert-text">Wheelchair Accessible</span>
+                </div>
+                <div class="cert-badge">
+                  <span class="cert-icon">🏳️‍🌈</span>
+                  <span class="cert-text">LGBTQ+ Friendly</span>
+                </div>
+                <div class="cert-badge">
+                  <span class="cert-icon">🚗</span>
+                  <span class="cert-text">Free Parking</span>
+                </div>
+                <div class="cert-badge">
+                  <span class="cert-icon">🌍</span>
+                  <span class="cert-text">Multi-Language</span>
+                </div>
               </div>
             </div>
           </div>
@@ -239,7 +292,7 @@ export default component$(() => {
         <div class="footer-bottom">
           <div class="footer-bottom-content">
             <div class="footer-bottom-left">
-              <p>&copy; 2024 Dr. Jan Duffy, REALTOR®. All rights reserved.</p>
+              <p>&copy; 2024 Centennial Hills Real Estate | Homes by Dr. Jan Duffy. All rights reserved.</p>
               <p>Licensed in Nevada | Equal Housing Opportunity</p>
             </div>
             <div class="footer-bottom-right">

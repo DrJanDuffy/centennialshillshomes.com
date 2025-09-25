@@ -20,7 +20,11 @@
     "lint": "eslint \"src/**/*.ts*\"",
     "preview": "qwik build preview && vite preview --open",
     "start": "vite --open --mode ssr",
-    "qwik": "qwik"
+    "qwik": "qwik",
+    "dns:pull": "node scripts/cloudflare-dns-pull.js",
+    "dns:pull:json": "node scripts/cloudflare-dns-pull.js --format json",
+    "dns:export": "node scripts/cloudflare-dns-pull.js --format json --output dns-records.json",
+    "dns:free-info": "node scripts/cloudflare-dns-pull.js --free-tier-info"
   },
   "devDependencies": {
     "@builder.io/qwik": "1.0.0",

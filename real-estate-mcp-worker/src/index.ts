@@ -7,6 +7,22 @@ interface Env {
   GOOGLE_MAPS_API_KEY: string;
   OPENAI_API_KEY: string;
   REAL_ESTATE_API_KEY: string;
+  CLOUDFLARE_API_TOKEN: string;
+  CLOUDFLARE_ZONE_ID: string;
+  DNS_CACHE: KVNamespace; // KV storage for DNS record caching (FREE tier)
+}
+
+// DNS Record interface
+interface DnsRecord {
+  id: string;
+  type: string;
+  name: string;
+  content: string;
+  ttl: number;
+  proxied: boolean;
+  comment?: string;
+  created_on: string;
+  modified_on: string;
 }
 
 export default class RealEstateWorker extends WorkerEntrypoint<Env> {
@@ -262,6 +278,252 @@ export default class RealEstateWorker extends WorkerEntrypoint<Env> {
         headers: { 'Content-Type': 'application/json' }
       });
     }
+  }
+
+  /**
+   * Pull DNS records from Cloudflare for centennialshillshomes.com
+   * Optimized for FREE tier with KV caching and edge performance
+   * @param format {string} Output format ("json" or "table")
+   * @param useCache {boolean} Whether to use KV cache (default: true)
+   * @return {object} DNS records and metadata
+   */
+  async pullDnsRecords(format: string = "json", useCache: boolean = true) {
+    try {
+      if (!this.env.CLOUDFLARE_API_TOKEN) {
+        throw new Error('CLOUDFLARE_API_TOKEN is required');
+      }
+
+      const zoneId = this.env.CLOUDFLARE_ZONE_ID;
+      if (!zoneId) {
+        throw new Error('CLOUDFLARE_ZONE_ID is required');
+      }
+
+      // FREE tier optimization: Check KV cache first (100k reads/day)
+      const cacheKey = `dns_records_${zoneId}`;
+      let records: DnsRecord[];
+      let fromCache = false;
+
+      if (useCache) {
+        const cachedData = await this.env.DNS_CACHE.get(cacheKey, 'json');
+        if (cachedData) {
+          records = cachedData as DnsRecord[];
+          fromCache = true;
+          console.log('📦 DNS records loaded from KV cache (FREE tier optimization)');
+        }
+      }
+
+      // If not in cache or cache disabled, fetch from API
+      if (!fromCache) {
+        const response = await fetch(`https://api.cloudflare.com/client/v4/zones/${zoneId}/dns_records`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${this.env.CLOUDFLARE_API_TOKEN}`,
+            'Content-Type': 'application/json',
+            'User-Agent': 'CentennialHillsHomes-DNS-Manager/1.0'
+          }
+        });
+
+        const data = await response.json();
+        
+        if (!data.success) {
+          throw new Error(`Cloudflare API Error: ${data.errors.map((e: any) => e.message).join(', ')}`);
+        }
+
+        records = data.result as DnsRecord[];
+        
+        // FREE tier optimization: Cache for 5 minutes (within 10ms CPU limit)
+        if (useCache && records.length > 0) {
+          await this.env.DNS_CACHE.put(cacheKey, JSON.stringify(records), {
+            expirationTtl: 300 // 5 minutes cache
+          });
+          console.log('💾 DNS records cached in KV storage (FREE tier)');
+        }
+      }
+
+      // Format output based on request
+      if (format === "table") {
+        return this.formatDnsRecordsAsTable(records);
+      }
+
+      return {
+        success: true,
+        domain: "centennialshillshomes.com",
+        zoneId: zoneId,
+        recordCount: records.length,
+        timestamp: new Date().toISOString(),
+        fromCache: fromCache,
+        freeTierOptimized: true,
+        records: records.map(record => ({
+          id: record.id,
+          type: record.type,
+          name: record.name,
+          content: record.content,
+          ttl: record.ttl,
+          proxied: record.proxied,
+          comment: record.comment,
+          createdOn: record.created_on,
+          modifiedOn: record.modified_on
+        }))
+      };
+    } catch (error) {
+      return {
+        success: false,
+        error: (error as Error).message,
+        timestamp: new Date().toISOString(),
+        freeTierOptimized: true
+      };
+    }
+  }
+
+  /**
+   * Get specific DNS record by ID
+   * @param recordId {string} DNS record ID
+   * @return {object} DNS record details
+   */
+  async getDnsRecord(recordId: string) {
+    try {
+      if (!this.env.CLOUDFLARE_API_TOKEN || !this.env.CLOUDFLARE_ZONE_ID) {
+        throw new Error('Cloudflare credentials are required');
+      }
+
+      const response = await fetch(`https://api.cloudflare.com/client/v4/zones/${this.env.CLOUDFLARE_ZONE_ID}/dns_records/${recordId}`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${this.env.CLOUDFLARE_API_TOKEN}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      const data = await response.json();
+      
+      if (!data.success) {
+        throw new Error(`Cloudflare API Error: ${data.errors.map((e: any) => e.message).join(', ')}`);
+      }
+
+      return {
+        success: true,
+        record: data.result,
+        timestamp: new Date().toISOString()
+      };
+    } catch (error) {
+      return {
+        success: false,
+        error: (error as Error).message,
+        timestamp: new Date().toISOString()
+      };
+    }
+  }
+
+  /**
+   * Get FREE tier usage statistics and optimization insights
+   * @return {object} Usage stats and recommendations
+   */
+  async getFreeTierStats() {
+    try {
+      const stats = {
+        timestamp: new Date().toISOString(),
+        freeTierLimits: {
+          dailyRequests: 100000,
+          cpuTimePerRequest: '10ms',
+          kvReadsPerDay: 100000,
+          kvWritesPerDay: 1000,
+          kvStorage: '1GB'
+        },
+        optimizations: [
+          '✅ KV caching reduces API calls',
+          '✅ 5-minute cache TTL optimizes performance',
+          '✅ Edge computing reduces latency',
+          '✅ Global CDN included in FREE tier',
+          '✅ Basic security features enabled'
+        ],
+        recommendations: [
+          'Monitor daily request usage',
+          'Use KV cache to stay within limits',
+          'Consider upgrading for higher limits',
+          'Enable Cloudflare analytics for insights'
+        ]
+      };
+
+      return {
+        success: true,
+        stats,
+        freeTierOptimized: true
+      };
+    } catch (error) {
+      return {
+        success: false,
+        error: (error as Error).message,
+        timestamp: new Date().toISOString()
+      };
+    }
+  }
+
+  /**
+   * Clear DNS cache (useful for testing or forced refresh)
+   * @return {object} Cache clearing result
+   */
+  async clearDnsCache() {
+    try {
+      const zoneId = this.env.CLOUDFLARE_ZONE_ID;
+      if (!zoneId) {
+        throw new Error('CLOUDFLARE_ZONE_ID is required');
+      }
+
+      const cacheKey = `dns_records_${zoneId}`;
+      await this.env.DNS_CACHE.delete(cacheKey);
+
+      return {
+        success: true,
+        message: 'DNS cache cleared successfully',
+        timestamp: new Date().toISOString(),
+        freeTierOptimized: true
+      };
+    } catch (error) {
+      return {
+        success: false,
+        error: (error as Error).message,
+        timestamp: new Date().toISOString()
+      };
+    }
+  }
+
+  /**
+   * Format DNS records as a readable table
+   * @param records {DnsRecord[]} Array of DNS records
+   * @return {string} Formatted table string
+   */
+  private formatDnsRecordsAsTable(records: DnsRecord[]): string {
+    const headers = ['Type', 'Name', 'Content', 'TTL', 'Proxied', 'Comment'];
+    const rows = records.map(record => [
+      record.type,
+      record.name,
+      record.content,
+      record.ttl === 1 ? 'Auto' : record.ttl.toString(),
+      record.proxied ? 'Yes' : 'No',
+      record.comment || '-'
+    ]);
+
+    // Calculate column widths
+    const widths = headers.map((header, i) => {
+      const maxWidth = Math.max(
+        header.length,
+        ...rows.map(row => String(row[i]).length)
+      );
+      return Math.min(maxWidth, 50); // Cap at 50 chars
+    });
+
+    // Create table
+    const separator = widths.map(w => '-'.repeat(w)).join('-+-');
+    const headerRow = headers.map((header, i) => header.padEnd(widths[i])).join(' | ');
+    
+    let table = `${headerRow}\n${separator}\n`;
+    
+    rows.forEach(row => {
+      const dataRow = row.map((cell, i) => String(cell).padEnd(widths[i])).join(' | ');
+      table += `${dataRow}\n`;
+    });
+
+    return table;
   }
 
   // Helper methods for mock data generation

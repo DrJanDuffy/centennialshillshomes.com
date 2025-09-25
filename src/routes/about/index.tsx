@@ -11,7 +11,7 @@ export default component$(() => {
             About <span class="highlight">Dr. Janet Duffy</span>
           </h1>
           <p class="hero-subtitle">
-            Your trusted real estate professional specializing in Las Vegas luxury properties
+            Your trusted real estate professional specializing in Las Vegas luxury properties. Top 1% REALTOR® with 30+ years of research expertise, available 24/7 for executive clients.
           </p>
         </div>
       </section>
@@ -88,7 +88,7 @@ export const head: DocumentHead = {
   meta: [
     {
       name: 'description',
-      content: 'Learn about Dr. Janet Duffy, your trusted Las Vegas real estate professional specializing in luxury homes, California equity buyers, and corporate relocations.',
+      content: 'Learn about Dr. Janet Duffy, your trusted Las Vegas real estate professional specializing in luxury homes, California equity buyers, and corporate relocations. Top 1% REALTOR® with 30+ years of research expertise, available 24/7 for executive clients.',
     },
     {
       name: 'keywords',

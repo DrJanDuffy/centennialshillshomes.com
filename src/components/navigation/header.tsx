@@ -31,8 +31,8 @@ export default component$(() => {
         <div class="logo-section">
           <a href="/" class="logo-link">
             <div class="logo-text">
-              <span class="logo-main">Dr. Jan Duffy</span>
-              <span class="logo-subtitle">REALTOR®</span>
+              <span class="logo-main">Centennial Hills Real Estate</span>
+              <span class="logo-subtitle">Homes by Dr. Jan Duffy</span>
             </div>
           </a>
         </div>
@@ -348,8 +348,8 @@ export default component$(() => {
         <div class="mobile-nav-content">
           <div class="mobile-nav-header">
             <div class="mobile-logo">
-              <span class="logo-main">Dr. Jan Duffy</span>
-              <span class="logo-subtitle">REALTOR®</span>
+              <span class="logo-main">Centennial Hills Real Estate</span>
+              <span class="logo-subtitle">Homes by Dr. Jan Duffy</span>
             </div>
             <button 
               class="mobile-close"
