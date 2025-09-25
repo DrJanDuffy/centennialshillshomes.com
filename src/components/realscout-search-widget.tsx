@@ -61,7 +61,8 @@ export default component$<RealScoutSearchWidgetProps>((props) => {
           isLoaded.value = true;
         } else {
           // Fallback if RealScout widget doesn't load
-          widgetRef.value.innerHTML = `
+          if (widgetRef.value) {
+            widgetRef.value.innerHTML = `
             <div class="realscout-fallback bg-white rounded-lg p-8 text-center">
               <div class="mb-4">
                 <svg class="w-16 h-16 text-blue-600 mx-auto" fill="currentColor" viewBox="0 0 20 20">
@@ -82,6 +83,7 @@ export default component$<RealScoutSearchWidgetProps>((props) => {
               </div>
             </div>
           `;
+          }
           isLoaded.value = true;
         }
       };
