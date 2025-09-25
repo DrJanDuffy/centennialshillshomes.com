@@ -1,16 +1,36 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import SEOStructuredData from '../../components/seo-structured-data';
-import { pageSchemas } from '../../components/seo-structured-data';
 import RSSBlogFeed from '../../components/rss-blog-feed';
 
 export default component$(() => {
   // Schema data for blog page
-  const blogSchema = pageSchemas.articlePage({
-    title: "Centennial Hills Real Estate Blog",
-    description: "Expert insights, market updates, and local real estate news for Centennial Hills and Northwest Las Vegas",
-    slug: "blog"
-  });
+  const blogSchema = {
+    "@type": "Article",
+    "headline": "Centennial Hills Real Estate Blog",
+    "description": "Expert insights, market updates, and local real estate news for Centennial Hills and Northwest Las Vegas",
+    "url": "http://centennialhillshomesforsale.com/blog",
+    "image": "https://www.centennialhillshomesforsale.com/images/blog-default.jpg",
+    "datePublished": new Date().toISOString(),
+    "dateModified": new Date().toISOString(),
+    "author": {
+      "@type": "Person",
+      "name": "Dr. Jan Duffy",
+      "jobTitle": "Real Estate Agent",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Centennial Hills Real Estate"
+      }
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Centennial Hills Real Estate",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.centennialhillshomesforsale.com/images/logo.png"
+      }
+    }
+  };
 
   return (
     <>
