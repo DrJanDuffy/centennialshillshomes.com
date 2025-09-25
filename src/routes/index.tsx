@@ -1,6 +1,7 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import SimpleMapsWidget from '../components/simple-maps-widget';
+import RealScoutSearchWidget from '../components/realscout-search-widget';
 import SEOStructuredData from '../components/seo-structured-data';
 import { centennialHillsProperties } from '../data/sample-properties';
 import { janetDuffyStructuredData } from '../components/seo-structured-data';
@@ -75,7 +76,7 @@ export default component$(() => {
         </div>
       </section>
 
-      {/* Property Search Section */}
+      {/* RealScout Advanced Search Section */}
       <section class="search-section">
         <div class="container mx-auto px-4 py-16">
           <div class="text-center mb-12">
@@ -83,58 +84,69 @@ export default component$(() => {
               Search Centennial Hills Properties
             </h2>
             <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-              Find your perfect home in Las Vegas' premier Northwest community
+              Find your perfect home in Las Vegas' premier Northwest community with our advanced MLS search
             </p>
           </div>
           
-          <div class="search-form bg-white rounded-lg shadow-lg p-6 max-w-4xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Price Range</label>
-                <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                  <option>Any Price</option>
-                  <option>$400K - $500K</option>
-                  <option>$500K - $600K</option>
-                  <option>$600K - $750K</option>
-                  <option>$750K+</option>
-                </select>
-              </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Bedrooms</label>
-                <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                  <option>Any</option>
-                  <option>1+</option>
-                  <option>2+</option>
-                  <option>3+</option>
-                  <option>4+</option>
-                  <option>5+</option>
-                </select>
-              </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Bathrooms</label>
-                <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                  <option>Any</option>
-                  <option>1+</option>
-                  <option>2+</option>
-                  <option>3+</option>
-                  <option>4+</option>
-                </select>
-              </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Property Type</label>
-                <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                  <option>All Types</option>
-                  <option>Single Family</option>
-                  <option>Townhouse</option>
-                  <option>Condo</option>
-                  <option>New Construction</option>
-                </select>
+          {/* RealScout Advanced Search Widget */}
+          <div class="realscout-search-container bg-white rounded-lg shadow-lg p-6 max-w-6xl mx-auto">
+            <div class="text-center mb-6">
+              <div class="inline-flex items-center gap-2 text-sm text-gray-600 mb-4">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/>
+                </svg>
+                <span>Powered by RealScout MLS Search</span>
               </div>
             </div>
-            <div class="text-center">
-              <a href="/mls-search" class="btn btn-primary btn-lg">
-                Search Properties
-              </a>
+            
+            {/* RealScout Search Widget Integration */}
+            <RealScoutSearchWidget
+              agentId="dr-janet-duffy"
+              marketArea="centennial-hills-las-vegas"
+              defaultLocation="Centennial Hills, Las Vegas, NV"
+              height="600px"
+            />
+            
+            {/* Alternative Search Options */}
+            <div class="mt-8 border-t pt-6">
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <a href="/mls-search" class="flex items-center p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
+                  <div class="flex-shrink-0">
+                    <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/>
+                    </svg>
+                  </div>
+                  <div class="ml-3">
+                    <h3 class="text-sm font-medium text-gray-900">MLS Search</h3>
+                    <p class="text-sm text-gray-500">Browse all available listings</p>
+                  </div>
+                </a>
+                
+                <a href="/centennial-hills-homes-for-sale" class="flex items-center p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors">
+                  <div class="flex-shrink-0">
+                    <svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+                    </svg>
+                  </div>
+                  <div class="ml-3">
+                    <h3 class="text-sm font-medium text-gray-900">Centennial Hills</h3>
+                    <p class="text-sm text-gray-500">Featured community homes</p>
+                  </div>
+                </a>
+                
+                <a href="/contact" class="flex items-center p-4 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors">
+                  <div class="flex-shrink-0">
+                    <svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                    </svg>
+                  </div>
+                  <div class="ml-3">
+                    <h3 class="text-sm font-medium text-gray-900">Get Help</h3>
+                    <p class="text-sm text-gray-500">Contact Dr. Janet Duffy</p>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -268,15 +280,15 @@ export default component$(() => {
           </div>
           
           <div class="map-container">
-            <SimpleMapsWidget
-              center={{ lat: 36.3080, lng: -115.2980 }}
-              zoom={13}
-              title="Centennial Hills Properties Map"
-              height="500px"
-              properties={centennialHillsProperties}
-            />
-          </div>
-        </div>
+        <SimpleMapsWidget
+          center={{ lat: 36.3080, lng: -115.2980 }}
+          zoom={13}
+          title="Centennial Hills Properties Map"
+          height="500px"
+          properties={centennialHillsProperties}
+        />
+      </div>
+    </div>
       </section>
 
       {/* Services Section */}
