@@ -54,20 +54,22 @@ export default component$<RealScoutOfficeListingsProps>((props) => {
       script.onload = () => {
         console.log('RealScout script loaded successfully');
         
-        // Create the widget immediately
-        if (widgetRef.value) {
-          widgetRef.value.innerHTML = `
-            <realscout-office-listings 
-              agent-encoded-id="${agentEncodedId}" 
-              sort-order="${sortOrder}" 
-              listing-status="${listingStatus}" 
-              property-types="${propertyTypes}" 
-              price-min="${priceMin}" 
-              price-max="${priceMax}"
-            ></realscout-office-listings>
-          `;
-          isLoaded.value = true;
-        }
+        // Wait a moment for the custom element to be defined
+        setTimeout(() => {
+          if (widgetRef.value) {
+            widgetRef.value.innerHTML = `
+              <realscout-office-listings 
+                agent-encoded-id="${agentEncodedId}" 
+                sort-order="${sortOrder}" 
+                listing-status="${listingStatus}" 
+                property-types="${propertyTypes}" 
+                price-min="${priceMin}" 
+                price-max="${priceMax}"
+              ></realscout-office-listings>
+            `;
+            isLoaded.value = true;
+          }
+        }, 500);
       };
 
       script.onerror = (error) => {

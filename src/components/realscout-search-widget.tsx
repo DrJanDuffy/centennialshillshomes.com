@@ -55,13 +55,15 @@ export default component$<RealScoutSearchWidgetProps>((props) => {
         `;
         document.head.appendChild(style);
 
-        // Create the widget immediately after script loads
-        if (widgetRef.value) {
-          widgetRef.value.innerHTML = `
-            <realscout-advanced-search agent-encoded-id="${agentEncodedId}"></realscout-advanced-search>
-          `;
-          isLoaded.value = true;
-        }
+        // Wait a moment for the custom element to be defined
+        setTimeout(() => {
+          if (widgetRef.value) {
+            widgetRef.value.innerHTML = `
+              <realscout-advanced-search agent-encoded-id="${agentEncodedId}"></realscout-advanced-search>
+            `;
+            isLoaded.value = true;
+          }
+        }, 500);
       };
 
       script.onerror = () => {
