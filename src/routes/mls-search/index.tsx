@@ -1,6 +1,7 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import RealScoutSearchWidget from '../../components/realscout-search-widget';
+import RealScoutOfficeListings from '../../components/realscout-office-listings';
 
 export default component$(() => {
   return (
@@ -45,6 +46,30 @@ export default component$(() => {
               width="100%"
             />
           </div>
+        </div>
+      </section>
+
+      {/* Featured Properties - Lead Generator */}
+      <section class="featured-listings-section bg-gray-50">
+        <div class="container mx-auto px-4 py-16">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">
+              Featured Las Vegas Properties
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              Browse our latest listings in Centennial Hills and surrounding areas
+            </p>
+          </div>
+          
+          {/* RealScout Office Listings - Primary Lead Generator */}
+          <RealScoutOfficeListings
+            agentEncodedId="QWdlbnQtMjI1MDUw"
+            sortOrder="NEWEST"
+            listingStatus="For Sale"
+            propertyTypes=",SFR"
+            priceMin="500000"
+            priceMax="600000"
+          />
         </div>
       </section>
 
