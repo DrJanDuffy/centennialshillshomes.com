@@ -43,17 +43,25 @@ export default component$<RealScoutSearchWidgetProps>((props) => {
             --rs-as-widget-width: ${width} !important;
             width: ${width} !important;
             height: ${height} !important;
+            min-height: 600px;
+          }
+          
+          realscout-advanced-search img {
+            max-width: 100%;
+            height: auto;
           }
         `;
         document.head.appendChild(style);
 
-        // Create the RealScout advanced search element
-        if (widgetRef.value) {
-          widgetRef.value.innerHTML = `
-            <realscout-advanced-search agent-encoded-id="${agentEncodedId}"></realscout-advanced-search>
-          `;
-          isLoaded.value = true;
-        }
+        // Wait a bit for the custom element to be defined
+        setTimeout(() => {
+          if (widgetRef.value) {
+            widgetRef.value.innerHTML = `
+              <realscout-advanced-search agent-encoded-id="${agentEncodedId}"></realscout-advanced-search>
+            `;
+            isLoaded.value = true;
+          }
+        }, 100);
       };
 
       script.onerror = () => {

@@ -48,6 +48,7 @@ export default component$<RealScoutOfficeListingsProps>((props) => {
             --rs-listing-divider-color: #1e40af;
             width: 100%;
             margin: 0 auto;
+            min-height: 400px;
           }
           
           realscout-office-listings .listing-card {
@@ -61,23 +62,31 @@ export default component$<RealScoutOfficeListingsProps>((props) => {
             transform: translateY(-2px);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
           }
+          
+          realscout-office-listings img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.375rem;
+          }
         `;
         document.head.appendChild(style);
 
-        // Create the RealScout office listings element
-        if (widgetRef.value) {
-          widgetRef.value.innerHTML = `
-            <realscout-office-listings 
-              agent-encoded-id="${agentEncodedId}" 
-              sort-order="${sortOrder}" 
-              listing-status="${listingStatus}" 
-              property-types="${propertyTypes}" 
-              price-min="${priceMin}" 
-              price-max="${priceMax}"
-            ></realscout-office-listings>
-          `;
-          isLoaded.value = true;
-        }
+        // Wait a bit for the custom element to be defined
+        setTimeout(() => {
+          if (widgetRef.value) {
+            widgetRef.value.innerHTML = `
+              <realscout-office-listings 
+                agent-encoded-id="${agentEncodedId}" 
+                sort-order="${sortOrder}" 
+                listing-status="${listingStatus}" 
+                property-types="${propertyTypes}" 
+                price-min="${priceMin}" 
+                price-max="${priceMax}"
+              ></realscout-office-listings>
+            `;
+            isLoaded.value = true;
+          }
+        }, 100);
       };
 
       script.onerror = () => {
