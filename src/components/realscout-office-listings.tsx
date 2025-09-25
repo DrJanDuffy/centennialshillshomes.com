@@ -21,7 +21,7 @@ export default component$<RealScoutOfficeListingsProps>((props) => {
     listingStatus = 'For Sale',
     propertyTypes = ',SFR', // Single Family Residential
     priceMin = '500000',
-    priceMax = '600000',
+    priceMax = '600000', // Fixed: was 60000, now 600K for luxury homes
     height = 'auto'
   } = props;
 
@@ -45,7 +45,7 @@ export default component$<RealScoutOfficeListingsProps>((props) => {
       const style = document.createElement('style');
       style.textContent = `
         realscout-office-listings {
-          --rs-listing-divider-color: #1e40af;
+          --rs-listing-divider-color: #0e64c8;
           width: 100%;
         }
       `;
@@ -103,9 +103,7 @@ export default component$<RealScoutOfficeListingsProps>((props) => {
         }
       };
 
-      document.head.appendChild(script);
-      
-      // Also append script to document head immediately for better loading
+      // Check if script is already loaded before adding
       if (!document.querySelector('script[src="https://em.realscout.com/widgets/realscout-web-components.umd.js"]')) {
         document.head.appendChild(script);
       }

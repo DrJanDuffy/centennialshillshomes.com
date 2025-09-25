@@ -68,7 +68,7 @@ export default component$(() => {
             listingStatus="For Sale"
             propertyTypes=",SFR"
             priceMin="500000"
-            priceMax="600000"
+            priceMax="6000000"
           />
         </div>
       </section>

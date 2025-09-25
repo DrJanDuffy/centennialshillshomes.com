@@ -96,7 +96,10 @@ export default component$<RealScoutSearchWidgetProps>((props) => {
         }
       };
 
-      document.head.appendChild(script);
+      // Check if script is already loaded before adding
+      if (!document.querySelector('script[src="https://em.realscout.com/widgets/realscout-web-components.umd.js"]')) {
+        document.head.appendChild(script);
+      }
     } catch (error) {
       console.error('Error loading RealScout widget:', error);
       hasError.value = true;
