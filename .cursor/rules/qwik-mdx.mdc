@@ -1,0 +1,234 @@
+---
+type: Auto Attached
+globs: ["src/routes/**/*.mdx", "src/content/**/*.mdx", "src/components/**/*.tsx"]
+alwaysApply: false
+---
+
+# Qwik MDX Content Management
+
+## Core Benefits
+- ✅ **Content-Rich Pages**: Easy authoring for property descriptions, neighborhood guides
+- ✅ **Component Integration**: Seamlessly embed interactive Qwik components
+- ✅ **SEO Optimized**: Frontmatter metadata for search engines
+- ✅ **SSG Compatible**: Pre-rendered content with static generation
+
+## Directory Structure
+```
+src/routes/
+├── about/index.mdx          # https://centennialshillshomes.com/about
+├── neighborhoods/
+│   ├── centennial-hills/index.mdx
+│   └── aliante/index.mdx
+├── market-analysis/2024/index.mdx
+└── blog/
+    ├── luxury-homes-centennial-hills/index.mdx
+    └── first-time-buyer-guide/index.mdx
+```
+
+## Essential Patterns
+
+### Basic MDX Structure
+```mdx
+---
+title: Centennial Hills Neighborhood Guide
+description: Discover luxury homes and new construction in Centennial Hills, Las Vegas
+og:
+  - title: Centennial Hills Real Estate Guide
+    description: true
+  - image: https://centennialshillshomes.com/images/centennial-hills-hero.jpg
+    image:alt: Beautiful Centennial Hills neighborhood with luxury homes
+tags:
+  - centennial-hills
+  - las-vegas
+  - luxury-homes
+  - neighborhoods
+publishDate: 2024-01-15
+author: Janet Duffy
+---
+
+# Welcome to Centennial Hills
+
+Centennial Hills is one of Las Vegas's most desirable neighborhoods.
+
+<PropertySearch zipCodes={['89135', '89138', '89144']} />
+
+## Local Amenities
+
+<NeighborhoodMap center={{ lat: 36.2805, lng: -115.2744 }} zoom={13} />
+```
+
+### Property Description MDX
+```mdx
+---
+title: 123 Main Street - Centennial Hills Luxury Home
+description: 4 bed, 3 bath luxury home in Centennial Hills with pool and mountain views
+propertyId: PROP-123456
+price: 750000
+bedrooms: 4
+bathrooms: 3
+squareFeet: 3200
+og:
+  - title: 123 Main Street - Centennial Hills Luxury Home
+    description: true
+  - image: https://centennialshillshomes.com/images/properties/123-main-street-hero.jpg
+    image:alt: Luxury home exterior with pool and mountain views
+---
+
+# 123 Main Street - Centennial Hills Luxury Home
+
+<PropertyGallery propertyId="PROP-123456" />
+
+## Property Highlights
+
+- **4 Bedrooms, 3 Bathrooms**: Spacious layout perfect for families
+- **3,200 Square Feet**: Generous living space with open floor plan
+- **Pool & Spa**: Private outdoor oasis with mountain views
+
+<PropertyDetails propertyId="PROP-123456" />
+<VirtualTour propertyId="PROP-123456" />
+<ContactForm propertyId="PROP-123456" />
+```
+
+## Component Integration
+
+### Property Search Component
+```tsx
+export const PropertySearch = component$<PropertySearchProps>(({
+  zipCodes,
+  className = "property-search"
+}) => {
+  const searchTerm = useSignal('');
+  const minPrice = useSignal(0);
+  const maxPrice = useSignal(2000000);
+
+  return (
+    <div class={className}>
+      <h3>Search Properties in Centennial Hills</h3>
+      <form>
+        <input bind:value={searchTerm} placeholder="Search by address, features..." />
+        <button type="submit">Search Properties</button>
+      </form>
+    </div>
+  );
+});
+```
+
+### Neighborhood Map Component
+```tsx
+export const NeighborhoodMap = component$<NeighborhoodMapProps>(({
+  center,
+  zoom,
+  className = "neighborhood-map"
+}) => {
+  const mapRef = useRef<HTMLDivElement>();
+
+  useVisibleTask$(async () => {
+    if (!mapRef.current) return;
+
+    const { Loader } = await import('@googlemaps/js-api-loader');
+    
+    const loader = new Loader({
+      apiKey: import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY!,
+      version: 'weekly',
+      libraries: ['places']
+    });
+
+    const google = await loader.load();
+    
+    new google.maps.Map(mapRef.current, {
+      center,
+      zoom,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+  });
+
+  return (
+    <div class={className}>
+      <h3>Centennial Hills Location</h3>
+      <div ref={mapRef} class="map-container" />
+    </div>
+  );
+});
+```
+
+## Frontmatter Patterns
+
+### SEO-Optimized Frontmatter
+```yaml
+---
+# Page Title (H1)
+title: Centennial Hills Luxury Homes for Sale
+
+# Meta Description
+description: Find luxury homes and new construction in Centennial Hills, Las Vegas. Expert real estate services in zip codes 89135, 89138, 89144.
+
+# Open Graph Properties
+og:
+  - title: Centennial Hills Luxury Homes | Las Vegas Real Estate
+    description: true
+  - image: https://centennialshillshomes.com/images/centennial-hills-luxury-homes.jpg
+    image:alt: Luxury home exterior in Centennial Hills neighborhood
+  - type: website
+  - url: https://centennialshillshomes.com/centennial-hills-luxury-homes
+
+# Twitter Card
+twitter:
+  - card: summary_large_image
+  - title: Centennial Hills Luxury Homes
+  - description: true
+  - image: https://centennialshillshomes.com/images/centennial-hills-luxury-homes.jpg
+
+# Content Tags
+tags:
+  - centennial-hills
+  - luxury-homes
+  - las-vegas-real-estate
+  - new-construction
+  - 89135
+  - 89138
+  - 89144
+
+# Content Metadata
+publishDate: 2024-01-15
+lastModified: 2024-01-15
+author: Janet Duffy
+category: neighborhoods
+featured: true
+---
+```
+
+## Content Management
+
+### Using Frontmatter Data
+```tsx
+export const PropertyTags = component$(() => {
+  const { frontmatter } = useDocumentHead();
+  
+  if (!frontmatter.tags || frontmatter.tags.length === 0) {
+    return null;
+  }
+  
+  return (
+    <div class="property-tags">
+      <h4>Tags</h4>
+      <ul class="tag-list">
+        {frontmatter.tags.map((tag: string) => (
+          <li key={`tag-${tag}`} class="tag">
+            <a href={`/tags/${tag}`}>{tag}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+});
+```
+
+## Best Practices
+- ✅ **Consistent Structure**: Use the same frontmatter pattern across all MDX files
+- ✅ **Component Reuse**: Create reusable components for common patterns
+- ✅ **SEO Optimization**: Always include proper meta tags and Open Graph data
+- ✅ **Accessibility**: Use semantic HTML and proper heading hierarchy
+- ✅ **Performance**: Optimize images and lazy load heavy components
+- ✅ **Real Estate Specific**: Include comprehensive property information in frontmatter
+- ✅ **Location Data**: Always include zip codes and neighborhood information
+- ✅ **Interactive Elements**: Embed property search, maps, and contact forms

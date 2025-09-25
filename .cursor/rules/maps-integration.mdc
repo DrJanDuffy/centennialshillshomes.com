@@ -1,0 +1,136 @@
+---
+description: Maps and location integration guidelines for real estate features
+type: Agent Requested
+alwaysApply: false
+---
+
+# Maps and Location Integration
+
+## Google Maps Integration
+
+### Map Component Standards (Qwik)
+```tsx
+import { component$, useSignal, useVisibleTask$, useRef } from '@builder.io/qwik';
+import { Loader } from '@googlemaps/js-api-loader';
+
+interface MapProps {
+  properties: Property[];
+  center: { lat: number; lng: number };
+  zoom?: number;
+  onPropertyClick?: (property: Property) => void;
+  className?: string;
+  height?: string;
+}
+
+export const PropertyMap = component$<MapProps>(({
+  properties,
+  center,
+  zoom = 13,
+  onPropertyClick,
+  className = "w-full h-96",
+  height = "400px"
+}) => {
+  const mapRef = useRef<HTMLDivElement>();
+  const map = useSignal<google.maps.Map | null>(null);
+  const markers = useSignal<google.maps.Marker[]>([]);
+  const isLoading = useSignal(true);
+  const error = useSignal<string | null>(null);
+
+  useVisibleTask$(async () => {
+    if (!mapRef.current) return;
+
+    try {
+      const loader = new Loader({
+        apiKey: import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY!,
+        version: 'weekly',
+        libraries: ['places', 'geometry']
+      });
+
+      const google = await loader.load();
+      
+      const mapInstance = new google.maps.Map(mapRef.current, {
+        center,
+        zoom,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        styles: [
+          // Custom map styling for real estate
+          {
+            featureType: 'poi',
+            elementType: 'labels',
+            stylers: [{ visibility: 'off' }]
+          }
+        ]
+      });
+
+      map.value = mapInstance;
+      isLoading.value = false;
+    } catch (err) {
+      error.value = 'Failed to load map';
+      isLoading.value = false;
+    }
+  });
+
+  // Implementation with proper error handling
+  return (
+    <div class={className} style={{ height }}>
+      {isLoading.value && <div class="flex items-center justify-center h-full">Loading map...</div>}
+      {error.value && <div class="flex items-center justify-center h-full text-red-500">{error.value}</div>}
+      <div ref={mapRef} class="w-full h-full" />
+    </div>
+  );
+});
+```
+
+### Location Data Handling (Qwik Patterns)
+- Always validate coordinates before rendering maps
+- Use proper error boundaries for map failures with fallback UI
+- Implement fallback content when maps fail to load
+- Cache map data to reduce API calls with useResource$
+- Use Google Maps Places API for address autocomplete
+- Implement geocoding with proper error handling
+- Use Google Maps Geocoding API for address validation
+
+### Centennial Hills Coordinates
+```typescript
+const CENTENNIAL_HILLS_CENTER = {
+  lat: 36.2805,
+  lng: -115.2744
+};
+
+const CENTENNIAL_HILLS_BOUNDS = {
+  north: 36.3200,
+  south: 36.2400,
+  east: -115.2400,
+  west: -115.3100
+};
+```
+
+## Commute Calculator Integration
+- Use the existing `commutes-widget.js` for commute calculations
+- Integrate with property listings to show commute times
+- Include major Las Vegas destinations (Strip, Downtown, Airport)
+- Cache commute data for performance
+
+## Address Validation
+- Validate addresses against Las Vegas area
+- Ensure zip codes are valid for Centennial Hills area
+- Provide helpful error messages for invalid addresses
+- Use geocoding services for address standardization
+
+## Map Features
+- Property markers with custom icons
+- Clustering for multiple properties
+- Info windows with property details
+- Street view integration
+- Satellite/hybrid view options
+
+## Performance Considerations (Qwik Optimized)
+- Lazy load map components with Qwik's built-in lazy loading
+- Use proper loading states with skeleton UI
+- Implement map caching strategies with useResource$
+- Optimize marker rendering for large datasets with clustering
+- Use marker clustering for better performance
+- Implement virtual scrolling for large property lists
+- Use Web Workers for heavy geocoding operations
+- Optimize map tiles with proper caching headers
+- Leverage Qwik's resumability for instant map loading

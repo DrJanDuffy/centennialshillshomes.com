@@ -1,0 +1,16 @@
+{
+  "name": "cursor-mcp-test",
+  "version": "1.0.0",
+  "description": "Test suite for Real Estate MCP tools in Cursor",
+  "type": "module",
+  "main": "test-real-estate-tools.ts",
+  "scripts": {
+    "test": "tsx test-real-estate-tools.ts",
+    "dev": "tsx --watch test-real-estate-tools.ts"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
+

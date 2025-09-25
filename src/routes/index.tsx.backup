@@ -1,0 +1,223 @@
+import { component$ } from '@builder.io/qwik';
+import type { DocumentHead } from '@builder.io/qwik-city';
+// Import icons for enhanced UI
+import { HiHomeMini, HiMapPinMini, HiPhoneMini, HiStarMini } from '@qwikest/icons/heroicons';
+import { LuSearch, LuTrendingUp, LuUsers, LuClock } from '@qwikest/icons/lucide';
+
+export default component$(() => {
+  return (
+    <>
+      {/* Hero Section */}
+      <section class="hero-section">
+        <div class="container container-center">
+          <h1 class="hero-title">
+            Find Your Dream Home in <span class="highlight">Just 10 Minutes</span> with Dr. Jan Duffy
+          </h1>
+          <p class="hero-subtitle">
+            Top 1% Las Vegas REALTOR® with 30+ years of research expertise. Luxury real estate specialist 
+            serving West Summerlin's premier neighborhoods. Available 24/7 for executive clients and luxury home investments.
+          </p>
+          <div class="hero-search">
+            <div class="search-box">
+              <LuSearch class="search-icon" />
+              <input type="text" placeholder="Search by location, price, or property type..." />
+              <button class="btn btn-primary">Search Properties</button>
+            </div>
+          </div>
+          <div class="hero-buttons">
+            <a href="/properties" class="btn btn-primary">View Properties</a>
+            <a href="/contact" class="btn btn-secondary">Get Started</a>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section class="services-section">
+        <div class="container container-center">
+          <h2>Our Services</h2>
+          <div class="services-grid">
+            <div class="service-card">
+              <HiHomeMini class="service-icon" />
+              <h3>Luxury Home Sales</h3>
+              <p>Expert guidance for luxury homes $400K-$750K in Las Vegas' most exclusive neighborhoods.</p>
+              <a href="/luxury-home-sales" class="service-link">Learn More →</a>
+            </div>
+            <div class="service-card">
+              <LuTrendingUp class="service-icon" />
+              <h3>California Equity Buyers</h3>
+              <p>Specialized assistance for California residents looking to leverage their equity in Nevada.</p>
+              <a href="/california-equity-buyers" class="service-link">Learn More →</a>
+            </div>
+            <div class="service-card">
+              <LuUsers class="service-icon" />
+              <h3>Corporate Relocations</h3>
+              <p>Comprehensive relocation services for executives and professionals moving to Las Vegas.</p>
+              <a href="/corporate-relocations" class="service-link">Learn More →</a>
+            </div>
+            <div class="service-card">
+              <HiStarMini class="service-icon" />
+              <h3>Market Analysis</h3>
+              <p>Complimentary market analysis and property valuations for informed decision-making.</p>
+              <a href="/market-analysis" class="service-link">Learn More →</a>
+            </div>
+            <div class="service-card">
+              <LuClock class="service-icon" />
+              <h3>Same-Day Showings</h3>
+              <p>Available 24/7 for executive clients with same-day property showings.</p>
+              <a href="/same-day-showings" class="service-link">Learn More →</a>
+            </div>
+            <div class="service-card">
+              <HiMapPinMini class="service-icon" />
+              <h3>Investment Properties</h3>
+              <p>Strategic investment opportunities in Las Vegas' growing real estate market.</p>
+              <a href="/investment-properties" class="service-link">Learn More →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+          {/* Communities Section */}
+          <section class="communities-section">
+            <div class="container container-center">
+              <h2>Featured Communities</h2>
+              <div class="communities-grid">
+                <div class="community-card">
+                  <h3>Centennial Hills</h3>
+                  <p>Master-planned community with modern amenities and family-friendly atmosphere. ZIP codes 89138, 89144, 89135.</p>
+                  <a href="/centennial-hills" class="community-link">Explore →</a>
+                </div>
+                <div class="community-card">
+                  <h3>Red Rock Country Club</h3>
+                  <p>Exclusive gated community with championship golf and luxury homes in West Summerlin.</p>
+                  <a href="/red-rock-country-club" class="community-link">Explore →</a>
+                </div>
+                <div class="community-card">
+                  <h3>The Ridges</h3>
+                  <p>Upscale community featuring custom homes and stunning mountain views in Summerlin West.</p>
+                  <a href="/the-ridges" class="community-link">Explore →</a>
+                </div>
+                <div class="community-card">
+                  <h3>Summerlin West</h3>
+                  <p>Premier master-planned community with world-class amenities and entertainment.</p>
+                  <a href="/summerlin-west" class="community-link">Explore →</a>
+                </div>
+                <div class="community-card">
+                  <h3>Lone Mountain</h3>
+                  <p>Scenic community with mountain views and luxury homes in North Las Vegas.</p>
+                  <a href="/lone-mountain" class="community-link">Explore →</a>
+                </div>
+                <div class="community-card">
+                  <h3>North Las Vegas</h3>
+                  <p>Growing area with new developments and investment opportunities.</p>
+                  <a href="/north-las-vegas" class="community-link">Explore →</a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Commute Calculator Section */}
+          <section class="commute-section">
+            <div class="container container-center">
+              <h2>Plan Your Commute</h2>
+              <p>See how long it takes to get to work, school, or entertainment from Las Vegas neighborhoods</p>
+              <div style="height: 300px; background: #f3f4f6; display: flex; align-items: center; justify-content: center; border-radius: 12px;">
+                <div style="text-align: center;">
+                  <h3>Commute Calculator</h3>
+                  <p>Calculator temporarily unavailable.</p>
+                </div>
+              </div>
+              <div class="commute-cta">
+                <a href="/commute-calculator" class="btn btn-secondary">Full Commute Calculator</a>
+              </div>
+            </div>
+          </section>
+
+          {/* Testimonials Section */}
+          <section class="testimonials-section">
+            <div class="container container-center">
+              <h2>Why People Love Dr. Janet Duffy</h2>
+              <p class="testimonials-subtitle">
+                We continuously improve our services based on the feedback of our clients
+              </p>
+              <div class="testimonials-grid">
+                <div class="testimonial-card">
+                  <p class="testimonial-text">
+                    "Very helpful. Far easier than traditional real estate processes. Allows quick and easy property search with speedy booking. Even maintains history of properties viewed."
+                  </p>
+                  <div class="testimonial-author">
+                    <strong>Sarah Johnson</strong>
+                    <span>Centennial Hills Homeowner</span>
+                  </div>
+                </div>
+                <div class="testimonial-card">
+                  <p class="testimonial-text">
+                    "Dr. Duffy's follow-up and attention to detail is exceptional. She called me back personally and made sure every detail was perfect. Reaffirms my faith in professional real estate service."
+                  </p>
+                  <div class="testimonial-author">
+                    <strong>Michael Chen</strong>
+                    <span>California Equity Buyer</span>
+                  </div>
+                </div>
+                <div class="testimonial-card">
+                  <p class="testimonial-text">
+                    "The service of Dr. Janet Duffy is praiseworthy. When we needed to find a home quickly for our corporate relocation, she was there every step of the way."
+                  </p>
+                  <div class="testimonial-author">
+                    <strong>Jennifer Martinez</strong>
+                    <span>Corporate Relocation Client</span>
+                  </div>
+                </div>
+                <div class="testimonial-card">
+                  <p class="testimonial-text">
+                    "Very easy to schedule showings, maintain property history. Hassle-free compared to older methods of property hunting. Thanks Dr. Duffy for making it simple."
+                  </p>
+                  <div class="testimonial-author">
+                    <strong>David Thompson</strong>
+                    <span>Luxury Home Buyer</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Interactive Properties Map */}
+          <section class="properties-map-section">
+            <div class="container container-center">
+          <div class="maps-placeholder" style="height: 500px; background: #f3f4f6; display: flex; align-items: center; justify-content: center; border-radius: 12px;">
+            <div style="text-align: center;">
+              <h3>Interactive Property Map</h3>
+              <p>Map temporarily unavailable. Please contact us for property information.</p>
+            </div>
+          </div>
+            </div>
+          </section>
+
+          {/* CTA Section */}
+          <section class="cta-section">
+            <div class="container container-center">
+              <h2>Ready to Find Your Dream Home?</h2>
+              <p>Contact Dr. Janet Duffy today for personalized real estate guidance. Available 24/7 for executive clients.</p>
+              <div class="contact-info">
+                <p><strong>Phone:</strong> <a href="tel:+17029031952">(702) 903-1952</a></p>
+                <p><strong>Text:</strong> <a href="sms:+17029031952">(702) 903-1952</a></p>
+                <p><strong>Location:</strong> 1490 Center Crossing Rd, Las Vegas, NV 89144</p>
+              </div>
+              <div class="cta-buttons">
+                <a href="/contact" class="btn btn-primary">Contact Us</a>
+                <a href="/about" class="btn btn-secondary">About Dr. Duffy</a>
+              </div>
+            </div>
+          </section>
+    </>
+  );
+});
+
+export const head: DocumentHead = {
+  title: 'Centennial Hills Real Estate | Dr. Jan Duffy | Las Vegas REALTOR®',
+  meta: [
+    {
+      name: 'description',
+      content: 'Luxury real estate specialist serving West Summerlin\'s premier neighborhoods. Dr. Jan Duffy, REALTOR® offers 30+ years of research expertise in luxury homes.',
+    },
+  ],
+};

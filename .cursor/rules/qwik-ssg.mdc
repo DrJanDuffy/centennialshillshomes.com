@@ -1,0 +1,196 @@
+---
+type: Auto Attached
+globs: ["src/routes/**/*.tsx", "adapters/**/*.ts", "vite.config.ts"]
+alwaysApply: false
+---
+
+# Qwik Static Site Generation (SSG)
+
+## Core Benefits
+- ✅ **Pre-rendered HTML**: All property pages generated at build time
+- ✅ **Instant Loading**: No hydration step required
+- ✅ **SEO Optimized**: Search engines get fully rendered HTML
+- ✅ **Cost Effective**: Reduced server load and hosting costs
+- ✅ **Performance**: Faster page loads with Qwik's resumability
+
+## SSG Configuration
+
+### Setup
+```bash
+# Add static adapter
+pnpm run qwik add static
+
+# Build static site
+pnpm run build.server
+```
+
+### Vite Config
+```typescript
+// adapters/static/vite.config.ts
+import { defineConfig } from 'vite';
+import { qwikCity } from '@builder.io/qwik-city/vite';
+import { qwikVite } from '@builder.io/qwik/optimizer';
+import { qwikCityGenerate } from '@builder.io/qwik-city/static/node';
+
+export default defineConfig({
+  plugins: [
+    qwikCity({
+      origin: 'https://centennialshillshomes.com',
+    }),
+    qwikVite(),
+    qwikCityGenerate({
+      origin: 'https://centennialshillshomes.com',
+      outDir: './dist',
+    }),
+  ],
+});
+```
+
+## Dynamic SSG Routes
+
+### Property Pages
+```tsx
+// src/routes/properties/[id]/index.tsx
+import { component$ } from '@builder.io/qwik';
+import { useLocation, type StaticGenerateHandler } from '@builder.io/qwik-city';
+
+export default component$(() => {
+  const { params } = useLocation();
+  return (
+    <div>
+      <h1>Property Details</h1>
+      <p>Property ID: {params.id}</p>
+    </div>
+  );
+});
+
+export const onStaticGenerate: StaticGenerateHandler = async ({ env }) => {
+  const propertyIds = await loadPropertyIds({
+    apiKey: env.get('PROPERTY_API_KEY'),
+    location: 'Centennial Hills',
+    zipCodes: ['89135', '89138', '89144']
+  });
+
+  return {
+    params: propertyIds.map((id) => ({ id })),
+  };
+};
+```
+
+### MDX Content Pages
+```mdx
+---
+title: Centennial Hills Luxury Homes Guide
+description: Complete guide to luxury homes in Centennial Hills, Las Vegas
+og:
+  - title: Centennial Hills Luxury Homes Guide
+    description: true
+  - image: https://centennialshillshomes.com/images/luxury-homes-guide.jpg
+    image:alt: Luxury homes in Centennial Hills neighborhood
+tags:
+  - luxury-homes
+  - centennial-hills
+  - las-vegas-real-estate
+publishDate: 2024-01-15
+author: Janet Duffy
+---
+
+# Centennial Hills Luxury Homes Guide
+
+Discover the finest luxury homes in Centennial Hills, Las Vegas.
+
+<PropertySearch zipCodes={['89135', '89138', '89144']} />
+
+## Luxury Home Features
+
+- **Spacious Layouts**: 3,000+ square feet
+- **Premium Finishes**: Granite countertops, hardwood floors
+- **Outdoor Living**: Pools, spas, and mountain views
+- **Smart Home Technology**: Modern automation systems
+
+<NeighborhoodMap center={{ lat: 36.2805, lng: -115.2744 }} zoom={13} />
+```
+
+### MDX SSG Generation
+```tsx
+// src/routes/blog/[slug]/index.tsx
+import { type StaticGenerateHandler } from '@builder.io/qwik-city';
+import { loadBlogPosts } from '../load-blog-posts';
+
+export const onStaticGenerate: StaticGenerateHandler = async () => {
+  const blogPosts = await loadBlogPosts();
+  
+  return {
+    params: blogPosts.map((post) => ({
+      slug: post.slug
+    })),
+  };
+};
+```
+
+## Real Estate SSG Strategy
+
+### Static Pages (SSG)
+- ✅ **Property Listings**: Individual property pages
+- ✅ **Neighborhood Guides**: Area information and amenities
+- ✅ **Market Reports**: Monthly/yearly analysis
+- ✅ **Blog Posts**: SEO-optimized articles
+- ✅ **About/Contact**: Company information
+
+### Dynamic Pages (SSR)
+- ✅ **Property Search**: Dynamic filtering and results
+- ✅ **User Dashboards**: Personalized content
+- ✅ **Contact Forms**: User-specific interactions
+- ✅ **Lead Management**: Personalized workflows
+
+## SSG Benefits for Real Estate
+
+### Performance
+- **Faster Loading**: Pre-rendered HTML loads instantly
+- **Better SEO**: Search engines get fully rendered content
+- **Reduced Server Load**: Static files served from CDN
+- **Cost Effective**: Lower hosting costs
+
+### SEO Advantages
+- **Pre-rendered HTML**: Search engines see complete content
+- **Faster Crawling**: No JavaScript execution required
+- **Better Indexing**: Immediate content availability
+- **Improved Rankings**: Faster page loads boost SEO
+
+## Implementation Commands
+
+### Development
+```bash
+# Start development server
+pnpm run dev
+
+# Build for production
+pnpm run build
+```
+
+### SSG Build
+```bash
+# Build static site
+pnpm run build.server
+
+# Preview static site
+pnpm run preview
+```
+
+### Deployment
+```bash
+# Deploy to Vercel
+pnpm run deploy
+
+# Deploy with SSG
+pnpm run build.server && pnpm run deploy
+```
+
+## Best Practices
+- ✅ **Use SSG for content-rich pages** (properties, neighborhoods, blogs)
+- ✅ **Use SSR for interactive features** (search, forms, dashboards)
+- ✅ **Optimize images** for static generation
+- ✅ **Implement proper caching** strategies
+- ✅ **Monitor performance** with Core Web Vitals
+- ✅ **Test SSG builds** before deployment
+- ✅ **Use environment variables** for SSG configuration

@@ -1,0 +1,113 @@
+---
+description: Git workflow and deployment automation rules
+type: Auto Attached
+globs: [".gitignore", ".github/workflows/*.yml", "package.json"]
+alwaysApply: false
+---
+
+# Git Deployment Workflow
+
+## Branch Strategy
+```bash
+main                    # Production-ready code
+develop                 # Integration branch for features
+feature/feature-name    # Feature development branches
+hotfix/hotfix-name      # Critical bug fixes
+release/version-number  # Release preparation branches
+```
+
+## Commit Standards
+```bash
+# Format: type(scope): description
+feat(properties): add property search functionality
+fix(maps): resolve map loading issue on mobile
+docs(readme): update deployment instructions
+style(components): format PropertyCard component
+refactor(api): optimize property data fetching
+test(components): add PropertyCard unit tests
+chore(deps): update dependencies
+```
+
+## Pre-Deployment Checklist
+```bash
+# Code Quality
+npx tsc --noEmit                    # TypeScript check
+pnpm run lint                       # ESLint check
+pnpm run test                       # Run tests
+pnpm run build                      # Build check
+
+# Git Workflow
+git status                          # Check for uncommitted changes
+git pull origin develop             # Pull latest changes
+git push origin feature-branch      # Push feature branch
+```
+
+## GitHub Actions Workflow
+```yaml
+# .github/workflows/deploy.yml
+name: Deploy to Vercel
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+      
+      - name: Install dependencies
+        run: pnpm install
+      
+      - name: Run tests
+        run: pnpm run test
+      
+      - name: Build
+        run: pnpm run build.server
+      
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          working-directory: ./
+```
+
+## Quick Deployment Scripts
+```bash
+# deploy.sh
+#!/bin/bash
+echo "🚀 Starting deployment..."
+pnpm run build.server
+pnpm run deploy
+echo "✅ Deployment complete!"
+
+# deploy.ps1 (Windows)
+Write-Host "🚀 Starting deployment..."
+pnpm run build.server
+pnpm run deploy
+Write-Host "✅ Deployment complete!"
+```
+
+## Environment Setup
+```bash
+# Required secrets in GitHub/Vercel
+VERCEL_TOKEN=your_vercel_token
+VERCEL_ORG_ID=your_org_id
+VERCEL_PROJECT_ID=your_project_id
+```
+
+## Best Practices
+- ✅ **Always test locally** before pushing
+- ✅ **Use descriptive commit messages** with conventional format
+- ✅ **Keep feature branches small** and focused
+- ✅ **Review code** before merging to main
+- ✅ **Automate deployments** with GitHub Actions
+- ✅ **Monitor deployments** for errors

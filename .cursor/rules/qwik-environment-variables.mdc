@@ -1,0 +1,105 @@
+---
+type: Auto Attached
+globs: ["src/**/*.tsx", "src/**/*.ts", ".env*", "vercel.json", "package.json"]
+alwaysApply: false
+---
+
+# Qwik Environment Variables
+
+## Core Principles
+- ✅ **Public Variables**: `PUBLIC_*` prefix, visible in browser (non-sensitive only)
+- ✅ **Server Variables**: `requestEvent.env.get()` for private data (API keys, secrets)
+- ❌ **Never**: `process.env` in Qwik applications
+- ❌ **Never**: Sensitive data in `PUBLIC_*` variables
+
+## Essential Configuration
+
+### .env.local Template
+```bash
+# PUBLIC (Client + Server)
+PUBLIC_API_URL=https://api.centennialshillshomes.com
+PUBLIC_GOOGLE_MAPS_API_KEY=your_public_maps_key
+PUBLIC_GA_TRACKING_ID=GA-XXXXXXXXX
+PUBLIC_ENABLE_MAPS=true
+PUBLIC_SITE_NAME=Centennial Hills Homes
+
+# SERVER-ONLY (Private)
+PROPERTY_API_KEY=your_private_property_api_key
+HOMEBOT_API_KEY=your_private_homebot_key
+FOLLOW_UP_BOSS_API_KEY=your_private_follow_up_boss_key
+REALSCOUT_API_KEY=your_private_realscout_key
+KVCORE_API_KEY=your_private_kvcore_key
+GMAIL_API_KEY=your_private_gmail_key
+SENDGRID_API_KEY=your_private_sendgrid_key
+STRIPE_SECRET_KEY=your_private_stripe_key
+DB_URL=postgresql://user:password@localhost:5432/db
+```
+
+## Usage Patterns
+
+### Client-Side (Public Variables)
+```tsx
+// ✅ Safe: Public variables available everywhere
+const apiUrl = import.meta.env.PUBLIC_API_URL;
+const enableMaps = import.meta.env.PUBLIC_ENABLE_MAPS === 'true';
+const siteName = import.meta.env.PUBLIC_SITE_NAME;
+```
+
+### Server-Side (Private Variables)
+```tsx
+// ✅ Safe: Server-side variables are private
+export const usePropertiesLoader = routeLoader$(async (requestEvent) => {
+  const propertyApiKey = requestEvent.env.get('PROPERTY_API_KEY');
+  const dbUrl = requestEvent.env.get('DB_URL');
+  
+  if (!propertyApiKey) {
+    throw new Error('PROPERTY_API_KEY is required');
+  }
+  
+  // Use private API key securely
+});
+```
+
+### Server Actions
+```tsx
+export const useContactAction = routeAction$(async (formData, requestEvent) => {
+  const sendgridKey = requestEvent.env.get('SENDGRID_API_KEY');
+  
+  if (!sendgridKey) {
+    throw new Error('SENDGRID_API_KEY is required');
+  }
+  
+  // Send email securely
+});
+```
+
+## Real Estate APIs
+- **Property Data**: `PROPERTY_API_KEY`, `MLS_API_KEY`
+- **CRM Integration**: `HOMEBOT_API_KEY`, `FOLLOW_UP_BOSS_API_KEY`, `REALSCOUT_API_KEY`, `KVCORE_API_KEY`
+- **Communication**: `GMAIL_API_KEY`, `SENDGRID_API_KEY`, `TWILIO_AUTH_TOKEN`
+- **Payments**: `STRIPE_SECRET_KEY`, `PAYPAL_CLIENT_SECRET`
+
+## Platform Configuration
+
+### Vercel
+```bash
+# Set in Vercel dashboard
+PROPERTY_API_KEY=your_private_property_api_key
+DB_URL=your_private_db_url
+STRIPE_SECRET_KEY=your_private_stripe_key
+```
+
+### Cloudflare Pages
+```bash
+# Set in Cloudflare dashboard
+PROPERTY_API_KEY=your_private_property_api_key
+DB_URL=your_private_db_url
+```
+
+## Security Best Practices
+- ✅ Never commit `.env.local` to version control
+- ✅ Use `.env.example` as team template
+- ✅ Rotate API keys regularly
+- ✅ Use different keys for dev/prod
+- ✅ Monitor API usage for suspicious activity
+- ✅ Validate environment variables at startup

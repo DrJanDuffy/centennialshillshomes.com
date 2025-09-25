@@ -1,0 +1,130 @@
+---
+description: MCP (Model Context Protocol) integration guidelines for real estate tools
+type: Agent Requested
+alwaysApply: false
+---
+
+# MCP Integration Guidelines
+
+## Real Estate MCP Tools
+
+### Available MCP Actions
+Based on your project structure, you have access to several real estate MCP tools:
+
+#### Homebot Integration
+- `mcp_Zapier_Actions_MCP_homebot_create_client` - Create new clients
+- `mcp_Zapier_Actions_MCP_homebot_find_client_by_email` - Find clients by email
+- `mcp_Zapier_Actions_MCP_homebot_create_home` - Create homes for clients
+- `mcp_Zapier_Actions_MCP_homebot_find_home_by_address` - Find homes by address
+- `mcp_Zapier_Actions_MCP_homebot_create_loan` - Create loans for homes
+
+#### Follow Up Boss Integration
+- `mcp_Zapier_Actions_MCP_follow_up_boss_find_a_contact` - Search contacts
+- `mcp_Zapier_Actions_MCP_follow_up_boss_add_tags_to_a_` - Add tags to contacts
+- `mcp_Zapier_Actions_MCP_follow_up_boss_apply_an_action_` - Apply action plans
+
+#### Other Real Estate Tools
+- `mcp_Zapier_Actions_MCP_realscout_create_client` - Create RealScout clients
+- `mcp_Zapier_Actions_MCP_kvcore_create_contact_post` - Create KVCore contacts
+- `mcp_Zapier_Actions_MCP_gmail_find_email` - Search Gmail
+
+## Environment Variables
+- Use `requestEvent.env.get()` for MCP API keys (server-side only)
+- Use `import.meta.env.PUBLIC_*` for client-side configuration
+
+## Usage Patterns
+
+### Client Management Workflow
+```typescript
+// Example workflow for new client onboarding
+async function onboardNewClient(clientData: ClientData) {
+  // 1. Create client in Homebot
+  const homebotClient = await mcp_Zapier_Actions_MCP_homebot_create_client({
+    instructions: "Create new client for Centennial Hills property search",
+    email: clientData.email,
+    first_name: clientData.firstName,
+    last_name: clientData.lastName
+  });
+
+  // 2. Create contact in Follow Up Boss
+  const followUpContact = await mcp_Zapier_Actions_MCP_follow_up_boss_find_a_contact({
+    instructions: "Find or create contact for new client",
+    person: clientData.email
+  });
+
+  // 3. Add appropriate tags
+  await mcp_Zapier_Actions_MCP_follow_up_boss_add_tags_to_a_({
+    instructions: "Tag new client as Centennial Hills buyer",
+    person: clientData.email,
+    tags: "Centennial Hills, Buyer, New Lead"
+  });
+}
+```
+
+### Property Management Workflow
+```typescript
+// Example workflow for property creation
+async function createPropertyListing(propertyData: PropertyData, clientId: string) {
+  // 1. Check if home already exists
+  const existingHome = await mcp_Zapier_Actions_MCP_homebot_find_home_by_address({
+    instructions: "Check if property already exists in system",
+    street: propertyData.address.street,
+    zip: propertyData.address.zipCode
+  });
+
+  if (!existingHome) {
+    // 2. Create new home
+    const home = await mcp_Zapier_Actions_MCP_homebot_create_home({
+      instructions: "Create new home listing for Centennial Hills property",
+      client_id: clientId,
+      address_street: propertyData.address.street,
+      address_zip: propertyData.address.zipCode
+    });
+
+    // 3. Create associated loan if applicable
+    if (propertyData.loanAmount) {
+      await mcp_Zapier_Actions_MCP_homebot_create_loan({
+        instructions: "Create loan for new property",
+        home_id: home.id,
+        amount: propertyData.loanAmount.toString(),
+        date: new Date().toISOString().split('T')[0],
+        company_loan_id: `LOAN-${Date.now()}`
+      });
+    }
+  }
+}
+```
+
+## Error Handling (Enhanced)
+- Always wrap MCP calls in try-catch blocks with specific error types
+- Provide meaningful error messages with actionable guidance
+- Implement retry logic with exponential backoff for network failures
+- Log errors for debugging purposes with proper context
+- Use error boundaries in React components for MCP failures
+- Implement fallback UI when MCP services are unavailable
+- Set up monitoring and alerting for MCP service health
+
+## Data Validation
+- Validate all input data before MCP calls
+- Ensure required fields are present
+- Format data according to expected schemas
+- Handle optional fields gracefully
+
+## Integration Best Practices (Modern)
+- Use consistent naming conventions across systems
+- Implement proper data mapping between systems with TypeScript interfaces
+- Cache frequently accessed data with React Query
+- Monitor API rate limits and implement throttling
+- Implement proper authentication handling with token refresh
+- Use React Query for MCP data management and caching
+- Implement optimistic updates for better UX
+- Set up proper loading states and error boundaries
+- Use environment variables for MCP configuration
+- Implement proper logging and monitoring
+
+## Testing MCP Integrations
+- Mock MCP responses for unit tests
+- Test error scenarios
+- Validate data transformations
+- Test retry mechanisms
+- Verify proper error handling

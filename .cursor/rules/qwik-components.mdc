@@ -1,0 +1,147 @@
+---
+description: Qwik component development standards and patterns
+type: Auto Attached
+globs: ["src/components/**/*.tsx", "src/routes/**/*.tsx"]
+alwaysApply: false
+---
+
+# Qwik Component Standards
+
+## Component Structure (Qwik Patterns)
+```tsx
+import { component$, useSignal, useStore, useTask$ } from '@builder.io/qwik';
+import type { ComponentProps } from './types';
+
+interface ComponentNameProps {
+  // Define props with proper types
+  title: string;
+  isVisible?: boolean;
+  onAction?: () => void;
+  children?: any;
+}
+
+export const ComponentName = component$<ComponentNameProps>(({
+  title,
+  isVisible = true,
+  onAction,
+  children
+}) => {
+  // Component logic here
+  
+  return (
+    <div class="component-name" data-testid="component-name">
+      {/* JSX content */}
+    </div>
+  );
+});
+```
+
+## Component Guidelines
+
+### Qwik Components
+- Always use `component$()` for component definition
+- Use TypeScript interfaces for props
+- Provide default values for optional props
+- Use proper destructuring in function parameters
+- Use `class` instead of `className` for CSS classes
+
+### State Management (Qwik Patterns)
+- Use `useSignal()` for reactive primitive values
+- Use `useStore()` for reactive objects
+- Use `useTask$()` for side effects and reactive computations
+- Use `useVisibleTask$()` for DOM-dependent tasks
+- Use `useContext()` and `useContextProvider()` for context
+- Use `useResource$()` for async data fetching
+- Use `useComputed$()` for derived state
+
+### Event Handling (Qwik Patterns)
+- Use `onClick$`, `onChange$`, etc. for event handlers
+- Implement proper error handling with try-catch
+- Use `bind:value` for form inputs
+- Use `useTask$()` for debouncing user input
+- Use `useVisibleTask$()` for DOM-dependent event handling
+
+### Styling
+- Use Tailwind CSS classes primarily
+- Create CSS modules for complex styling
+- Follow mobile-first responsive design
+- Use CSS custom properties for theming
+
+## Real Estate Specific Components
+
+### Property Cards (Qwik)
+```tsx
+interface PropertyCardProps {
+  property: Property;
+  showPrice?: boolean;
+  onFavorite?: (id: string) => void;
+}
+
+export const PropertyCard = component$<PropertyCardProps>(({
+  property,
+  showPrice = true,
+  onFavorite
+}) => {
+  const isFavorite = useSignal(false);
+  
+  return (
+    <div 
+      class="property-card"
+      data-testid="property-card"
+      data-property-id={property.id}
+      data-debug="property-card-component"
+    >
+      <img 
+        src={property.images[0]?.url} 
+        alt={property.images[0]?.alt}
+        data-debug="property-image"
+      />
+      <h3 data-debug="property-title">{property.address.street}</h3>
+      {showPrice && (
+        <p class="price" data-debug="property-price">
+          ${property.price.toLocaleString()}
+        </p>
+      )}
+      <button 
+        onClick$={() => {
+          isFavorite.value = !isFavorite.value;
+          onFavorite?.(property.id);
+        }}
+        data-debug="favorite-button"
+      >
+        {isFavorite.value ? '❤️' : '🤍'}
+      </button>
+    </div>
+  );
+});
+```
+
+### Location Components
+- Always include address formatting
+- Use proper Las Vegas area references
+- Include zip code validation
+- Implement map integration when needed
+
+### Form Components
+- Use proper validation
+- Include loading states
+- Provide clear error messages
+- Implement accessibility features
+
+## Performance Best Practices (Qwik Optimized)
+- Leverage Qwik's resumability for instant page loads
+- Use `useResource$()` for efficient data fetching
+- Implement proper key props for lists (avoid array indices)
+- Use Qwik's built-in lazy loading for components
+- Use `useTask$()` for reactive computations
+- Implement proper error boundaries with Qwik's error handling
+- Use `useVisibleTask$()` for DOM-dependent operations
+- Optimize bundle size with Qwik's code splitting
+- Add debugging attributes for component inspection
+- Use Qwik's "click to source" feature for development
+
+## Testing Considerations
+- Write components to be easily testable
+- Use proper data-testid attributes
+- Avoid testing implementation details
+- Focus on user behavior testing

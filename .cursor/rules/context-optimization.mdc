@@ -1,0 +1,102 @@
+---
+description: Context optimization rules to prevent high context percentage in Cursor
+type: Always
+alwaysApply: true
+---
+
+# Context Optimization Rules
+
+## Core Principle
+- ✅ **Keep rules concise** - Maximum 150 lines per rule
+- ✅ **Minimize redundancy** - No duplicate content across rules
+- ✅ **Focus on essentials** - Only include actionable guidance
+- ✅ **Use references** - Link to external docs instead of embedding
+
+## Context Efficiency Guidelines
+
+### Rule Size Limits
+- **Maximum lines**: 150 per rule
+- **Maximum characters**: 8,000 per rule
+- **Maximum words**: 1,000 per rule
+- **Target density**: 6+ words per line
+
+### Content Optimization
+- ✅ **Essential examples only** - Remove verbose explanations
+- ✅ **Concise patterns** - Show core implementation, not full code
+- ✅ **Reference external docs** - Don't embed full documentation
+- ✅ **Focus on real estate** - Remove generic examples
+
+### File Organization
+- ✅ **Single responsibility** - Each rule covers one topic
+- ✅ **No overlap** - Eliminate duplicate information
+- ✅ **Clear boundaries** - Well-defined rule scopes
+- ✅ **Efficient globs** - Precise file targeting
+
+## Context Monitoring
+
+### Performance Indicators
+- **Loading time**: Should be < 20ms for all rules
+- **Memory usage**: Monitor context percentage in Cursor
+- **Response time**: Quick rule application and processing
+
+### Optimization Triggers
+- **Context > 80%**: Immediate optimization required
+- **Loading > 50ms**: Reduce rule complexity
+- **Memory issues**: Split large rules into smaller ones
+
+## Best Practices
+
+### Rule Creation
+- ✅ **Start small** - Begin with essential patterns only
+- ✅ **Iterate efficiently** - Add content gradually
+- ✅ **Test performance** - Monitor context usage
+- ✅ **Optimize regularly** - Remove unused content
+
+### Content Management
+- ✅ **Use summaries** - Brief overviews instead of full explanations
+- ✅ **Link to sources** - Reference external documentation
+- ✅ **Focus on patterns** - Show implementation, not theory
+- ✅ **Remove examples** - Keep only essential code snippets
+
+### Maintenance
+- ✅ **Regular cleanup** - Remove outdated content
+- ✅ **Performance monitoring** - Track context usage
+- ✅ **Efficiency reviews** - Optimize for speed
+- ✅ **Size management** - Keep rules under limits
+
+## Emergency Context Reduction
+
+### Immediate Actions
+1. **Start new agent session** - Most effective when context > 80%
+2. **Split large rules** - Break into smaller files
+3. **Remove examples** - Keep only essential patterns
+4. **Eliminate redundancy** - Remove duplicate content
+5. **Simplify explanations** - Use bullet points instead of paragraphs
+
+### Agent Session Management
+- ✅ **Context > 80%**: Start new agent session immediately
+- ✅ **Context > 70%**: Consider starting new session
+- ✅ **Context > 60%**: Monitor closely, prepare for new session
+- ✅ **Performance issues**: New session often resolves them
+- ✅ **Memory errors**: New session clears context cache
+
+### When to Start New Agent Session
+- **High context percentage** (> 80%)
+- **Slow response times** (> 5 seconds)
+- **Terminal command failures** or interruptions
+- **Memory-related errors** in Cursor
+- **Rule processing delays** or timeouts
+- **After major rule changes** or optimizations
+
+### How to Start New Agent Session
+1. **Save current work** - Ensure all changes are saved
+2. **Note current state** - Document what was being worked on
+3. **Start fresh session** - New agent instance
+4. **Load essential rules** - Only load necessary rules initially
+5. **Resume work** - Continue from where you left off
+
+### Long-term Strategy
+1. **Modular design** - Create focused, single-purpose rules
+2. **Reference system** - Link to external docs
+3. **Efficient patterns** - Show core implementation only
+4. **Performance monitoring** - Track and optimize regularly

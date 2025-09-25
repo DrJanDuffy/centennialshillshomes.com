@@ -1,0 +1,207 @@
+---
+description: API integration and data handling patterns for real estate data
+type: Auto Attached
+globs: ["src/data/**/*.ts", "src/routes/**/api/**/*.ts", "src/components/**/api/**/*.ts"]
+alwaysApply: false
+---
+
+# API and Data Handling Standards
+
+## Core Data Types
+```typescript
+interface Property {
+  id: string;
+  address: {
+    street: string;
+    city: string;
+    state: string;
+    zipCode: string;
+    fullAddress: string;
+  };
+  price: number;
+  bedrooms: number;
+  bathrooms: number;
+  squareFeet: number;
+  lotSize?: number;
+  yearBuilt?: number;
+  propertyType: 'single-family' | 'condo' | 'townhouse' | 'luxury';
+  status: 'active' | 'pending' | 'sold' | 'off-market';
+  images: PropertyImage[];
+  features: string[];
+  description: string;
+  mlsNumber?: string;
+  listingDate: string;
+  lastUpdated: string;
+}
+
+interface PropertyImage {
+  id: string;
+  url: string;
+  alt: string;
+  isPrimary: boolean;
+  order: number;
+}
+
+interface ApiResponse<T> {
+  data: T;
+  success: boolean;
+  message?: string;
+  errors?: string[];
+}
+
+type ApiResult<T> = 
+  | { success: true; data: T }
+  | { success: false; error: string; code?: string };
+```
+
+## Service Layer (Qwik Patterns)
+```typescript
+class PropertyService {
+  private baseUrl = import.meta.env.PUBLIC_API_URL;
+  
+  async getProperties(filters?: PropertySearchFilters): Promise<ApiResult<Property[]>> {
+    try {
+      const queryParams = new URLSearchParams();
+      if (filters) {
+        Object.entries(filters).forEach(([key, value]) => {
+          if (value !== undefined && value !== null) {
+            if (Array.isArray(value)) {
+              value.forEach(v => queryParams.append(key, v.toString()));
+            } else {
+              queryParams.append(key, value.toString());
+            }
+          }
+        });
+      }
+
+      const response = await fetch(`${this.baseUrl}/properties?${queryParams}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this.getAuthToken()}`,
+        },
+      });
+      
+      if (!response.ok) {
+        throw new ApiError(`HTTP error! status: ${response.status}`, response.status);
+      }
+      
+      const result = await response.json();
+      return { success: true, data: result.data };
+    } catch (error) {
+      return { 
+        success: false, 
+        error: error instanceof Error ? error.message : 'Unknown error'
+      };
+    }
+  }
+}
+
+// Qwik component with useResource$
+export const PropertyList = component$(() => {
+  const filters = useSignal<PropertySearchFilters>({});
+  
+  const propertiesResource = useResource$(async ({ track }) => {
+    track(() => filters.value);
+    return await propertyService.getProperties(filters.value);
+  });
+
+  return (
+    <div>
+      <Resource
+        value={propertiesResource}
+        onPending={() => <div>Loading properties...</div>}
+        onRejected={(error) => <div>Error: {error.message}</div>}
+        onResolved={(result) => (
+          <div>
+            {result.success ? (
+              result.data.map(property => (
+                <PropertyCard key={property.id} property={property} />
+              ))
+            ) : (
+              <div>Error: {result.error}</div>
+            )}
+          </div>
+        )}
+      />
+    </div>
+  );
+});
+```
+
+## Real Estate Data Patterns
+```typescript
+interface PropertySearchFilters {
+  minPrice?: number;
+  maxPrice?: number;
+  bedrooms?: number;
+  bathrooms?: number;
+  minSquareFeet?: number;
+  maxSquareFeet?: number;
+  propertyType?: string[];
+  zipCodes?: string[];
+  keywords?: string;
+}
+
+// Location validation
+const CENTENNIAL_HILLS_ZIP_CODES = ['89135', '89138', '89144'];
+
+function validateLocation(zipCode: string): boolean {
+  return CENTENNIAL_HILLS_ZIP_CODES.includes(zipCode);
+}
+```
+
+## Error Handling
+```typescript
+class ApiError extends Error {
+  constructor(
+    message: string,
+    public status: number,
+    public code?: string
+  ) {
+    super(message);
+    this.name = 'ApiError';
+  }
+}
+
+// Error boundary for API calls
+export const ApiErrorBoundary = component$<{ children: any }>(({ children }) => {
+  const hasError = useSignal(false);
+  const error = useSignal<Error | null>(null);
+
+  useVisibleTask$(() => {
+    const handleError = (event: ErrorEvent) => {
+      console.error('API Error:', event.error);
+      hasError.value = true;
+      error.value = event.error;
+    };
+
+    window.addEventListener('error', handleError);
+    return () => window.removeEventListener('error', handleError);
+  });
+
+  if (hasError.value) {
+    return (
+      <div class="api-error">
+        <h2>API Error</h2>
+        <p>{error.value?.message}</p>
+        <button onClick$={() => window.location.reload()}>Retry</button>
+      </div>
+    );
+  }
+
+  return children;
+});
+```
+
+## Best Practices
+- ✅ **Use discriminated unions** for type-safe error handling
+- ✅ **Implement proper error boundaries** with Qwik's error handling
+- ✅ **Validate API responses** against TypeScript interfaces
+- ✅ **Use Qwik's useResource$** for efficient data fetching
+- ✅ **Cache property data** with appropriate stale times
+- ✅ **Never expose API keys** in client-side code
+- ✅ **Use environment variables** for configuration
+- ✅ **Implement proper CORS policies**
+- ✅ **Validate all user inputs**
+- ✅ **Use HTTPS** for all API communications

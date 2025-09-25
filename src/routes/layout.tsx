@@ -1,8 +1,10 @@
 import { component$, Slot, useStyles$ } from '@builder.io/qwik';
 import { routeLoader$ } from '@builder.io/qwik-city';
 
-import Header from '~/components/starter/header/header';
-import Footer from '~/components/starter/footer/footer';
+import Header from '~/components/navigation/header';
+import Footer from '~/components/navigation/footer';
+import Breadcrumbs from '~/components/navigation/breadcrumbs';
+import ScrollToTop from '~/components/navigation/scroll-to-top';
 
 import styles from './styles.css?inline';
 
@@ -17,10 +19,12 @@ export default component$(() => {
   return (
     <>
       <Header />
-      <main>
+      <Breadcrumbs />
+      <main class="main-content">
         <Slot />
       </main>
       <Footer />
+      <ScrollToTop />
     </>
   );
 });

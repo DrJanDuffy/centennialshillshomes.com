@@ -1,0 +1,100 @@
+---
+description: Core project standards and architecture guidelines for Centennial Hills Homes real estate website
+type: Always
+alwaysApply: true
+---
+
+# Centennial Hills Homes - Project Standards
+
+## Technology Stack
+- **Framework**: Qwik with TypeScript
+- **Styling**: Tailwind CSS with custom CSS modules
+- **Routing**: Qwik City Router (file-based routing)
+- **Build Tool**: Vite with Qwik plugin
+- **Static Generation**: Qwik City SSG (Static Site Generation)
+- **Deployment**: Vercel Edge Runtime
+
+## Code Standards
+
+### TypeScript
+- Use TypeScript for all new files
+- Define proper interfaces for all data structures
+- Use strict type checking
+- Prefer `interface` over `type` for object shapes
+- Use proper generic types for reusable components
+
+### File Organization
+- Components go in `src/components/`
+- Routes go in `src/routes/`
+- Data/utilities go in `src/data/`
+- Content files go in `src/content/` (MDX files)
+- Use kebab-case for file names
+- Group related files in subdirectories
+- Use `.tsx` extension for Qwik components
+- Use `.mdx` extension for content pages
+
+### Naming Conventions
+- Components: PascalCase (`PropertyCard.tsx`)
+- Files: kebab-case (`property-card.tsx`)
+- MDX files: kebab-case (`centennial-hills-guide.mdx`)
+- CSS classes: kebab-case (`property-card.css`)
+- Variables/functions: camelCase (`propertyData`)
+- Constants: UPPER_SNAKE_CASE (`API_ENDPOINTS`)
+
+## Real Estate Domain Rules
+
+### Property Data
+- Always include: address, price, bedrooms, bathrooms, square footage
+- Use consistent price formatting (commas, currency symbols)
+- Include property images with proper alt text
+- Validate property data before display
+
+### Location-Specific Content
+- Focus on Centennial Hills, Las Vegas area
+- Include relevant zip codes: 89135, 89138, 89144
+- Reference local amenities and attractions
+- Use proper Las Vegas area terminology
+
+### SEO Requirements (Updated per Google Guidelines)
+- Include structured data for properties (RealEstateListing schema)
+- Write user-first content that helps people find homes
+- Implement proper meta tags with unique, descriptive titles
+- Include canonical URLs for duplicate content
+- Focus on helpful, reliable content over keyword optimization
+- Use Google Trends to inform content strategy
+- Avoid keyword stuffing and meta keywords (Google doesn't use them)
+
+## Performance Standards (Qwik + SSG Optimized)
+- Optimize images (WebP format preferred, AVIF for modern browsers)
+- Implement lazy loading for property images with proper fallbacks
+- Use proper caching strategies (Vercel Edge caching, browser caching)
+- Leverage Qwik's resumability for instant page loads
+- Use Static Site Generation (SSG) for pre-rendered HTML files
+- Follow Core Web Vitals guidelines (LCP < 2.5s, FID < 100ms, CLS < 0.1)
+- Use Qwik's built-in performance optimizations
+- Implement proper error boundaries with Qwik's error handling
+- Pre-generate static HTML for better SEO and performance
+- Monitor performance with debugging tools and error reporting
+
+## Accessibility
+- Use semantic HTML elements
+- Include proper ARIA labels
+- Ensure keyboard navigation works
+- Maintain color contrast ratios
+- Provide alt text for all images
+
+## Development and Debugging
+- Use Qwik's "click to source" feature for instant component inspection
+- Set up LAUNCH_EDITOR environment variable for preferred code editor
+- Implement error boundaries for graceful error handling
+- Add debugging attributes to components (data-testid, data-debug)
+- Use console logging strategically for development debugging
+- Monitor Core Web Vitals during development
+- Implement proper error reporting for production
+
+## Environment Variables Management
+- Use `import.meta.env.PUBLIC_*` for client-side variables
+- Use `requestEvent.env.get()` for server-side variables
+- Never use `process.env` in Qwik applications
+- Keep sensitive data in server-side variables only
+- Never commit `.env.local` files to version control

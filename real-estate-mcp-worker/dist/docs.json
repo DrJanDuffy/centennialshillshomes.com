@@ -1,0 +1,294 @@
+{
+  "RealEstateWorker": {
+    "exported_as": "default",
+    "description": null,
+    "methods": [
+      {
+        "name": "analyzeMarketTrends",
+        "description": "Analyze Las Vegas real estate market trends for a specific ZIP code",
+        "params": [
+          {
+            "description": "ZIP code to analyze (e.g., \"89138\", \"89144\", \"89135\")",
+            "name": "zipCode",
+            "type": "string"
+          },
+          {
+            "description": "Type of property (\"single-family\", \"condo\", \"townhouse\")",
+            "name": "propertyType",
+            "type": "string"
+          },
+          {
+            "description": "Analysis timeframe (\"30days\", \"90days\", \"1year\")",
+            "name": "timeframe",
+            "type": "string"
+          }
+        ],
+        "returns": {
+          "description": "Market analysis including price trends, inventory, and insights",
+          "type": "object"
+        }
+      },
+      {
+        "name": "calculateCommuteTime",
+        "description": "Calculate commute times from Las Vegas neighborhoods to key destinations",
+        "params": [
+          {
+            "description": "Starting location (neighborhood or address)",
+            "name": "fromLocation",
+            "type": "string"
+          },
+          {
+            "description": "Destination (workplace, airport, strip, etc.)",
+            "name": "toLocation",
+            "type": "string"
+          },
+          {
+            "description": "Travel mode (\"driving\", \"transit\", \"walking\", \"bicycling\")",
+            "name": "travelMode",
+            "type": "string"
+          }
+        ],
+        "returns": {
+          "description": "Commute analysis with times, distances, and recommendations",
+          "type": "object"
+        }
+      },
+      {
+        "name": "generatePropertyDescription",
+        "description": "Generate property descriptions using AI for real estate listings",
+        "params": [
+          {
+            "description": "Type of property (\"single-family\", \"condo\", \"townhouse\", \"luxury\")",
+            "name": "propertyType",
+            "type": "string"
+          },
+          {
+            "description": "Number of bedrooms",
+            "name": "bedrooms",
+            "type": "number"
+          },
+          {
+            "description": "Number of bathrooms",
+            "name": "bathrooms",
+            "type": "number"
+          },
+          {
+            "description": "Square footage",
+            "name": "squareFeet",
+            "type": "number"
+          },
+          {
+            "description": "Neighborhood name",
+            "name": "neighborhood",
+            "type": "string"
+          },
+          {
+            "description": "Special features or amenities",
+            "name": "features",
+            "type": "string"
+          }
+        ],
+        "returns": {
+          "description": "AI-generated property description and marketing copy",
+          "type": "object"
+        }
+      },
+      {
+        "name": "analyzeNeighborhood",
+        "description": "Analyze neighborhood demographics and lifestyle information",
+        "params": [
+          {
+            "description": "Neighborhood name (e.g., \"Centennial Hills\", \"Summerlin\", \"Red Rock Country Club\")",
+            "name": "neighborhood",
+            "type": "string"
+          }
+        ],
+        "returns": {
+          "description": "Demographics, amenities, schools, and lifestyle analysis",
+          "type": "object"
+        }
+      },
+      {
+        "name": "estimatePropertyValue",
+        "description": "Generate property valuation estimate using AI and market data",
+        "params": [
+          {
+            "description": "Property address",
+            "name": "address",
+            "type": "string"
+          },
+          {
+            "description": "Number of bedrooms",
+            "name": "bedrooms",
+            "type": "number"
+          },
+          {
+            "description": "Number of bathrooms",
+            "name": "bathrooms",
+            "type": "number"
+          },
+          {
+            "description": "Square footage",
+            "name": "squareFeet",
+            "type": "number"
+          },
+          {
+            "description": "Year built",
+            "name": "yearBuilt",
+            "type": "number"
+          },
+          {
+            "description": "Lot size in square feet",
+            "name": "lotSize",
+            "type": "number"
+          }
+        ],
+        "returns": {
+          "description": "Property valuation with confidence score and market comparison",
+          "type": "object"
+        }
+      },
+      {
+        "name": "generatePropertyImage",
+        "description": "Generate property images using AI for marketing materials",
+        "params": [
+          {
+            "description": "Detailed description of the property",
+            "name": "propertyDescription",
+            "type": "string"
+          },
+          {
+            "description": "Image style (\"realistic\", \"luxury\", \"modern\", \"traditional\")",
+            "name": "style",
+            "type": "string"
+          }
+        ],
+        "returns": {
+          "description": "Generated property image",
+          "type": "Response"
+        }
+      },
+      {
+        "name": "generateMockPrice",
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "generateMockPriceChange",
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "generateMockInventory",
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "generateMockDaysOnMarket",
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "generateMarketInsights",
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "generateRecommendations",
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "generateMockDuration",
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "generateMockDistance",
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "generateMockTrafficConditions",
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "generateMockAlternativeRoutes",
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "generateCommuteRecommendations",
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "generateMarketingCopy",
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "generateSEOKeywords",
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "generateMockDemographics",
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "generateMockAmenities",
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "generateMockSchools",
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "generateMockLifestyle",
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "generateMockInvestmentPotential",
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "generateMockCommuteOptions",
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "generateMockValuation",
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "generateMockConfidenceScore",
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "generateMockMarketComparison",
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "generateMockValuationFactors",
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "generateMockValuationRecommendations",
+        "params": [],
+        "returns": null
+      }
+    ],
+    "statics": {}
+  }
+}

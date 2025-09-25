@@ -1,0 +1,163 @@
+---
+description: SEO and content guidelines for real estate website optimization
+type: Auto Attached
+globs: ["src/routes/**/*.tsx", "src/components/seo-structured-data.tsx"]
+alwaysApply: false
+---
+
+# SEO and Content Standards
+
+## Meta Tags (Google Best Practices)
+
+### Qwik Components
+```tsx
+import { type DocumentHead } from '@builder.io/qwik-city';
+
+export const head: DocumentHead = ({ params, data }) => {
+  const property = data?.property;
+  
+  const pageTitle = property 
+    ? `${property.address.street} - Centennial Hills Homes | Las Vegas Real Estate`
+    : 'Centennial Hills Homes - Las Vegas Real Estate';
+  
+  const metaDescription = property
+    ? `${property.bedrooms} bed, ${property.bathrooms} bath home in Centennial Hills, Las Vegas. ${property.squareFeet.toLocaleString()} sq ft. Expert real estate services.`
+    : 'Find luxury homes and new construction in Centennial Hills, Las Vegas. Expert real estate services in zip codes 89135, 89138, 89144.';
+
+  return {
+    title: pageTitle,
+    meta: [
+      { name: "description", content: metaDescription },
+      { property: "og:title", content: pageTitle },
+      { property: "og:description", content: metaDescription },
+      { property: "og:image", content: property?.images?.[0]?.url || '/default-property-image.jpg' },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: property ? `https://centennialshillshomes.com/properties/${property.id}` : 'https://centennialshillshomes.com' },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  };
+};
+```
+
+### MDX Files
+```yaml
+---
+title: Centennial Hills Luxury Homes for Sale
+description: Find luxury homes and new construction in Centennial Hills, Las Vegas. Expert real estate services in zip codes 89135, 89138, 89144.
+og:
+  - title: Centennial Hills Luxury Homes | Las Vegas Real Estate
+    description: true
+  - image: https://centennialshillshomes.com/images/centennial-hills-luxury-homes.jpg
+    image:alt: Luxury home exterior in Centennial Hills neighborhood
+  - type: website
+  - url: https://centennialshillshomes.com/centennial-hills-luxury-homes
+twitter:
+  - card: summary_large_image
+  - title: Centennial Hills Luxury Homes
+  - description: true
+  - image: https://centennialshillshomes.com/images/centennial-hills-luxury-homes.jpg
+---
+```
+
+## Structured Data
+
+### Property Schema
+```tsx
+const propertySchema = {
+  "@context": "https://schema.org",
+  "@type": "RealEstateListing",
+  "name": property.address.street,
+  "description": property.description,
+  "url": `https://centennialshillshomes.com/properties/${property.id}`,
+  "image": property.images.map(img => img.url),
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": property.address.street,
+    "addressLocality": property.address.city,
+    "addressRegion": property.address.state,
+    "postalCode": property.address.zipCode
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": property.price,
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock"
+  },
+  "floorSize": {
+    "@type": "QuantitativeValue",
+    "value": property.squareFeet,
+    "unitCode": "SQF"
+  },
+  "numberOfRooms": property.bedrooms,
+  "numberOfBathroomsTotal": property.bathrooms
+};
+```
+
+## Content Guidelines
+
+### Real Estate Content Strategy
+- ✅ **Location-First**: Always include Centennial Hills, Las Vegas, zip codes
+- ✅ **Property Details**: Include bedrooms, bathrooms, square footage, price
+- ✅ **Local Amenities**: Reference Red Rock Canyon, local schools, shopping
+- ✅ **Market Insights**: Include current market trends and analysis
+- ✅ **User Intent**: Focus on buyer/seller needs and questions
+
+### Keyword Strategy
+- **Primary**: "Centennial Hills homes", "Las Vegas real estate", "luxury homes"
+- **Secondary**: "89135 homes", "89138 homes", "89144 homes", "new construction"
+- **Long-tail**: "Centennial Hills luxury homes for sale", "Las Vegas real estate agent"
+
+### Content Types
+- **Property Listings**: Individual property pages with rich descriptions
+- **Neighborhood Guides**: Area information and local amenities
+- **Market Reports**: Monthly/yearly analysis and trends
+- **Blog Posts**: SEO-optimized articles about real estate topics
+- **About Pages**: Company information and agent profiles
+
+## Technical SEO
+
+### URL Structure
+- ✅ **Clean URLs**: `/properties/123-main-street-centennial-hills`
+- ✅ **Descriptive Paths**: `/neighborhoods/centennial-hills/luxury-homes`
+- ✅ **Consistent Structure**: Use kebab-case for all URLs
+- ✅ **Canonical URLs**: Prevent duplicate content issues
+
+### Image Optimization
+- ✅ **WebP Format**: Use WebP for better compression
+- ✅ **Alt Text**: Descriptive alt text for all property images
+- ✅ **Lazy Loading**: Implement lazy loading for performance
+- ✅ **Responsive Images**: Multiple sizes for different devices
+
+### Performance
+- ✅ **Core Web Vitals**: LCP < 2.5s, FID < 100ms, CLS < 0.1
+- ✅ **Page Speed**: Optimize for fast loading times
+- ✅ **Mobile-First**: Ensure mobile performance is excellent
+- ✅ **SSG Benefits**: Leverage static generation for better SEO
+
+## Local SEO
+
+### Location Optimization
+- ✅ **Centennial Hills Focus**: Primary location targeting
+- ✅ **Zip Code Coverage**: 89135, 89138, 89144
+- ✅ **Las Vegas Area**: Broader market coverage
+- ✅ **Neighborhood Pages**: Individual area pages
+
+### Google My Business
+- ✅ **Business Listing**: Complete and accurate information
+- ✅ **Reviews**: Encourage and respond to reviews
+- ✅ **Photos**: High-quality property and office photos
+- ✅ **Posts**: Regular updates about new listings and market trends
+
+## Content Quality
+
+### Google Guidelines
+- ✅ **Helpful Content**: Focus on user needs and questions
+- ✅ **Expertise**: Demonstrate real estate knowledge and experience
+- ✅ **Reliability**: Provide accurate and up-to-date information
+- ✅ **User Experience**: Easy navigation and clear information
+
+### Content Creation
+- ✅ **Original Content**: Avoid duplicate or thin content
+- ✅ **Regular Updates**: Keep content fresh and current
+- ✅ **Internal Linking**: Connect related pages and content
+- ✅ **External Links**: Link to authoritative real estate resources

@@ -1,0 +1,247 @@
+---
+type: Auto Attached
+globs: ["src/**/*.tsx", "src/**/*.ts", "src/**/*.mdx"]
+alwaysApply: false
+---
+
+# Qwik Debugging and Development Tools
+
+## Qwik's "Click to Source" Feature
+
+### Setup
+```bash
+export LAUNCH_EDITOR=code          # VS Code
+export LAUNCH_EDITOR=code-insiders # VS Code Insiders
+export LAUNCH_EDITOR=atom          # Atom
+export LAUNCH_EDITOR=subl          # Sublime Text
+export LAUNCH_EDITOR=webstorm      # WebStorm
+```
+
+### Usage
+- ✅ **Hold Option (⌥) or Alt key** and click any element
+- ✅ **Instant source access** for any Qwik component
+- ✅ **Development only** - feature only works during development
+
+## Component Debugging
+
+### Debugging Attributes
+```tsx
+export const PropertyCard = component$<PropertyCardProps>(({
+  property,
+  showPrice = true,
+  onFavorite
+}) => {
+  const isFavorite = useSignal(false);
+  
+  return (
+    <div 
+      class="property-card"
+      data-testid="property-card"
+      data-property-id={property.id}
+      data-debug="property-card-component"
+    >
+      <img 
+        src={property.images[0]?.url} 
+        alt={property.images[0]?.alt}
+        data-debug="property-image"
+      />
+      <h3 data-debug="property-title">{property.address.street}</h3>
+      {showPrice && (
+        <p class="price" data-debug="property-price">
+          ${property.price.toLocaleString()}
+        </p>
+      )}
+      <button 
+        onClick$={() => {
+          isFavorite.value = !isFavorite.value;
+          onFavorite?.(property.id);
+        }}
+        data-debug="favorite-button"
+      >
+        {isFavorite.value ? '❤️' : '🤍'}
+      </button>
+    </div>
+  );
+});
+```
+
+### Console Debugging
+```tsx
+export const PropertySearch = component$<PropertySearchProps>(({
+  zipCodes,
+  className = "property-search"
+}) => {
+  const searchTerm = useSignal('');
+  const minPrice = useSignal(0);
+  const maxPrice = useSignal(2000000);
+
+  // Debug state changes
+  useTask$(({ track }) => {
+    track(() => searchTerm.value);
+    console.log('Search term changed:', searchTerm.value);
+  });
+
+  return (
+    <div class={className}>
+      <form onSubmit$={(event) => {
+        event.preventDefault();
+        console.log('Search submitted:', {
+          searchTerm: searchTerm.value,
+          minPrice: minPrice.value,
+          maxPrice: maxPrice.value,
+          zipCodes
+        });
+      }}>
+        {/* Form content */}
+      </form>
+    </div>
+  );
+});
+```
+
+## Error Handling
+
+### Error Boundary
+```tsx
+export const ErrorBoundary = component$<ErrorBoundaryProps>(({
+  children,
+  fallback
+}) => {
+  const hasError = useSignal(false);
+  const error = useSignal<Error | null>(null);
+
+  useVisibleTask$(() => {
+    const handleError = (event: ErrorEvent) => {
+      console.error('Error caught by boundary:', event.error);
+      hasError.value = true;
+      error.value = event.error;
+    };
+
+    window.addEventListener('error', handleError);
+    return () => window.removeEventListener('error', handleError);
+  });
+
+  if (hasError.value) {
+    return (
+      <div class="error-boundary" data-debug="error-boundary">
+        <h2>Something went wrong</h2>
+        <details>
+          <summary>Error Details</summary>
+          <pre>{error.value?.stack}</pre>
+        </details>
+        {fallback || <p>Please refresh the page and try again.</p>}
+      </div>
+    );
+  }
+
+  return children;
+});
+```
+
+## Performance Monitoring
+
+### Core Web Vitals
+```tsx
+export const PerformanceMonitor = component$(() => {
+  useVisibleTask$(() => {
+    // Monitor LCP (Largest Contentful Paint)
+    new PerformanceObserver((list) => {
+      const entries = list.getEntries();
+      const lastEntry = entries[entries.length - 1];
+      console.log('LCP:', lastEntry.startTime);
+    }).observe({ entryTypes: ['largest-contentful-paint'] });
+
+    // Monitor FID (First Input Delay)
+    new PerformanceObserver((list) => {
+      const entries = list.getEntries();
+      entries.forEach((entry) => {
+        console.log('FID:', entry.processingStart - entry.startTime);
+      });
+    }).observe({ entryTypes: ['first-input'] });
+
+    // Monitor CLS (Cumulative Layout Shift)
+    new PerformanceObserver((list) => {
+      let clsValue = 0;
+      list.getEntries().forEach((entry) => {
+        if (!entry.hadRecentInput) {
+          clsValue += entry.value;
+        }
+      });
+      console.log('CLS:', clsValue);
+    }).observe({ entryTypes: ['layout-shift'] });
+  });
+
+  return null; // This component doesn't render anything
+});
+```
+
+## Real Estate Specific Debugging
+
+### Property Data Validation
+```tsx
+export function validatePropertyData(property: any): boolean {
+  const requiredFields = ['id', 'address', 'price', 'bedrooms', 'bathrooms'];
+  const missingFields = requiredFields.filter(field => !property[field]);
+  
+  if (missingFields.length > 0) {
+    console.error('Property validation failed. Missing fields:', missingFields);
+    console.error('Property data:', property);
+    return false;
+  }
+
+  // Validate address structure
+  if (!property.address.street || !property.address.city || !property.address.zipCode) {
+    console.error('Invalid address structure:', property.address);
+    return false;
+  }
+
+  // Validate price
+  if (typeof property.price !== 'number' || property.price <= 0) {
+    console.error('Invalid price:', property.price);
+    return false;
+  }
+
+  console.log('Property validation passed:', property.id);
+  return true;
+}
+```
+
+## Testing Debugging
+
+### Component Testing with Debug Info
+```tsx
+describe('PropertyCard', () => {
+  it('renders property information correctly', () => {
+    const mockProperty = {
+      id: 'test-1',
+      address: { street: '123 Test Street', city: 'Las Vegas', state: 'NV', zipCode: '89135' },
+      price: 500000,
+      bedrooms: 3,
+      bathrooms: 2,
+      squareFeet: 2000,
+      images: [{ id: '1', url: '/test.jpg', alt: 'Test image', isPrimary: true, order: 1 }]
+    };
+
+    render(<PropertyCard property={mockProperty} />);
+    
+    // Debug: Check if elements are rendered
+    console.log('Rendered elements:', screen.debug());
+    
+    expect(screen.getByText('123 Test Street')).toBeInTheDocument();
+    expect(screen.getByText('$500,000')).toBeInTheDocument();
+    expect(screen.getByText('3 bed, 2 bath')).toBeInTheDocument();
+  });
+});
+```
+
+## Best Practices
+- ✅ **Use Click to Source**: Leverage Qwik's built-in debugging feature
+- ✅ **Console Logging**: Add strategic console.log statements for debugging
+- ✅ **Error Boundaries**: Implement for graceful error handling
+- ✅ **Performance Monitoring**: Track Core Web Vitals during development
+- ✅ **Component Testing**: Use debugging-friendly test patterns
+- ✅ **Property Validation**: Debug property data structure and validation
+- ✅ **Map Integration**: Debug Google Maps loading and interaction
+- ✅ **Search Functionality**: Debug property search and filtering
+- ✅ **Form Handling**: Debug contact forms and lead capture
+- ✅ **API Integration**: Debug data fetching and error handling

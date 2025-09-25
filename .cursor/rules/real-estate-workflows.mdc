@@ -1,0 +1,170 @@
+---
+description: Real estate specific workflows and business logic patterns
+type: Agent Requested
+alwaysApply: false
+---
+
+# Real Estate Workflows and Business Logic
+
+## Property Listing Workflows (SSG Optimized)
+
+### Property Status Management
+```typescript
+type PropertyStatus = 'active' | 'pending' | 'sold' | 'off-market' | 'coming-soon';
+
+const STATUS_TRANSITIONS: Record<PropertyStatus, PropertyStatus[]> = {
+  'coming-soon': ['active', 'off-market'],
+  'active': ['pending', 'off-market'],
+  'pending': ['sold', 'active'],
+  'sold': [],
+  'off-market': ['active', 'coming-soon']
+};
+
+// SSG: Only generate static pages for active properties
+const SSG_ELIGIBLE_STATUSES: PropertyStatus[] = ['active', 'coming-soon'];
+```
+
+### Price Change Tracking (SSG Compatible)
+- Track price history for properties
+- Display price changes with dates
+- Highlight price reductions
+- Calculate days on market
+- Trigger SSG rebuild when prices change
+- Update static property pages with new pricing
+
+### Property Matching Logic (Enhanced)
+```typescript
+interface BuyerPreferences {
+  minPrice: number;
+  maxPrice: number;
+  bedrooms: number;
+  bathrooms: number;
+  minSquareFeet: number;
+  zipCodes: string[];
+  mustHaves: string[];
+  niceToHaves: string[];
+  maxCommuteTime?: number; // in minutes
+  schoolDistrict?: string;
+  propertyType?: string[];
+}
+
+interface PropertyMatch {
+  property: Property;
+  score: number;
+  reasons: string[];
+}
+
+function matchProperties(properties: Property[], preferences: BuyerPreferences): PropertyMatch[] {
+  return properties
+    .map(property => {
+      let score = 0;
+      const reasons: string[] = [];
+      
+      // Price matching (40% weight)
+      if (property.price >= preferences.minPrice && property.price <= preferences.maxPrice) {
+        score += 40;
+        reasons.push('Price within budget');
+      }
+      
+      // Bedroom matching (20% weight)
+      if (property.bedrooms >= preferences.bedrooms) {
+        score += 20;
+        reasons.push('Meets bedroom requirements');
+      }
+      
+      // Bathroom matching (15% weight)
+      if (property.bathrooms >= preferences.bathrooms) {
+        score += 15;
+        reasons.push('Meets bathroom requirements');
+      }
+      
+      // Square footage (10% weight)
+      if (property.squareFeet >= preferences.minSquareFeet) {
+        score += 10;
+        reasons.push('Meets size requirements');
+      }
+      
+      // Location matching (10% weight)
+      if (preferences.zipCodes.includes(property.address.zipCode)) {
+        score += 10;
+        reasons.push('In preferred location');
+      }
+      
+      // Features matching (5% weight)
+      const matchingFeatures = property.features.filter(feature => 
+        preferences.mustHaves.includes(feature) || preferences.niceToHaves.includes(feature)
+      );
+      if (matchingFeatures.length > 0) {
+        score += 5;
+        reasons.push(`Has ${matchingFeatures.length} desired features`);
+      }
+      
+      return { property, score, reasons };
+    })
+    .filter(match => match.score > 0)
+    .sort((a, b) => b.score - a.score);
+}
+```
+
+## Lead Management (Enhanced + MDX)
+- Capture lead information from property inquiries with proper validation
+- Track lead sources and conversion rates with analytics
+- Implement automated follow-up workflows with email sequences
+- Store lead preferences for future matching with scoring
+- Integrate with CRM systems (Follow Up Boss, KVCore)
+- Implement lead scoring based on engagement and behavior
+- Set up automated drip campaigns for different lead types
+- Track lead journey from first contact to closing
+- Create MDX content pages for lead magnets and educational content
+- Embed contact forms and property inquiry components in MDX
+
+## Market Analysis Features (MDX Enhanced)
+- Calculate average days on market by area
+- Track price trends for Centennial Hills
+- Compare properties to similar listings
+- Generate market reports
+- Create MDX market analysis pages with interactive charts
+- Embed market data components in content pages
+- Generate monthly/yearly market reports as MDX files
+
+## Property Valuation
+- Implement automated valuation models
+- Compare to recent sales in area
+- Factor in property features and condition
+- Provide confidence scores for estimates
+
+## Search and Filter Logic
+```typescript
+interface PropertyFilters {
+  priceRange: [number, number];
+  bedrooms: number[];
+  bathrooms: number[];
+  squareFeetRange: [number, number];
+  propertyTypes: string[];
+  features: string[];
+  zipCodes: string[];
+  keywords: string;
+  sortBy: 'price' | 'date' | 'squareFeet' | 'relevance';
+  sortOrder: 'asc' | 'desc';
+}
+```
+
+## Notification Systems
+- Price drop alerts
+- New listing notifications
+- Market update emails
+- Showing reminders
+
+## Data Validation Rules
+- Validate property data completeness
+- Ensure price is within reasonable range
+- Validate address format and location
+- Check image quality and availability
+- Verify contact information
+
+## Business Rules
+- Properties must have at least one image
+- Price must be greater than $0
+- Address must be in Las Vegas area
+- Bedrooms and bathrooms must be positive numbers
+- Square footage must be reasonable for property type

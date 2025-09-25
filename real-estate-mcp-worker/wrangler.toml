@@ -1,0 +1,18 @@
+name = "real-estate-mcp-worker"
+main = "src/index.ts"
+compatibility_date = "2024-12-24"
+
+[ai]
+binding = "AI"
+
+# Environment variables for API keys and configuration
+[vars]
+GOOGLE_MAPS_API_KEY = ""
+OPENAI_API_KEY = ""
+REAL_ESTATE_API_KEY = ""
+
+# Secrets (set via wrangler secret put)
+# GOOGLE_MAPS_API_KEY
+# OPENAI_API_KEY
+# REAL_ESTATE_API_KEY
+

@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "real-estate-mcp-worker": {
+      "command": "C:\\Users\\geneb\\centennialshillshomes.com-1\\real-estate-mcp-worker\\node_modules\\.bin\\workers-mcp.CMD",
+      "args": [
+        "run",
+        "real-estate-mcp-worker",
+        "https://real-estate-mcp-worker.drduffy.workers.dev",
+        "C:\\Users\\geneb\\centennialshillshomes.com-1\\real-estate-mcp-worker"
+      ],
+      "env": {}
+    }
+  }
+}
+

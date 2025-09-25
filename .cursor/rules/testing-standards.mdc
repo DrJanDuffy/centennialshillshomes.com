@@ -1,0 +1,193 @@
+---
+description: Testing standards and patterns for real estate website components
+type: Manual
+alwaysApply: false
+---
+
+# Testing Standards
+
+## Testing Strategy (Qwik Approach)
+- Unit tests for utility functions and business logic with Vitest
+- Component tests for Qwik components with Qwik Testing Library
+- Integration tests for API interactions with MSW (Mock Service Worker)
+- End-to-end tests for critical user flows with Playwright
+- Visual regression tests for UI components
+- Performance tests for Core Web Vitals
+- Accessibility tests with jest-axe
+- Contract tests for API integrations
+
+## Component Testing (Qwik with Vitest)
+```tsx
+import { render, screen, fireEvent, waitFor } from '@qwik/testing';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { PropertyCard } from './PropertyCard';
+
+describe('PropertyCard', () => {
+  const mockProperty = {
+    id: '1',
+    address: { street: '123 Main St', city: 'Las Vegas', state: 'NV', zipCode: '89135' },
+    price: 500000,
+    bedrooms: 3,
+    bathrooms: 2,
+    squareFeet: 2000,
+    images: [{ id: '1', url: '/test.jpg', alt: 'Test image', isPrimary: true, order: 1 }]
+  };
+
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('renders property information correctly', () => {
+    render(<PropertyCard property={mockProperty} />);
+    
+    expect(screen.getByText('123 Main St')).toBeInTheDocument();
+    expect(screen.getByText('$500,000')).toBeInTheDocument();
+    expect(screen.getByText('3 bed, 2 bath')).toBeInTheDocument();
+  });
+
+  it('handles favorite button click', async () => {
+    const onFavorite = vi.fn();
+    render(<PropertyCard property={mockProperty} onFavorite={onFavorite} />);
+    
+    const favoriteButton = screen.getByRole('button', { name: /favorite/i });
+    fireEvent.click(favoriteButton);
+    
+    await waitFor(() => {
+      expect(onFavorite).toHaveBeenCalledWith('1');
+    });
+  });
+
+  it('is accessible', async () => {
+    const { container } = render(<PropertyCard property={mockProperty} />);
+    
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+});
+```
+
+## API Testing (Modern with MSW)
+```typescript
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { setupServer } from 'msw/node';
+import { rest } from 'msw';
+import { PropertyService } from './PropertyService';
+
+// Mock server setup
+const server = setupServer(
+  rest.get('/api/properties', (req, res, ctx) => {
+    return res(
+      ctx.json({
+        data: [mockProperty],
+        success: true
+      })
+    );
+  }),
+  
+  rest.get('/api/properties/error', (req, res, ctx) => {
+    return res(
+      ctx.status(500),
+      ctx.json({ message: 'Internal server error' })
+    );
+  })
+);
+
+describe('PropertyService', () => {
+  let propertyService: PropertyService;
+
+  beforeEach(() => {
+    propertyService = new PropertyService();
+    server.listen();
+  });
+
+  afterEach(() => {
+    server.resetHandlers();
+  });
+
+  afterAll(() => {
+    server.close();
+  });
+
+  it('fetches properties successfully', async () => {
+    const result = await propertyService.getProperties();
+    
+    expect(result.success).toBe(true);
+    expect(result.data).toHaveLength(1);
+  });
+
+  it('handles API errors gracefully', async () => {
+    server.use(
+      rest.get('/api/properties', (req, res, ctx) => {
+        return res(ctx.status(500));
+      })
+    );
+
+    const result = await propertyService.getProperties();
+    
+    expect(result.success).toBe(false);
+    expect(result.error).toBeDefined();
+  });
+});
+```
+
+## Test Data
+```typescript
+// test-data.ts
+export const mockProperty: Property = {
+  id: 'test-1',
+  address: {
+    street: '123 Test Street',
+    city: 'Las Vegas',
+    state: 'NV',
+    zipCode: '89135',
+    fullAddress: '123 Test Street, Las Vegas, NV 89135'
+  },
+  price: 450000,
+  bedrooms: 3,
+  bathrooms: 2.5,
+  squareFeet: 2200,
+  propertyType: 'single-family',
+  status: 'active',
+  images: [
+    {
+      id: 'img-1',
+      url: '/test-image.jpg',
+      alt: 'Test property exterior',
+      isPrimary: true,
+      order: 1
+    }
+  ],
+  features: ['Pool', 'Garage', 'Updated Kitchen'],
+  description: 'Beautiful test property in Centennial Hills',
+  listingDate: '2024-01-01',
+  lastUpdated: '2024-01-15'
+};
+```
+
+## Testing Best Practices (Qwik + Debugging)
+- Use descriptive test names with Given-When-Then structure
+- Test both happy path and error cases with proper error boundaries
+- Mock external dependencies with MSW and vi.mock()
+- Use proper assertions with expect and custom matchers
+- Keep tests focused and simple with single responsibility
+- Test accessibility features with jest-axe
+- Include performance tests for critical components
+- Use Qwik Testing Library queries by accessibility
+- Test loading states and error boundaries
+- Implement visual regression testing
+- Use proper test data factories and builders
+- Test responsive design and mobile interactions
+- Test Qwik-specific features like resumability
+- Add debugging attributes (data-testid, data-debug) for testability
+- Use console.log strategically in tests for debugging
+- Test error boundaries and error handling scenarios
+
+## Real Estate Specific Tests
+- Test property search functionality
+- Validate price formatting
+- Test address validation
+- Test image loading and fallbacks
+- Test map integration
+- Validate SEO meta tags
+- Test responsive design
+- Test form validation

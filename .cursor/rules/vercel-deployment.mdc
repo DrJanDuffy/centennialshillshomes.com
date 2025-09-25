@@ -1,0 +1,148 @@
+---
+description: Vercel deployment and build configuration rules
+type: Auto Attached
+globs: ["vercel.json", "package.json", "vite.config.ts", "src/entry.vercel-edge.tsx"]
+alwaysApply: false
+---
+
+# Vercel Deployment Rules
+
+## Build Configuration
+
+### Vercel Configuration (`vercel.json`)
+```json
+{
+  "framework": "vite",
+  "buildCommand": "pnpm run build.server",
+  "outputDirectory": "dist",
+  "installCommand": "pnpm install",
+  "functions": {
+    "src/entry.vercel-edge.tsx": {
+      "runtime": "edge"
+    }
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
+  ]
+}
+```
+
+### Package.json Scripts
+```json
+{
+  "scripts": {
+    "build": "qwik build",
+    "build.server": "qwik build --mode=ssr",
+    "deploy": "vercel --prod",
+    "preview": "qwik build preview"
+  }
+}
+```
+
+### Vite Configuration
+```typescript
+// vite.config.ts
+import { defineConfig } from 'vite';
+import { qwikCity } from '@builder.io/qwik-city/vite';
+import { qwikVite } from '@builder.io/qwik/optimizer';
+
+export default defineConfig({
+  plugins: [
+    qwikCity({
+      origin: 'https://centennialshillshomes.com',
+    }),
+    qwikVite(),
+  ],
+  build: {
+    target: 'es2020',
+    minify: 'terser',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['@builder.io/qwik', '@builder.io/qwik-city'],
+        },
+      },
+    },
+  },
+});
+```
+
+## Pre-Deployment Checklist
+- [ ] Run TypeScript check: `npx tsc --noEmit`
+- [ ] Run linting: `pnpm run lint`
+- [ ] Run tests: `pnpm run test`
+- [ ] Build check: `pnpm run build.server`
+- [ ] Ensure images are optimized and properly referenced
+- [ ] Verify SEO meta tags are correct
+- [ ] Check that all dynamic routes are generating properly
+- [ ] Verify static HTML files are created in dist folder
+
+### Environment Variables
+Set these in Vercel dashboard:
+```bash
+# Public Variables
+PUBLIC_API_URL=https://api.centennialshillshomes.com
+PUBLIC_GOOGLE_MAPS_API_KEY=your_public_maps_key
+PUBLIC_GA_TRACKING_ID=GA-XXXXXXXXX
+
+# Private Variables
+PROPERTY_API_KEY=your_private_property_api_key
+HOMEBOT_API_KEY=your_private_homebot_key
+FOLLOW_UP_BOSS_API_KEY=your_private_follow_up_boss_key
+REALSCOUT_API_KEY=your_private_realscout_key
+KVCORE_API_KEY=your_private_kvcore_key
+GMAIL_API_KEY=your_private_gmail_key
+SENDGRID_API_KEY=your_private_sendgrid_key
+STRIPE_SECRET_KEY=your_private_stripe_key
+DB_URL=your_private_db_url
+```
+
+## Build Optimization
+- Use Vercel's Edge Runtime for better performance
+- Implement proper caching headers with stale-while-revalidate
+- Optimize images using Vercel's Image Optimization (WebP/AVIF)
+- Use proper compression (Brotli/Gzip)
+- Implement proper error pages (404, 500)
+- Use Vercel's Analytics for performance monitoring
+
+## Deployment Commands
+```bash
+# Deploy to Vercel
+pnpm run deploy
+
+# Deploy with SSG
+pnpm run build.server && pnpm run deploy
+
+# Preview deployment
+pnpm run preview
+```
+
+## Best Practices
+- ✅ **Use Edge Runtime** for better performance
+- ✅ **Implement proper caching** strategies
+- ✅ **Optimize images** for web delivery
+- ✅ **Monitor performance** with Vercel Analytics
+- ✅ **Use proper error handling** for production
+- ✅ **Implement security headers** for protection
+- ✅ **Test deployments** before going live
+- ✅ **Use environment variables** for configuration
