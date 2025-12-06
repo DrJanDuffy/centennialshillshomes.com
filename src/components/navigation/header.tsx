@@ -30,6 +30,12 @@ export default component$(() => {
         {/* Logo Section */}
         <div class="logo-section">
           <a href="/" class="logo-link">
+            <img 
+              src="/images/logo.png" 
+              alt="Centennial Hills Real Estate - Homes by Dr. Jan Duffy"
+              class="logo-image"
+              loading="eager"
+            />
             <div class="logo-text">
               <span class="logo-main">Centennial Hills Real Estate</span>
               <span class="logo-subtitle">Homes by Dr. Jan Duffy</span>
@@ -347,10 +353,18 @@ export default component$(() => {
       <div class={`mobile-nav ${isMenuOpen.value ? 'open' : ''}`}>
         <div class="mobile-nav-content">
           <div class="mobile-nav-header">
-            <div class="mobile-logo">
-              <span class="logo-main">Centennial Hills Real Estate</span>
-              <span class="logo-subtitle">Homes by Dr. Jan Duffy</span>
-            </div>
+            <a href="/" class="mobile-logo-link" onClick$={() => isMenuOpen.value = false}>
+              <img 
+                src="/images/logo.png" 
+                alt="Centennial Hills Real Estate - Homes by Dr. Jan Duffy"
+                class="mobile-logo-image"
+                loading="eager"
+              />
+              <div class="mobile-logo">
+                <span class="logo-main">Centennial Hills Real Estate</span>
+                <span class="logo-subtitle">Homes by Dr. Jan Duffy</span>
+              </div>
+            </a>
             <button 
               class="mobile-close"
               onClick$={() => isMenuOpen.value = false}
