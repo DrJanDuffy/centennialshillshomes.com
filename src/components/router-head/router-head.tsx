@@ -8,6 +8,12 @@ export const RouterHead = component$(() => {
   const head = useDocumentHead();
   const loc = useLocation();
 
+  // Google Search Console verification
+  const googleVerification = import.meta.env.PUBLIC_GOOGLE_VERIFICATION;
+  
+  // Google Analytics 4
+  const gaTrackingId = import.meta.env.PUBLIC_GA_TRACKING_ID;
+
   return (
     <>
       <title>{head.title}</title>
@@ -15,6 +21,11 @@ export const RouterHead = component$(() => {
       <link rel="canonical" href={loc.url.href} />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+      {/* Google Search Console Verification */}
+      {googleVerification && (
+        <meta name="google-site-verification" content={googleVerification} />
+      )}
 
       {head.meta.map((m) => (
         <meta key={m.key} {...m} />
@@ -27,6 +38,26 @@ export const RouterHead = component$(() => {
       {head.styles.map((s) => (
         <style key={s.key} {...s.props} dangerouslySetInnerHTML={s.style} />
       ))}
+
+      {/* Google Analytics 4 */}
+      {gaTrackingId && (
+        <>
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${gaTrackingId}`}
+          ></script>
+          <script
+            dangerouslySetInnerHTML={`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${gaTrackingId}', {
+                page_path: window.location.pathname,
+              });
+            `}
+          ></script>
+        </>
+      )}
 
       {/* RealScout Web Components Script - Load globally only once */}
       <script dangerouslySetInnerHTML={`
