@@ -35,8 +35,25 @@ export default component$(() => {
             Featured <span class="highlight">Properties</span>
           </h1>
           <p class="hero-subtitle">
-            Discover luxury homes and investment opportunities in Las Vegas' premier communities
+            Discover luxury homes and investment opportunities in Las Vegas' premier communities. Browse our curated selection of exceptional properties in Centennial Hills, Summerlin, Red Rock Country Club, and other prestigious neighborhoods throughout Northwest Las Vegas.
           </p>
+        </div>
+      </section>
+      
+      {/* Property Overview Section */}
+      <section class="property-overview">
+        <div class="container container-center">
+          <h2>Las Vegas Premier Property Portfolio</h2>
+          <p>Dr. Janet Duffy presents an exceptional collection of luxury homes, investment properties, and family residences throughout Las Vegas' most desirable communities. Our portfolio features properties ranging from elegant starter homes to magnificent estates, each carefully selected to meet diverse buyer needs and investment objectives. Whether you're seeking a family home in a top-rated school district, a luxury estate with resort-style amenities, or an investment property with strong rental potential, our comprehensive property selection offers something for every buyer.</p>
+          
+          <h3>Property Types Available</h3>
+          <p>Our property portfolio includes single-family homes, luxury estates, condominiums, townhouses, and investment properties across Las Vegas' premier communities. Each property type offers unique advantages, from the privacy and space of single-family homes to the low-maintenance lifestyle of condominiums. Luxury estates provide exceptional amenities and prestige, while investment properties offer strong rental income potential and appreciation opportunities.</p>
+          
+          <h3>Price Range Diversity</h3>
+          <p>Properties in our portfolio span a wide price range, accommodating buyers from first-time homebuyers to luxury estate purchasers. Entry-level homes start in the $300,000s, mid-range properties range from $500,000 to $1,000,000, and luxury estates extend beyond $2,000,000. This diversity ensures that buyers at every price point can find exceptional properties that meet their needs and exceed their expectations.</p>
+          
+          <h3>Community Selection</h3>
+          <p>Our properties are located in Las Vegas' most desirable communities, including Centennial Hills, Summerlin, Red Rock Country Club, The Ridges, Lone Mountain, and North Las Vegas. Each community offers unique characteristics, from master-planned developments with extensive amenities to established neighborhoods with mature landscaping and excellent schools. This variety allows buyers to choose communities that align with their lifestyle preferences and long-term goals.</p>
         </div>
       </section>
 
@@ -74,7 +91,17 @@ export default component$(() => {
       <section class="property-search">
         <div class="container container-center">
           <div class="search-form">
-            <h2>Find Your Perfect Home</h2>
+            <h2>Advanced Property Search Tools</h2>
+            <p>Our comprehensive property search tools help you find your perfect home quickly and efficiently. Use advanced filters to narrow your search by location, price range, property type, bedrooms, bathrooms, square footage, and special features. Save your searches to receive automatic updates when new properties matching your criteria become available. Our search platform provides detailed property information, high-quality photos, virtual tours, and neighborhood insights to help you make informed decisions.</p>
+            
+            <h3>Search Filter Options</h3>
+            <p>Our search filters allow you to customize your property search based on specific criteria. Filter by location to focus on particular neighborhoods or zip codes. Set price ranges to match your budget, and select property types that align with your preferences. Additional filters for bedrooms, bathrooms, square footage, lot size, year built, and special features help you find properties that meet your exact requirements.</p>
+            
+            <h3>Saved Searches and Alerts</h3>
+            <p>Create saved searches to automatically receive notifications when new properties matching your criteria are listed. This feature ensures you never miss an opportunity, as you'll be immediately informed about new listings that meet your specifications. Saved searches can be modified at any time, and you can create multiple searches for different property types or locations.</p>
+            
+            <h3>Property Comparison Tools</h3>
+            <p>Compare multiple properties side-by-side to evaluate features, prices, locations, and amenities. Our comparison tools help you identify the properties that best meet your needs and make informed decisions. Compare up to four properties simultaneously, reviewing details such as square footage, lot size, year built, property taxes, and neighborhood characteristics.</p>
             <form class="search-grid">
               <div class="search-field">
                 <label for="location">Location</label>
@@ -153,7 +180,14 @@ export default component$(() => {
       {/* Featured Properties */}
       <section class="featured-properties">
         <div class="container container-center">
-          <h2>Featured Properties</h2>
+          <h2>Featured Properties Showcase</h2>
+          <p>Our featured properties represent the finest homes available in Las Vegas' premier communities. These carefully selected properties showcase exceptional quality, desirable locations, and outstanding value. From luxury estates with resort-style amenities to family homes in top-rated school districts, our featured properties represent diverse opportunities for buyers seeking exceptional real estate in Las Vegas.</p>
+          
+          <h3>Selection Criteria for Featured Properties</h3>
+          <p>Properties featured in our showcase are selected based on exceptional quality, desirable locations, competitive pricing, and unique features. We prioritize properties that offer outstanding value, whether through pricing, location, amenities, or condition. Our featured properties represent the best opportunities in the current market, helping buyers identify exceptional homes that may not remain available for long.</p>
+          
+          <h3>Property Highlights and Features</h3>
+          <p>Each featured property includes detailed information about its unique features, recent upgrades, neighborhood characteristics, and investment potential. High-quality photography, virtual tours, and detailed descriptions provide comprehensive information to help you evaluate properties before scheduling showings. This detailed information saves time and ensures you focus on properties that truly meet your needs.</p>
           <div class="properties-grid">
             <div class="property-card">
               <div class="property-image">
@@ -225,8 +259,17 @@ export default component$(() => {
       {/* Commute Planning Section */}
       <section class="commute-planning-section">
         <div class="container container-center">
-          <h2>Plan Your Commute</h2>
-          <p>Before making an offer, check commute times from potential properties to your workplace, school, or other important destinations.</p>
+          <h2>Commute Planning and Location Analysis</h2>
+          <p>Before making an offer, check commute times from potential properties to your workplace, school, or other important destinations. Understanding commute patterns, traffic conditions, and transportation options helps you evaluate properties based on practical daily living considerations. Our commute planning tools provide realistic travel time estimates and help you identify properties that offer convenient access to your most important destinations.</p>
+          
+          <h3>Peak Hour Traffic Analysis</h3>
+          <p>Commute planning includes analysis of peak hour traffic patterns, which can significantly impact travel times during rush hours. Understanding these patterns helps you make informed decisions about property locations and ensures you're prepared for realistic commute times. Our tools account for typical traffic conditions and provide estimates for both peak and off-peak travel times.</p>
+          
+          <h3>Alternative Transportation Options</h3>
+          <p>In addition to driving, consider alternative transportation options such as public transit, biking, or walking. Properties located near transit stops, bike paths, or within walking distance of amenities offer additional convenience and can reduce transportation costs. Our location analysis includes information about transportation alternatives and their availability near each property.</p>
+          
+          <h3>School and Amenity Proximity</h3>
+          <p>Proximity to schools, shopping, dining, and recreational facilities significantly impacts daily living convenience. Our location analysis includes information about nearby amenities, helping you evaluate properties based on lifestyle factors beyond just commute times. Properties with convenient access to essential services and recreational opportunities often provide better long-term value and quality of life.</p>
           <CommuteWidget 
             center={{ lat: 36.1898207, lng: -115.3130859 }}
             title="Property Commute Calculator"
@@ -245,11 +288,52 @@ export default component$(() => {
         </div>
       </section>
 
+      {/* Property Investment Information */}
+      <section class="investment-info">
+        <div class="container container-center">
+          <h2>Investment Property Opportunities</h2>
+          <p>Las Vegas offers exceptional investment property opportunities with strong rental demand, favorable tax conditions, and consistent appreciation potential. Our investment property portfolio includes single-family rentals, multi-family properties, and properties with strong cash flow potential. Each investment property includes detailed analysis of rental income potential, operating expenses, ROI projections, and appreciation forecasts to help investors make informed decisions.</p>
+          
+          <h3>Rental Market Analysis</h3>
+          <p>Investment properties include comprehensive rental market analysis, including average rental rates, occupancy rates, tenant demographics, and rental demand trends. This analysis helps investors understand income potential and evaluate properties based on cash flow projections. Properties in high-demand rental markets often provide stable income and strong long-term returns.</p>
+          
+          <h3>ROI and Cash Flow Projections</h3>
+          <p>Detailed ROI and cash flow projections help investors evaluate properties based on financial performance. These projections include estimates of rental income, operating expenses, maintenance costs, and net cash flow. Properties with positive cash flow and strong ROI potential offer investors reliable income and long-term wealth building opportunities.</p>
+          
+          <h3>Property Management Considerations</h3>
+          <p>Investment properties require effective property management to maximize returns and minimize hassles. Our investment property information includes recommendations for property management services, maintenance considerations, and strategies for optimizing rental income. Properties that are well-maintained and professionally managed often provide better returns and fewer complications for investors.</p>
+        </div>
+      </section>
+      
+      {/* Neighborhood Information Section */}
+      <section class="neighborhood-info">
+        <div class="container container-center">
+          <h2>Neighborhood Information and Community Insights</h2>
+          <p>Understanding neighborhood characteristics, market trends, and community features is essential for making informed property decisions. Our comprehensive neighborhood information includes details about schools, amenities, demographics, market trends, and future development plans. This information helps buyers evaluate properties based on long-term value and quality of life factors.</p>
+          
+          <h3>School District Information</h3>
+          <p>School district quality significantly impacts property values and family satisfaction. Our neighborhood information includes detailed school district ratings, school performance data, and information about educational opportunities. Properties in top-rated school districts often maintain stronger values and appeal to families seeking quality education for their children.</p>
+          
+          <h3>Community Amenities and Features</h3>
+          <p>Community amenities such as parks, recreational facilities, shopping centers, and dining options enhance quality of life and property values. Our neighborhood information includes comprehensive details about available amenities and their proximity to properties. Communities with extensive amenities often provide better lifestyle experiences and stronger long-term property values.</p>
+          
+          <h3>Market Trends and Future Development</h3>
+          <p>Understanding market trends and future development plans helps buyers evaluate properties based on appreciation potential and long-term value. Our neighborhood information includes analysis of recent market trends, planned developments, infrastructure improvements, and economic factors that may impact property values. This forward-looking analysis helps buyers make informed decisions about long-term investment potential.</p>
+        </div>
+      </section>
+      
       {/* CTA Section */}
       <section class="cta-section">
         <div class="container container-center">
           <h2>Don't See What You're Looking For?</h2>
-          <p>Dr. Janet Duffy can help you find the perfect property or market your current home.</p>
+          <p>Dr. Janet Duffy can help you find the perfect property or market your current home. With access to exclusive listings, off-market opportunities, and comprehensive market knowledge, Dr. Duffy ensures you don't miss exceptional properties that match your criteria. Contact us today to discuss your property needs and discover opportunities that may not be publicly listed.</p>
+          
+          <h3>Off-Market and Exclusive Listings</h3>
+          <p>Many exceptional properties are available through off-market listings and exclusive opportunities not found in public databases. Dr. Duffy's extensive network and market presence provide access to these exclusive properties, giving you advantages over other buyers. Contact us to learn about off-market opportunities that may perfectly match your property search criteria.</p>
+          
+          <h3>Custom Property Search Services</h3>
+          <p>Our custom property search services go beyond public listings to identify properties that meet your specific needs. We analyze market data, monitor new listings, and leverage our network to find properties that match your criteria. This personalized approach ensures you see all available options, including properties that may not appear in standard searches.</p>
+          
           <div class="cta-buttons">
             <a href="/contact" class="btn btn-primary">Contact Us</a>
             <a href="/market-analysis" class="btn btn-secondary">Get Market Analysis</a>
