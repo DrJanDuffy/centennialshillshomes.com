@@ -2,6 +2,14 @@
 
 This document lists all image files that should be added to `/public/images/` directory to replace placeholder images throughout the site.
 
+## Logo Image
+
+1. **logo.png**
+   - Description: Company logo for Centennial Hills Real Estate | Homes by Dr. Jan Duffy
+   - Use: Header (desktop and mobile), footer
+   - Alt text: "Centennial Hills Real Estate - Homes by Dr. Jan Duffy"
+   - Recommended size: 180px width (header), 200px width (footer), transparent background preferred
+
 ## Property Images
 
 1. **modern-home-exterior.jpg**
