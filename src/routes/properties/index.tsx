@@ -239,6 +239,7 @@ export default component$(() => {
                   class="w-full h-64 object-cover"
                   loading="lazy"
                 />
+              </div>
               <div class="property-info">
                 <h3>Modern Home in The Ridges</h3>
                 <p class="property-price">$1,850,000</p>
