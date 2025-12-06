@@ -1,20 +1,38 @@
-import { component$, useSignal, useVisibleTask$, useStyles$ } from '@builder.io/qwik';
+import { component$, useSignal, useVisibleTask$, useStyles$, useLocation } from '@builder.io/qwik';
 import styles from './header.css?inline';
 
 export default component$(() => {
   useStyles$(styles);
+  const loc = useLocation();
   
   const isMenuOpen = useSignal(false);
+  const isScrolled = useSignal(false);
   const isCentennialHillsOpen = useSignal(false);
   const isBuySellOpen = useSignal(false);
   const isListingsOpen = useSignal(false);
   const isCommunitiesOpen = useSignal(false);
   const isAboutOpen = useSignal(false);
 
+  // Handle scroll detection for header styling
+  useVisibleTask$(() => {
+    if (typeof window === 'undefined') return;
+    
+    const handleScroll = () => {
+      isScrolled.value = window.scrollY > 20;
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Check initial state
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  });
+
+  // Handle mobile menu body scroll lock
   useVisibleTask$(({ track }) => {
     track(() => isMenuOpen.value);
     
-    // Check if we're in the browser
     if (typeof document === 'undefined') return;
     
     if (isMenuOpen.value) {
@@ -24,8 +42,13 @@ export default component$(() => {
     }
   });
 
+  // Helper function to check if a path is active
+  const isActive = (path: string) => {
+    return loc.url.pathname === path || loc.url.pathname.startsWith(path + '/');
+  };
+
   return (
-    <header class="main-header">
+    <header class={`main-header ${isScrolled.value ? 'scrolled' : ''}`}>
       <div class="header-container">
         {/* Logo Section */}
         <div class="logo-section">
@@ -47,21 +70,31 @@ export default component$(() => {
         <nav class="desktop-nav">
           <ul class="nav-list">
             <li class="nav-item">
-              <a href="/" class="nav-link">Home</a>
+              <a href="/" class={`nav-link ${isActive('/') && loc.url.pathname === '/' ? 'active' : ''}`}>
+                Home
+              </a>
             </li>
             
             <li class="nav-item dropdown">
               <button 
-                class="nav-link dropdown-toggle"
+                class={`nav-link dropdown-toggle ${isActive('/centennial-hills') ? 'active' : ''}`}
                 onMouseEnter$={() => isCentennialHillsOpen.value = true}
                 onMouseLeave$={() => isCentennialHillsOpen.value = false}
+                onFocus$={() => isCentennialHillsOpen.value = true}
+                onBlur$={() => isCentennialHillsOpen.value = false}
+                aria-expanded={isCentennialHillsOpen.value}
+                aria-haspopup="true"
               >
                 Centennial Hills
-                <svg class="dropdown-icon" width="12" height="12" viewBox="0 0 12 12">
+                <svg class={`dropdown-icon ${isCentennialHillsOpen.value ? 'open' : ''}`} width="12" height="12" viewBox="0 0 12 12">
                   <path d="M6 8L2 4h8L6 8z" fill="currentColor"/>
                 </svg>
               </button>
-              <div class={`dropdown-menu ${isCentennialHillsOpen.value ? 'show' : ''}`}>
+              <div 
+                class={`dropdown-menu ${isCentennialHillsOpen.value ? 'show' : ''}`}
+                onMouseEnter$={() => isCentennialHillsOpen.value = true}
+                onMouseLeave$={() => isCentennialHillsOpen.value = false}
+              >
                 <a href="/centennial-hills-homes" class="dropdown-link">
                   <div class="dropdown-item">
                     <h4>Centennial Hills Homes</h4>
@@ -109,16 +142,24 @@ export default component$(() => {
 
             <li class="nav-item dropdown">
               <button 
-                class="nav-link dropdown-toggle"
+                class={`nav-link dropdown-toggle ${isActive('/buy') || isActive('/sell') || isActive('/mls') || isActive('/home-valuation') || isActive('/market-analysis') ? 'active' : ''}`}
                 onMouseEnter$={() => isBuySellOpen.value = true}
                 onMouseLeave$={() => isBuySellOpen.value = false}
+                onFocus$={() => isBuySellOpen.value = true}
+                onBlur$={() => isBuySellOpen.value = false}
+                aria-expanded={isBuySellOpen.value}
+                aria-haspopup="true"
               >
                 Buy & Sell
-                <svg class="dropdown-icon" width="12" height="12" viewBox="0 0 12 12">
+                <svg class={`dropdown-icon ${isBuySellOpen.value ? 'open' : ''}`} width="12" height="12" viewBox="0 0 12 12">
                   <path d="M6 8L2 4h8L6 8z" fill="currentColor"/>
                 </svg>
               </button>
-              <div class={`dropdown-menu ${isBuySellOpen.value ? 'show' : ''}`}>
+              <div 
+                class={`dropdown-menu ${isBuySellOpen.value ? 'show' : ''}`}
+                onMouseEnter$={() => isBuySellOpen.value = true}
+                onMouseLeave$={() => isBuySellOpen.value = false}
+              >
                 <a href="/buy-a-home" class="dropdown-link">
                   <div class="dropdown-item">
                     <h4>Buy a Home</h4>
@@ -318,11 +359,15 @@ export default component$(() => {
             </li>
             
             <li class="nav-item">
-              <a href="/commute-calculator" class="nav-link">Commute Calculator</a>
+              <a href="/commute-calculator" class={`nav-link ${isActive('/commute-calculator') ? 'active' : ''}`}>
+                Commute Calculator
+              </a>
             </li>
             
             <li class="nav-item">
-              <a href="/contact" class="nav-link">Contact</a>
+              <a href="/contact" class={`nav-link ${isActive('/contact') ? 'active' : ''}`}>
+                Contact
+              </a>
             </li>
           </ul>
         </nav>

@@ -48,6 +48,9 @@ importers:
       prettier:
         specifier: ^3.7.4
         version: 3.7.4
+      sharp:
+        specifier: ^0.34.5
+        version: 0.34.5
       tailwindcss:
         specifier: ^3.4.18
         version: 3.4.18(ts-node@10.9.1(@types/node@24.10.1)(typescript@5.9.3))
@@ -1724,10 +1727,6 @@ packages:
   dequal@2.0.3:
     resolution: {integrity: sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==}
     engines: {node: '>=6'}
-
-  detect-libc@2.1.1:
-    resolution: {integrity: sha512-ecqj/sy1jcK1uWrwpR67UhYrIFQ+5WlGxth34WquCbamhFA6hkkwiu37o6J5xCHdo1oixJRfVRw+ywV+Hq/0Aw==}
-    engines: {node: '>=8'}
 
   detect-libc@2.1.2:
     resolution: {integrity: sha512-Btj2BOOO83o3WyH59e8MgXsxEQVcarkUOpEYrubB0urwnN10yQ364rsiByU11nZlqWYZm05i/of7io4mzihBtQ==}
@@ -4152,11 +4151,11 @@ snapshots:
   '@mapbox/node-pre-gyp@2.0.3':
     dependencies:
       consola: 3.4.2
-      detect-libc: 2.1.1
+      detect-libc: 2.1.2
       https-proxy-agent: 7.0.6
       node-fetch: 2.7.0
       nopt: 8.1.0
-      semver: 7.7.2
+      semver: 7.7.3
       tar: 7.5.2
     transitivePeerDependencies:
       - encoding
@@ -5166,8 +5165,6 @@ snapshots:
   depd@1.1.2: {}
 
   dequal@2.0.3: {}
-
-  detect-libc@2.1.1: {}
 
   detect-libc@2.1.2: {}
 

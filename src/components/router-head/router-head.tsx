@@ -63,7 +63,9 @@ export const RouterHead = component$(() => {
       ))}
 
       {head.styles.map((s) => {
-        const { dangerouslySetInnerHTML, ...otherProps } = s.props || {};
+        // Remove dangerouslySetInnerHTML from props if it exists to avoid duplicate key
+        const props = s.props || {};
+        const { dangerouslySetInnerHTML: _, ...otherProps } = props;
         return (
           <style key={s.key} {...otherProps} dangerouslySetInnerHTML={s.style} />
         );
