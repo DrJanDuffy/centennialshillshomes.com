@@ -252,7 +252,12 @@ export default component$(() => {
 
             <div class="property-card">
               <div class="property-image">
-                <div class="placeholder-image">Property Image</div>
+                <img 
+                  src="/images/modern-home-exterior.jpg" 
+                  alt="Investment property in Summerlin with high ROI potential"
+                  class="w-full h-64 object-cover"
+                  loading="lazy"
+                />
                 <div class="property-status">Investment</div>
               </div>
               <div class="property-info">

@@ -47,6 +47,14 @@ export default component$(() => {
             communities in the Las Vegas Valley, attracting families, professionals, and luxury homebuyers from 
             around the world. Compare Summerlin to <a href="/centennial-hills-vs-summerlin">Centennial Hills</a> to understand the differences between these premier communities.
           </p>
+          <div class="my-8">
+            <img 
+              src="/images/entrance-guardhouse.jpg" 
+              alt="Modern Summerlin community entrance with guardhouse and mountain views"
+              class="w-full h-auto rounded-lg shadow-lg"
+              loading="lazy"
+            />
+          </div>
           <p>
             The community's master-planned design ensures thoughtful development that balances residential, 
             commercial, and recreational uses. This planning creates cohesive neighborhoods, convenient access 
@@ -210,12 +218,34 @@ export default component$(() => {
             This access to natural recreation enhances Summerlin's appeal and provides residents with 
             opportunities for outdoor activities that are rare in urban environments.
           </p>
+          <div class="my-8 grid md:grid-cols-2 gap-6">
+            <img 
+              src="/images/swimming-pool-2.jpg" 
+              alt="Luxury swimming pool in Summerlin with lounge chairs and mountain views"
+              class="w-full h-auto rounded-lg shadow-lg"
+              loading="lazy"
+            />
+            <img 
+              src="/images/pickleball-courts.jpg" 
+              alt="Recreational facilities in Summerlin including pickleball courts"
+              class="w-full h-auto rounded-lg shadow-lg"
+              loading="lazy"
+            />
+          </div>
           <p>
             Community centers and pools throughout Summerlin provide additional recreational opportunities 
             for residents. These facilities support active lifestyles, social connections, and family 
             activities that enhance the Summerlin living experience. The community's commitment to 
             recreation and wellness is evident in the quality and accessibility of these facilities.
           </p>
+          <div class="my-8">
+            <img 
+              src="/images/community-kitchen.jpg" 
+              alt="Modern community kitchen and gathering space in Summerlin"
+              class="w-full h-auto rounded-lg shadow-lg"
+              loading="lazy"
+            />
+          </div>
 
           <h2>Real Estate in Summerlin</h2>
           <p>

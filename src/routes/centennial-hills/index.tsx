@@ -200,7 +200,12 @@ export default component$(() => {
           <div class="properties-grid">
             <div class="property-card">
               <div class="property-image">
-                <div class="placeholder-image">Property Image</div>
+                <img 
+                  src="/images/modern-home-exterior.jpg" 
+                  alt="Modern family home in Centennial Hills with open floor plan"
+                  class="w-full h-64 object-cover"
+                  loading="lazy"
+                />
                 <div class="property-status">For Sale</div>
               </div>
               <div class="property-info">
@@ -216,7 +221,12 @@ export default component$(() => {
 
             <div class="property-card">
               <div class="property-image">
-                <div class="placeholder-image">Property Image</div>
+                <img 
+                  src="/images/clubhouse-exterior.jpg" 
+                  alt="Spacious family residence in Centennial Hills with pool and mountain views"
+                  class="w-full h-64 object-cover"
+                  loading="lazy"
+                />
                 <div class="property-status">For Sale</div>
               </div>
               <div class="property-info">

@@ -106,12 +106,28 @@ export default component$(() => {
             combined with carefully planned community landscaping, creates a visually stunning environment that 
             changes with the seasons and time of day.
           </p>
+          <div class="my-8">
+            <img 
+              src="/images/outdoor-patio.jpg" 
+              alt="Luxury outdoor patio in The Ridges with fire pit and mountain views"
+              class="w-full h-auto rounded-lg shadow-lg"
+              loading="lazy"
+            />
+          </div>
           <p>
             The community's location on elevated terrain provides panoramic views that are simply unmatched in 
             the Las Vegas area. Sunrise and sunset views are particularly spectacular, with the changing light 
             creating dramatic displays across the desert landscape and mountain ranges. These views are not just 
             beautiful; they're a significant factor in property values and desirability.
           </p>
+          <div class="my-8">
+            <img 
+              src="/images/community-lounge-2.jpg" 
+              alt="Elegant community lounge in The Ridges with fireplace and modern design"
+              class="w-full h-auto rounded-lg shadow-lg"
+              loading="lazy"
+            />
+          </div>
 
           <h2>Real Estate in The Ridges</h2>
           <p>

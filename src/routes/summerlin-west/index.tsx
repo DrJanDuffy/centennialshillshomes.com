@@ -46,6 +46,14 @@ export default component$(() => {
             luxury living, attracting executives, professionals, and high-net-worth individuals 
             seeking the ultimate in residential quality and lifestyle.
           </p>
+          <div class="my-8">
+            <img 
+              src="/images/clubhouse-exterior.jpg" 
+              alt="Luxury clubhouse and community building in Summerlin West"
+              class="w-full h-auto rounded-lg shadow-lg"
+              loading="lazy"
+            />
+          </div>
           <p>
             The area's development has been carefully planned to create cohesive, attractive neighborhoods 
             that blend luxury living with natural beauty. Summerlin West's proximity to Red Rock Canyon 

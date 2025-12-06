@@ -73,6 +73,14 @@ export default component$(() => {
             offer buyers the opportunity to purchase new homes with warranties, modern floor plans, and 
             current design trends that appeal to today's homebuyers.
           </p>
+          <div class="my-8">
+            <img 
+              src="/images/modern-home-exterior.jpg" 
+              alt="New construction home in Lone Mountain with modern architecture"
+              class="w-full h-auto rounded-lg shadow-lg"
+              loading="lazy"
+            />
+          </div>
           <p>
             New construction in Lone Mountain typically includes features like open floor plans, gourmet 
             kitchens, master suites with spa-like bathrooms, and outdoor living spaces designed for Las 

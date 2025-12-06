@@ -61,6 +61,12 @@ export default component$(() => {
           <div class="properties-grid">
             <div class="property-card">
               <div class="property-image">
+                <img 
+                  src="/images/modern-home-exterior.jpg" 
+                  alt="Family home in Central Centennial Hills 89135"
+                  class="w-full h-64 object-cover"
+                  loading="lazy"
+                />
                 <div class="property-badge">New Listing</div>
               </div>
               <div class="property-info">
@@ -80,6 +86,12 @@ export default component$(() => {
 
             <div class="property-card">
               <div class="property-image">
+                <img 
+                  src="/images/clubhouse-exterior.jpg" 
+                  alt="Estate home in Centennial Hills 89135"
+                  class="w-full h-64 object-cover"
+                  loading="lazy"
+                />
                 <div class="property-badge">Price Reduced</div>
               </div>
               <div class="property-info">
@@ -99,6 +111,12 @@ export default component$(() => {
 
             <div class="property-card">
               <div class="property-image">
+                <img 
+                  src="/images/modern-home-exterior.jpg" 
+                  alt="Modern townhouse in Centennial Hills 89135"
+                  class="w-full h-64 object-cover"
+                  loading="lazy"
+                />
                 <div class="property-badge">Move-In Ready</div>
               </div>
               <div class="property-info">
