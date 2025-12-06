@@ -41,8 +41,9 @@
 30. ✅ Contact (`src/routes/contact/index.tsx`)
 31. ✅ Properties (`src/routes/properties/index.tsx`)
 32. ✅ Centennial Hills (`src/routes/centennial-hills/index.tsx`)
+33. ✅ Market Analysis (`src/routes/market-analysis/index.tsx`)
 
-### Pages Needing Expansion (53 pages remaining):
+### Pages Needing Expansion (52 pages remaining):
 - Legal pages: Privacy Policy, Terms of Service, Fair Housing, Accessibility
 - Existing pages: About, Buy a Home, Sell a Home, Contact, Properties, etc.
 - And many more existing pages...
