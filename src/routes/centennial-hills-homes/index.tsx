@@ -612,10 +612,6 @@ export const head: DocumentHead = {
       name: 'description',
       content: 'Find your dream Centennial Hills home with Dr. Janet Duffy. Expert real estate services in Northwest Las Vegas. Browse luxury homes, new construction, and investment properties in Centennial Hills.',
     },
-    {
-      name: 'keywords',
-      content: 'Centennial Hills homes, Centennial Hills real estate, Las Vegas homes for sale, Northwest Las Vegas, Dr. Janet Duffy, luxury homes, new construction',
-    },
   ],
 };
 

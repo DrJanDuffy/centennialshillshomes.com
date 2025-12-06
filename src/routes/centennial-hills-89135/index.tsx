@@ -727,10 +727,6 @@ export const head: DocumentHead = {
       name: 'description',
       content: 'Find homes in Centennial Hills ZIP code 89135. Central Centennial Hills real estate with established neighborhoods, excellent schools, and mature landscaping. Dr. Janet Duffy expert guidance.',
     },
-    {
-      name: 'keywords',
-      content: 'Centennial Hills 89135, ZIP code 89135 homes, Central Centennial Hills, Las Vegas 89135, Centennial Hills real estate, Dr. Janet Duffy',
-    },
   ],
 };
 

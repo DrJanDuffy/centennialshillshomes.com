@@ -219,9 +219,5 @@ export const head: DocumentHead = {
       name: 'description',
       content: 'Discover Red Rock Country Club, Las Vegas\' premier gated golf community with championship golf, luxury amenities, and custom homes.',
     },
-    {
-      name: 'keywords',
-      content: 'Red Rock Country Club, luxury golf community, Las Vegas golf homes, Arnold Palmer golf course',
-    },
   ],
 };

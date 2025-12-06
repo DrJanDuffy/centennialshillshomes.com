@@ -111,9 +111,5 @@ export const head: DocumentHead = {
       name: 'description',
       content: 'Plan your daily commute from Las Vegas homes to work, school, or entertainment. Interactive commute calculator with real-time travel times and multiple transportation options.',
     },
-    {
-      name: 'keywords',
-      content: 'Las Vegas commute calculator, travel time, commute planning, Las Vegas traffic, public transit, driving directions, Las Vegas neighborhoods',
-    },
   ],
 };

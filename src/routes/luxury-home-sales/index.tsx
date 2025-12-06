@@ -252,9 +252,5 @@ export const head: DocumentHead = {
       name: 'description',
       content: 'Expert luxury home sales in Las Vegas\' most exclusive communities. Dr. Janet Duffy specializes in high-end properties with personalized service. Top 1% REALTOR® with 30+ years of research expertise, available 24/7 for executive clients.',
     },
-    {
-      name: 'keywords',
-      content: 'luxury homes Las Vegas, high-end real estate, custom estates, golf course homes, Red Rock Country Club',
-    },
   ],
 };

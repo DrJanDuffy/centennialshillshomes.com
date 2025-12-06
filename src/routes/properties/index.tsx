@@ -267,9 +267,5 @@ export const head: DocumentHead = {
       name: 'description',
       content: 'Browse luxury homes and investment properties in Las Vegas. Dr. Janet Duffy specializes in Centennial Hills, Red Rock Country Club, and other premier communities.',
     },
-    {
-      name: 'keywords',
-      content: 'Las Vegas homes for sale, luxury properties, Centennial Hills homes, Red Rock Country Club, investment properties',
-    },
   ],
 };

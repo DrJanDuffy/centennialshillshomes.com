@@ -238,10 +238,6 @@ export const head: DocumentHead = {
       content: 'Explore Centennial Hills homes for sale with our interactive property map. Master-planned community in northwest Las Vegas featuring modern amenities, family-friendly atmosphere, excellent schools, and convenient access to Red Rock Canyon. Dr. Janet Duffy specializes in Centennial Hills real estate.',
     },
     {
-      name: 'keywords',
-      content: 'Centennial Hills homes for sale, Centennial Hills Las Vegas, northwest Las Vegas real estate, master-planned community, family homes, interactive property map, neighborhood boundaries, school districts, Red Rock Canyon, Dr. Janet Duffy, Las Vegas real estate agent, 89149, 89129, 89144',
-    },
-    {
       name: 'author',
       content: 'Dr. Janet Duffy, REALTOR®',
     },

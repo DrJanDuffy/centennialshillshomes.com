@@ -698,10 +698,6 @@ export const head: DocumentHead = {
       name: 'description',
       content: 'Discover exclusive luxury homes in Centennial Hills with Dr. Janet Duffy. Premium properties, estates, new construction, and golf course homes in Northwest Las Vegas.',
     },
-    {
-      name: 'keywords',
-      content: 'luxury homes Centennial Hills, premium properties Las Vegas, Centennial Hills estates, luxury real estate, Dr. Janet Duffy, Northwest Las Vegas homes',
-    },
   ],
 };
 

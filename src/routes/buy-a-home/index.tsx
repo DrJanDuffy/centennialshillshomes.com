@@ -719,10 +719,6 @@ export const head: DocumentHead = {
       name: 'description',
       content: 'Expert home buying services in Centennial Hills. Dr. Janet Duffy helps first-time buyers, move-up buyers, and luxury home buyers find their perfect Centennial Hills home.',
     },
-    {
-      name: 'keywords',
-      content: 'buy home Centennial Hills, Centennial Hills homes for sale, home buying services, first-time homebuyers, luxury home buyers, Dr. Janet Duffy',
-    },
   ],
 };
 

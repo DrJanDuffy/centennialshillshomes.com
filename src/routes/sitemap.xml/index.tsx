@@ -19,6 +19,12 @@ export const onGet: RequestHandler = ({ response }) => {
     { path: '/about-us', priority: '0.8', changefreq: 'monthly' },
     { path: '/contact', priority: '0.9', changefreq: 'monthly' },
     
+    // Legal Pages
+    { path: '/privacy-policy', priority: '0.3', changefreq: 'yearly' },
+    { path: '/terms-of-service', priority: '0.3', changefreq: 'yearly' },
+    { path: '/fair-housing', priority: '0.5', changefreq: 'yearly' },
+    { path: '/accessibility', priority: '0.4', changefreq: 'yearly' },
+    
     // Centennial Hills Pages
     { path: '/centennial-hills', priority: '0.9', changefreq: 'weekly' },
     { path: '/centennial-hills-homes', priority: '1.0', changefreq: 'daily' },
@@ -66,6 +72,52 @@ export const onGet: RequestHandler = ({ response }) => {
     { path: '/providence', priority: '0.7', changefreq: 'weekly' },
     { path: '/tule-springs', priority: '0.7', changefreq: 'weekly' },
     { path: '/red-rock-country-club', priority: '0.7', changefreq: 'weekly' },
+    { path: '/the-ridges', priority: '0.8', changefreq: 'weekly' },
+    { path: '/summerlin-west', priority: '0.8', changefreq: 'weekly' },
+    { path: '/lone-mountain', priority: '0.7', changefreq: 'weekly' },
+    { path: '/summerlin', priority: '0.8', changefreq: 'weekly' },
+    
+    // Service Pages
+    { path: '/corporate-relocation-services', priority: '0.8', changefreq: 'monthly' },
+    
+    // School Pages
+    { path: '/centennial-hills-schools', priority: '0.7', changefreq: 'monthly' },
+    { path: '/best-schools-centennial-hills', priority: '0.7', changefreq: 'monthly' },
+    
+    // Market Reports
+    { path: '/market-reports', priority: '0.8', changefreq: 'weekly' },
+    { path: '/centennial-hills-market-report', priority: '0.8', changefreq: 'weekly' },
+    
+    // Resource Guides
+    { path: '/buying-guide', priority: '0.8', changefreq: 'monthly' },
+    { path: '/selling-guide', priority: '0.8', changefreq: 'monthly' },
+    
+    // Property Type Pages
+    { path: '/condos-centennial-hills', priority: '0.7', changefreq: 'weekly' },
+    { path: '/golf-course-homes', priority: '0.7', changefreq: 'weekly' },
+    
+    // Price Range Pages
+    { path: '/homes-400k-600k', priority: '0.8', changefreq: 'weekly' },
+    { path: '/homes-under-400k', priority: '0.7', changefreq: 'weekly' },
+    { path: '/homes-over-1m', priority: '0.8', changefreq: 'weekly' },
+    
+    // Calculator Pages
+    { path: '/mortgage-calculator', priority: '0.7', changefreq: 'monthly' },
+    { path: '/affordability-calculator', priority: '0.7', changefreq: 'monthly' },
+    
+    // Blog Categories
+    { path: '/blog/category/buyer-guide', priority: '0.7', changefreq: 'monthly' },
+    { path: '/blog/category/market-updates', priority: '0.7', changefreq: 'weekly' },
+    
+    // Area Information
+    { path: '/centennial-hills-amenities', priority: '0.6', changefreq: 'monthly' },
+    
+    // Comparison Pages
+    { path: '/centennial-hills-vs-summerlin', priority: '0.6', changefreq: 'monthly' },
+    
+    // Relocation & Specialized Pages
+    { path: '/moving-guide', priority: '0.7', changefreq: 'monthly' },
+    { path: '/move-up-buyers', priority: '0.7', changefreq: 'monthly' },
     
     // Content Pages
     { path: '/blog', priority: '0.8', changefreq: 'weekly' },

@@ -209,9 +209,5 @@ export const head: DocumentHead = {
       name: 'description',
       content: 'Get answers to frequently asked questions about Las Vegas real estate, California equity buyers, corporate relocations, and Dr. Janet Duffy\'s services.',
     },
-    {
-      name: 'keywords',
-      content: 'Las Vegas real estate FAQ, California equity buyers, corporate relocations, luxury homes, Dr. Janet Duffy',
-    },
   ],
 };

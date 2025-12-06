@@ -269,9 +269,5 @@ export const head: DocumentHead = {
       name: 'description',
       content: 'Specialized assistance for California residents leveraging home equity in Nevada real estate. Dr. Jan Duffy, Top 1% Las Vegas REALTOR® with 30+ years of research expertise, provides expert guidance on tax benefits and investment opportunities.',
     },
-    {
-      name: 'keywords',
-      content: 'California equity buyers, Nevada real estate, tax benefits, Las Vegas investment properties',
-    },
   ],
 };

@@ -650,10 +650,6 @@ export const head: DocumentHead = {
       name: 'description',
       content: 'Sell your Centennial Hills home for maximum value with Dr. Janet Duffy. Expert marketing, pricing, and negotiation services for successful home sales in Northwest Las Vegas.',
     },
-    {
-      name: 'keywords',
-      content: 'sell home Centennial Hills, Centennial Hills home selling, market analysis, home valuation, Dr. Janet Duffy, Northwest Las Vegas real estate',
-    },
   ],
 };
 
