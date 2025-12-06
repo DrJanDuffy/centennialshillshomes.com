@@ -41,6 +41,14 @@ export default component$(() => {
           {/* Company Info */}
           <div class="footer-section company-section">
             <div class="footer-logo">
+              <a href="/" class="footer-logo-link">
+                <img 
+                  src="/images/logo.png" 
+                  alt="Centennial Hills Real Estate - Homes by Dr. Jan Duffy"
+                  class="footer-logo-image"
+                  loading="lazy"
+                />
+              </a>
               <h3>Centennial Hills Real Estate</h3>
               <p class="footer-subtitle">Homes by Dr. Jan Duffy</p>
             </div>

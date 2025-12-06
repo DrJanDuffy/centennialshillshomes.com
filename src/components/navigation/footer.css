@@ -108,6 +108,23 @@
   flex-direction: column;
 }
 
+.footer-logo-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  transition: opacity 0.2s ease;
+}
+
+.footer-logo-link:hover {
+  opacity: 0.9;
+}
+
+.footer-logo-image {
+  height: 60px;
+  width: auto;
+  max-width: 200px;
+  object-fit: contain;
+}
+
 .footer-logo h3 {
   margin: 0 0 0.25rem 0;
   font-size: 1.5rem;
