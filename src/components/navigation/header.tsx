@@ -1,4 +1,5 @@
-import { component$, useSignal, useVisibleTask$, useStyles$, useLocation } from '@builder.io/qwik';
+import { component$, useSignal, useVisibleTask$, useStyles$ } from '@builder.io/qwik';
+import { useLocation } from '@builder.io/qwik-city';
 import styles from './header.css?inline';
 
 export default component$(() => {
@@ -207,16 +208,24 @@ export default component$(() => {
 
             <li class="nav-item dropdown">
               <button 
-                class="nav-link dropdown-toggle"
+                class={`nav-link dropdown-toggle ${isActive('/our-luxury-listings') || isActive('/active-listings') || isActive('/investment-properties') || isActive('/luxury-estates') || isActive('/new-construction') || isActive('/virtual-tours') || isActive('/recent-sales') ? 'active' : ''}`}
                 onMouseEnter$={() => isListingsOpen.value = true}
                 onMouseLeave$={() => isListingsOpen.value = false}
+                onFocus$={() => isListingsOpen.value = true}
+                onBlur$={() => isListingsOpen.value = false}
+                aria-expanded={isListingsOpen.value}
+                aria-haspopup="true"
               >
                 Our Listings
-                <svg class="dropdown-icon" width="12" height="12" viewBox="0 0 12 12">
+                <svg class={`dropdown-icon ${isListingsOpen.value ? 'open' : ''}`} width="12" height="12" viewBox="0 0 12 12">
                   <path d="M6 8L2 4h8L6 8z" fill="currentColor"/>
                 </svg>
               </button>
-              <div class={`dropdown-menu ${isListingsOpen.value ? 'show' : ''}`}>
+              <div 
+                class={`dropdown-menu ${isListingsOpen.value ? 'show' : ''}`}
+                onMouseEnter$={() => isListingsOpen.value = true}
+                onMouseLeave$={() => isListingsOpen.value = false}
+              >
                 <a href="/our-luxury-listings" class="dropdown-link">
                   <div class="dropdown-item">
                     <h4>Luxury Listings</h4>
@@ -264,16 +273,24 @@ export default component$(() => {
 
             <li class="nav-item dropdown">
               <button 
-                class="nav-link dropdown-toggle"
+                class={`nav-link dropdown-toggle ${isActive('/north-las-vegas') || isActive('/aliante') || isActive('/sky-canyon') || isActive('/providence') || isActive('/tule-springs') || isActive('/northwest-las-vegas') ? 'active' : ''}`}
                 onMouseEnter$={() => isCommunitiesOpen.value = true}
                 onMouseLeave$={() => isCommunitiesOpen.value = false}
+                onFocus$={() => isCommunitiesOpen.value = true}
+                onBlur$={() => isCommunitiesOpen.value = false}
+                aria-expanded={isCommunitiesOpen.value}
+                aria-haspopup="true"
               >
                 Communities
-                <svg class="dropdown-icon" width="12" height="12" viewBox="0 0 12 12">
+                <svg class={`dropdown-icon ${isCommunitiesOpen.value ? 'open' : ''}`} width="12" height="12" viewBox="0 0 12 12">
                   <path d="M6 8L2 4h8L6 8z" fill="currentColor"/>
                 </svg>
               </button>
-              <div class={`dropdown-menu ${isCommunitiesOpen.value ? 'show' : ''}`}>
+              <div 
+                class={`dropdown-menu ${isCommunitiesOpen.value ? 'show' : ''}`}
+                onMouseEnter$={() => isCommunitiesOpen.value = true}
+                onMouseLeave$={() => isCommunitiesOpen.value = false}
+              >
                 <a href="/north-las-vegas" class="dropdown-link">
                   <div class="dropdown-item">
                     <h4>North Las Vegas</h4>
@@ -315,16 +332,24 @@ export default component$(() => {
 
             <li class="nav-item dropdown">
               <button 
-                class="nav-link dropdown-toggle"
+                class={`nav-link dropdown-toggle ${isActive('/about') || isActive('/janet-duffy') || isActive('/testimonials') || isActive('/market-insights') || isActive('/press-media') ? 'active' : ''}`}
                 onMouseEnter$={() => isAboutOpen.value = true}
                 onMouseLeave$={() => isAboutOpen.value = false}
+                onFocus$={() => isAboutOpen.value = true}
+                onBlur$={() => isAboutOpen.value = false}
+                aria-expanded={isAboutOpen.value}
+                aria-haspopup="true"
               >
                 About
-                <svg class="dropdown-icon" width="12" height="12" viewBox="0 0 12 12">
+                <svg class={`dropdown-icon ${isAboutOpen.value ? 'open' : ''}`} width="12" height="12" viewBox="0 0 12 12">
                   <path d="M6 8L2 4h8L6 8z" fill="currentColor"/>
                 </svg>
               </button>
-              <div class={`dropdown-menu ${isAboutOpen.value ? 'show' : ''}`}>
+              <div 
+                class={`dropdown-menu ${isAboutOpen.value ? 'show' : ''}`}
+                onMouseEnter$={() => isAboutOpen.value = true}
+                onMouseLeave$={() => isAboutOpen.value = false}
+              >
                 <a href="/about-us" class="dropdown-link">
                   <div class="dropdown-item">
                     <h4>About Us</h4>
