@@ -143,20 +143,14 @@ export const onGet: RequestHandler = (ev) => {
         http://www.google.com/schemas/sitemap-image/1.1
         http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
 ${pages.map(page => {
-    // 2025: Add images for key pages
-    const hasImages = ['/', '/centennial-hills-homes', '/properties', '/our-luxury-listings'].includes(page.path);
-    const imageTags = hasImages ? `
-    <image:image>
-      <image:loc>${baseUrl}/images/og-image.jpg</image:loc>
-      <image:title>Centennial Hills Real Estate | Dr. Jan Duffy</image:title>
-      <image:caption>Luxury homes in Centennial Hills, Las Vegas</image:caption>
-    </image:image>` : '';
+    // Build URL entry - ensure proper XML escaping
+    const url = `${baseUrl}${page.path}`;
     
     return `  <url>
-    <loc>${baseUrl}${page.path}</loc>
+    <loc>${url}</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
-    <priority>${page.priority}</priority>${imageTags}
+    <priority>${page.priority}</priority>
   </url>`;
   }).join('\n')}
 </urlset>`;
