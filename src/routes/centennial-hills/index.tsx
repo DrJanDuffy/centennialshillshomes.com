@@ -74,6 +74,21 @@ export default component$(() => {
               
               <h3>Community Character and Lifestyle</h3>
               <p>The community's character reflects its family-oriented planning, with safe neighborhoods, well-maintained common areas, and active community associations. Residents enjoy a strong sense of community, with neighborhood events, recreational programs, and social activities that bring neighbors together. This community spirit, combined with the area's natural beauty and modern amenities, creates a desirable lifestyle that appeals to families and individuals seeking quality living in Las Vegas.</p>
+              
+              <div class="my-8 grid md:grid-cols-2 gap-6">
+                <img 
+                  src="/images/community-lounge.jpg" 
+                  alt="Modern community lounge in Centennial Hills with comfortable seating"
+                  class="w-full h-auto rounded-lg shadow-lg"
+                  loading="lazy"
+                />
+                <img 
+                  src="/images/swimming-pool.jpg" 
+                  alt="Resort-style swimming pool in Centennial Hills community"
+                  class="w-full h-auto rounded-lg shadow-lg"
+                  loading="lazy"
+                />
+              </div>
             </div>
             
             <div class="overview-stats">

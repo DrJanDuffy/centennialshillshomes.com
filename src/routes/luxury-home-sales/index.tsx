@@ -197,7 +197,12 @@ export default component$(() => {
           <div class="properties-grid">
             <div class="property-card">
               <div class="property-image">
-                <div class="placeholder-image">Luxury Property Image</div>
+                <img 
+                  src="/images/clubhouse-exterior.jpg" 
+                  alt="Luxury estate home in Red Rock Country Club with modern architecture"
+                  class="w-full h-64 object-cover"
+                  loading="lazy"
+                />
                 <div class="property-status">For Sale</div>
               </div>
               <div class="property-info">
@@ -213,7 +218,12 @@ export default component$(() => {
 
             <div class="property-card">
               <div class="property-image">
-                <div class="placeholder-image">Luxury Property Image</div>
+                <img 
+                  src="/images/modern-home-exterior.jpg" 
+                  alt="Luxury golf course villa with contemporary design"
+                  class="w-full h-64 object-cover"
+                  loading="lazy"
+                />
                 <div class="property-status">For Sale</div>
               </div>
               <div class="property-info">

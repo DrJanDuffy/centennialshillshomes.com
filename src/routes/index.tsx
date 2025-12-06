@@ -86,9 +86,10 @@ export default component$(() => {
             <div class="property-showcase">
               <div class="featured-property">
                 <img 
-                  src="/images/centennial-hills-home.jpg" 
-                  alt="Luxury home in Centennial Hills, Las Vegas"
+                  src="/images/modern-home-exterior.jpg" 
+                  alt="Modern luxury home in Centennial Hills, Las Vegas with desert landscaping and mountain views"
                   class="property-image"
+                  loading="eager"
                 />
                 <div class="property-overlay">
                   <div class="property-info">
@@ -228,11 +229,12 @@ export default component$(() => {
                       {property.status.replace('-', ' ')}
                     </span>
                   </div>
-                  <div class="property-image-placeholder">
-                    <svg class="w-full h-48 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"/>
-                    </svg>
-                  </div>
+                  <img 
+                    src="/images/modern-home-exterior.jpg" 
+                    alt={`${property.address} - ${property.beds} bed, ${property.baths} bath home in Centennial Hills`}
+                    class="w-full h-48 object-cover"
+                    loading="lazy"
+                  />
                 </div>
                 <div class="property-content p-6">
                   <div class="property-price text-2xl font-bold text-gray-900 mb-2">

@@ -76,16 +76,40 @@ export default component$(() => {
             comprehensive facilities and programs that enhance quality of life and create opportunities for 
             community engagement.
           </p>
+          <div class="my-8">
+            <img 
+              src="/images/fitness-center.jpg" 
+              alt="State-of-the-art fitness center in Centennial Hills community with modern equipment and pool views"
+              class="w-full h-auto rounded-lg shadow-lg"
+              loading="lazy"
+            />
+          </div>
           <p>
             Fitness facilities in community centers provide convenient access to exercise equipment and fitness 
             programs that support healthy lifestyles. Pools offer opportunities for swimming, water exercise, and 
             recreation that are particularly valuable in Las Vegas' warm climate.
           </p>
+          <div class="my-8">
+            <img 
+              src="/images/swimming-pool.jpg" 
+              alt="Resort-style swimming pool in Centennial Hills with lounge chairs and mountain views"
+              class="w-full h-auto rounded-lg shadow-lg"
+              loading="lazy"
+            />
+          </div>
           <p>
             Community center programs include fitness classes, recreational activities, and social events that 
             create opportunities for residents to connect with neighbors and engage with the community. These 
             programs enhance quality of life and create supportive community environments.
           </p>
+          <div class="my-8">
+            <img 
+              src="/images/community-lounge.jpg" 
+              alt="Modern community lounge in Centennial Hills with comfortable seating and contemporary design"
+              class="w-full h-auto rounded-lg shadow-lg"
+              loading="lazy"
+            />
+          </div>
 
           <h3>Trail Systems</h3>
           <p>
@@ -98,6 +122,48 @@ export default component$(() => {
             outdoor activities that support active lifestyles. These trails create safe, well-maintained routes that 
             encourage outdoor recreation and exercise.
           </p>
+
+          <h2>Recreational Facilities</h2>
+          <p>
+            Centennial Hills offers a variety of recreational facilities including sports courts, outdoor gathering spaces, 
+            and community amenities that support active lifestyles and social connections.
+          </p>
+
+          <h3>Sports Courts</h3>
+          <p>
+            The community features multiple sports courts including pickleball and bocce ball courts that provide 
+            opportunities for active recreation and social interaction. These facilities are well-maintained and 
+            available for resident use throughout the year.
+          </p>
+          <div class="my-8 grid md:grid-cols-2 gap-6">
+            <img 
+              src="/images/pickleball-courts.jpg" 
+              alt="Pickleball courts in Centennial Hills community with mountain views"
+              class="w-full h-auto rounded-lg shadow-lg"
+              loading="lazy"
+            />
+            <img 
+              src="/images/bocce-courts.jpg" 
+              alt="Bocce ball courts in Centennial Hills with modern lighting"
+              class="w-full h-auto rounded-lg shadow-lg"
+              loading="lazy"
+            />
+          </div>
+
+          <h3>Outdoor Gathering Spaces</h3>
+          <p>
+            Beautiful outdoor patios and gathering spaces provide residents with opportunities to enjoy the Las Vegas 
+            climate while socializing with neighbors and hosting events. These spaces feature fire pits, comfortable 
+            seating, and scenic views.
+          </p>
+          <div class="my-8">
+            <img 
+              src="/images/outdoor-patio.jpg" 
+              alt="Outdoor patio with fire pit and comfortable seating in Centennial Hills"
+              class="w-full h-auto rounded-lg shadow-lg"
+              loading="lazy"
+            />
+          </div>
 
           <h2>Shopping and Dining</h2>
           <p>

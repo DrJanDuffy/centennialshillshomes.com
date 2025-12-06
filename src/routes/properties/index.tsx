@@ -191,7 +191,12 @@ export default component$(() => {
           <div class="properties-grid">
             <div class="property-card">
               <div class="property-image">
-                <div class="placeholder-image">Property Image</div>
+                <img 
+                  src="/images/modern-home-exterior.jpg" 
+                  alt="Modern luxury home in Centennial Hills with desert landscaping"
+                  class="w-full h-64 object-cover"
+                  loading="lazy"
+                />
                 <div class="property-status">For Sale</div>
               </div>
               <div class="property-info">
@@ -207,7 +212,12 @@ export default component$(() => {
 
             <div class="property-card">
               <div class="property-image">
-                <div class="placeholder-image">Property Image</div>
+                <img 
+                  src="/images/clubhouse-exterior.jpg" 
+                  alt="Modern clubhouse building in Las Vegas community"
+                  class="w-full h-64 object-cover"
+                  loading="lazy"
+                />
                 <div class="property-status">For Sale</div>
               </div>
               <div class="property-info">
@@ -223,9 +233,12 @@ export default component$(() => {
 
             <div class="property-card">
               <div class="property-image">
-                <div class="placeholder-image">Property Image</div>
-                <div class="property-status">For Sale</div>
-              </div>
+                <img 
+                  src="/images/modern-home-exterior.jpg" 
+                  alt="Contemporary single-story home with modern architecture"
+                  class="w-full h-64 object-cover"
+                  loading="lazy"
+                />
               <div class="property-info">
                 <h3>Modern Home in The Ridges</h3>
                 <p class="property-price">$1,850,000</p>
