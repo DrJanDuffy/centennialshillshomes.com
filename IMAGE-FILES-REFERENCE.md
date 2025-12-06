@@ -63,8 +63,23 @@ This document lists all image files that should be added to `/public/images/` di
 
 12. **entrance-guardhouse.jpg**
     - Description: Modern guardhouse/entrance building with Summerlin branding, curved road, and mountain backdrop
-    - Use: Community entrance pages, security features
-    - Alt text: "Modern community entrance and guardhouse"
+    - Use: Community entrance pages, security features, Summerlin page
+    - Alt text: "Modern Summerlin community entrance with guardhouse and mountain views"
+
+13. **community-lounge-2.jpg**
+    - Description: Another modern lounge area with vaulted ceiling, fireplace, built-in cabinets, and elegant seating
+    - Use: The Ridges page, luxury community features
+    - Alt text: "Elegant community lounge in The Ridges with fireplace and modern design"
+
+14. **swimming-pool-2.jpg**
+    - Description: Large irregularly shaped pool with white lounge chairs, shaded structures, and scenic views
+    - Use: Summerlin page, amenities pages, lifestyle sections
+    - Alt text: "Luxury swimming pool with mountain views"
+
+15. **community-kitchen.jpg**
+    - Description: Modern communal kitchen with white marble island, bar stools, and contemporary design
+    - Use: Summerlin page, amenities pages, community centers
+    - Alt text: "Modern community kitchen and gathering space"
 
 ## Image Specifications
 
