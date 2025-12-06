@@ -1,0 +1,24 @@
+# Bun Configuration for Centennial Hills Homes
+# Optimized for Qwik + Vercel Edge Runtime
+
+[install]
+# Use production dependencies by default
+production = false
+# Use global cache for faster installs
+cache = true
+# Auto-install peer dependencies
+peer = true
+# Use lockfile for reproducible builds
+lockfile = true
+
+[install.scopes]
+# Configure scoped packages if needed
+
+[test]
+# Test configuration
+preload = []
+
+[run]
+# Runtime configuration
+bun = "bun"
+

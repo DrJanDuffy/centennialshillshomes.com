@@ -36,6 +36,13 @@ export default component$(() => {
         <h2>Personalized Service Philosophy</h2>
         <p>Dr. Janet Duffy believes in building long-term relationships with clients through personalized service, honest communication, and expert guidance. Whether you're buying your first home, upgrading to a luxury property, or investing in Las Vegas real estate, Dr. Duffy provides the expertise and dedication needed for successful outcomes.</p>
       </div>
+
+      {/* FAQ Section */}
+      <FAQSection 
+        faqs={realtorServiceFAQs}
+        title="Frequently Asked Questions About Dr. Jan Duffy"
+        className="bg-gray-50"
+      />
     </>
   );
 });

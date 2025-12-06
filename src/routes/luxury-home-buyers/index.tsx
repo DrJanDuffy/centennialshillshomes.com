@@ -2,6 +2,7 @@ import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import RealScoutOfficeListings from '../../components/realscout-office-listings';
 import RealScoutSearchWidget from '../../components/realscout-search-widget';
+import FAQSection, { buyerServiceFAQs } from '../../components/faq-section';
 
 export default component$(() => {
   return (
@@ -92,6 +93,13 @@ export default component$(() => {
         <h2>Concierge-Level Client Service</h2>
         <p>Experience personalized luxury service including private transportation, exclusive property tours, and connections to Las Vegas' finest service providers. Dr. Janet Duffy provides the attention to detail and discretion expected by luxury home buyers, ensuring a seamless and confidential transaction process.</p>
       </div>
+
+      {/* FAQ Section */}
+      <FAQSection 
+        faqs={buyerServiceFAQs}
+        title="Frequently Asked Questions for Luxury Home Buyers in Centennial Hills"
+        className="bg-gray-50"
+      />
     </>
   );
 });

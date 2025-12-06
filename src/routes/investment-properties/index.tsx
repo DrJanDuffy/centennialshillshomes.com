@@ -1,6 +1,7 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import RealScoutOfficeListings from '../../components/realscout-office-listings';
+import FAQSection, { investmentServiceFAQs } from '../../components/faq-section';
 
 export default component$(() => {
   return (
@@ -71,6 +72,13 @@ export default component$(() => {
         <h2>Investment Property Management</h2>
         <p>Access professional property management services and contractor networks to maintain and optimize your Las Vegas investment properties. Our connections help you find reliable tenants, manage maintenance issues, and maximize rental income while minimizing vacancies and expenses.</p>
       </div>
+
+      {/* FAQ Section */}
+      <FAQSection 
+        faqs={investmentServiceFAQs}
+        title="Frequently Asked Questions About Investment Properties in Centennial Hills"
+        className="bg-gray-50"
+      />
     </>
   );
 });

@@ -1,6 +1,7 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import RealScoutOfficeListings from '../../components/realscout-office-listings';
+import FAQSection, { buyerServiceFAQs } from '../../components/faq-section';
 
 export default component$(() => {
   return (
@@ -71,6 +72,13 @@ export default component$(() => {
         <h2>Step-by-Step Buying Process</h2>
         <p>Follow our detailed guide to the homebuying process from initial consultation through closing day. Dr. Janet Duffy provides personalized support, explains each step clearly, and ensures you understand all paperwork, inspections, and legal requirements involved in purchasing your first Las Vegas home.</p>
       </div>
+
+      {/* FAQ Section */}
+      <FAQSection 
+        faqs={buyerServiceFAQs}
+        title="Frequently Asked Questions for First-Time Homebuyers in Centennial Hills"
+        className="bg-gray-50"
+      />
     </>
   );
 });

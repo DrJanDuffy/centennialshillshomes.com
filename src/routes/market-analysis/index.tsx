@@ -1,5 +1,6 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
+import FAQSection, { realtorServiceFAQs } from '../../components/faq-section';
 
 export default component$(() => {
   return (
@@ -25,6 +26,13 @@ export default component$(() => {
         <h2>Future Market Projections</h2>
         <p>Forward-looking market analysis based on development plans, infrastructure projects, and demographic trends affecting Centennial Hills and Las Vegas real estate. Our projections help buyers, sellers, and investors make informed decisions about timing and strategy in the Las Vegas market.</p>
       </div>
+
+      {/* FAQ Section */}
+      <FAQSection 
+        faqs={realtorServiceFAQs}
+        title="Frequently Asked Questions About Las Vegas Market Analysis"
+        className="bg-gray-50"
+      />
     </>
   );
 });

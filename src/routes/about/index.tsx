@@ -1,5 +1,6 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
+import FAQSection, { realtorServiceFAQs } from '../../components/faq-section';
 
 export default component$(() => {
   return (
@@ -67,6 +68,13 @@ export default component$(() => {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <FAQSection 
+        faqs={realtorServiceFAQs}
+        title="Frequently Asked Questions About Dr. Jan Duffy's Services"
+        className="bg-gray-50"
+      />
 
       {/* CTA Section */}
       <section class="cta-section">

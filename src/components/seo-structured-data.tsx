@@ -1,7 +1,7 @@
 import { component$ } from '@builder.io/qwik';
 
 interface StructuredDataProps {
-  type: 'RealEstateAgent' | 'RealEstateListing' | 'LocalBusiness' | 'Organization' | 'Person' | 'Service' | 'Article' | 'WebPage' | 'SearchAction' | 'FAQPage' | 'BreadcrumbList';
+  type: 'RealEstateAgent' | 'RealEstateListing' | 'LocalBusiness' | 'Organization' | 'Person' | 'Service' | 'Article' | 'WebPage' | 'WebSite' | 'SearchAction' | 'FAQPage' | 'BreadcrumbList';
   data: any;
 }
 
@@ -131,6 +131,55 @@ export default component$<StructuredDataProps>(({ type, data }) => {
         return {
           ...baseData,
           "itemListElement": data.itemListElement || []
+        };
+
+      case 'Organization':
+        return {
+          ...baseData,
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": data.name || "Centennial Hills Real Estate | Homes by Dr. Jan Duffy",
+          "url": data.url || "https://www.centennialhillshomesforsale.com",
+          "logo": data.logo || "https://www.centennialhillshomesforsale.com/images/logo.png",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": data.telephone || "+1-702-903-1952",
+            "contactType": "Customer Service",
+            "areaServed": "US",
+            "availableLanguage": ["en", "es", "zh", "ko", "fr"]
+          },
+          "sameAs": data.sameAs || [
+            "https://www.instagram.com/drjanduffy/",
+            "https://www.youtube.com/@DrDuffy",
+            "https://www.pinterest.com/DrJanDuffy/",
+            "https://www.facebook.com/SummerlinNewHomesBHHS",
+            "https://www.linkedin.com/company/california-to-vegas-homes"
+          ]
+        };
+
+      case 'WebSite':
+        return {
+          ...baseData,
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": data.name || "Centennial Hills Real Estate",
+          "url": data.url || "https://www.centennialhillshomesforsale.com",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://www.centennialhillshomesforsale.com/search?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Centennial Hills Real Estate | Homes by Dr. Jan Duffy",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://www.centennialhillshomesforsale.com/images/logo.png"
+            }
+          }
         };
 
       default:

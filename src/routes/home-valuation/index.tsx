@@ -3,6 +3,7 @@ import type { DocumentHead } from '@builder.io/qwik-city';
 import RealScoutOfficeListings from '../../components/realscout-office-listings';
 import SEOStructuredData from '../../components/seo-structured-data';
 import { pageSchemas } from '../../components/seo-structured-data';
+import FAQSection, { sellerServiceFAQs } from '../../components/faq-section';
 
 export default component$(() => {
   // Schema data for home valuation service page
@@ -87,6 +88,13 @@ export default component$(() => {
         <h2>Valuation for Multiple Purposes</h2>
         <p>Our home valuation services support various needs including selling preparation, refinancing decisions, investment analysis, and estate planning. Whether you're considering selling your Centennial Hills home or need accurate values for financial planning, our comprehensive approach provides reliable results.</p>
       </div>
+
+      {/* FAQ Section */}
+      <FAQSection 
+        faqs={sellerServiceFAQs}
+        title="Frequently Asked Questions About Home Valuation in Centennial Hills"
+        className="bg-gray-50"
+      />
     </>
   );
 });

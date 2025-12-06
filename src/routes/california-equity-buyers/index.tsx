@@ -1,6 +1,7 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import RealScoutOfficeListings from '../../components/realscout-office-listings';
+import FAQSection, { californiaEquityBuyerFAQs } from '../../components/faq-section';
 
 export default component$(() => {
   return (
@@ -250,6 +251,13 @@ export default component$(() => {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <FAQSection 
+        faqs={californiaEquityBuyerFAQs}
+        title="Frequently Asked Questions for California Equity Buyers"
+        className="bg-gray-50"
+      />
     </>
   );
 });

@@ -2,6 +2,7 @@ import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import { HiHomeMini, HiMapPinMini, HiPhoneMini, HiStarMini } from '@qwikest/icons/heroicons';
 import { LuTrendingUp, LuCalendar, LuDollarSign, LuBarChart3 } from '@qwikest/icons/lucide';
+import FAQSection, { sellerServiceFAQs } from '../../components/faq-section';
 
 export default component$(() => {
   return (
@@ -631,6 +632,13 @@ export default component$(() => {
           }
         }
       `}</style>
+
+      {/* FAQ Section */}
+      <FAQSection 
+        faqs={sellerServiceFAQs}
+        title="Frequently Asked Questions About Selling Your Centennial Hills Home"
+        className="bg-gray-50"
+      />
     </>
   );
 });

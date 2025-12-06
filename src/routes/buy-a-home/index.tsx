@@ -4,6 +4,7 @@ import RealScoutOfficeListings from '../../components/realscout-office-listings'
 import RealScoutSearchWidget from '../../components/realscout-search-widget';
 import { HiHomeMini, HiMapPinMini, HiPhoneMini, HiStarMini } from '@qwikest/icons/heroicons';
 import { LuSearch, LuTrendingUp, LuUsers, LuCalendar } from '@qwikest/icons/lucide';
+import FAQSection, { buyerServiceFAQs } from '../../components/faq-section';
 
 export default component$(() => {
   return (
@@ -700,6 +701,13 @@ export default component$(() => {
           }
         }
       `}</style>
+
+      {/* FAQ Section */}
+      <FAQSection 
+        faqs={buyerServiceFAQs}
+        title="Frequently Asked Questions About Buying a Home in Centennial Hills"
+        className="bg-gray-50"
+      />
     </>
   );
 });

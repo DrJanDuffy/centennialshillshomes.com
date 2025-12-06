@@ -5,6 +5,7 @@ import type { RequestHandler } from '@builder.io/qwik-city';
  * Automatically includes all routes and updates lastmod dates
  */
 export const onGet: RequestHandler = ({ response }) => {
+  // 2025: Ensure HTTPS base URL
   const baseUrl = 'https://www.centennialhillshomesforsale.com';
   const currentDate = new Date().toISOString().split('T')[0];
 
@@ -80,18 +81,32 @@ export const onGet: RequestHandler = ({ response }) => {
     { path: '/local-business-optimization', priority: '0.6', changefreq: 'monthly' },
   ];
 
-  // Generate sitemap XML
+  // 2025: Enhanced sitemap with image support and better structure
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-${pages.map(page => `  <url>
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
+        http://www.google.com/schemas/sitemap-image/1.1
+        http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
+${pages.map(page => {
+    // 2025: Add images for key pages
+    const hasImages = ['/', '/centennial-hills-homes', '/properties', '/our-luxury-listings'].includes(page.path);
+    const imageTags = hasImages ? `
+    <image:image>
+      <image:loc>${baseUrl}/images/og-image.jpg</image:loc>
+      <image:title>Centennial Hills Real Estate | Dr. Jan Duffy</image:title>
+      <image:caption>Luxury homes in Centennial Hills, Las Vegas</image:caption>
+    </image:image>` : '';
+    
+    return `  <url>
     <loc>${baseUrl}${page.path}</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
-    <priority>${page.priority}</priority>
-  </url>`).join('\n')}
+    <priority>${page.priority}</priority>${imageTags}
+  </url>`;
+  }).join('\n')}
 </urlset>`;
 
   response.headers.set('Content-Type', 'application/xml; charset=utf-8');

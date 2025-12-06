@@ -6,15 +6,41 @@ import RealScoutOfficeListings from '../components/realscout-office-listings';
 import SEOStructuredData from '../components/seo-structured-data';
 import { centennialHillsProperties } from '../data/sample-properties';
 import { janetDuffyStructuredData } from '../components/seo-structured-data';
+import FAQSection, { realtorServiceFAQs } from '../components/faq-section';
 
 export default component$(() => {
 
   return (
     <>
-      {/* SEO Structured Data */}
+      {/* SEO Structured Data - 2025: Multiple schemas for better indexing */}
       <SEOStructuredData 
         type="RealEstateAgent" 
         data={janetDuffyStructuredData} 
+      />
+      {/* 2025: Organization schema for better brand recognition */}
+      <SEOStructuredData 
+        type="Organization" 
+        data={{
+          name: "Centennial Hills Real Estate | Homes by Dr. Jan Duffy",
+          url: "https://www.centennialhillshomesforsale.com",
+          logo: "https://www.centennialhillshomesforsale.com/images/logo.png",
+          telephone: "+1-702-903-1952",
+          sameAs: [
+            "https://www.instagram.com/drjanduffy/",
+            "https://www.youtube.com/@DrDuffy",
+            "https://www.pinterest.com/DrJanDuffy/",
+            "https://www.facebook.com/SummerlinNewHomesBHHS",
+            "https://www.linkedin.com/company/california-to-vegas-homes"
+          ]
+        }} 
+      />
+      {/* 2025: WebSite schema with SearchAction for sitelinks */}
+      <SEOStructuredData 
+        type="WebSite" 
+        data={{
+          name: "Centennial Hills Real Estate",
+          url: "https://www.centennialhillshomesforsale.com"
+        }} 
       />
 
       {/* Hero Section */}
@@ -408,6 +434,13 @@ export default component$(() => {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <FAQSection 
+        faqs={realtorServiceFAQs}
+        title="Frequently Asked Questions About Dr. Jan Duffy's Real Estate Services"
+        className="bg-gray-50"
+      />
+
       {/* Contact CTA Section */}
       <section class="cta-section">
         <div class="container mx-auto px-4 py-16">
@@ -441,8 +474,12 @@ export const head: DocumentHead = {
       content: 'Luxury real estate specialist serving West Summerlin\'s premier neighborhoods including ZIP codes 89138, 89144, and 89135. Dr. Jan Duffy, REALTOR® offers 30+ years of research expertise in luxury homes $400K-$750K. Specializing in Red Rock Country Club, The Ridges, and Summerlin West communities for California equity buyers and corporate relocations. Top 1% Las Vegas REALTOR® providing same-day showings and complimentary market analysis. Available 24/7 for executive clients and luxury home investments.',
     },
     {
-      name: 'keywords',
-      content: 'Centennial Hills real estate, Las Vegas homes for sale, luxury homes Las Vegas, new construction Las Vegas, Dr Janet Duffy, Northwest Las Vegas real estate, California equity buyers',
+      name: 'robots',
+      content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+    },
+    {
+      name: 'theme-color',
+      content: '#1a365d',
     },
     {
       property: 'og:title',

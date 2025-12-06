@@ -4,6 +4,7 @@ import MapsWidget from '../../components/maps-widget';
 import RealScoutOfficeListings from '../../components/realscout-office-listings';
 import SEOStructuredData from '../../components/seo-structured-data';
 import { pageSchemas } from '../../components/seo-structured-data';
+import FAQSection, { realtorServiceFAQs } from '../../components/faq-section';
 
 export default component$(() => {
   // Schema data for contact page
@@ -72,6 +73,13 @@ export default component$(() => {
         <h2>Client Testimonials and References</h2>
         <p>Dr. Janet Duffy's clients consistently rate her service as exceptional, citing her market expertise, attention to detail, and commitment to client success. Request references from recent clients to learn about their experience working with Dr. Duffy for their Las Vegas real estate transactions.</p>
       </div>
+
+      {/* FAQ Section */}
+      <FAQSection 
+        faqs={realtorServiceFAQs}
+        title="Frequently Asked Questions About Contacting Dr. Jan Duffy"
+        className="bg-gray-50"
+      />
     </>
   );
 });

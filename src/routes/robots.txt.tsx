@@ -2,10 +2,23 @@ import { component$ } from '@builder.io/qwik';
 import type { RequestHandler } from '@builder.io/qwik-city';
 
 export const onGet: RequestHandler = ({ response }) => {
-  const robotsTxt = `User-agent: *
+  // 2025: Enhanced robots.txt with best practices
+  const robotsTxt = `# 2025 Google Search Console Optimized robots.txt
+# Centennial Hills Real Estate - Dr. Jan Duffy
+
+User-agent: *
 Allow: /
 
-# Sitemaps
+# 2025: Allow all major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Sitemaps - 2025: HTTPS required
 Sitemap: https://www.centennialhillshomesforsale.com/sitemap.xml
 
 # Disallow test pages and development areas

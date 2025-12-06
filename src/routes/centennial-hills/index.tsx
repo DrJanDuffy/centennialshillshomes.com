@@ -5,6 +5,7 @@ import MapsWidget from '../../components/maps-widget';
 import SEOStructuredData from '../../components/seo-structured-data';
 import { centennialHillsProperties } from '../../data/sample-properties';
 import { pageSchemas } from '../../components/seo-structured-data';
+import FAQSection, { realtorServiceFAQs } from '../../components/faq-section';
 
 export default component$(() => {
   // Schema data for Centennial Hills neighborhood page
@@ -218,6 +219,13 @@ export default component$(() => {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <FAQSection 
+        faqs={realtorServiceFAQs}
+        title="Frequently Asked Questions About Real Estate in Centennial Hills"
+        className="bg-gray-50"
+      />
     </>
   );
 });
