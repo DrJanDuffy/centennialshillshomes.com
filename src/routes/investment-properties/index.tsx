@@ -55,13 +55,13 @@ export default component$(() => {
 
       <div class="container container-center">
         <h2>Strategic Real Estate Investment Opportunities</h2>
-        <p>Build wealth through Las Vegas real estate investments with Dr. Janet Duffy's expertise in investment property analysis and portfolio development. Our investment services cover rental properties, fix-and-flip opportunities, and long-term appreciation strategies in Centennial Hills and other high-growth Las Vegas neighborhoods.</p>
+        <p>Build wealth through Las Vegas real estate investments with Dr. Janet Duffy's expertise in investment property analysis and portfolio development. Our investment services cover rental properties, fix-and-flip opportunities, and long-term appreciation strategies in <a href="/centennial-hills">Centennial Hills</a> and other high-growth Las Vegas neighborhoods. Review our <a href="/market-analysis">market analysis</a> and <a href="/market-reports">market reports</a> to identify investment opportunities.</p>
 
         <h2>Investment Property Analysis</h2>
         <p>Receive comprehensive investment analysis including cash flow projections, cap rate calculations, and return on investment (ROI) estimates for Las Vegas properties. Our analysis covers rental market trends, vacancy rates, appreciation potential, and tax advantages to help you make informed investment decisions.</p>
 
         <h2>Rental Market Opportunities</h2>
-        <p>Explore Las Vegas rental property opportunities with strong tenant demand, favorable rental rates, and growth potential. Our rental market analysis covers Centennial Hills, Summerlin, and other areas with high rental demand from professionals, families, and seasonal residents seeking quality housing options.</p>
+        <p>Explore Las Vegas rental property opportunities with strong tenant demand, favorable rental rates, and growth potential. Our rental market analysis covers <a href="/centennial-hills">Centennial Hills</a>, <a href="/summerlin">Summerlin</a>, and other areas with high rental demand from professionals, families, and seasonal residents seeking quality housing options. Properties in these communities offer strong rental income potential and long-term appreciation.</p>
 
         <h2>Fix-and-Flip Investments</h2>
         <p>Identify fix-and-flip opportunities in Las Vegas neighborhoods with renovation potential and strong resale markets. Our expertise helps you find undervalued properties, estimate renovation costs, and project resale values to maximize your investment returns in the Las Vegas real estate market.</p>

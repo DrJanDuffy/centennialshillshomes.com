@@ -71,13 +71,13 @@ export default component$(() => {
 
       <div class="container container-center">
         <h2>Accurate Property Valuation Services</h2>
-        <p>Get a comprehensive home valuation for your Las Vegas property with Dr. Janet Duffy's expert analysis. Our valuation process combines MLS data, recent sales comparisons, market trends, and local expertise to provide accurate property values for Centennial Hills and surrounding Las Vegas neighborhoods.</p>
+        <p>Get a comprehensive home valuation for your Las Vegas property with Dr. Janet Duffy's expert analysis. Our valuation process combines MLS data, recent sales comparisons, market trends, and local expertise to provide accurate property values for <a href="/centennial-hills">Centennial Hills</a> and surrounding Las Vegas neighborhoods. Understanding your home's value is essential whether you're <a href="/sell-a-home">selling your home</a>, refinancing, or planning for the future. Our valuations are based on comprehensive <a href="/market-analysis">market analysis</a> and current <a href="/market-reports">market reports</a>.</p>
 
         <h2>Professional Valuation Methods</h2>
         <p>Our home valuation uses multiple approaches including comparative market analysis (CMA), automated valuation models (AVM), and local market expertise. We analyze recent sales, current listings, property condition, and neighborhood trends to determine the most accurate value for your Las Vegas home.</p>
 
         <h2>Centennial Hills Market Expertise</h2>
-        <p>Specialized knowledge of Centennial Hills real estate values, including understanding of neighborhood variations, community amenities, and market dynamics. Our valuations account for factors specific to northwest Las Vegas including proximity to Red Rock Canyon, school districts, and transportation access.</p>
+        <p>Specialized knowledge of <a href="/centennial-hills">Centennial Hills</a> real estate values, including understanding of neighborhood variations, community amenities, and market dynamics. Our valuations account for factors specific to northwest Las Vegas including proximity to Red Rock Canyon, school districts, and transportation access. Properties in different areas of Centennial Hills, such as <a href="/centennial-hills-89135">zip code 89135</a>, <a href="/centennial-hills-89138">89138</a>, and <a href="/centennial-hills-89144">89144</a>, have distinct characteristics that influence value. Our expertise in these areas ensures accurate valuations that reflect true market conditions.</p>
 
         <h2>Comprehensive Market Analysis</h2>
         <p>Receive detailed market analysis including recent comparable sales, current competition, market trends, and neighborhood statistics. Our valuation reports provide the data and insights needed for informed decisions about selling, refinancing, or investing in Las Vegas real estate.</p>

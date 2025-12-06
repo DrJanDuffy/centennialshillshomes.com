@@ -37,6 +37,7 @@ export default component$(() => {
           <h3>Step 1: Get a Home Valuation</h3>
           <p>
             Start with a professional home valuation to understand your property's current market value. 
+            Get your free <a href="/home-valuation">home valuation</a> and review our <a href="/market-analysis">market analysis</a> to understand current conditions. 
             Dr. Jan Duffy provides complimentary market analysis using her 30+ years of research expertise 
             and comprehensive market data.
           </p>
@@ -57,7 +58,8 @@ export default component$(() => {
           <h3>Step 4: Set the Right Price</h3>
           <p>
             Pricing is critical. Price too high and your home sits on the market. Price too low and you leave 
-            money on the table. Dr. Jan Duffy's data-driven pricing strategy helps you find the sweet spot.
+            money on the table. Review our <a href="/market-reports">market reports</a> and <a href="/market-analysis">market analysis</a> to understand pricing trends. 
+            Dr. Jan Duffy's data-driven pricing strategy helps you find the sweet spot.
           </p>
 
           <h3>Step 5: Market Your Home</h3>

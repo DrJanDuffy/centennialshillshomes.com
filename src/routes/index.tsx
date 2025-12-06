@@ -54,7 +54,7 @@ export default component$(() => {
               Find Your Dream Home in <span class="text-blue-600">Centennial Hills</span>
             </h1>
             <p class="hero-subtitle">
-              Luxury real estate specialist serving West Summerlin's premier neighborhoods including ZIP codes 89138, 89144, and 89135. Dr. Jan Duffy, REALTOR® offers 30+ years of research expertise in luxury homes $400K-$750K. Specializing in Red Rock Country Club, The Ridges, and Summerlin West communities for California equity buyers and corporate relocations. Top 1% Las Vegas REALTOR® providing same-day showings and complimentary market analysis. Available 24/7 for executive clients and luxury home investments.
+              Luxury real estate specialist serving West Summerlin's premier neighborhoods including ZIP codes 89138, 89144, and 89135. Dr. Jan Duffy, REALTOR® offers 30+ years of research expertise in luxury homes $400K-$750K. Specializing in <a href="/red-rock-country-club">Red Rock Country Club</a>, <a href="/the-ridges">The Ridges</a>, and <a href="/summerlin-west">Summerlin West</a> communities for <a href="/california-equity-buyers">California equity buyers</a> and <a href="/corporate-relocation-services">corporate relocations</a>. Top 1% Las Vegas REALTOR® providing same-day showings and complimentary <a href="/market-analysis">market analysis</a>. Available 24/7 for executive clients and luxury home investments.
             </p>
             <div class="hero-stats">
               <div class="stat">
@@ -270,7 +270,7 @@ export default component$(() => {
               Centennial Hills Market Overview
             </h2>
             <p class="text-lg text-gray-600">
-              Current market trends and statistics for Northwest Las Vegas
+              Current market trends and statistics for Northwest Las Vegas. For detailed insights, review our <a href="/centennial-hills-market-report">Centennial Hills market report</a> and <a href="/market-analysis">comprehensive market analysis</a>.
             </p>
           </div>
           
@@ -391,7 +391,7 @@ export default component$(() => {
               </div>
               <h3 class="text-xl font-semibold text-gray-900 mb-4">Local Expertise</h3>
               <p class="text-gray-600">
-                Deep knowledge of Centennial Hills, Summerlin, and Northwest Las Vegas communities
+                Deep knowledge of <a href="/centennial-hills">Centennial Hills</a>, <a href="/summerlin">Summerlin</a>, and Northwest Las Vegas communities
               </p>
             </div>
             
@@ -415,7 +415,7 @@ export default component$(() => {
               </div>
               <h3 class="text-xl font-semibold text-gray-900 mb-4">Market Analysis</h3>
               <p class="text-gray-600">
-                Comprehensive market insights and data-driven pricing strategies for maximum value
+                Comprehensive <a href="/market-analysis">market insights</a> and data-driven pricing strategies for maximum value. Review our <a href="/market-reports">market reports</a> for detailed analysis.
               </p>
             </div>
             
@@ -427,7 +427,7 @@ export default component$(() => {
               </div>
               <h3 class="text-xl font-semibold text-gray-900 mb-4">Luxury Specialists</h3>
               <p class="text-gray-600">
-                Expertise in high-end properties and California equity buyer relocations
+                Expertise in <a href="/luxury-home-sales">high-end properties</a> and <a href="/california-equity-buyers">California equity buyer relocations</a>
               </p>
             </div>
           </div>

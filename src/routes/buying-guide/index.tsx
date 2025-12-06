@@ -37,7 +37,7 @@ export default component$(() => {
           <h3>Step 1: Get Pre-Approved</h3>
           <p>
             Before you start looking at homes, get pre-approved for a mortgage. This helps you understand 
-            your budget and shows sellers you're a serious buyer. Dr. Jan Duffy can connect you with trusted 
+            your budget and shows sellers you're a serious buyer. Use our <a href="/affordability-calculator">affordability calculator</a> and <a href="/mortgage-calculator">mortgage calculator</a> to understand your purchasing power. Dr. Jan Duffy can connect you with trusted 
             lenders who understand the Las Vegas market.
           </p>
 
@@ -57,7 +57,7 @@ export default component$(() => {
           <h3>Step 4: Search for Properties</h3>
           <p>
             Use online tools, attend open houses, and work with your agent to find properties that match 
-            your criteria. Dr. Jan Duffy provides same-day showings and personalized property recommendations.
+            your criteria. Browse available <a href="/properties">properties</a>, search the <a href="/mls-search">MLS</a>, or explore homes in specific neighborhoods like <a href="/centennial-hills-homes">Centennial Hills</a> or <a href="/summerlin">Summerlin</a>. Dr. Jan Duffy provides same-day showings and personalized property recommendations.
           </p>
 
           <h3>Step 5: Make an Offer</h3>

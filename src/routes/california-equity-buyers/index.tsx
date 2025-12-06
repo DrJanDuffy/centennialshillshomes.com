@@ -63,7 +63,7 @@ export default component$(() => {
               <p>
                 Dr. Janet Duffy specializes in helping California residents leverage their home equity 
                 to purchase property in Nevada. With deep understanding of both markets, tax implications, 
-                and financing options, we help Californians make smart real estate investments.
+                and financing options, we help Californians make smart real estate investments. Explore premier communities like <a href="/centennial-hills">Centennial Hills</a>, <a href="/summerlin">Summerlin</a>, and <a href="/red-rock-country-club">Red Rock Country Club</a> that are popular with California equity buyers. For corporate relocations, see our <a href="/corporate-relocation-services">corporate relocation services</a>.
               </p>
               
               <h3>Why California Residents Choose Nevada</h3>

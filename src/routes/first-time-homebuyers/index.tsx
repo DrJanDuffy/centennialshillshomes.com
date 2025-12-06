@@ -55,7 +55,7 @@ export default component$(() => {
 
       <div class="container container-center">
         <h2>Your Complete First-Time Homebuyer Journey</h2>
-        <p>Navigate the Las Vegas real estate market with confidence as a first-time homebuyer. Dr. Janet Duffy provides comprehensive guidance through every step of the homebuying process, from pre-approval to closing, with specialized expertise in Centennial Hills and northwest Las Vegas neighborhoods perfect for first-time buyers.</p>
+        <p>Navigate the Las Vegas real estate market with confidence as a first-time homebuyer. Dr. Janet Duffy provides comprehensive guidance through every step of the homebuying process, from pre-approval to closing, with specialized expertise in <a href="/centennial-hills">Centennial Hills</a> and northwest Las Vegas neighborhoods perfect for first-time buyers. Read our comprehensive <a href="/buying-guide">buying guide</a> for detailed step-by-step information about the entire process.</p>
 
         <h2>First-Time Buyer Programs and Assistance</h2>
         <p>Discover first-time homebuyer programs available in Las Vegas including down payment assistance, low-interest loans, and government-backed financing options. We help you understand eligibility requirements, application processes, and how to maximize available programs to make your first home purchase more affordable.</p>
@@ -67,7 +67,7 @@ export default component$(() => {
         <p>Get expert guidance on financial preparation for homeownership including credit improvement, debt management, and savings strategies. We help you understand all costs associated with buying a home beyond the purchase price, including closing costs, insurance, and ongoing maintenance expenses.</p>
 
         <h2>Neighborhood Selection for First-Time Buyers</h2>
-        <p>Explore Las Vegas neighborhoods ideal for first-time buyers, with special focus on Centennial Hills' family-friendly communities, excellent schools, and recreational amenities. We provide detailed neighborhood comparisons, commute analysis, and lifestyle considerations to help you choose the perfect area for your first home.</p>
+        <p>Explore Las Vegas neighborhoods ideal for first-time buyers, with special focus on <a href="/centennial-hills">Centennial Hills</a>' family-friendly communities, excellent <a href="/centennial-hills-schools">schools</a>, and <a href="/centennial-hills-amenities">recreational amenities</a>. We provide detailed neighborhood comparisons, commute analysis, and lifestyle considerations to help you choose the perfect area for your first home. Compare <a href="/homes-under-400k">homes under $400K</a> and <a href="/homes-400k-600k">homes $400K-$600K</a> that are perfect for first-time buyers.</p>
 
         <h2>Step-by-Step Buying Process</h2>
         <p>Follow our detailed guide to the homebuying process from initial consultation through closing day. Dr. Janet Duffy provides personalized support, explains each step clearly, and ensures you understand all paperwork, inspections, and legal requirements involved in purchasing your first Las Vegas home.</p>

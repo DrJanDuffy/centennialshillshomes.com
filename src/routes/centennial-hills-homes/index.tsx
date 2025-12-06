@@ -74,14 +74,14 @@ export default component$(() => {
                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
               </svg>
               <h3>Master-Planned Community</h3>
-              <p>Centennial Hills is a carefully planned community featuring modern amenities, well-maintained parks, and family-friendly neighborhoods. The area boasts excellent schools, recreational facilities, and a strong sense of community that makes it ideal for families and professionals.</p>
+              <p>Centennial Hills is a carefully planned community featuring modern <a href="/centennial-hills-amenities">amenities</a>, well-maintained parks, and family-friendly neighborhoods. The area boasts excellent <a href="/centennial-hills-schools">schools</a>, recreational facilities, and a strong sense of community that makes it ideal for families and professionals. Learn more about the <a href="/centennial-hills">Centennial Hills community</a> and what makes it special.</p>
             </div>
             <div class="feature-card">
               <svg class="feature-icon" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" clip-rule="evenodd"/>
               </svg>
               <h3>Strong Investment Potential</h3>
-              <p>Centennial Hills real estate has shown consistent appreciation and strong market performance. With new developments, infrastructure improvements, and growing demand, Centennial Hills homes represent excellent long-term investment opportunities.</p>
+              <p>Centennial Hills real estate has shown consistent appreciation and strong market performance. With new developments, infrastructure improvements, and growing demand, Centennial Hills homes represent excellent long-term investment opportunities. Review our <a href="/centennial-hills-market-report">Centennial Hills market report</a> and <a href="/market-analysis">market analysis</a> to understand investment potential. Explore <a href="/investment-properties">investment property opportunities</a> in the area.</p>
             </div>
             <div class="feature-card">
               <svg class="feature-icon" fill="currentColor" viewBox="0 0 20 20">
@@ -142,6 +142,7 @@ export default component$(() => {
       <section class="market-analysis">
         <div class="container container-center">
           <h2>Centennial Hills Real Estate Market Analysis</h2>
+          <p>Understanding market conditions helps buyers make informed decisions. For comprehensive market insights, review our <a href="/centennial-hills-market-report">detailed Centennial Hills market report</a> and <a href="/market-analysis">comprehensive market analysis</a>. These reports provide data-driven insights into pricing trends, inventory levels, and future projections for Centennial Hills real estate.</p>
           <div class="market-stats">
             <div class="stat-card">
               <svg class="stat-icon" fill="currentColor" viewBox="0 0 20 20">

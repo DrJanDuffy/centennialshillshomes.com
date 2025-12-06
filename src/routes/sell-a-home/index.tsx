@@ -144,6 +144,7 @@ export default component$(() => {
       <section class="market-performance">
         <div class="container container-center">
           <h2>Centennial Hills Market Performance</h2>
+          <p>Understanding market performance helps sellers set realistic expectations and optimize pricing strategies. For comprehensive market data, review our <a href="/market-analysis">detailed market analysis</a> and <a href="/centennial-hills-market-report">Centennial Hills market reports</a> to understand current conditions and trends.</p>
           <div class="performance-stats">
             <div class="stat-card">
               <LuTrendingUp class="stat-icon" />
@@ -188,7 +189,7 @@ export default component$(() => {
             <div class="resource-card">
               <LuBarChart3 class="resource-icon" />
               <h3>Market Reports</h3>
-              <p>Access detailed Centennial Hills market reports including recent sales, price trends, and neighborhood insights.</p>
+              <p>Access detailed Centennial Hills market reports including recent sales, price trends, and neighborhood insights. Review our <a href="/market-reports">comprehensive market reports</a> and <a href="/market-analysis">market analysis</a> to understand current market conditions.</p>
               <a href="/market-reports" class="btn btn-outline">View Reports</a>
             </div>
 

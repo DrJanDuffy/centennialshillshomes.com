@@ -39,7 +39,8 @@ export default component$(() => {
             including price movements, inventory levels, days on market, and sales volume. These reports 
             help buyers, sellers, and investors make informed decisions based on current market conditions 
             and data-driven insights. Dr. Jan Duffy's 30+ years of research expertise ensures that these 
-            reports provide accurate, actionable information that supports successful real estate decisions.
+            reports provide accurate, actionable information that supports successful real estate decisions. 
+            For detailed neighborhood-specific insights, review our <a href="/centennial-hills-market-report">Centennial Hills market report</a> and <a href="/market-analysis">comprehensive market analysis</a>.
           </p>
           <p>
             Each quarterly report analyzes the previous three months of market activity, identifying trends, 
@@ -93,7 +94,7 @@ export default component$(() => {
             <strong>Neighborhood-Specific Analysis:</strong> Las Vegas is a diverse market with significant 
             variation between neighborhoods. Our reports include neighborhood-specific analysis that helps 
             readers understand how different areas are performing. This analysis is particularly valuable 
-            for buyers and sellers who need to understand their specific market area.
+            for buyers and sellers who need to understand their specific market area. Explore detailed reports for <a href="/centennial-hills">Centennial Hills</a>, <a href="/summerlin">Summerlin</a>, and other premier communities to understand local market conditions.
           </p>
           <p>
             <strong>Price Range Breakdowns:</strong> Different price ranges can perform differently in the 

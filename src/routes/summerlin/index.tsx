@@ -45,7 +45,7 @@ export default component$(() => {
             a sophisticated lifestyle with world-class amenities, excellent schools, and beautiful natural surroundings. 
             Since its inception in the 1990s, Summerlin has grown into one of the most prestigious and desirable 
             communities in the Las Vegas Valley, attracting families, professionals, and luxury homebuyers from 
-            around the world.
+            around the world. Compare Summerlin to <a href="/centennial-hills-vs-summerlin">Centennial Hills</a> to understand the differences between these premier communities.
           </p>
           <p>
             The community's master-planned design ensures thoughtful development that balances residential, 
@@ -72,10 +72,10 @@ export default component$(() => {
           <h3>Summerlin West</h3>
           <p>
             Summerlin West represents the pinnacle of luxury living in Summerlin, featuring exclusive gated 
-            communities like The Ridges and Red Rock Country Club. This area offers luxury estates, golf course 
-            living, and proximity to Red Rock Canyon National Conservation Area. Properties in Summerlin West 
+            communities like <a href="/the-ridges">The Ridges</a> and <a href="/red-rock-country-club">Red Rock Country Club</a>. This area offers luxury estates, golf course 
+            living, and proximity to Red Rock Canyon National Conservation Area. Properties in <a href="/summerlin-west">Summerlin West</a> 
             typically range from $1 million to over $10 million, attracting executives, professionals, and 
-            luxury homebuyers seeking the ultimate in Las Vegas living.
+            luxury homebuyers seeking the ultimate in Las Vegas living. Explore <a href="/golf-course-homes">golf course homes</a> and <a href="/homes-over-1m">luxury properties over $1M</a> in this exclusive area.
           </p>
           <p>
             The area's luxury communities feature custom architecture, premium finishes, and extensive 

@@ -240,6 +240,7 @@ export default component$(() => {
       <section class="market-insights">
         <div class="container container-center">
           <h2>Centennial Hills Market Insights for Buyers</h2>
+          <p>Understanding current market conditions helps buyers make informed decisions. For detailed market analysis, explore our <a href="/market-analysis">comprehensive market analysis</a> and <a href="/centennial-hills-market-report">Centennial Hills market reports</a> to understand pricing trends, inventory levels, and future projections.</p>
           <div class="insights-grid">
             <div class="insight-card">
               <LuTrendingUp class="insight-icon" />
@@ -277,22 +278,22 @@ export default component$(() => {
             <div class="resource-card">
               <LuSearch class="resource-icon" />
               <h3>MLS Search</h3>
-              <p>Access the complete database of Centennial Hills homes for sale with advanced search filters and real-time updates.</p>
+              <p>Access the complete database of Centennial Hills homes for sale with advanced search filters and real-time updates. Browse all available <a href="/properties">properties</a> or use our <a href="/mls-search">advanced MLS search</a> to find your perfect home.</p>
               <a href="/mls-search" class="btn btn-outline">Search MLS</a>
             </div>
 
             <div class="resource-card">
               <HiMapPinMini class="resource-icon" />
               <h3>Neighborhood Guides</h3>
-              <p>Comprehensive guides to Centennial Hills neighborhoods, including schools, amenities, and local attractions.</p>
-              <a href="/neighborhood-guides" class="btn btn-outline">View Guides</a>
+              <p>Comprehensive guides to Centennial Hills neighborhoods, including schools, amenities, and local attractions. Explore <a href="/centennial-hills">Centennial Hills</a>, <a href="/summerlin">Summerlin</a>, <a href="/the-ridges">The Ridges</a>, and other premier communities.</p>
+              <a href="/neighborhoods" class="btn btn-outline">View Neighborhoods</a>
             </div>
 
             <div class="resource-card">
               <LuCalendar class="resource-icon" />
               <h3>Home Buying Guide</h3>
-              <p>Step-by-step guide to the home buying process, from pre-approval to closing on your Centennial Hills home.</p>
-              <a href="/home-buying-guide" class="btn btn-outline">Read Guide</a>
+              <p>Step-by-step guide to the home buying process, from pre-approval to closing on your Centennial Hills home. Read our comprehensive <a href="/buying-guide">buying guide</a> for detailed information about the entire process.</p>
+              <a href="/buying-guide" class="btn btn-outline">Read Guide</a>
             </div>
 
             <div class="resource-card">

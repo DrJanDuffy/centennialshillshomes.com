@@ -119,7 +119,8 @@ export default component$(() => {
               <p>
                 Dr. Duffy provides expert guidance for real estate investors seeking to build or expand their 
                 investment portfolios in Las Vegas. Her expertise in investment analysis, rental markets, and 
-                property values helps investors identify opportunities and make informed investment decisions.
+                property values helps investors identify opportunities and make informed investment decisions. 
+                Explore <a href="/investment-properties">investment property opportunities</a> and review our <a href="/market-analysis">market analysis</a> for investment insights.
               </p>
               <p>
                 Investment property guidance includes analyzing rental potential, cash flow projections, 
@@ -141,31 +142,31 @@ export default component$(() => {
 
               <h3>Centennial Hills</h3>
               <p>
-                Centennial Hills is a master-planned community in northwest Las Vegas that offers excellent value, 
+                <a href="/centennial-hills">Centennial Hills</a> is a master-planned community in northwest Las Vegas that offers excellent value, 
                 new construction, and family-friendly neighborhoods. Dr. Duffy's expertise in Centennial Hills 
-                helps clients understand the area's growth, amenities, and property values.
+                helps clients understand the area's growth, <a href="/centennial-hills-amenities">amenities</a>, and property values. Explore <a href="/centennial-hills-homes">available Centennial Hills homes</a> and learn about <a href="/centennial-hills-schools">area schools</a>.
               </p>
 
               <h3>Red Rock Country Club</h3>
               <p>
-                Red Rock Country Club is a premier golf course community featuring luxury homes, championship 
+                <a href="/red-rock-country-club">Red Rock Country Club</a> is a premier golf course community featuring luxury homes, championship 
                 golf, and resort-style amenities. Dr. Duffy's expertise in golf course communities helps clients 
-                understand the benefits and value of golf course living.
+                understand the benefits and value of golf course living. Explore <a href="/golf-course-homes">golf course homes</a> in this exclusive community.
               </p>
 
               <h3>The Ridges</h3>
               <p>
-                The Ridges is one of Las Vegas' most exclusive gated communities, featuring luxury estates, 
+                <a href="/the-ridges">The Ridges</a> is one of Las Vegas' most exclusive gated communities, featuring luxury estates, 
                 private golf course access, and stunning mountain views. Dr. Duffy's expertise in luxury 
                 communities helps clients navigate the exclusive market and find properties that match their 
-                preferences.
+                preferences. View <a href="/homes-over-1m">luxury homes over $1M</a> in The Ridges.
               </p>
 
               <h3>Summerlin West</h3>
               <p>
-                Summerlin West is the premier section of the master-planned Summerlin community, offering luxury 
+                <a href="/summerlin-west">Summerlin West</a> is the premier section of the master-planned <a href="/summerlin">Summerlin</a> community, offering luxury 
                 homes, excellent schools, and world-class amenities. Dr. Duffy's expertise in Summerlin helps 
-                clients understand the area's established reputation and comprehensive amenities.
+                clients understand the area's established reputation and comprehensive amenities. Compare <a href="/centennial-hills-vs-summerlin">Centennial Hills vs Summerlin</a> to understand the differences.
               </p>
 
               <h2>Why Choose Dr. Jan Duffy</h2>
