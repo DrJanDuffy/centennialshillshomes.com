@@ -48,8 +48,6 @@ interface MapsWidgetProps {
 export default component$<MapsWidgetProps>((props) => {
   const mapRef = useSignal<HTMLDivElement>();
   const searchRef = useSignal<HTMLInputElement>();
-  const markerRef = useSignal<HTMLDivElement>();
-  const infowindowRef = useSignal<HTMLDivElement>();
   const mapLoaded = useSignal(false);
   const currentPlace = useSignal<any>(null);
 
@@ -69,9 +67,6 @@ export default component$<MapsWidgetProps>((props) => {
     class: className = "",
     // SEO props with defaults
     ariaLabel = "Interactive map showing properties and neighborhoods",
-    ariaDescription = "Use this interactive map to explore available properties, neighborhood boundaries, school districts, and recent sales data",
-    locationName = "Las Vegas",
-    canonicalUrl = "",
   } = props;
 
   useVisibleTask$(async ({ track }) => {
@@ -262,7 +257,7 @@ export default component$<MapsWidgetProps>((props) => {
         });
 
         // Add neighborhood labels
-        const neighborhoodLabel = new google.maps.InfoWindow({
+        new google.maps.InfoWindow({
           content: `
             <div style="padding: 8px; text-align: center;">
               <h4 style="margin: 0; color: #1f2937;">Centennial Hills</h4>
@@ -406,7 +401,7 @@ export default component$<MapsWidgetProps>((props) => {
             aria-label="Search for properties and locations"
             aria-describedby="map-description"
             role="searchbox"
-            autocomplete="address"
+            autocomplete="street-address"
           />
         </div>
       )}
@@ -451,7 +446,7 @@ export default component$<MapsWidgetProps>((props) => {
         role="application"
         aria-label={ariaLabel}
         aria-describedby="map-description"
-        tabindex="0"
+        tabIndex={0}
         id="interactive-map"
       >
         {!mapLoaded.value && (

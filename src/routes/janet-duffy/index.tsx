@@ -2,6 +2,7 @@ import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import SEOStructuredData from '../../components/seo-structured-data';
 import { pageSchemas } from '../../components/seo-structured-data';
+import FAQSection, { realtorServiceFAQs } from '../../components/faq-section';
 
 export default component$(() => {
   // Schema data for Dr. Janet Duffy person page

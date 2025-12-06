@@ -6,20 +6,21 @@ import { centennialHillsProperties } from '../../../data/sample-properties';
 
 export default component$(() => {
   const searchQuery = useSignal('');
-  const priceRange = useSignal({ min: 300000, max: 750000 });
-  const bedrooms = useSignal(3);
-  const bathrooms = useSignal(2);
+  const priceMin = useSignal('300000');
+  const priceMax = useSignal('750000');
+  const bedrooms = useSignal('3');
+  const bathrooms = useSignal('2');
   const squareFeet = useSignal(2000);
   const downPayment = useSignal(20);
   const interestRate = useSignal(6.5);
-  const loanTerm = useSignal(30);
+  const loanTerm = useSignal('30');
   const monthlyPayment = useSignal(0);
   const affordabilityScore = useSignal(0);
 
   const calculateAffordability = $(() => {
-    const loanAmount = (priceRange.value.max * (100 - downPayment.value)) / 100;
+    const loanAmount = (parseInt(priceMax.value) * (100 - downPayment.value)) / 100;
     const monthlyRate = interestRate.value / 100 / 12;
-    const numPayments = loanTerm.value * 12;
+    const numPayments = parseInt(loanTerm.value) * 12;
     
     if (monthlyRate === 0) {
       monthlyPayment.value = loanAmount / numPayments;
@@ -45,10 +46,10 @@ export default component$(() => {
       // Filter sample properties based on search criteria
       const filteredProperties = centennialHillsProperties.filter(property => {
         const price = parseInt(property.price.replace(/,/g, ''));
-        return price >= priceRange.value.min && 
-               price <= priceRange.value.max &&
-               property.beds >= bedrooms.value &&
-               property.baths >= bathrooms.value &&
+        return price >= parseInt(priceMin.value) && 
+               price <= parseInt(priceMax.value) &&
+               property.beds >= parseInt(bedrooms.value) &&
+               property.baths >= parseInt(bathrooms.value) &&
                property.sqft >= squareFeet.value;
       });
       
@@ -97,14 +98,14 @@ export default component$(() => {
                   <div class="range-inputs">
                     <input 
                       type="number" 
-                      bind:value={priceRange.value.min}
+                      bind:value={priceMin}
                       class="form-input"
                       placeholder="Min Price"
                     />
                     <span>to</span>
                     <input 
                       type="number" 
-                      bind:value={priceRange.value.max}
+                      bind:value={priceMax}
                       class="form-input"
                       placeholder="Max Price"
                     />
@@ -204,7 +205,7 @@ export default component$(() => {
                   <label>Home Price</label>
                   <input 
                     type="number" 
-                    bind:value={priceRange.value.max}
+                    bind:value={priceMax}
                     class="form-input"
                     placeholder="750000"
                   />

@@ -5,8 +5,8 @@ import { LuTrendingUp, LuCalendar, LuDollarSign, LuBarChart3, LuTarget } from '@
 
 export default component$(() => {
   const propertyType = useSignal('single-family');
-  const bedrooms = useSignal(3);
-  const bathrooms = useSignal(2);
+  const bedrooms = useSignal('3');
+  const bathrooms = useSignal('2');
   const squareFeet = useSignal(2000);
   const lotSize = useSignal(0.25);
   const yearBuilt = useSignal(2015);
@@ -34,8 +34,8 @@ export default component$(() => {
     let basePrice = squareFeet.value * 200; // $200 per sq ft base
     
     // Adjust for bedrooms/bathrooms
-    basePrice += bedrooms.value * 10000;
-    basePrice += bathrooms.value * 15000;
+    basePrice += parseInt(bedrooms.value) * 10000;
+    basePrice += parseInt(bathrooms.value) * 15000;
     
     // Adjust for lot size
     basePrice += lotSize.value * 50000;

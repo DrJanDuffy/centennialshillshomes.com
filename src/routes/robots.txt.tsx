@@ -1,7 +1,7 @@
 import { component$ } from '@builder.io/qwik';
 import type { RequestHandler } from '@builder.io/qwik-city';
 
-export const onGet: RequestHandler = ({ response }) => {
+export const onGet: RequestHandler = (ev) => {
   // 2025: Enhanced robots.txt with best practices
   const robotsTxt = `# 2025 Google Search Console Optimized robots.txt
 # Centennial Hills Real Estate - Dr. Jan Duffy
@@ -67,8 +67,8 @@ Allow: /search/
 # Crawl delay for better server performance
 Crawl-delay: 1`;
 
-  response.headers.set('Content-Type', 'text/plain');
-  return robotsTxt;
+  ev.headers.set('Content-Type', 'text/plain');
+  ev.text(200, robotsTxt);
 };
 
 

@@ -12,7 +12,7 @@ export default component$(() => {
   useStyles$(styles);
   
   const location = useLocation();
-  const pathname = location.pathname || '';
+  const pathname = location.url.pathname || '';
   
   // Generate breadcrumbs based on current path
   const generateBreadcrumbs = (): BreadcrumbItem[] => {

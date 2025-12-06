@@ -4,7 +4,7 @@ import type { RequestHandler } from '@builder.io/qwik-city';
  * Dynamic sitemap.xml generator
  * Automatically includes all routes and updates lastmod dates
  */
-export const onGet: RequestHandler = ({ response }) => {
+export const onGet: RequestHandler = (ev) => {
   // 2025: Ensure HTTPS base URL
   const baseUrl = 'https://www.centennialhillshomesforsale.com';
   const currentDate = new Date().toISOString().split('T')[0];
@@ -161,7 +161,7 @@ ${pages.map(page => {
   }).join('\n')}
 </urlset>`;
 
-  response.headers.set('Content-Type', 'application/xml; charset=utf-8');
-  response.headers.set('Cache-Control', 'public, max-age=3600, s-maxage=3600');
-  return sitemap;
+  ev.headers.set('Content-Type', 'application/xml; charset=utf-8');
+  ev.headers.set('Cache-Control', 'public, max-age=3600, s-maxage=3600');
+  ev.text(200, sitemap);
 };

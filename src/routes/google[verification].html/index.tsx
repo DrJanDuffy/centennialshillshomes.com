@@ -10,14 +10,14 @@ import type { RequestHandler } from '@builder.io/qwik-city';
  * 
  * 2. Meta tag method: Add to router-head.tsx (already supported via env var)
  */
-export const onGet: RequestHandler = async ({ response, env }) => {
+export const onGet: RequestHandler = async (ev) => {
   // Get verification code from environment variable
-  const verificationCode = env.get('PUBLIC_GOOGLE_VERIFICATION') || 
+  const verificationCode = ev.env.get('PUBLIC_GOOGLE_VERIFICATION') || 
                           import.meta.env.PUBLIC_GOOGLE_VERIFICATION;
 
   if (!verificationCode) {
-    response.status = 404;
-    return 'Verification file not found';
+    ev.html(404, 'Verification file not found');
+    return;
   }
 
   // Return HTML file with verification meta tag
@@ -33,7 +33,6 @@ export const onGet: RequestHandler = async ({ response, env }) => {
 </body>
 </html>`;
 
-  response.headers.set('Content-Type', 'text/html; charset=utf-8');
-  return html;
+  ev.html(200, html);
 };
 
