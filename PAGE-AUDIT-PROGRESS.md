@@ -8,7 +8,7 @@
 
 ## Status: In Progress
 
-### Pages Expanded (29 pages - 1500+ words, proper structure):
+### Pages Expanded (32 pages - 1500+ words, proper structure):
 1. ✅ The Ridges (`src/routes/the-ridges/index.tsx`)
 2. ✅ Corporate Relocation Services (`src/routes/corporate-relocation-services/index.tsx`)
 3. ✅ Centennial Hills Schools (`src/routes/centennial-hills-schools/index.tsx`)
@@ -38,8 +38,11 @@
 27. ✅ Terms of Service (`src/routes/terms-of-service/index.tsx`)
 28. ✅ Fair Housing (`src/routes/fair-housing/index.tsx`)
 29. ✅ Accessibility (`src/routes/accessibility/index.tsx`)
+30. ✅ Contact (`src/routes/contact/index.tsx`)
+31. ✅ Properties (`src/routes/properties/index.tsx`)
+32. ✅ Centennial Hills (`src/routes/centennial-hills/index.tsx`)
 
-### Pages Needing Expansion (56 pages remaining):
+### Pages Needing Expansion (53 pages remaining):
 - Legal pages: Privacy Policy, Terms of Service, Fair Housing, Accessibility
 - Existing pages: About, Buy a Home, Sell a Home, Contact, Properties, etc.
 - And many more existing pages...
