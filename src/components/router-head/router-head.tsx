@@ -62,9 +62,12 @@ export const RouterHead = component$(() => {
         <link key={l.key} {...l} />
       ))}
 
-      {head.styles.map((s) => (
-        <style key={s.key} {...s.props} dangerouslySetInnerHTML={s.style} />
-      ))}
+      {head.styles.map((s) => {
+        const { dangerouslySetInnerHTML, ...otherProps } = s.props || {};
+        return (
+          <style key={s.key} {...otherProps} dangerouslySetInnerHTML={s.style} />
+        );
+      })}
 
       {/* Google Analytics 4 - 2025: Enhanced with Core Web Vitals */}
       {gaTrackingId && (
