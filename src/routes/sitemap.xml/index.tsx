@@ -5,7 +5,7 @@ import type { RequestHandler } from '@builder.io/qwik-city';
  * Automatically includes all routes and updates lastmod dates
  */
 export const onGet: RequestHandler = (ev) => {
-  // 2025: Ensure HTTPS base URL
+  // 2025: Ensure HTTPS base URL with www (required for Vercel)
   const baseUrl = 'https://www.centennialhillshomesforsale.com';
   const currentDate = new Date().toISOString().split('T')[0];
 
@@ -132,6 +132,9 @@ export const onGet: RequestHandler = (ev) => {
     { path: '/faq', priority: '0.6', changefreq: 'monthly' },
     { path: '/local-business-optimization', priority: '0.6', changefreq: 'monthly' },
   ];
+
+  // Sort pages by priority (highest first) for better SEO
+  pages.sort((a, b) => parseFloat(b.priority) - parseFloat(a.priority));
 
   // 2025: Enhanced sitemap with image support and better structure
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
