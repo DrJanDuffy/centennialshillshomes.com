@@ -20,5 +20,5 @@ preload = []
 
 [run]
 # Runtime configuration
-bun = "bun"
+# bun = true  # Commented out - not a valid option
 
