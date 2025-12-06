@@ -63,13 +63,22 @@ export const RouterHead = component$(() => {
       ))}
 
       {head.styles.map((s) => {
-        // Extract only safe props (excluding dangerouslySetInnerHTML)
-        const props = s.props || {};
-        const { dangerouslySetInnerHTML, ...safeProps } = props;
-        // Only spread safe props, then set dangerouslySetInnerHTML explicitly
-        return (
-          <style key={s.key} {...safeProps} dangerouslySetInnerHTML={s.style} />
-        );
+        // Build style props object, ensuring dangerouslySetInnerHTML is only set once
+        const styleProps: Record<string, any> = {};
+        
+        // Add other props if they exist (excluding dangerouslySetInnerHTML)
+        if (s.props) {
+          Object.keys(s.props).forEach((key) => {
+            if (key !== 'dangerouslySetInnerHTML') {
+              styleProps[key] = s.props![key];
+            }
+          });
+        }
+        
+        // Set dangerouslySetInnerHTML from s.style
+        styleProps.dangerouslySetInnerHTML = s.style;
+        
+        return <style key={s.key} {...styleProps} />;
       })}
 
       {/* Google Analytics 4 - 2025: Enhanced with Core Web Vitals */}
