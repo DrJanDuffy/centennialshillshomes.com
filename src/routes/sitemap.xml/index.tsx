@@ -91,8 +91,35 @@ export const onGet: RequestHandler = (ev) => {
     { loc: '/terms-of-service', priority: 0.3, changefreq: 'yearly', lastmod: currentDate },
   ];
 
-  // Generate sitemap using helper function (matches Qwik docs pattern)
+  // CRITICAL: Verify entries array has content
+  if (!entries || entries.length === 0) {
+    // Emergency fallback - create minimal sitemap
+    entries = [{ loc: '/', priority: 1, changefreq: 'weekly', lastmod: currentDate }];
+  }
+
+  // Generate sitemap using helper function
   const sitemap = createSitemap(entries);
+
+  // CRITICAL: Verify sitemap contains URLs before sending
+  if (!sitemap || !sitemap.includes('<loc>')) {
+    // Emergency fallback - return minimal valid sitemap
+    const fallbackSitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <url>
+    <loc>https://www.centennialhillshomesforsale.com/</loc>
+    <lastmod>${currentDate}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1</priority>
+  </url>
+</urlset>`;
+    
+    const response = new Response(fallbackSitemap, {
+      status: 200,
+      headers: { 'Content-Type': 'text/xml' },
+    });
+    ev.send(response);
+    return;
+  }
 
   // Use official Qwik SSR pattern: ev.send() with Response object
   const response = new Response(sitemap, {
