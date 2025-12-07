@@ -1,17 +1,21 @@
 import type { RequestHandler } from '@builder.io/qwik-city';
 
 /**
- * Serve sitemap.xml with all site pages
- * Using directory structure (sitemap.xml/index.tsx) for proper Qwik routing
+ * SEO-Optimized Sitemap Generator
+ * Generates comprehensive XML sitemap with all site pages
+ * Optimized for Google Search Console and search engine indexing
  */
 export const onGet: RequestHandler = (ev) => {
   const baseUrl = 'https://www.centennialhillshomesforsale.com';
   const currentDate = new Date().toISOString().split('T')[0];
 
-  // All site pages with priorities and change frequencies
+  // Comprehensive list of all site pages with SEO-optimized priorities
   const pages = [
+    // Highest Priority - Homepage and Key Landing Pages
     { path: '/', priority: '1.0', changefreq: 'weekly' },
     { path: '/centennial-hills-homes', priority: '1.0', changefreq: 'daily' },
+    
+    // High Priority - Core Business Pages
     { path: '/contact', priority: '0.9', changefreq: 'monthly' },
     { path: '/centennial-hills', priority: '0.9', changefreq: 'weekly' },
     { path: '/centennial-hills-homes-for-sale', priority: '0.9', changefreq: 'daily' },
@@ -21,6 +25,8 @@ export const onGet: RequestHandler = (ev) => {
     { path: '/mls-search', priority: '0.9', changefreq: 'daily' },
     { path: '/buy-a-home', priority: '0.9', changefreq: 'weekly' },
     { path: '/sell-a-home', priority: '0.9', changefreq: 'weekly' },
+    
+    // Important Content Pages
     { path: '/about', priority: '0.8', changefreq: 'monthly' },
     { path: '/about-us', priority: '0.8', changefreq: 'monthly' },
     { path: '/centennial-hills-luxury-homes', priority: '0.8', changefreq: 'weekly' },
@@ -56,6 +62,8 @@ export const onGet: RequestHandler = (ev) => {
     { path: '/market-insights', priority: '0.8', changefreq: 'weekly' },
     { path: '/new-construction', priority: '0.8', changefreq: 'weekly' },
     { path: '/commute-calculator', priority: '0.8', changefreq: 'monthly' },
+    
+    // Medium Priority - Supporting Pages
     { path: '/testimonials', priority: '0.7', changefreq: 'monthly' },
     { path: '/north-las-vegas', priority: '0.7', changefreq: 'weekly' },
     { path: '/northwest-las-vegas', priority: '0.7', changefreq: 'weekly' },
@@ -78,6 +86,8 @@ export const onGet: RequestHandler = (ev) => {
     { path: '/search', priority: '0.7', changefreq: 'daily' },
     { path: '/moving-guide', priority: '0.7', changefreq: 'monthly' },
     { path: '/move-up-buyers', priority: '0.7', changefreq: 'monthly' },
+    
+    // Lower Priority - Informational Pages
     { path: '/centennial-hills-amenities', priority: '0.6', changefreq: 'monthly' },
     { path: '/centennial-hills-vs-summerlin', priority: '0.6', changefreq: 'monthly' },
     { path: '/press-media', priority: '0.6', changefreq: 'monthly' },
@@ -89,30 +99,27 @@ export const onGet: RequestHandler = (ev) => {
     { path: '/terms-of-service', priority: '0.3', changefreq: 'yearly' },
   ];
 
-  // Build XML sitemap - ensure proper XML structure
-  const xmlParts: string[] = [];
-  xmlParts.push('<?xml version="1.0" encoding="UTF-8"?>');
-  xmlParts.push('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
+  // Build XML sitemap string directly - simple and reliable
+  let sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n';
+  sitemap += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
   
   // Add each URL entry
-  for (const page of pages) {
+  pages.forEach((page) => {
     const url = `${baseUrl}${page.path}`;
-    xmlParts.push('  <url>');
-    xmlParts.push(`    <loc>${url}</loc>`);
-    xmlParts.push(`    <lastmod>${currentDate}</lastmod>`);
-    xmlParts.push(`    <changefreq>${page.changefreq}</changefreq>`);
-    xmlParts.push(`    <priority>${page.priority}</priority>`);
-    xmlParts.push('  </url>');
-  }
+    sitemap += '  <url>\n';
+    sitemap += `    <loc>${url}</loc>\n`;
+    sitemap += `    <lastmod>${currentDate}</lastmod>\n`;
+    sitemap += `    <changefreq>${page.changefreq}</changefreq>\n`;
+    sitemap += `    <priority>${page.priority}</priority>\n`;
+    sitemap += '  </url>\n';
+  });
   
-  xmlParts.push('</urlset>');
-  const sitemap = xmlParts.join('\n');
+  sitemap += '</urlset>';
 
-  // Set proper headers for XML
+  // Set proper headers
   ev.headers.set('Content-Type', 'application/xml; charset=utf-8');
   ev.headers.set('Cache-Control', 'public, max-age=3600, s-maxage=3600');
   
-  // Return XML response
+  // Return the sitemap
   return ev.text(200, sitemap);
 };
-
