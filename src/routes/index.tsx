@@ -111,7 +111,7 @@ export default component$(() => {
               Featured Centennial Hills Properties
             </h2>
             <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-              Discover our latest luxury homes in Las Vegas' premier Northwest community
+              Discover our latest luxury homes in Las Vegas' premier Northwest community. Explore <a href="/centennial-hills" class="text-blue-600 hover:underline">Centennial Hills homes</a>, <a href="/our-luxury-listings" class="text-blue-600 hover:underline">luxury listings</a>, and <a href="/new-construction" class="text-blue-600 hover:underline">new construction</a> opportunities.
             </p>
           </div>
           
@@ -141,7 +141,7 @@ export default component$(() => {
               Search Centennial Hills Properties
             </h2>
             <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-              Find your perfect home in Las Vegas' premier Northwest community with our advanced MLS search
+              Find your perfect home in Las Vegas' premier Northwest community with our advanced <a href="/mls-search" class="text-blue-600 hover:underline">MLS search</a>. Browse <a href="/properties" class="text-blue-600 hover:underline">all properties</a>, <a href="/active-listings" class="text-blue-600 hover:underline">active listings</a>, or explore <a href="/centennial-hills-homes-for-sale" class="text-blue-600 hover:underline">Centennial Hills homes for sale</a>.
             </p>
           </div>
           
@@ -216,7 +216,7 @@ export default component$(() => {
               Featured Centennial Hills Properties
             </h2>
             <p class="text-lg text-gray-600">
-              Handpicked luxury homes in Las Vegas' most desirable neighborhoods
+              Handpicked luxury homes in Las Vegas' most desirable neighborhoods including <a href="/red-rock-country-club" class="text-blue-600 hover:underline">Red Rock Country Club</a>, <a href="/the-ridges" class="text-blue-600 hover:underline">The Ridges</a>, <a href="/summerlin-west" class="text-blue-600 hover:underline">Summerlin West</a>, and <a href="/lone-mountain" class="text-blue-600 hover:underline">Lone Mountain</a>.
             </p>
           </div>
           
@@ -272,7 +272,7 @@ export default component$(() => {
               Centennial Hills Market Overview
             </h2>
             <p class="text-lg text-gray-600">
-              Current market trends and statistics for Northwest Las Vegas. For detailed insights, review our <a href="/centennial-hills-market-report">Centennial Hills market report</a> and <a href="/market-analysis">comprehensive market analysis</a>.
+              Current market trends and statistics for Northwest Las Vegas. For detailed insights, review our <a href="/centennial-hills-market-report" class="text-blue-600 hover:underline">Centennial Hills market report</a>, <a href="/market-analysis" class="text-blue-600 hover:underline">comprehensive market analysis</a>, and <a href="/market-reports" class="text-blue-600 hover:underline">monthly market reports</a>. Explore <a href="/recent-sales" class="text-blue-600 hover:underline">recent sales</a> data and <a href="/market-insights" class="text-blue-600 hover:underline">market insights</a>.
             </p>
           </div>
           
@@ -332,7 +332,7 @@ export default component$(() => {
               Explore Centennial Hills Properties
             </h2>
             <p class="text-lg text-gray-600">
-              Interactive map showing available homes in Northwest Las Vegas
+              Interactive map showing available homes in Northwest Las Vegas. Explore <a href="/neighborhoods" class="text-blue-600 hover:underline">neighborhoods</a>, <a href="/area-explorer" class="text-blue-600 hover:underline">area explorer</a>, and discover <a href="/centennial-hills-amenities" class="text-blue-600 hover:underline">local amenities</a>.
             </p>
           </div>
           
@@ -369,7 +369,7 @@ export default component$(() => {
               </div>
               <h3 class="text-xl font-semibold text-gray-900 mb-4">30+ Years Experience</h3>
               <p class="text-gray-600">
-                Decades of research expertise and local market knowledge in Las Vegas real estate
+                Decades of research expertise and local market knowledge in Las Vegas real estate. Learn more <a href="/about" class="text-blue-600 hover:underline">about Dr. Duffy</a> and her <a href="/janet-duffy" class="text-blue-600 hover:underline">professional background</a>.
               </p>
             </div>
             
@@ -393,7 +393,7 @@ export default component$(() => {
               </div>
               <h3 class="text-xl font-semibold text-gray-900 mb-4">Local Expertise</h3>
               <p class="text-gray-600">
-                Deep knowledge of <a href="/centennial-hills">Centennial Hills</a>, <a href="/summerlin">Summerlin</a>, and Northwest Las Vegas communities
+                Deep knowledge of <a href="/centennial-hills" class="text-blue-600 hover:underline">Centennial Hills</a>, <a href="/summerlin" class="text-blue-600 hover:underline">Summerlin</a>, <a href="/northwest-las-vegas" class="text-blue-600 hover:underline">Northwest Las Vegas</a>, <a href="/north-las-vegas" class="text-blue-600 hover:underline">North Las Vegas</a>, and surrounding communities. Explore <a href="/centennial-hills-89135" class="text-blue-600 hover:underline">ZIP code 89135</a>, <a href="/centennial-hills-89138" class="text-blue-600 hover:underline">89138</a>, and <a href="/centennial-hills-89144" class="text-blue-600 hover:underline">89144</a>.
               </p>
             </div>
             
@@ -405,7 +405,7 @@ export default component$(() => {
               </div>
               <h3 class="text-xl font-semibold text-gray-900 mb-4">24/7 Service</h3>
               <p class="text-gray-600">
-                Same-day showings and executive-level service available around the clock
+                Same-day showings and executive-level service available around the clock. Perfect for <a href="/corporate-relocation-services" class="text-blue-600 hover:underline">corporate relocations</a> and <a href="/luxury-home-buyers" class="text-blue-600 hover:underline">luxury home buyers</a>.
               </p>
             </div>
             
@@ -417,7 +417,7 @@ export default component$(() => {
               </div>
               <h3 class="text-xl font-semibold text-gray-900 mb-4">Market Analysis</h3>
               <p class="text-gray-600">
-                Comprehensive <a href="/market-analysis">market insights</a> and data-driven pricing strategies for maximum value. Review our <a href="/market-reports">market reports</a> for detailed analysis.
+                Comprehensive <a href="/market-analysis" class="text-blue-600 hover:underline">market insights</a> and data-driven pricing strategies for maximum value. Get a free <a href="/home-valuation" class="text-blue-600 hover:underline">home valuation</a> or review our <a href="/market-reports" class="text-blue-600 hover:underline">market reports</a> for detailed analysis.
               </p>
             </div>
             
@@ -429,7 +429,7 @@ export default component$(() => {
               </div>
               <h3 class="text-xl font-semibold text-gray-900 mb-4">Luxury Specialists</h3>
               <p class="text-gray-600">
-                Expertise in <a href="/luxury-home-sales">high-end properties</a> and <a href="/california-equity-buyers">California equity buyer relocations</a>
+                Expertise in <a href="/luxury-home-sales" class="text-blue-600 hover:underline">high-end properties</a>, <a href="/luxury-estates" class="text-blue-600 hover:underline">luxury estates</a>, <a href="/homes-over-1m" class="text-blue-600 hover:underline">homes over $1M</a>, and <a href="/california-equity-buyers" class="text-blue-600 hover:underline">California equity buyer relocations</a>.
               </p>
             </div>
           </div>
@@ -451,11 +451,17 @@ export default component$(() => {
               Ready to Find Your Dream Home?
             </h2>
             <p class="text-xl mb-8 opacity-90">
-              Get personalized guidance from Las Vegas' top real estate expert
+              Get personalized guidance from Las Vegas' top real estate expert. Whether you're <a href="/buy-a-home" class="text-white underline hover:no-underline">buying a home</a>, <a href="/sell-a-home" class="text-white underline hover:no-underline">selling a home</a>, or need <a href="/home-valuation" class="text-white underline hover:no-underline">home valuation</a> services, we're here to help.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="/contact" class="btn btn-white">
                 Schedule Consultation
+              </a>
+              <a href="/buy-a-home" class="btn btn-outline-white">
+                Buy a Home
+              </a>
+              <a href="/sell-a-home" class="btn btn-outline-white">
+                Sell a Home
               </a>
               <a href="tel:+17029031952" class="btn btn-outline-white">
                 Call (702) 903-1952
