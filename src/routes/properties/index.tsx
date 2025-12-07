@@ -370,5 +370,37 @@ export const head: DocumentHead = {
       name: 'description',
       content: 'Browse luxury homes and investment properties in Las Vegas. Dr. Janet Duffy specializes in Centennial Hills, Red Rock Country Club, and other premier communities.',
     },
+    {
+      property: 'og:title',
+      content: 'Las Vegas Properties for Sale | Dr. Janet Duffy Real Estate',
+    },
+    {
+      property: 'og:description',
+      content: 'Browse luxury homes and investment properties in Las Vegas. Dr. Janet Duffy specializes in Centennial Hills, Red Rock Country Club, and other premier communities.',
+    },
+    {
+      property: 'og:type',
+      content: 'website',
+    },
+    {
+      property: 'og:url',
+      content: 'https://www.centennialhillshomesforsale.com/properties',
+    },
+    {
+      property: 'og:site_name',
+      content: 'Centennial Hills Real Estate',
+    },
+    {
+      name: 'twitter:card',
+      content: 'summary_large_image',
+    },
+    {
+      name: 'twitter:title',
+      content: 'Las Vegas Properties for Sale | Dr. Janet Duffy Real Estate',
+    },
+    {
+      name: 'twitter:description',
+      content: 'Browse luxury homes and investment properties in Las Vegas. Dr. Janet Duffy specializes in Centennial Hills, Red Rock Country Club, and other premier communities.',
+    },
   ],
 };
