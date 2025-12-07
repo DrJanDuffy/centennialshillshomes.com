@@ -3,7 +3,6 @@ import type { DocumentHead } from '@builder.io/qwik-city';
 import FAQSection, { realtorServiceFAQs } from '../../components/faq-section';
 import SEOStructuredData from '../../components/seo-structured-data';
 import { pageSchemas } from '../../components/seo-structured-data';
-import Breadcrumbs from '../../components/breadcrumbs';
 
 export default component$(() => {
   // Schema data for About page
@@ -17,11 +16,27 @@ export default component$(() => {
         data={aboutSchema} 
       />
       
-      {/* Breadcrumbs */}
-      <Breadcrumbs items={[
-        { name: 'Home', url: '/' },
-        { name: 'About', url: '/about' }
-      ]} />
+      {/* Breadcrumb Structured Data */}
+      <SEOStructuredData 
+        type="BreadcrumbList" 
+        data={pageSchemas.breadcrumbList([
+          { name: 'Home', url: '/' },
+          { name: 'About', url: '/about' }
+        ])} 
+      />
+      
+      {/* Breadcrumb Navigation */}
+      <nav aria-label="Breadcrumb" class="container mx-auto px-4 py-4 text-sm text-gray-600">
+        <ol class="flex space-x-2">
+          <li class="flex items-center">
+            <a href="/" class="hover:text-blue-600">Home</a>
+          </li>
+          <li class="flex items-center">
+            <span class="mx-2 text-gray-400" aria-hidden="true">/</span>
+            <span class="font-semibold text-gray-800">About</span>
+          </li>
+        </ol>
+      </nav>
       
       {/* Hero Section */}
       <section class="hero-section">

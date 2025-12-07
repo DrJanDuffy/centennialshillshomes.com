@@ -3,7 +3,6 @@ import type { DocumentHead } from '@builder.io/qwik-city';
 import SEOStructuredData from '../../components/seo-structured-data';
 import { pageSchemas } from '../../components/seo-structured-data';
 import FAQSection, { realtorServiceFAQs } from '../../components/faq-section';
-import Breadcrumbs from '../../components/breadcrumbs';
 
 export default component$(() => {
   // Schema data for Dr. Janet Duffy person page
@@ -17,12 +16,32 @@ export default component$(() => {
         data={janetDuffySchema} 
       />
       
-      {/* Breadcrumbs */}
-      <Breadcrumbs items={[
-        { name: 'Home', url: '/' },
-        { name: 'About', url: '/about' },
-        { name: 'Dr. Janet Duffy', url: '/janet-duffy' }
-      ]} />
+      {/* Breadcrumb Structured Data */}
+      <SEOStructuredData 
+        type="BreadcrumbList" 
+        data={pageSchemas.breadcrumbList([
+          { name: 'Home', url: '/' },
+          { name: 'About', url: '/about' },
+          { name: 'Dr. Janet Duffy', url: '/janet-duffy' }
+        ])} 
+      />
+      
+      {/* Breadcrumb Navigation */}
+      <nav aria-label="Breadcrumb" class="container mx-auto px-4 py-4 text-sm text-gray-600">
+        <ol class="flex space-x-2">
+          <li class="flex items-center">
+            <a href="/" class="hover:text-blue-600">Home</a>
+          </li>
+          <li class="flex items-center">
+            <span class="mx-2 text-gray-400" aria-hidden="true">/</span>
+            <a href="/about" class="hover:text-blue-600">About</a>
+          </li>
+          <li class="flex items-center">
+            <span class="mx-2 text-gray-400" aria-hidden="true">/</span>
+            <span class="font-semibold text-gray-800">Dr. Janet Duffy</span>
+          </li>
+        </ol>
+      </nav>
 
       <div class="container container-center py-12">
         <h1 class="text-4xl font-bold text-gray-900 mb-6">Dr. Janet Duffy - Top 1% Las Vegas REALTOR®</h1>
