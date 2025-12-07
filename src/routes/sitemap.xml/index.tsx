@@ -136,29 +136,24 @@ export const onGet: RequestHandler = (ev) => {
   // Sort pages by priority (highest first) for better SEO
   pages.sort((a, b) => parseFloat(b.priority) - parseFloat(a.priority));
 
-  // 2025: Enhanced sitemap with image support and better structure
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
-        http://www.google.com/schemas/sitemap-image/1.1
-        http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
-${pages.map(page => {
-    // Build URL entry - ensure proper XML escaping
+  // Build URL entries
+  const urlEntries = pages.map(page => {
     const url = `${baseUrl}${page.path}`;
-    
     return `  <url>
     <loc>${url}</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
   </url>`;
-  }).join('\n')}
+  }).join('\n');
+
+  // 2025: Generate valid XML sitemap
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urlEntries}
 </urlset>`;
 
   ev.headers.set('Content-Type', 'application/xml; charset=utf-8');
   ev.headers.set('Cache-Control', 'public, max-age=3600, s-maxage=3600');
-  ev.text(200, sitemap);
+  return ev.text(200, sitemap);
 };
