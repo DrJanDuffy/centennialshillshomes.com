@@ -1,17 +1,32 @@
 /**
- * Route Discovery Utility
+ * Route Discovery Utility - Google Search Console 2025 Optimized
+ * 
  * Automatically discovers routes from the file system structure
  * and assigns intelligent priorities and change frequencies
+ * following Google Search Console 2025 best practices.
+ * 
+ * Key Features:
+ * - Only includes canonical URLs
+ * - Excludes test pages, redirects, and non-indexable content
+ * - Intelligent priority assignment based on content importance
+ * - Proper change frequency estimation
  */
 
 export interface SitemapPage {
   path: string;
   priority: string;
   changefreq: string;
+  lastmod?: string; // Optional: actual last modified date
 }
 
 /**
- * Routes to exclude from sitemap
+ * Routes to exclude from sitemap (2025: Only canonical URLs)
+ * Excludes:
+ * - Test/demo pages
+ * - Redirect pages (3xx)
+ * - Non-indexable content
+ * - API endpoints
+ * - Service workers
  */
 const EXCLUDED_ROUTES = [
   '/sitemap.xml',
@@ -23,28 +38,43 @@ const EXCLUDED_ROUTES = [
   '/demo',
   '/test-seo-content',
   '/google[verification].html',
-  '/tule-springs.html',
-  '/skye-canyon.html',
+  '/tule-springs.html', // Redirect page
+  '/skye-canyon.html', // Redirect page
   '/blog/rss-test',
   '/index.tsx.backup',
 ];
 
 /**
- * Priority rules based on route patterns
+ * Priority rules based on route patterns (2025 Google Guidelines)
+ * 
+ * Priority Guidelines:
+ * - 1.0: Homepage only
+ * - 0.9: Core business pages (high conversion value)
+ * - 0.8: Important content pages
+ * - 0.7: Supporting pages
+ * - 0.6: Informational pages
+ * - 0.5: Lower priority content
+ * - 0.3-0.4: Legal/informational pages
+ * 
+ * Change Frequency Guidelines:
+ * - daily: Listings, search pages (frequently updated)
+ * - weekly: Content pages, neighborhoods (regular updates)
+ * - monthly: Guides, about pages (occasional updates)
+ * - yearly: Legal pages, policies (rarely updated)
  */
 const PRIORITY_RULES: Array<{
   pattern: RegExp | string;
   priority: string;
   changefreq: string;
 }> = [
-  // Highest priority - homepage
+  // Highest priority - homepage (1.0 is reserved for homepage only)
   { pattern: '^/$', priority: '1.0', changefreq: 'weekly' },
   
-  // High priority - core business pages
+  // High priority - core business pages (0.9)
   { pattern: '^/(centennial-hills-homes|properties|our-luxury-listings|active-listings|mls-search|contact)$', priority: '0.9', changefreq: 'daily' },
   { pattern: '^/(buy-a-home|sell-a-home|centennial-hills|centennial-hills-homes-for-sale)$', priority: '0.9', changefreq: 'weekly' },
   
-  // Important content pages
+  // Important content pages (0.8)
   { pattern: '^/(centennial-hills-luxury-homes|centennial-hills-new-construction|investment-properties|virtual-tours|recent-sales|luxury-estates)$', priority: '0.8', changefreq: 'weekly' },
   { pattern: '^/centennial-hills-89', priority: '0.8', changefreq: 'weekly' },
   { pattern: '^/(home-valuation|market-analysis|commute-calculator)$', priority: '0.8', changefreq: 'weekly' },
@@ -53,28 +83,29 @@ const PRIORITY_RULES: Array<{
   { pattern: '^/(buying-guide|selling-guide|luxury-home-sales|market-reports|centennial-hills-market-report)$', priority: '0.8', changefreq: 'monthly' },
   { pattern: '^/(homes-400k-600k|homes-over-1m)$', priority: '0.8', changefreq: 'weekly' },
   
-  // Medium priority - supporting pages
+  // Medium priority - supporting pages (0.7)
   { pattern: '^/(north-las-vegas|northwest-las-vegas|aliante|sky-canyon|providence|tule-springs|red-rock-country-club|lone-mountain)$', priority: '0.7', changefreq: 'weekly' },
   { pattern: '^/(centennial-hills-schools|best-schools-centennial-hills|condos-centennial-hills|golf-course-homes|homes-under-400k)$', priority: '0.7', changefreq: 'weekly' },
   { pattern: '^/(mortgage-calculator|affordability-calculator|search|testimonials)$', priority: '0.7', changefreq: 'monthly' },
   { pattern: '^/blog/category/', priority: '0.7', changefreq: 'monthly' },
   { pattern: '^/(moving-guide|move-up-buyers)$', priority: '0.7', changefreq: 'monthly' },
   
-  // Lower priority - informational pages
+  // Lower priority - informational pages (0.6)
   { pattern: '^/(centennial-hills-amenities|centennial-hills-vs-summerlin|press-media|faq|local-business-optimization)$', priority: '0.6', changefreq: 'monthly' },
   { pattern: '^/fair-housing$', priority: '0.5', changefreq: 'yearly' },
   { pattern: '^/accessibility$', priority: '0.4', changefreq: 'yearly' },
   { pattern: '^/(privacy-policy|terms-of-service)$', priority: '0.3', changefreq: 'yearly' },
   
-  // Default for any other routes
+  // Default for any other routes (0.5)
   { pattern: '.*', priority: '0.5', changefreq: 'monthly' },
 ];
 
 /**
  * Get priority and changefreq for a route based on patterns
+ * 2025: Ensures only valid, indexable routes are included
  */
 function getRouteMetadata(path: string): { priority: string; changefreq: string } {
-  // Check if route should be excluded
+  // Check if route should be excluded (2025: Only canonical URLs)
   if (EXCLUDED_ROUTES.some(excluded => path.includes(excluded))) {
     return { priority: '0.0', changefreq: 'never' };
   }
@@ -98,6 +129,7 @@ function getRouteMetadata(path: string): { priority: string; changefreq: string 
 
 /**
  * Convert file system path to URL path
+ * 2025: Ensures clean, canonical URLs
  */
 function pathToRoute(filePath: string): string {
   // Remove src/routes prefix
@@ -126,11 +158,13 @@ function pathToRoute(filePath: string): string {
 
 /**
  * Discover all routes from the routes directory structure
- * This is a static list that represents all routes in the application
+ * 2025: Returns only canonical, indexable routes
+ * 
+ * This list should be updated when new routes are added to the application
  */
 export function discoverRoutes(): SitemapPage[] {
   // Static list of all routes discovered from src/routes directory
-  // This gets updated when new routes are added
+  // 2025: Only includes canonical URLs (no redirects, no test pages)
   const routeFiles = [
     // Root
     'index.tsx',
@@ -244,7 +278,7 @@ export function discoverRoutes(): SitemapPage[] {
       const path = pathToRoute(file);
       const metadata = getRouteMetadata(path);
       
-      // Skip excluded routes
+      // Skip excluded routes (2025: Only canonical URLs)
       if (metadata.priority === '0.0') {
         return null;
       }
@@ -257,9 +291,8 @@ export function discoverRoutes(): SitemapPage[] {
     })
     .filter((page): page is SitemapPage => page !== null);
   
-  // Sort by priority (highest first)
+  // Sort by priority (highest first) - 2025: Helps Google prioritize important pages
   pages.sort((a, b) => parseFloat(b.priority) - parseFloat(a.priority));
   
   return pages;
 }
-
