@@ -2,26 +2,24 @@ import { component$ } from '@builder.io/qwik';
 import type { RequestHandler } from '@builder.io/qwik-city';
 
 export const onGet: RequestHandler = (ev) => {
-  // 2025: Enhanced robots.txt with best practices
-  const robotsTxt = `# 2025 Google Search Console Optimized robots.txt
+  // 2025: Optimized robots.txt following Google Search Console best practices
+  const robotsTxt = `# robots.txt for centennialhillshomesforsale.com
+# Generated: 2025-12-07
 # Centennial Hills Real Estate - Dr. Jan Duffy
 
+# Allow all search engines
 User-agent: *
 Allow: /
 
-# 2025: Allow all major search engines
+# Optimize for Google
 User-agent: Googlebot
 Allow: /
-Crawl-delay: 0
 
+# Optimize for Bing
 User-agent: Bingbot
 Allow: /
-Crawl-delay: 1
 
-# Sitemaps - 2025: HTTPS required
-Sitemap: https://www.centennialhillshomesforsale.com/sitemap.xml
-
-# Disallow test pages and development areas
+# Disallow test and development pages
 Disallow: /map-test/
 Disallow: /api-test/
 Disallow: /realscout-test/
@@ -30,42 +28,12 @@ Disallow: /test-simple/
 Disallow: /minimal/
 Disallow: /demo/
 
-# Disallow redirect pages
+# Disallow redirect pages (these redirect to canonical URLs)
 Disallow: /tule-springs.html
 Disallow: /skye-canyon.html
 
-# Allow important pages
-Allow: /
-Allow: /centennial-hills/
-Allow: /centennial-hills-homes/
-Allow: /centennial-hills-homes-for-sale/
-Allow: /centennial-hills-luxury-homes/
-Allow: /centennial-hills-new-construction/
-Allow: /centennial-hills-89135/
-Allow: /centennial-hills-89138/
-Allow: /centennial-hills-89144/
-Allow: /properties/
-Allow: /luxury-home-sales/
-Allow: /our-luxury-listings/
-Allow: /active-listings/
-Allow: /mls-search/
-Allow: /contact/
-Allow: /about/
-Allow: /about-us/
-Allow: /buy-a-home/
-Allow: /sell-a-home/
-Allow: /home-valuation/
-Allow: /market-analysis/
-Allow: /janet-duffy/
-Allow: /testimonials/
-Allow: /blog/
-Allow: /buyers/
-Allow: /neighborhoods/
-Allow: /area-explorer/
-Allow: /search/
-
-# Crawl delay for better server performance
-Crawl-delay: 1`;
+# Sitemap location (must use HTTPS with www)
+Sitemap: https://www.centennialhillshomesforsale.com/sitemap.xml`;
 
   ev.headers.set('Content-Type', 'text/plain');
   ev.text(200, robotsTxt);
