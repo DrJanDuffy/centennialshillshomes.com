@@ -1,185 +1,177 @@
 # Google Search Console Setup Guide
+## Centennial Hills Real Estate - Dr. Jan Duffy
 
-This guide will help you set up and verify your website with Google Search Console for optimal SEO performance.
+## ✅ Pre-Submission Checklist
 
-## 📋 Prerequisites
+### 1. Technical Requirements
+- ✅ **HTTPS Enabled**: All pages use HTTPS (enforced via middleware)
+- ✅ **Canonical Domain**: www.centennialhillshomesforsale.com (enforced via middleware)
+- ✅ **Sitemhttps://www.centennialhillshomesforsale.com/sitemap.xmlap**: Available at 
+- ✅ **Robots.txt**: Available at https://www.centennialhillshomesforsale.com/robots.txt
+- ✅ **Mobile-Friendly**: Responsive design with mobile-first approach
+- ✅ **Page Speed**: Optimized with Qwik framework for fast loading
 
-- Access to your website's domain
-- Google account
-- Access to Vercel dashboard (for environment variables)
+### 2. Sitemap Configuration
+- ✅ **Location**: https://www.centennialhillshomesforsale.com/sitemap.xml
+- ✅ **Format**: XML sitemap (Google standard)
+- ✅ **Pages Included**: 75 canonical pages
+- ✅ **Redirect Pages Excluded**: Only canonical URLs included
+- ✅ **Last Modified**: Updated daily
+- ✅ **Priorities Set**: Homepage (1.0), core pages (0.9), supporting pages (0.7-0.8)
 
-## 🚀 Step 1: Create Google Search Console Account
+### 3. Robots.txt Configuration
+- ✅ **Location**: https://www.centennialhillshomesforsale.com/robots.txt
+- ✅ **Sitemap Reference**: Included and correct
+- ✅ **Test Pages Blocked**: /demo/, /test-simple/, etc.
+- ✅ **Redirect Pages Blocked**: /tule-springs.html, /skye-canyon.html
 
-1. Go to [Google Search Console](https://search.google.com/search-console)
-2. Click "Add Property"
-3. Select "URL prefix" method
-4. Enter your website URL: `https://www.centennialhillshomesforsale.com`
-5. Click "Continue"
+### 4. Structured Data (Schema.org)
+- ✅ **RealEstateAgent**: Homepage, About, Janet Duffy page
+- ✅ **Organization**: Homepage, About page
+- ✅ **WebSite**: Homepage with SearchAction
+- ✅ **Person**: About, Janet Duffy pages
+- ✅ **LocalBusiness**: Service pages
+- ✅ **BreadcrumbList**: Key pages
+- ✅ **FAQPage**: FAQ sections on multiple pages
 
-## 🔐 Step 2: Verify Website Ownership
+### 5. Meta Tags
+- ✅ **Title Tags**: Unique, descriptive, keyword-rich (50-60 characters)
+- ✅ **Meta Descriptions**: Compelling, 150-160 characters
+- ✅ **Canonical URLs**: All pages have canonical tags
+- ✅ **Open Graph**: All pages have OG tags
+- ✅ **Twitter Cards**: All pages have Twitter card tags
+- ✅ **Robots Meta**: Properly configured (index, follow)
 
-You have **three verification methods** available:
+### 6. Content Quality
+- ✅ **H1 Tags**: Exactly one per page
+- ✅ **H2/H3 Structure**: Proper heading hierarchy
+- ✅ **Word Count**: 1500+ words on key pages
+- ✅ **Internal Linking**: Strategic interpage links throughout
+- ✅ **Keyword Optimization**: Natural keyword integration
 
-### Method 1: HTML Meta Tag (Recommended - Already Configured)
+### 7. Redirects
+- ✅ **301 Redirects**: All old URLs redirect to canonical URLs
+- ✅ **HTTPS Redirect**: HTTP → HTTPS (301)
+- ✅ **WWW Redirect**: Non-www → www (301)
+- ✅ **Old URLs**: /about-us, /index.html, /las-vegas-89166, etc.
 
-1. In Google Search Console, select "HTML tag" verification method
-2. Copy the verification code (looks like: `abc123def456...`)
-3. Add it to your Vercel environment variables:
-   - Go to Vercel Dashboard → Your Project → Settings → Environment Variables
-   - Add: `PUBLIC_GOOGLE_VERIFICATION` = `your-verification-code`
-   - Apply to: Production, Preview, Development
-4. Redeploy your site: `vercel --prod`
-5. Click "Verify" in Google Search Console
+## 📋 Google Search Console Setup Steps
 
-**✅ This method is already implemented in `src/components/router-head/router-head.tsx`**
+### Step 1: Verify Domain Ownership
 
-### Method 2: HTML File Upload
+#### Option A: HTML File Upload (Recommended)
+1. Download verification file from Google Search Console
+2. Upload to `/public/` directory
+3. Ensure file is accessible at: `https://www.centennialhillshomesforsale.com/google[verification].html`
 
-1. In Google Search Console, select "HTML file" verification method
-2. Download the verification HTML file (e.g., `google123abc456def.html`)
-3. Upload it to your `public/` folder
-4. Redeploy your site
-5. Click "Verify" in Google Search Console
+#### Option B: HTML Tag
+1. Add verification meta tag to homepage `<head>`
+2. Already configured in `src/routes/index.tsx` if needed
 
-**✅ Alternative: Use the route handler at `/google[verification].html`**
+#### Option C: DNS Record
+1. Add TXT record to DNS: `google-site-verification=XXXXX`
+2. Verify in Cloudflare DNS settings
 
-### Method 3: DNS Verification
+### Step 2: Submit Sitemap
 
-1. In Google Search Console, select "DNS record" verification method
-2. Add the provided TXT record to your domain's DNS settings
-3. Wait for DNS propagation (can take up to 48 hours)
-4. Click "Verify" in Google Search Console
-
-## 📊 Step 3: Submit Sitemap
-
-1. In Google Search Console, go to "Sitemaps" in the left sidebar
-2. Enter your sitemap URL: `https://www.centennialhillshomesforsale.com/sitemap.xml`
+1. Go to Google Search Console → Sitemaps
+2. Enter: `https://www.centennialhillshomesforsale.com/sitemap.xml`
 3. Click "Submit"
+4. Wait for processing (usually 24-48 hours)
 
-**✅ Your sitemap is automatically generated at `/sitemap.xml` with all pages**
+### Step 3: Request Indexing
 
-## 🔍 Step 4: Configure Settings
+1. Go to URL Inspection tool
+2. Enter homepage URL: `https://www.centennialhillshomesforsale.com/`
+3. Click "Request Indexing"
+4. Repeat for key pages:
+   - `/centennial-hills`
+   - `/buy-a-home`
+   - `/sell-a-home`
+   - `/about`
+   - `/contact`
+   - `/mls-search`
 
-### Preferred Domain
+### Step 4: Monitor Performance
 
-1. Go to Settings → General
-2. Under "Preferred domain", select:
-   - **`www.centennialhillshomesforsale.com`** (recommended)
-   - This ensures all URLs use the www subdomain
+1. **Coverage Report**: Check for crawl errors
+2. **Performance Report**: Monitor search impressions and clicks
+3. **Mobile Usability**: Verify mobile-friendly status
+4. **Core Web Vitals**: Monitor LCP, INP, CLS metrics
+5. **Indexing Status**: Track indexed pages
 
-### URL Parameters (if needed)
+## 🔍 Key URLs to Verify
 
-1. Go to Settings → URL Parameters
-2. Configure any dynamic URL parameters that don't affect content
-3. For most real estate sites, this isn't necessary
+### Essential Pages
+- Homepage: https://www.centennialhillshomesforsale.com/
+- About: https://www.centennialhillshomesforsale.com/about
+- Contact: https://www.centennialhillshomesforsale.com/contact
+- Properties: https://www.centennialhillshomesforsale.com/properties
+- MLS Search: https://www.centennialhillshomesforsale.com/mls-search
 
-## 📈 Step 5: Monitor Performance
+### Service Pages
+- Buy a Home: https://www.centennialhillshomesforsale.com/buy-a-home
+- Sell a Home: https://www.centennialhillshomesforsale.com/sell-a-home
+- Market Analysis: https://www.centennialhillshomesforsale.com/market-analysis
+- Home Valuation: https://www.centennialhillshomesforsale.com/home-valuation
 
-### Key Metrics to Track
+### Neighborhood Pages
+- Centennial Hills: https://www.centennialhillshomesforsale.com/centennial-hills
+- Summerlin: https://www.centennialhillshomesforsale.com/summerlin
+- Red Rock Country Club: https://www.centennialhillshomesforsale.com/red-rock-country-club
+- The Ridges: https://www.centennialhillshomesforsale.com/the-ridges
 
-1. **Coverage**: Check for indexing issues
-   - Go to Coverage report
-   - Fix any errors or warnings
-   - Request indexing for important pages
+## 📊 Expected Results Timeline
 
-2. **Performance**: Monitor search performance
-   - Track clicks, impressions, CTR, and position
-   - Identify top-performing pages
-   - Optimize underperforming pages
+- **Immediate**: Sitemap submission accepted
+- **24-48 hours**: Initial indexing begins
+- **1 week**: Core pages indexed
+- **2-4 weeks**: Full site indexed
+- **4-8 weeks**: Search performance data available
 
-3. **Mobile Usability**: Ensure mobile-friendly pages
-   - Check for mobile usability issues
-   - Fix any problems found
+## 🛠️ Troubleshooting
 
-4. **Core Web Vitals**: Monitor page experience
-   - Track LCP, FID, and CLS metrics
-   - Optimize slow pages
+### Sitemap Errors
+- **Empty sitemap**: Check sitemap.xml.tsx route handler
+- **Invalid XML**: Verify XML structure and escaping
+- **Missing URLs**: Ensure all pages are in pages array
 
-## 🛠️ Step 6: Set Up Google Analytics (Optional but Recommended)
+### Indexing Issues
+- **Not indexed**: Check robots.txt, meta robots tags
+- **Partial indexing**: Review sitemap priorities
+- **Duplicate content**: Verify canonical URLs
 
-1. Create a Google Analytics 4 property at [analytics.google.com](https://analytics.google.com)
-2. Get your Measurement ID (format: `G-XXXXXXXXXX`)
-3. Add to Vercel environment variables:
-   - `PUBLIC_GA_TRACKING_ID` = `G-XXXXXXXXXX`
-4. Redeploy your site
+### Performance Issues
+- **Slow indexing**: Increase sitemap priority for key pages
+- **Low impressions**: Optimize meta descriptions and titles
+- **High bounce rate**: Improve content quality and internal linking
 
-**✅ Google Analytics is already configured in `src/components/router-head/router-head.tsx`**
+## 📝 Maintenance Tasks
 
-## 📝 Step 7: Request Indexing for Important Pages
+### Weekly
+- Monitor Search Console for errors
+- Check indexing status
+- Review performance metrics
 
-After verification, request indexing for key pages:
+### Monthly
+- Update sitemap lastmod dates
+- Review and optimize underperforming pages
+- Add new pages to sitemap
 
-1. Go to URL Inspection tool in Search Console
-2. Enter important page URLs:
-   - `https://www.centennialhillshomesforsale.com/`
-   - `https://www.centennialhillshomesforsale.com/centennial-hills-homes`
-   - `https://www.centennialhillshomesforsale.com/properties`
-   - `https://www.centennialhillshomesforsale.com/buy-a-home`
-   - `https://www.centennialhillshomesforsale.com/sell-a-home`
-3. Click "Request Indexing" for each
+### Quarterly
+- Comprehensive SEO audit
+- Update structured data
+- Review and update meta descriptions
 
-## ✅ Verification Checklist
-
-- [ ] Google Search Console account created
-- [ ] Website verified (using one of the three methods)
-- [ ] Sitemap submitted and processed
-- [ ] Preferred domain set to www version
-- [ ] Google Analytics configured (optional)
-- [ ] Important pages requested for indexing
-- [ ] Monitoring set up for coverage and performance
-
-## 🔧 Environment Variables Required
-
-Add these to your Vercel project:
-
-```bash
-# Google Search Console Verification
-PUBLIC_GOOGLE_VERIFICATION=your-verification-code-here
-
-# Google Analytics 4 (Optional)
-PUBLIC_GA_TRACKING_ID=G-XXXXXXXXXX
-```
-
-## 📚 Additional Resources
+## 🔗 Resources
 
 - [Google Search Console Help](https://support.google.com/webmasters)
 - [Sitemap Guidelines](https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview)
-- [Core Web Vitals](https://web.dev/vitals/)
+- [Structured Data Testing Tool](https://search.google.com/test/rich-results)
 - [Mobile-Friendly Test](https://search.google.com/test/mobile-friendly)
-
-## 🐛 Troubleshooting
-
-### Verification Fails
-
-- **Meta tag method**: Ensure `PUBLIC_GOOGLE_VERIFICATION` is set correctly and site is redeployed
-- **HTML file method**: Ensure file is in `public/` folder and accessible at the correct URL
-- **DNS method**: Wait 24-48 hours for DNS propagation, verify TXT record is correct
-
-### Sitemap Not Processing
-
-- Check that sitemap is accessible at `/sitemap.xml`
-- Verify sitemap XML is valid (use [XML Sitemap Validator](https://www.xml-sitemaps.com/validate-xml-sitemap.html))
-- Ensure all URLs in sitemap are accessible (no 404 errors)
-
-### Pages Not Indexing
-
-- Check Coverage report for errors
-- Ensure pages are not blocked by robots.txt
-- Verify pages have proper meta tags and content
-- Request indexing manually for important pages
-
-## 🎯 Next Steps
-
-1. **Monitor regularly**: Check Search Console weekly for issues
-2. **Optimize content**: Use performance data to improve pages
-3. **Fix errors**: Address any coverage or mobile usability issues
-4. **Track progress**: Monitor rankings and traffic improvements
-5. **Update sitemap**: Ensure new pages are added to sitemap automatically
+- [PageSpeed Insights](https://pagespeed.web.dev/)
 
 ---
 
-**Last Updated**: January 2025
-**Maintained by**: Development Team
-
-
-
+**Last Updated**: December 2025
+**Status**: Ready for Google Search Console submission
