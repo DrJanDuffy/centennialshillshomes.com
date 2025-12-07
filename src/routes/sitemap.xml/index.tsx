@@ -4,7 +4,7 @@ import type { RequestHandler } from '@builder.io/qwik-city';
  * Dynamic sitemap.xml generator
  * Automatically includes all routes and updates lastmod dates
  */
-export const onGet: RequestHandler = async (ev) => {
+export const onGet: RequestHandler = (ev) => {
   // 2025: Ensure HTTPS base URL with www (required for Vercel)
   const baseUrl = 'https://www.centennialhillshomesforsale.com';
   const currentDate = new Date().toISOString().split('T')[0];
@@ -137,21 +137,38 @@ export const onGet: RequestHandler = async (ev) => {
   pages.sort((a, b) => parseFloat(b.priority) - parseFloat(a.priority));
 
   // Build XML sitemap - use explicit string building to ensure proper generation
-  let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
-  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+  // Start with XML declaration and urlset opening tag
+  const xmlParts: string[] = [];
+  xmlParts.push('<?xml version="1.0" encoding="UTF-8"?>');
+  xmlParts.push('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
   
-  // Add each URL entry
-  for (const page of pages) {
-    const url = `${baseUrl}${page.path}`;
-    xml += '  <url>\n';
-    xml += `    <loc>${url}</loc>\n`;
-    xml += `    <lastmod>${currentDate}</lastmod>\n`;
-    xml += `    <changefreq>${page.changefreq}</changefreq>\n`;
-    xml += `    <priority>${page.priority}</priority>\n`;
-    xml += '  </url>\n';
+  // Add each URL entry - ensure at least one URL exists
+  if (pages.length === 0) {
+    // Fallback: at least include homepage
+    xmlParts.push('  <url>');
+    xmlParts.push(`    <loc>${baseUrl}/</loc>`);
+    xmlParts.push(`    <lastmod>${currentDate}</lastmod>`);
+    xmlParts.push('    <changefreq>weekly</changefreq>');
+    xmlParts.push('    <priority>1.0</priority>');
+    xmlParts.push('  </url>');
+  } else {
+    // Add all pages
+    for (const page of pages) {
+      const url = `${baseUrl}${page.path}`;
+      xmlParts.push('  <url>');
+      xmlParts.push(`    <loc>${url}</loc>`);
+      xmlParts.push(`    <lastmod>${currentDate}</lastmod>`);
+      xmlParts.push(`    <changefreq>${page.changefreq}</changefreq>`);
+      xmlParts.push(`    <priority>${page.priority}</priority>`);
+      xmlParts.push('  </url>');
+    }
   }
   
-  xml += '</urlset>';
+  // Close urlset tag
+  xmlParts.push('</urlset>');
+  
+  // Join all parts with newlines
+  const xml = xmlParts.join('\n');
 
   ev.headers.set('Content-Type', 'application/xml; charset=utf-8');
   ev.headers.set('Cache-Control', 'public, max-age=3600, s-maxage=3600');
