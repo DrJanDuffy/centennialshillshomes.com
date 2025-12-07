@@ -11,7 +11,7 @@ export const onGet: RequestHandler = (ev) => {
   const currentDate = new Date().toISOString().split('T')[0];
 
   // All canonical content pages - 75 pages total
-  const pages = [
+  const allPages = [
     { path: '/', priority: '1.0', changefreq: 'weekly' },
     { path: '/centennial-hills-homes', priority: '1.0', changefreq: 'daily' },
     { path: '/contact', priority: '0.9', changefreq: 'monthly' },
@@ -90,22 +90,58 @@ export const onGet: RequestHandler = (ev) => {
     { path: '/terms-of-service', priority: '0.3', changefreq: 'yearly' },
   ];
 
+  // Filter out any invalid entries (defensive programming)
+  const pages = allPages.filter(page => 
+    page && 
+    page.path && 
+    typeof page.path === 'string' && 
+    page.path.length > 0 &&
+    page.priority &&
+    page.changefreq
+  );
+
+  // Ensure we have at least one page (fallback to homepage)
+  if (pages.length === 0) {
+    pages.push({ path: '/', priority: '1.0', changefreq: 'weekly' });
+  }
+
   // Build XML sitemap - simple and direct like robots.txt
-  let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
-  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+  const urlEntries: string[] = [];
   
-  // Add each URL entry
+  // Add each URL entry - ensure every entry has proper structure
   for (const page of pages) {
+    if (!page || !page.path) continue; // Skip invalid entries
+    
     const url = baseUrl + page.path;
-    xml += '  <url>\n';
-    xml += `    <loc>${url}</loc>\n`;
-    xml += `    <lastmod>${currentDate}</lastmod>\n`;
-    xml += `    <changefreq>${page.changefreq}</changefreq>\n`;
-    xml += `    <priority>${page.priority}</priority>\n`;
-    xml += '  </url>\n';
+    
+    // Ensure URL is valid
+    if (!url || url.length === 0) continue;
+    
+    // Build URL entry
+    urlEntries.push('  <url>');
+    urlEntries.push(`    <loc>${url}</loc>`);
+    urlEntries.push(`    <lastmod>${currentDate}</lastmod>`);
+    urlEntries.push(`    <changefreq>${page.changefreq || 'weekly'}</changefreq>`);
+    urlEntries.push(`    <priority>${page.priority || '0.5'}</priority>`);
+    urlEntries.push('  </url>');
   }
   
-  xml += '</urlset>';
+  // CRITICAL: Ensure we have at least one URL entry
+  if (urlEntries.length === 0) {
+    // Fallback to homepage only
+    urlEntries.push('  <url>');
+    urlEntries.push(`    <loc>${baseUrl}/</loc>`);
+    urlEntries.push(`    <lastmod>${currentDate}</lastmod>`);
+    urlEntries.push('    <changefreq>weekly</changefreq>');
+    urlEntries.push('    <priority>1.0</priority>');
+    urlEntries.push('  </url>');
+  }
+  
+  // Build final XML
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urlEntries.join('\n')}
+</urlset>`;
 
   // Set headers exactly like robots.txt
   ev.headers.set('Content-Type', 'application/xml; charset=utf-8');
