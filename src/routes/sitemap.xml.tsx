@@ -3,35 +3,17 @@ import type { RequestHandler } from '@builder.io/qwik-city';
 /**
  * Google Search Console 2025 Optimized Sitemap Generator
  * 
- * VERIFICATION COMPLETE:
- * ✅ All redirect routes verified and working
- * ✅ Only canonical URLs included (no redirect-only pages)
- * ✅ All 75 valid content pages included
- * ✅ Proper XML structure with escaping
- * ✅ Base URL uses HTTPS www (canonical format)
- * 
- * EXCLUDED FROM SITEMAP (redirect-only pages):
- * - /about-us → redirects to /about
- * - /index.html → redirects to /
- * - /las-vegas-89166 → redirects to /centennial-hills
- * - /taskmaster → redirects to /
- * - /exclusive-access → redirects to /our-luxury-listings
- * - /market-data → redirects to /market-reports
- * - /tule-springs.html → redirects to /tule-springs
- * - /skye-canyon.html → redirects to /sky-canyon
+ * Simple, direct implementation matching robots.txt pattern
+ * All 75 canonical pages included
  */
 export const onGet: RequestHandler = (ev) => {
   const baseUrl = 'https://www.centennialhillshomesforsale.com';
   const currentDate = new Date().toISOString().split('T')[0];
 
   // All canonical content pages - 75 pages total
-  // NOTE: Redirect-only pages are EXCLUDED (they redirect to canonical URLs)
   const pages = [
-    // Highest Priority - Homepage
     { path: '/', priority: '1.0', changefreq: 'weekly' },
     { path: '/centennial-hills-homes', priority: '1.0', changefreq: 'daily' },
-    
-    // High Priority - Core Business Pages
     { path: '/contact', priority: '0.9', changefreq: 'monthly' },
     { path: '/centennial-hills', priority: '0.9', changefreq: 'weekly' },
     { path: '/centennial-hills-homes-for-sale', priority: '0.9', changefreq: 'daily' },
@@ -41,8 +23,6 @@ export const onGet: RequestHandler = (ev) => {
     { path: '/mls-search', priority: '0.9', changefreq: 'daily' },
     { path: '/buy-a-home', priority: '0.9', changefreq: 'weekly' },
     { path: '/sell-a-home', priority: '0.9', changefreq: 'weekly' },
-    
-    // Important Content Pages
     { path: '/about', priority: '0.8', changefreq: 'monthly' },
     { path: '/centennial-hills-luxury-homes', priority: '0.8', changefreq: 'weekly' },
     { path: '/centennial-hills-new-construction', priority: '0.8', changefreq: 'weekly' },
@@ -77,8 +57,6 @@ export const onGet: RequestHandler = (ev) => {
     { path: '/market-insights', priority: '0.8', changefreq: 'weekly' },
     { path: '/new-construction', priority: '0.8', changefreq: 'weekly' },
     { path: '/commute-calculator', priority: '0.8', changefreq: 'monthly' },
-    
-    // Medium Priority - Supporting Pages
     { path: '/testimonials', priority: '0.7', changefreq: 'monthly' },
     { path: '/north-las-vegas', priority: '0.7', changefreq: 'weekly' },
     { path: '/northwest-las-vegas', priority: '0.7', changefreq: 'weekly' },
@@ -101,8 +79,6 @@ export const onGet: RequestHandler = (ev) => {
     { path: '/search', priority: '0.7', changefreq: 'daily' },
     { path: '/moving-guide', priority: '0.7', changefreq: 'monthly' },
     { path: '/move-up-buyers', priority: '0.7', changefreq: 'monthly' },
-    
-    // Lower Priority - Informational Pages
     { path: '/centennial-hills-amenities', priority: '0.6', changefreq: 'monthly' },
     { path: '/centennial-hills-vs-summerlin', priority: '0.6', changefreq: 'monthly' },
     { path: '/press-media', priority: '0.6', changefreq: 'monthly' },
@@ -114,53 +90,27 @@ export const onGet: RequestHandler = (ev) => {
     { path: '/terms-of-service', priority: '0.3', changefreq: 'yearly' },
   ];
 
-  // Validate pages array
-  if (!pages || pages.length === 0) {
-    // Fallback: return at least homepage
-    const fallback = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>${baseUrl}/</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-</urlset>`;
-    ev.headers.set('Content-Type', 'application/xml; charset=utf-8');
-    ev.text(200, fallback);
-    return;
-  }
-
-  // Build XML sitemap - exact format required by Google
+  // Build XML sitemap - simple and direct like robots.txt
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
   
-  // Generate each URL entry with all required fields
-  pages.forEach((page) => {
-    const fullUrl = baseUrl + page.path;
-    
-    // XML escape special characters
-    const escapedUrl = fullUrl
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&apos;');
-    
+  // Add each URL entry
+  for (const page of pages) {
+    const url = baseUrl + page.path;
     xml += '  <url>\n';
-    xml += `    <loc>${escapedUrl}</loc>\n`;
+    xml += `    <loc>${url}</loc>\n`;
     xml += `    <lastmod>${currentDate}</lastmod>\n`;
     xml += `    <changefreq>${page.changefreq}</changefreq>\n`;
     xml += `    <priority>${page.priority}</priority>\n`;
     xml += '  </url>\n';
-  });
+  }
   
   xml += '</urlset>';
 
-  // Set proper headers for XML sitemap
+  // Set headers exactly like robots.txt
   ev.headers.set('Content-Type', 'application/xml; charset=utf-8');
   ev.headers.set('Cache-Control', 'public, max-age=3600, s-maxage=3600');
   
-  // Return XML - matches robots.txt pattern exactly
+  // Return XML
   ev.text(200, xml);
 };
