@@ -45,9 +45,6 @@ export default component$(() => {
 
       {/* Hero Section */}
       <section class="hero-section">
-        <div class="hero-background">
-          <div class="hero-overlay"></div>
-        </div>
         <div class="hero-content">
           <div class="hero-text">
             <h1 class="hero-title">
@@ -71,33 +68,24 @@ export default component$(() => {
               </div>
             </div>
             <div class="hero-cta">
-              <a href="/contact" class="btn btn-primary">
+              <a href="/home-valuation" class="btn btn-primary">
                 Get Free Home Valuation
               </a>
-              <a href="tel:+17029031952" class="btn btn-secondary">
-                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
-                </svg>
-                (702) 903-1952
+              <a href="/contact" class="btn btn-secondary">
+                Contact Dr. Duffy
               </a>
             </div>
           </div>
           <div class="hero-image">
-            <div class="property-showcase">
-              <div class="featured-property">
-                <img 
-                  src="/images/modern-home-exterior.jpg" 
-                  alt="Modern luxury home in Centennial Hills, Las Vegas with desert landscaping and mountain views"
-                  class="property-image"
-                  loading="eager"
-                />
-                <div class="property-overlay">
-                  <div class="property-info">
-                    <div class="property-price">$675,000</div>
-                    <div class="property-details">4 bed • 3 bath • 2,800 sq ft</div>
-                  </div>
-                </div>
-              </div>
+            <img 
+              src="/images/modern-home-exterior.jpg" 
+              alt="Modern luxury home in Centennial Hills, Las Vegas with desert landscaping and mountain views"
+              class="hero-image-main"
+              loading="eager"
+            />
+            <div class="hero-image-card">
+              <div class="property-price">$675,000</div>
+              <div class="property-details">4 bed • 3 bath • 2,800 sq ft</div>
             </div>
           </div>
         </div>

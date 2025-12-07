@@ -61,8 +61,8 @@ export default component$(() => {
               loading="eager"
             />
             <div class="logo-text">
-              <span class="logo-main">Centennial Hills Real Estate</span>
-              <span class="logo-subtitle">Homes by Dr. Jan Duffy</span>
+              <span class="logo-main">Dr. Jan Duffy</span>
+              <span class="logo-subtitle">Centennial Hills Real Estate</span>
             </div>
           </a>
         </div>
@@ -81,8 +81,7 @@ export default component$(() => {
                 class={`nav-link dropdown-toggle ${isActive('/centennial-hills') ? 'active' : ''}`}
                 onMouseEnter$={() => isCentennialHillsOpen.value = true}
                 onMouseLeave$={() => isCentennialHillsOpen.value = false}
-                onFocus$={() => isCentennialHillsOpen.value = true}
-                onBlur$={() => isCentennialHillsOpen.value = false}
+
                 aria-expanded={isCentennialHillsOpen.value}
                 aria-haspopup="true"
               >
@@ -146,8 +145,7 @@ export default component$(() => {
                 class={`nav-link dropdown-toggle ${isActive('/buy') || isActive('/sell') || isActive('/mls') || isActive('/home-valuation') || isActive('/market-analysis') ? 'active' : ''}`}
                 onMouseEnter$={() => isBuySellOpen.value = true}
                 onMouseLeave$={() => isBuySellOpen.value = false}
-                onFocus$={() => isBuySellOpen.value = true}
-                onBlur$={() => isBuySellOpen.value = false}
+
                 aria-expanded={isBuySellOpen.value}
                 aria-haspopup="true"
               >
@@ -211,8 +209,7 @@ export default component$(() => {
                 class={`nav-link dropdown-toggle ${isActive('/our-luxury-listings') || isActive('/active-listings') || isActive('/investment-properties') || isActive('/luxury-estates') || isActive('/new-construction') || isActive('/virtual-tours') || isActive('/recent-sales') ? 'active' : ''}`}
                 onMouseEnter$={() => isListingsOpen.value = true}
                 onMouseLeave$={() => isListingsOpen.value = false}
-                onFocus$={() => isListingsOpen.value = true}
-                onBlur$={() => isListingsOpen.value = false}
+
                 aria-expanded={isListingsOpen.value}
                 aria-haspopup="true"
               >
@@ -276,8 +273,7 @@ export default component$(() => {
                 class={`nav-link dropdown-toggle ${isActive('/north-las-vegas') || isActive('/aliante') || isActive('/sky-canyon') || isActive('/providence') || isActive('/tule-springs') || isActive('/northwest-las-vegas') ? 'active' : ''}`}
                 onMouseEnter$={() => isCommunitiesOpen.value = true}
                 onMouseLeave$={() => isCommunitiesOpen.value = false}
-                onFocus$={() => isCommunitiesOpen.value = true}
-                onBlur$={() => isCommunitiesOpen.value = false}
+
                 aria-expanded={isCommunitiesOpen.value}
                 aria-haspopup="true"
               >
@@ -335,8 +331,7 @@ export default component$(() => {
                 class={`nav-link dropdown-toggle ${isActive('/about') || isActive('/janet-duffy') || isActive('/testimonials') || isActive('/market-insights') || isActive('/press-media') ? 'active' : ''}`}
                 onMouseEnter$={() => isAboutOpen.value = true}
                 onMouseLeave$={() => isAboutOpen.value = false}
-                onFocus$={() => isAboutOpen.value = true}
-                onBlur$={() => isAboutOpen.value = false}
+
                 aria-expanded={isAboutOpen.value}
                 aria-haspopup="true"
               >
@@ -431,8 +426,8 @@ export default component$(() => {
                 loading="eager"
               />
               <div class="mobile-logo">
-                <span class="logo-main">Centennial Hills Real Estate</span>
-                <span class="logo-subtitle">Homes by Dr. Jan Duffy</span>
+              <span class="logo-main">Dr. Jan Duffy</span>
+              <span class="logo-subtitle">Centennial Hills Real Estate</span>
               </div>
             </a>
             <button 
