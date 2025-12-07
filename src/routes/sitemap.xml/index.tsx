@@ -1,121 +1,102 @@
 import type { RequestHandler } from '@builder.io/qwik-city';
+import { createSitemap, type SitemapEntry } from './create-sitemap';
 
 /**
  * Google Search Console 2025 Optimized Sitemap Generator
  * 
- * Using official Qwik SSR pattern with ev.send() and Response object
+ * Using official Qwik SSR pattern matching documentation exactly
  * Guarantees <url> tags are always generated inside <urlset>
  */
 export const onGet: RequestHandler = (ev) => {
-  const baseUrl = 'https://www.centennialhillshomesforsale.com';
   const currentDate = new Date().toISOString().split('T')[0];
 
   // All canonical content pages - 75 pages total
-  const pages = [
-    { path: '/', priority: '1.0', changefreq: 'weekly' },
-    { path: '/centennial-hills-homes', priority: '1.0', changefreq: 'daily' },
-    { path: '/contact', priority: '0.9', changefreq: 'monthly' },
-    { path: '/centennial-hills', priority: '0.9', changefreq: 'weekly' },
-    { path: '/centennial-hills-homes-for-sale', priority: '0.9', changefreq: 'daily' },
-    { path: '/properties', priority: '0.9', changefreq: 'daily' },
-    { path: '/our-luxury-listings', priority: '0.9', changefreq: 'daily' },
-    { path: '/active-listings', priority: '0.9', changefreq: 'daily' },
-    { path: '/mls-search', priority: '0.9', changefreq: 'daily' },
-    { path: '/buy-a-home', priority: '0.9', changefreq: 'weekly' },
-    { path: '/sell-a-home', priority: '0.9', changefreq: 'weekly' },
-    { path: '/about', priority: '0.8', changefreq: 'monthly' },
-    { path: '/centennial-hills-luxury-homes', priority: '0.8', changefreq: 'weekly' },
-    { path: '/centennial-hills-new-construction', priority: '0.8', changefreq: 'weekly' },
-    { path: '/centennial-hills-89135', priority: '0.8', changefreq: 'weekly' },
-    { path: '/centennial-hills-89138', priority: '0.8', changefreq: 'weekly' },
-    { path: '/centennial-hills-89144', priority: '0.8', changefreq: 'weekly' },
-    { path: '/investment-properties', priority: '0.8', changefreq: 'weekly' },
-    { path: '/virtual-tours', priority: '0.8', changefreq: 'weekly' },
-    { path: '/recent-sales', priority: '0.8', changefreq: 'weekly' },
-    { path: '/luxury-estates', priority: '0.8', changefreq: 'weekly' },
-    { path: '/luxury-home-sales', priority: '0.8', changefreq: 'monthly' },
-    { path: '/buyers', priority: '0.8', changefreq: 'weekly' },
-    { path: '/first-time-homebuyers', priority: '0.8', changefreq: 'monthly' },
-    { path: '/luxury-home-buyers', priority: '0.8', changefreq: 'monthly' },
-    { path: '/california-equity-buyers', priority: '0.8', changefreq: 'monthly' },
-    { path: '/home-valuation', priority: '0.8', changefreq: 'weekly' },
-    { path: '/market-analysis', priority: '0.8', changefreq: 'weekly' },
-    { path: '/janet-duffy', priority: '0.8', changefreq: 'monthly' },
-    { path: '/neighborhoods', priority: '0.8', changefreq: 'weekly' },
-    { path: '/area-explorer', priority: '0.8', changefreq: 'weekly' },
-    { path: '/the-ridges', priority: '0.8', changefreq: 'weekly' },
-    { path: '/summerlin-west', priority: '0.8', changefreq: 'weekly' },
-    { path: '/summerlin', priority: '0.8', changefreq: 'weekly' },
-    { path: '/corporate-relocation-services', priority: '0.8', changefreq: 'monthly' },
-    { path: '/market-reports', priority: '0.8', changefreq: 'weekly' },
-    { path: '/centennial-hills-market-report', priority: '0.8', changefreq: 'weekly' },
-    { path: '/buying-guide', priority: '0.8', changefreq: 'monthly' },
-    { path: '/selling-guide', priority: '0.8', changefreq: 'monthly' },
-    { path: '/homes-400k-600k', priority: '0.8', changefreq: 'weekly' },
-    { path: '/homes-over-1m', priority: '0.8', changefreq: 'weekly' },
-    { path: '/blog', priority: '0.8', changefreq: 'weekly' },
-    { path: '/market-insights', priority: '0.8', changefreq: 'weekly' },
-    { path: '/new-construction', priority: '0.8', changefreq: 'weekly' },
-    { path: '/commute-calculator', priority: '0.8', changefreq: 'monthly' },
-    { path: '/testimonials', priority: '0.7', changefreq: 'monthly' },
-    { path: '/north-las-vegas', priority: '0.7', changefreq: 'weekly' },
-    { path: '/northwest-las-vegas', priority: '0.7', changefreq: 'weekly' },
-    { path: '/aliante', priority: '0.7', changefreq: 'weekly' },
-    { path: '/sky-canyon', priority: '0.7', changefreq: 'weekly' },
-    { path: '/providence', priority: '0.7', changefreq: 'weekly' },
-    { path: '/tule-springs', priority: '0.7', changefreq: 'weekly' },
-    { path: '/red-rock-country-club', priority: '0.7', changefreq: 'weekly' },
-    { path: '/lone-mountain', priority: '0.7', changefreq: 'weekly' },
-    { path: '/centennial-hills-schools', priority: '0.7', changefreq: 'monthly' },
-    { path: '/best-schools-centennial-hills', priority: '0.7', changefreq: 'monthly' },
-    { path: '/condos-centennial-hills', priority: '0.7', changefreq: 'weekly' },
-    { path: '/golf-course-homes', priority: '0.7', changefreq: 'weekly' },
-    { path: '/homes-under-400k', priority: '0.7', changefreq: 'weekly' },
-    { path: '/mortgage-calculator', priority: '0.7', changefreq: 'monthly' },
-    { path: '/affordability-calculator', priority: '0.7', changefreq: 'monthly' },
-    { path: '/blog/category/buyer-guide', priority: '0.7', changefreq: 'monthly' },
-    { path: '/blog/category/market-updates', priority: '0.7', changefreq: 'weekly' },
-    { path: '/blog/category/seller-guide', priority: '0.7', changefreq: 'monthly' },
-    { path: '/search', priority: '0.7', changefreq: 'daily' },
-    { path: '/moving-guide', priority: '0.7', changefreq: 'monthly' },
-    { path: '/move-up-buyers', priority: '0.7', changefreq: 'monthly' },
-    { path: '/centennial-hills-amenities', priority: '0.6', changefreq: 'monthly' },
-    { path: '/centennial-hills-vs-summerlin', priority: '0.6', changefreq: 'monthly' },
-    { path: '/press-media', priority: '0.6', changefreq: 'monthly' },
-    { path: '/faq', priority: '0.6', changefreq: 'monthly' },
-    { path: '/local-business-optimization', priority: '0.6', changefreq: 'monthly' },
-    { path: '/fair-housing', priority: '0.5', changefreq: 'yearly' },
-    { path: '/accessibility', priority: '0.4', changefreq: 'yearly' },
-    { path: '/privacy-policy', priority: '0.3', changefreq: 'yearly' },
-    { path: '/terms-of-service', priority: '0.3', changefreq: 'yearly' },
+  const entries: SitemapEntry[] = [
+    { loc: '/', priority: '1.0', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/centennial-hills-homes', priority: '1.0', changefreq: 'daily', lastmod: currentDate },
+    { loc: '/contact', priority: '0.9', changefreq: 'monthly', lastmod: currentDate },
+    { loc: '/centennial-hills', priority: '0.9', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/centennial-hills-homes-for-sale', priority: '0.9', changefreq: 'daily', lastmod: currentDate },
+    { loc: '/properties', priority: '0.9', changefreq: 'daily', lastmod: currentDate },
+    { loc: '/our-luxury-listings', priority: '0.9', changefreq: 'daily', lastmod: currentDate },
+    { loc: '/active-listings', priority: '0.9', changefreq: 'daily', lastmod: currentDate },
+    { loc: '/mls-search', priority: '0.9', changefreq: 'daily', lastmod: currentDate },
+    { loc: '/buy-a-home', priority: '0.9', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/sell-a-home', priority: '0.9', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/about', priority: '0.8', changefreq: 'monthly', lastmod: currentDate },
+    { loc: '/centennial-hills-luxury-homes', priority: '0.8', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/centennial-hills-new-construction', priority: '0.8', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/centennial-hills-89135', priority: '0.8', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/centennial-hills-89138', priority: '0.8', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/centennial-hills-89144', priority: '0.8', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/investment-properties', priority: '0.8', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/virtual-tours', priority: '0.8', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/recent-sales', priority: '0.8', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/luxury-estates', priority: '0.8', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/luxury-home-sales', priority: '0.8', changefreq: 'monthly', lastmod: currentDate },
+    { loc: '/buyers', priority: '0.8', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/first-time-homebuyers', priority: '0.8', changefreq: 'monthly', lastmod: currentDate },
+    { loc: '/luxury-home-buyers', priority: '0.8', changefreq: 'monthly', lastmod: currentDate },
+    { loc: '/california-equity-buyers', priority: '0.8', changefreq: 'monthly', lastmod: currentDate },
+    { loc: '/home-valuation', priority: '0.8', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/market-analysis', priority: '0.8', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/janet-duffy', priority: '0.8', changefreq: 'monthly', lastmod: currentDate },
+    { loc: '/neighborhoods', priority: '0.8', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/area-explorer', priority: '0.8', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/the-ridges', priority: '0.8', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/summerlin-west', priority: '0.8', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/summerlin', priority: '0.8', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/corporate-relocation-services', priority: '0.8', changefreq: 'monthly', lastmod: currentDate },
+    { loc: '/market-reports', priority: '0.8', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/centennial-hills-market-report', priority: '0.8', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/buying-guide', priority: '0.8', changefreq: 'monthly', lastmod: currentDate },
+    { loc: '/selling-guide', priority: '0.8', changefreq: 'monthly', lastmod: currentDate },
+    { loc: '/homes-400k-600k', priority: '0.8', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/homes-over-1m', priority: '0.8', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/blog', priority: '0.8', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/market-insights', priority: '0.8', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/new-construction', priority: '0.8', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/commute-calculator', priority: '0.8', changefreq: 'monthly', lastmod: currentDate },
+    { loc: '/testimonials', priority: '0.7', changefreq: 'monthly', lastmod: currentDate },
+    { loc: '/north-las-vegas', priority: '0.7', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/northwest-las-vegas', priority: '0.7', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/aliante', priority: '0.7', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/sky-canyon', priority: '0.7', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/providence', priority: '0.7', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/tule-springs', priority: '0.7', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/red-rock-country-club', priority: '0.7', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/lone-mountain', priority: '0.7', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/centennial-hills-schools', priority: '0.7', changefreq: 'monthly', lastmod: currentDate },
+    { loc: '/best-schools-centennial-hills', priority: '0.7', changefreq: 'monthly', lastmod: currentDate },
+    { loc: '/condos-centennial-hills', priority: '0.7', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/golf-course-homes', priority: '0.7', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/homes-under-400k', priority: '0.7', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/mortgage-calculator', priority: '0.7', changefreq: 'monthly', lastmod: currentDate },
+    { loc: '/affordability-calculator', priority: '0.7', changefreq: 'monthly', lastmod: currentDate },
+    { loc: '/blog/category/buyer-guide', priority: '0.7', changefreq: 'monthly', lastmod: currentDate },
+    { loc: '/blog/category/market-updates', priority: '0.7', changefreq: 'weekly', lastmod: currentDate },
+    { loc: '/blog/category/seller-guide', priority: '0.7', changefreq: 'monthly', lastmod: currentDate },
+    { loc: '/search', priority: '0.7', changefreq: 'daily', lastmod: currentDate },
+    { loc: '/moving-guide', priority: '0.7', changefreq: 'monthly', lastmod: currentDate },
+    { loc: '/move-up-buyers', priority: '0.7', changefreq: 'monthly', lastmod: currentDate },
+    { loc: '/centennial-hills-amenities', priority: '0.6', changefreq: 'monthly', lastmod: currentDate },
+    { loc: '/centennial-hills-vs-summerlin', priority: '0.6', changefreq: 'monthly', lastmod: currentDate },
+    { loc: '/press-media', priority: '0.6', changefreq: 'monthly', lastmod: currentDate },
+    { loc: '/faq', priority: '0.6', changefreq: 'monthly', lastmod: currentDate },
+    { loc: '/local-business-optimization', priority: '0.6', changefreq: 'monthly', lastmod: currentDate },
+    { loc: '/fair-housing', priority: '0.5', changefreq: 'yearly', lastmod: currentDate },
+    { loc: '/accessibility', priority: '0.4', changefreq: 'yearly', lastmod: currentDate },
+    { loc: '/privacy-policy', priority: '0.3', changefreq: 'yearly', lastmod: currentDate },
+    { loc: '/terms-of-service', priority: '0.3', changefreq: 'yearly', lastmod: currentDate },
   ];
 
-  // Build XML sitemap - using official Qwik pattern with schema location
-  let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
-  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">\n';
-  
-  // Generate each URL entry - guaranteed to execute
-  for (let i = 0; i < pages.length; i++) {
-    const page = pages[i];
-    const fullUrl = baseUrl + page.path;
-    xml += '  <url>\n';
-    xml += `    <loc>${fullUrl}</loc>\n`;
-    xml += `    <lastmod>${currentDate}</lastmod>\n`;
-    xml += `    <changefreq>${page.changefreq}</changefreq>\n`;
-    xml += `    <priority>${page.priority}</priority>\n`;
-    xml += '  </url>\n';
-  }
-  
-  xml += '</urlset>';
+  // Generate sitemap using helper function (matches Qwik docs pattern)
+  const sitemap = createSitemap(entries);
 
   // Use official Qwik SSR pattern: ev.send() with Response object
-  // Content-Type should be 'text/xml' per Qwik documentation
-  const response = new Response(xml, {
+  const response = new Response(sitemap, {
     status: 200,
-    headers: {
-      'Content-Type': 'text/xml',
-      'Cache-Control': 'public, max-age=3600, s-maxage=3600',
-    },
+    headers: { 'Content-Type': 'text/xml' },
   });
 
   ev.send(response);
