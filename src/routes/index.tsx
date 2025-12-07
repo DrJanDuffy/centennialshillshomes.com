@@ -493,11 +493,19 @@ export const head: DocumentHead = {
     },
     {
       property: 'og:image',
-      content: 'https://www.centennialhillshomes.com/images/dr-janet-duffy-og.jpg',
+      content: 'https://www.centennialhillshomesforsale.com/images/dr-janet-duffy-og.jpg',
     },
     {
       property: 'og:type',
       content: 'website',
+    },
+    {
+      property: 'og:url',
+      content: 'https://www.centennialhillshomesforsale.com/',
+    },
+    {
+      property: 'og:site_name',
+      content: 'Centennial Hills Real Estate',
     },
     {
       name: 'twitter:card',
@@ -513,7 +521,7 @@ export const head: DocumentHead = {
     },
     {
       name: 'twitter:image',
-      content: 'https://www.centennialhillshomes.com/images/dr-janet-duffy-twitter.jpg',
+      content: 'https://www.centennialhillshomesforsale.com/images/dr-janet-duffy-twitter.jpg',
     },
   ],
 };
