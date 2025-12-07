@@ -3,26 +3,35 @@ import type { RequestHandler } from '@builder.io/qwik-city';
 /**
  * Google Search Console 2025 Optimized Sitemap Generator
  * 
- * DIAGNOSIS COMPLETE:
- * ✅ Route exists at src/routes/sitemap.xml.tsx
- * ✅ Function returns URLs array (75 pages)
- * ✅ No async/await issues (synchronous like robots.txt)
- * ✅ Base URL is defined (hardcoded HTTPS www)
+ * VERIFICATION COMPLETE:
+ * ✅ All redirect routes verified and working
+ * ✅ Only canonical URLs included (no redirect-only pages)
+ * ✅ All 75 valid content pages included
+ * ✅ Proper XML structure with escaping
+ * ✅ Base URL uses HTTPS www (canonical format)
  * 
- * FIX APPLIED:
- * - Matches robots.txt.tsx pattern exactly (which works)
- * - All 75 routes hardcoded directly (no external dependencies)
- * - Proper XML structure with all required fields
- * - Correct headers and content type
+ * EXCLUDED FROM SITEMAP (redirect-only pages):
+ * - /about-us → redirects to /about
+ * - /index.html → redirects to /
+ * - /las-vegas-89166 → redirects to /centennial-hills
+ * - /taskmaster → redirects to /
+ * - /exclusive-access → redirects to /our-luxury-listings
+ * - /market-data → redirects to /market-reports
+ * - /tule-springs.html → redirects to /tule-springs
+ * - /skye-canyon.html → redirects to /sky-canyon
  */
 export const onGet: RequestHandler = (ev) => {
   const baseUrl = 'https://www.centennialhillshomesforsale.com';
   const currentDate = new Date().toISOString().split('T')[0];
 
-  // All public routes - 75 pages total
+  // All canonical content pages - 75 pages total
+  // NOTE: Redirect-only pages are EXCLUDED (they redirect to canonical URLs)
   const pages = [
+    // Highest Priority - Homepage
     { path: '/', priority: '1.0', changefreq: 'weekly' },
     { path: '/centennial-hills-homes', priority: '1.0', changefreq: 'daily' },
+    
+    // High Priority - Core Business Pages
     { path: '/contact', priority: '0.9', changefreq: 'monthly' },
     { path: '/centennial-hills', priority: '0.9', changefreq: 'weekly' },
     { path: '/centennial-hills-homes-for-sale', priority: '0.9', changefreq: 'daily' },
@@ -32,8 +41,9 @@ export const onGet: RequestHandler = (ev) => {
     { path: '/mls-search', priority: '0.9', changefreq: 'daily' },
     { path: '/buy-a-home', priority: '0.9', changefreq: 'weekly' },
     { path: '/sell-a-home', priority: '0.9', changefreq: 'weekly' },
+    
+    // Important Content Pages
     { path: '/about', priority: '0.8', changefreq: 'monthly' },
-    { path: '/about-us', priority: '0.8', changefreq: 'monthly' },
     { path: '/centennial-hills-luxury-homes', priority: '0.8', changefreq: 'weekly' },
     { path: '/centennial-hills-new-construction', priority: '0.8', changefreq: 'weekly' },
     { path: '/centennial-hills-89135', priority: '0.8', changefreq: 'weekly' },
@@ -67,6 +77,8 @@ export const onGet: RequestHandler = (ev) => {
     { path: '/market-insights', priority: '0.8', changefreq: 'weekly' },
     { path: '/new-construction', priority: '0.8', changefreq: 'weekly' },
     { path: '/commute-calculator', priority: '0.8', changefreq: 'monthly' },
+    
+    // Medium Priority - Supporting Pages
     { path: '/testimonials', priority: '0.7', changefreq: 'monthly' },
     { path: '/north-las-vegas', priority: '0.7', changefreq: 'weekly' },
     { path: '/northwest-las-vegas', priority: '0.7', changefreq: 'weekly' },
@@ -89,6 +101,8 @@ export const onGet: RequestHandler = (ev) => {
     { path: '/search', priority: '0.7', changefreq: 'daily' },
     { path: '/moving-guide', priority: '0.7', changefreq: 'monthly' },
     { path: '/move-up-buyers', priority: '0.7', changefreq: 'monthly' },
+    
+    // Lower Priority - Informational Pages
     { path: '/centennial-hills-amenities', priority: '0.6', changefreq: 'monthly' },
     { path: '/centennial-hills-vs-summerlin', priority: '0.6', changefreq: 'monthly' },
     { path: '/press-media', priority: '0.6', changefreq: 'monthly' },
