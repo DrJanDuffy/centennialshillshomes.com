@@ -2,7 +2,7 @@ import type { RequestHandler } from '@builder.io/qwik-city';
 
 /**
  * Serve sitemap.xml with all site pages
- * This route handler ensures the sitemap is always available
+ * Using directory structure (sitemap.xml/index.tsx) for proper Qwik routing
  */
 export const onGet: RequestHandler = (ev) => {
   const baseUrl = 'https://www.centennialhillshomesforsale.com';
@@ -89,11 +89,12 @@ export const onGet: RequestHandler = (ev) => {
     { path: '/terms-of-service', priority: '0.3', changefreq: 'yearly' },
   ];
 
-  // Build XML sitemap
+  // Build XML sitemap - ensure proper XML structure
   const xmlParts: string[] = [];
   xmlParts.push('<?xml version="1.0" encoding="UTF-8"?>');
   xmlParts.push('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
   
+  // Add each URL entry
   for (const page of pages) {
     const url = `${baseUrl}${page.path}`;
     xmlParts.push('  <url>');
@@ -107,7 +108,11 @@ export const onGet: RequestHandler = (ev) => {
   xmlParts.push('</urlset>');
   const sitemap = xmlParts.join('\n');
 
+  // Set proper headers for XML
   ev.headers.set('Content-Type', 'application/xml; charset=utf-8');
   ev.headers.set('Cache-Control', 'public, max-age=3600, s-maxage=3600');
+  
+  // Return XML response
   return ev.text(200, sitemap);
 };
+
