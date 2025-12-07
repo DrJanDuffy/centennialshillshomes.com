@@ -113,7 +113,8 @@ export const onGet: RequestHandler = (ev) => {
   </url>
 </urlset>`;
     ev.headers.set('Content-Type', 'application/xml; charset=utf-8');
-    return ev.text(200, fallback);
+    ev.text(200, fallback);
+    return;
   }
 
   // Build XML sitemap - exact format required by Google
@@ -146,6 +147,6 @@ export const onGet: RequestHandler = (ev) => {
   ev.headers.set('Content-Type', 'application/xml; charset=utf-8');
   ev.headers.set('Cache-Control', 'public, max-age=3600, s-maxage=3600');
   
-  // Return XML - MUST return to complete the handler
-  return ev.text(200, xml);
+  // Return XML - matches robots.txt pattern exactly
+  ev.text(200, xml);
 };
