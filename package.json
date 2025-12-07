@@ -25,7 +25,9 @@
     "dns:pull:json": "node scripts/cloudflare-dns-pull.js --format json",
     "dns:export": "node scripts/cloudflare-dns-pull.js --format json --output dns-records.json",
     "dns:free-info": "node scripts/cloudflare-dns-pull.js --free-tier-info",
-    "optimize:images": "node scripts/optimize-images.js"
+    "optimize:images": "node scripts/optimize-images.js",
+    "generate:sitemap": "node generate_sitemap.js",
+    "prebuild": "npm run generate:sitemap"
   },
   "devDependencies": {
     "@builder.io/qwik": "^1.17.2",

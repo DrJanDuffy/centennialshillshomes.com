@@ -1,0 +1,82 @@
+---
+description: Research current techniques before implementing solutions
+globs: 
+alwaysApply: true
+---
+
+# RESEARCH-FIRST PROTOCOL
+
+## BEFORE ANY IMPLEMENTATION:
+
+1. **Search official docs** for the specific technology (Next.js, Vercel, Google, etc.)
+
+2. **Check for breaking changes** in recent versions (Next.js 15 differs from 14)
+
+3. **Verify current best practices** - techniques from 2023-2024 may be outdated
+
+4. **Review Cursor's indexed codebase** for existing patterns before adding new ones
+
+## MANDATORY RESEARCH TRIGGERS:
+
+When the task involves any of these, pause and research first:
+
+| Topic | Search For |
+|-------|-----------|
+| Sitemap | "Next.js 15 app router sitemap.ts MetadataRoute" |
+| SEO/Metadata | "Next.js 15 generateMetadata best practices" |
+| Google indexing | "Google Search Console 2025 requirements" |
+| Schema markup | "Google structured data testing tool 2025" |
+| Caching | "Vercel ISR revalidate 2025" OR "Cloudflare cache rules" |
+| API routes | "Next.js 15 route handlers vs API routes" |
+| Server components | "Next.js 15 server vs client components" |
+| Image optimization | "Next.js 15 next/image component" |
+
+## WORKFLOW:
+
+1. **Read the existing file** using @file before suggesting changes
+
+2. **Search project** for related patterns using @codebase
+
+3. **Research current docs** - cite source if implementation differs from older patterns
+
+4. **Propose changes** with explanation of WHY this is current best practice
+
+5. **Test locally** before deploying
+
+## RESPONSE FORMAT:
+
+"Based on [Next.js 15 docs / Google's Dec 2025 guidelines / Vercel documentation], the current approach is..."
+
+Then provide implementation.
+
+## PROJECT CONTEXT:
+
+- Stack: Next.js 15 App Router, TypeScript, Tailwind CSS
+
+- Deploy: Vercel + Cloudflare
+
+- Scale: 135+ real estate domains - solutions must be reusable
+
+- Focus: SEO, schema markup, sitemap generation, RealScout widgets
+
+## RED FLAGS - STOP AND VERIFY:
+
+- Using `pages/` directory patterns (deprecated for App Router)
+
+- Using `getStaticProps` or `getServerSideProps` (Pages Router, not App Router)
+
+- Sitemap returning `loc` instead of `url` field
+
+- Missing `export default` on App Router files
+
+- Any pattern you remember from Next.js 13 or earlier
+
+## NEVER:
+
+- Apply solutions without checking if file already exists
+
+- Assume a technique works without verifying against current docs
+
+- Skip the "test locally" step
+
+- Ignore static file overrides in `public/` folder

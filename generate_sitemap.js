@@ -172,6 +172,13 @@ function getRoutes(dir) {
 }
 
 function generateSitemap(routes) {
+    // Sort routes by priority (highest first), then alphabetically
+    routes.sort((a, b) => {
+        const priorityDiff = parseFloat(b.priority) - parseFloat(a.priority);
+        if (priorityDiff !== 0) return priorityDiff;
+        return a.loc.localeCompare(b.loc);
+    });
+
     let urlEntries = routes.map(route => `
   <url>
     <loc>${route.loc}</loc>
@@ -180,8 +187,8 @@ function generateSitemap(routes) {
     <priority>${route.priority}</priority>
   </url>`).join('');
 
-	    return `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urlEntries}
+    return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">${urlEntries}
 </urlset>`;
 }
 
