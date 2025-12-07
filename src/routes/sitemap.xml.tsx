@@ -3,25 +3,17 @@ import type { RequestHandler } from '@builder.io/qwik-city';
 /**
  * SEO-Optimized Sitemap Generator
  * Generates comprehensive XML sitemap with all site pages
- * Optimized for Google Search Console and search engine indexing
  * 
- * 2025 Best Practices:
- * - All URLs use HTTPS with www subdomain
- * - Proper priority distribution (1.0 for homepage, 0.9 for key pages)
- * - Accurate change frequencies (daily for listings, weekly for content)
- * - Current lastmod dates for better indexing
+ * This route handler generates a valid XML sitemap following Google's specifications
  */
 export const onGet: RequestHandler = (ev) => {
   const baseUrl = 'https://www.centennialhillshomesforsale.com';
   const currentDate = new Date().toISOString().split('T')[0];
 
-  // Comprehensive list of all site pages with SEO-optimized priorities
+  // All site pages - comprehensive list for maximum SEO coverage
   const pages = [
-    // Highest Priority - Homepage and Key Landing Pages
     { path: '/', priority: '1.0', changefreq: 'weekly' },
     { path: '/centennial-hills-homes', priority: '1.0', changefreq: 'daily' },
-    
-    // High Priority - Core Business Pages
     { path: '/contact', priority: '0.9', changefreq: 'monthly' },
     { path: '/centennial-hills', priority: '0.9', changefreq: 'weekly' },
     { path: '/centennial-hills-homes-for-sale', priority: '0.9', changefreq: 'daily' },
@@ -31,8 +23,6 @@ export const onGet: RequestHandler = (ev) => {
     { path: '/mls-search', priority: '0.9', changefreq: 'daily' },
     { path: '/buy-a-home', priority: '0.9', changefreq: 'weekly' },
     { path: '/sell-a-home', priority: '0.9', changefreq: 'weekly' },
-    
-    // Important Content Pages
     { path: '/about', priority: '0.8', changefreq: 'monthly' },
     { path: '/about-us', priority: '0.8', changefreq: 'monthly' },
     { path: '/centennial-hills-luxury-homes', priority: '0.8', changefreq: 'weekly' },
@@ -68,8 +58,6 @@ export const onGet: RequestHandler = (ev) => {
     { path: '/market-insights', priority: '0.8', changefreq: 'weekly' },
     { path: '/new-construction', priority: '0.8', changefreq: 'weekly' },
     { path: '/commute-calculator', priority: '0.8', changefreq: 'monthly' },
-    
-    // Medium Priority - Supporting Pages
     { path: '/testimonials', priority: '0.7', changefreq: 'monthly' },
     { path: '/north-las-vegas', priority: '0.7', changefreq: 'weekly' },
     { path: '/northwest-las-vegas', priority: '0.7', changefreq: 'weekly' },
@@ -92,8 +80,6 @@ export const onGet: RequestHandler = (ev) => {
     { path: '/search', priority: '0.7', changefreq: 'daily' },
     { path: '/moving-guide', priority: '0.7', changefreq: 'monthly' },
     { path: '/move-up-buyers', priority: '0.7', changefreq: 'monthly' },
-    
-    // Lower Priority - Informational Pages
     { path: '/centennial-hills-amenities', priority: '0.6', changefreq: 'monthly' },
     { path: '/centennial-hills-vs-summerlin', priority: '0.6', changefreq: 'monthly' },
     { path: '/press-media', priority: '0.6', changefreq: 'monthly' },
@@ -105,29 +91,32 @@ export const onGet: RequestHandler = (ev) => {
     { path: '/terms-of-service', priority: '0.3', changefreq: 'yearly' },
   ];
 
-  // Build XML sitemap - using simple string concatenation for reliability
-  let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
-  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+  // Build XML sitemap - explicit construction to ensure it works
+  const urlEntries: string[] = [];
   
-  // Add each URL entry - ensure every page gets a proper <url> tag
-  for (let i = 0; i < pages.length; i++) {
-    const page = pages[i];
-    const url = `${baseUrl}${page.path}`;
-    xml += '  <url>\n';
-    xml += `    <loc>${url}</loc>\n`;
-    xml += `    <lastmod>${currentDate}</lastmod>\n`;
-    xml += `    <changefreq>${page.changefreq}</changefreq>\n`;
-    xml += `    <priority>${page.priority}</priority>\n`;
-    xml += '  </url>\n';
-  }
-  
-  xml += '</urlset>';
+  // Generate URL entries
+  pages.forEach((page) => {
+    const fullUrl = baseUrl + page.path;
+    urlEntries.push('  <url>');
+    urlEntries.push(`    <loc>${fullUrl}</loc>`);
+    urlEntries.push(`    <lastmod>${currentDate}</lastmod>`);
+    urlEntries.push(`    <changefreq>${page.changefreq}</changefreq>`);
+    urlEntries.push(`    <priority>${page.priority}</priority>`);
+    urlEntries.push('  </url>');
+  });
 
-  // Set proper headers for XML content
+  // Construct final XML
+  const xmlContent = [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ...urlEntries,
+    '</urlset>'
+  ].join('\n');
+
+  // Set headers
   ev.headers.set('Content-Type', 'application/xml; charset=utf-8');
   ev.headers.set('Cache-Control', 'public, max-age=3600, s-maxage=3600');
   
-  // Return the sitemap XML
-  return ev.text(200, xml);
+  // Return XML
+  return ev.text(200, xmlContent);
 };
-
