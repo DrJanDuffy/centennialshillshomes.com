@@ -301,7 +301,7 @@ export default component$(() => {
           <div class="footer-bottom-content">
             <div class="footer-bottom-left">
               <p>&copy; 2024 Centennial Hills Real Estate | Homes by Dr. Jan Duffy. All rights reserved.</p>
-              <p>Licensed in Nevada | Equal Housing Opportunity</p>
+              <p>Licensed in Nevada License #S.0197614 | Berkshire Hathaway HomeServices | Equal Housing Opportunity</p>
             </div>
             <div class="footer-bottom-right">
               <a href="/privacy">Privacy Policy</a>
