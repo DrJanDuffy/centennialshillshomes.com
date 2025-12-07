@@ -7,10 +7,15 @@ import type { RequestHandler } from '@builder.io/qwik-city';
  * Direct string building - no helper functions, no template literal tricks
  */
 export const onGet: RequestHandler = (ev) => {
+  // CRITICAL: Set headers FIRST before any processing
+  ev.headers.set('Content-Type', 'text/xml; charset=utf-8');
+  ev.headers.set('Cache-Control', 'public, max-age=3600, s-maxage=3600');
+  
   const baseUrl = 'https://www.centennialhillshomesforsale.com';
   const currentDate = new Date().toISOString().split('T')[0];
 
   // All canonical content pages - 75 pages total
+  // CRITICAL: Ensure array is never empty
   const pages = [
     { loc: '/', priority: '1.0', changefreq: 'weekly' },
     { loc: '/centennial-hills-homes', priority: '1.0', changefreq: 'daily' },
@@ -90,6 +95,22 @@ export const onGet: RequestHandler = (ev) => {
     { loc: '/terms-of-service', priority: '0.3', changefreq: 'yearly' },
   ];
 
+  // CRITICAL: Validate pages array
+  if (!pages || pages.length === 0) {
+    // Emergency fallback - return minimal valid sitemap
+    const fallbackSitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <url>
+    <loc>${baseUrl}/</loc>
+    <lastmod>${currentDate}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>`;
+    ev.text(200, fallbackSitemap);
+    return;
+  }
+
   // Build XML directly - EXACT pattern from robots.txt.tsx
   let sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n';
   sitemap += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">\n';
@@ -97,7 +118,9 @@ export const onGet: RequestHandler = (ev) => {
   // Generate each URL entry - guaranteed to execute
   for (let i = 0; i < pages.length; i++) {
     const page = pages[i];
-    const fullUrl = baseUrl + page.loc;
+    if (!page || !page.loc) continue; // Skip invalid entries
+    
+    const fullUrl = baseUrl + (page.loc.startsWith('/') ? page.loc : '/' + page.loc);
     sitemap += '  <url>\n';
     sitemap += `    <loc>${fullUrl}</loc>\n`;
     sitemap += `    <lastmod>${currentDate}</lastmod>\n`;
@@ -108,9 +131,19 @@ export const onGet: RequestHandler = (ev) => {
   
   sitemap += '</urlset>';
 
-  // Set headers exactly like robots.txt
-  ev.headers.set('Content-Type', 'text/xml');
-  ev.headers.set('Cache-Control', 'public, max-age=3600, s-maxage=3600');
+  // CRITICAL: Verify sitemap contains URLs before returning
+  if (!sitemap.includes('<loc>')) {
+    // Emergency fallback
+    sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <url>
+    <loc>${baseUrl}/</loc>
+    <lastmod>${currentDate}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>`;
+  }
   
   // Return XML - same pattern as robots.txt
   ev.text(200, sitemap);

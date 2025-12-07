@@ -13,14 +13,15 @@
 }
 
 .header-container {
-  max-width: 1400px;
+  max-width: 1600px;
   margin: 0 auto;
   padding: 0 2rem;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 2rem;
-  height: 70px;
+  gap: 3rem;
+  height: 80px;
+  position: relative;
 }
 
 /* Logo Section */
@@ -77,15 +78,18 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  position: relative;
 }
 
 .nav-list {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  justify-content: center;
+  gap: 0.5rem;
   margin: 0;
   padding: 0;
   list-style: none;
+  flex-wrap: wrap;
 }
 
 .nav-item {
@@ -96,13 +100,15 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1rem;
+  padding: 0.625rem 1rem;
   text-decoration: none;
   color: #374151;
   font-weight: 500;
-  font-size: 0.95rem;
-  border-radius: 8px;
+  font-size: 0.9rem;
+  border-radius: 6px;
   transition: all 0.2s ease;
+  white-space: nowrap;
+  position: relative;
 }
 
 .nav-link:hover {
@@ -212,20 +218,23 @@
 .header-cta {
   display: block;
   flex-shrink: 0;
+  margin-left: auto;
 }
 
 .cta-button {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  background: #1e3a8a;
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
   color: white;
   text-decoration: none;
   border-radius: 8px;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(30, 58, 138, 0.2);
+  white-space: nowrap;
 }
 
 .cta-button:hover {
@@ -512,12 +521,13 @@
 
 @media (min-width: 1024px) {
   .header-container {
-    padding: 0 2rem;
-    max-width: 1400px;
+    padding: 0 3rem;
+    max-width: 1600px;
+    gap: 4rem;
   }
   
   .nav-list {
-    gap: 2.5rem;
+    gap: 0.75rem;
   }
   
   .logo-main {
@@ -526,6 +536,21 @@
   
   .logo-subtitle {
     font-size: 0.8rem;
+  }
+  
+  .nav-link {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .header-container {
+    gap: 5rem;
+  }
+  
+  .nav-list {
+    gap: 1rem;
   }
 }
 
