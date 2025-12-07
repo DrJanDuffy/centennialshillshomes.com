@@ -1,10 +1,28 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import FAQSection, { realtorServiceFAQs } from '../../components/faq-section';
+import SEOStructuredData from '../../components/seo-structured-data';
+import { pageSchemas } from '../../components/seo-structured-data';
+import Breadcrumbs from '~/components/breadcrumbs';
 
 export default component$(() => {
+  // Schema data for About page
+  const aboutSchema = pageSchemas.personPage({});
+
   return (
     <>
+      {/* SEO Structured Data */}
+      <SEOStructuredData 
+        type="Person" 
+        data={aboutSchema} 
+      />
+      
+      {/* Breadcrumbs */}
+      <Breadcrumbs items={[
+        { name: 'Home', url: '/' },
+        { name: 'About', url: '/about' }
+      ]} />
+      
       {/* Hero Section */}
       <section class="hero-section">
         <div class="container container-center">
@@ -198,6 +216,84 @@ export default component$(() => {
                 24/7 availability for executive clients. This commitment ensures that clients receive the support 
                 and guidance they need throughout their real estate journey.
               </p>
+              
+              <h3>Results and Track Record</h3>
+              <p>
+                Dr. Duffy's track record speaks to her commitment to client success. With over $2.4M+ in total sales 
+                volume and 150+ homes sold, she has consistently delivered outstanding results for her clients. Her 
+                success rate, client satisfaction, and market expertise have earned her recognition as a Top 1% 
+                REALTOR® and established her reputation as one of Las Vegas' most trusted real estate professionals.
+              </p>
+              <p>
+                Dr. Duffy's results are achieved through a combination of market expertise, negotiation skills, and 
+                client service that ensures successful transactions. Her ability to price properties accurately, market 
+                effectively, and negotiate strategically helps clients achieve their real estate goals while maximizing 
+                value. Whether clients are buying or selling, Dr. Duffy's results-oriented approach ensures successful 
+                outcomes.
+              </p>
+              
+              <h2>Service Areas and Neighborhood Expertise</h2>
+              <p>
+                Dr. Duffy's expertise extends across Las Vegas' premier communities, providing clients with comprehensive 
+                knowledge of neighborhood characteristics, property values, and lifestyle benefits. Her service areas 
+                include Centennial Hills, Red Rock Country Club, The Ridges, Summerlin West, Lone Mountain, North Las 
+                Vegas, and surrounding northwest Las Vegas communities.
+              </p>
+              <p>
+                Each service area offers unique characteristics, amenities, and lifestyle benefits that appeal to different 
+                buyers. Dr. Duffy's expertise in these areas helps clients understand what each community offers and 
+                identify neighborhoods that match their preferences and goals. Her knowledge of local markets, property 
+                values, and neighborhood dynamics ensures that clients make informed decisions about where to buy or sell.
+              </p>
+              
+              <h3>Centennial Hills and Northwest Las Vegas</h3>
+              <p>
+                <a href="/centennial-hills" class="text-blue-600 hover:underline">Centennial Hills</a> is one of Dr. Duffy's primary service areas, offering excellent value, new construction, and 
+                family-friendly neighborhoods. Her expertise in Centennial Hills includes understanding of the area's 
+                growth, <a href="/centennial-hills-amenities" class="text-blue-600 hover:underline">amenities</a>, property values, and investment potential. She specializes in ZIP codes 89135, 89138, 
+                and 89144, providing clients with comprehensive insights into these premier northwest Las Vegas 
+                communities. Explore <a href="/centennial-hills-homes" class="text-blue-600 hover:underline">available Centennial Hills homes</a> and learn about <a href="/centennial-hills-schools" class="text-blue-600 hover:underline">area schools</a>.
+              </p>
+              <p>
+                Northwest Las Vegas offers diverse housing options from affordable starter homes to luxury estates. Dr. 
+                Duffy's expertise in this area includes understanding of market trends, property values, and neighborhood 
+                characteristics that help clients find properties that match their needs and budget. Her knowledge of 
+                northwest Las Vegas communities ensures that clients receive expert guidance tailored to their specific 
+                preferences and goals.
+              </p>
+              
+              <h3>Summerlin and West Las Vegas</h3>
+              <p>
+                <a href="/summerlin" class="text-blue-600 hover:underline">Summerlin</a> and <a href="/summerlin-west" class="text-blue-600 hover:underline">Summerlin West</a> are premier master-planned communities offering luxury homes, excellent 
+                schools, and world-class amenities. Dr. Duffy's expertise in Summerlin includes understanding of the 
+                area's established reputation, comprehensive amenities, and property values. Her knowledge of Summerlin 
+                communities helps clients understand the benefits and value of living in these premier neighborhoods. 
+                Compare <a href="/centennial-hills-vs-summerlin" class="text-blue-600 hover:underline">Centennial Hills vs Summerlin</a> to understand the differences.
+              </p>
+              <p>
+                Summerlin offers diverse housing options from luxury estates to family-friendly neighborhoods. Dr. Duffy's 
+                expertise in Summerlin includes understanding of market trends, property values, and neighborhood 
+                characteristics that help clients find properties that match their needs and lifestyle preferences. Her 
+                knowledge of Summerlin communities ensures that clients receive expert guidance tailored to their specific 
+                preferences and goals.
+              </p>
+              
+              <h3>Luxury Communities</h3>
+              <p>
+                <a href="/red-rock-country-club" class="text-blue-600 hover:underline">Red Rock Country Club</a> and <a href="/the-ridges" class="text-blue-600 hover:underline">The Ridges</a> are among Las Vegas' most exclusive communities, featuring 
+                luxury estates, private golf course access, and stunning mountain views. Dr. Duffy's expertise in luxury 
+                communities includes understanding of high-end market dynamics, pricing strategies, and buyer preferences 
+                unique to the luxury segment. Her knowledge of these exclusive communities helps clients navigate the 
+                luxury market and find properties that match their preferences. Explore <a href="/golf-course-homes" class="text-blue-600 hover:underline">golf course homes</a> 
+                and view <a href="/homes-over-1m" class="text-blue-600 hover:underline">luxury homes over $1M</a>.
+              </p>
+              <p>
+                Luxury communities require specialized knowledge of market timing, pricing strategies, and negotiation 
+                techniques. Dr. Duffy's experience in luxury markets ensures that clients receive comprehensive guidance 
+                on pricing, marketing, and negotiation strategies that maximize value and ensure successful transactions. 
+                Her luxury home specialization includes understanding of gated communities, exclusive neighborhoods, and 
+                high-end amenities that appeal to luxury buyers.
+              </p>
             </div>
             
             <div class="about-highlights">
@@ -245,11 +341,55 @@ export default component$(() => {
 });
 
 export const head: DocumentHead = {
-  title: 'About Dr. Janet Duffy | Las Vegas Real Estate Professional',
+  title: 'About Dr. Janet Duffy | Top 1% Las Vegas REALTOR® | Real Estate Expert',
   meta: [
     {
       name: 'description',
-      content: 'Learn about Dr. Janet Duffy, your trusted Las Vegas real estate professional specializing in luxury homes, California equity buyers, and corporate relocations. Top 1% REALTOR® with 30+ years of research expertise, available 24/7 for executive clients.',
+      content: 'Learn about Dr. Janet Duffy, your trusted Las Vegas real estate professional specializing in luxury homes, California equity buyers, and corporate relocations. Top 1% REALTOR® with 30+ years of research expertise, available 24/7 for executive clients. Licensed in Nevada License #S.0197614.',
+    },
+    {
+      name: 'robots',
+      content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+    },
+    {
+      property: 'og:title',
+      content: 'About Dr. Janet Duffy | Top 1% Las Vegas REALTOR®',
+    },
+    {
+      property: 'og:description',
+      content: 'Learn about Dr. Janet Duffy, Top 1% Las Vegas REALTOR® specializing in luxury homes, California equity buyers, and corporate relocations.',
+    },
+    {
+      property: 'og:image',
+      content: 'https://www.centennialhillshomesforsale.com/images/dr-janet-duffy.jpg',
+    },
+    {
+      property: 'og:type',
+      content: 'profile',
+    },
+    {
+      property: 'og:url',
+      content: 'https://www.centennialhillshomesforsale.com/about',
+    },
+    {
+      property: 'og:site_name',
+      content: 'Centennial Hills Real Estate',
+    },
+    {
+      name: 'twitter:card',
+      content: 'summary_large_image',
+    },
+    {
+      name: 'twitter:title',
+      content: 'About Dr. Janet Duffy | Top 1% Las Vegas REALTOR®',
+    },
+    {
+      name: 'twitter:description',
+      content: 'Top 1% Las Vegas REALTOR® with 30+ years of research expertise. Specializing in luxury homes and corporate relocations.',
+    },
+    {
+      name: 'twitter:image',
+      content: 'https://www.centennialhillshomesforsale.com/images/dr-janet-duffy.jpg',
     },
   ],
 };
