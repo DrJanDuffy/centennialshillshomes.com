@@ -2,6 +2,7 @@ import { component$, useSignal, $ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import SEOStructuredData from '../../components/seo-structured-data';
 import { pageSchemas } from '../../components/seo-structured-data';
+import FAQSection, { realtorServiceFAQs } from '../../components/faq-section';
 
 interface SearchResult {
   title: string;
@@ -87,7 +88,9 @@ export default component$(() => {
             Search Centennial Hills Real Estate
           </h1>
           <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-            Find properties, neighborhoods, and real estate information in Centennial Hills and Northwest Las Vegas
+            Find properties, neighborhoods, and real estate information in Centennial Hills and Northwest Las Vegas. 
+            Our comprehensive search tool helps you discover homes, luxury properties, investment opportunities, and 
+            real estate services throughout the Las Vegas area.
           </p>
         </div>
 
@@ -151,6 +154,200 @@ export default component$(() => {
           </div>
         )}
 
+        {/* Search Content Section */}
+        <section class="service-content py-16">
+          <div class="container container-center">
+            <h2>Comprehensive Real Estate Search</h2>
+            <p>
+              Our comprehensive real estate search tool helps you discover properties, neighborhoods, and real estate 
+              information throughout Centennial Hills and Northwest Las Vegas. Whether you're searching for luxury 
+              homes, new construction, investment properties, or real estate services, our search functionality 
+              provides convenient access to comprehensive property information and resources.
+            </p>
+            <p>
+              Search functionality enables you to find properties by location, price range, property type, and 
+              specific features. Our search tool indexes all available properties, neighborhoods, and real estate 
+              information to provide comprehensive search results. This comprehensive search capability helps you 
+              efficiently find properties and information that match your specific needs and preferences.
+            </p>
+            <p>
+              Search results include property listings, neighborhood information, real estate services, and related 
+              content that helps you make informed decisions. Our search tool provides detailed information about 
+              each result, including descriptions, property features, and links to additional resources. This 
+              comprehensive search experience helps you efficiently explore real estate options and find properties 
+              that match your criteria.
+            </p>
+
+            <h3>Property Search Capabilities</h3>
+            <p>
+              Property search capabilities enable you to find homes by location, price range, property type, and 
+              specific features. Our search tool indexes all available properties to provide comprehensive search 
+              results. This property search capability helps you efficiently find homes that match your specific 
+              needs and preferences.
+            </p>
+            <p>
+              Search features include location-based search, price range filters, property type filters, and feature 
+              searches that help you find properties efficiently. Our search tool provides detailed property 
+              information including descriptions, features, and links to additional resources. This comprehensive 
+              property search experience helps you explore real estate options and find properties that match your 
+              criteria.
+            </p>
+
+            <h3>Neighborhood Information Search</h3>
+            <p>
+              Neighborhood information search enables you to find detailed information about Centennial Hills, 
+              Summerlin, and other Northwest Las Vegas communities. Our search tool indexes neighborhood information 
+              including community features, amenities, schools, and market data. This neighborhood search capability 
+              helps you understand community characteristics and make informed location decisions.
+            </p>
+            <p>
+              Search results include neighborhood overviews, community features, amenities, schools, and market 
+              information that helps you evaluate locations. Our search tool provides comprehensive neighborhood 
+              information that supports informed decision-making. This neighborhood search experience helps you 
+              explore communities and find locations that match your preferences.
+            </p>
+
+            <h3>Real Estate Services Search</h3>
+            <p>
+              Real estate services search enables you to find information about home valuation, market analysis, 
+              and other real estate services. Our search tool indexes service information including service 
+              descriptions, features, and contact information. This services search capability helps you find 
+              information about available real estate services and resources.
+            </p>
+            <p>
+              Search results include service descriptions, features, and contact information that helps you 
+              understand available services. Our search tool provides comprehensive service information that 
+              supports informed decision-making. This services search experience helps you explore available 
+              services and find resources that match your needs.
+            </p>
+
+            <h2>Search Tips and Best Practices</h2>
+            <p>
+              Effective search strategies help you find properties and information efficiently. Our search tool 
+              supports various search methods including keyword searches, location searches, and category searches. 
+              Understanding search best practices helps you maximize search effectiveness and find relevant results 
+              quickly.
+            </p>
+            <p>
+              Search tips include using specific keywords, location names, and property features to narrow search 
+              results. Our search tool provides suggestions and autocomplete features that help you refine searches. 
+              These search tips help you efficiently find properties and information that match your specific needs 
+              and preferences.
+            </p>
+            <p>
+              Best practices include using multiple search terms, exploring different search categories, and 
+              reviewing search results comprehensively. Our search tool provides various search options and filters 
+              that help you refine searches. These best practices help you maximize search effectiveness and find 
+              relevant results efficiently.
+            </p>
+
+            <h3>Keyword Search Strategies</h3>
+            <p>
+              Keyword search strategies help you find properties and information using specific terms and phrases. 
+              Our search tool supports keyword searches that match terms in property titles, descriptions, and 
+              content. Effective keyword strategies include using specific property features, location names, and 
+              property types to narrow search results.
+            </p>
+            <p>
+              Search strategies include using multiple keywords, combining location and property type terms, and 
+              using specific feature terms. Our search tool provides autocomplete suggestions that help you refine 
+              keyword searches. These keyword strategies help you efficiently find properties and information that 
+              match your specific needs.
+            </p>
+
+            <h3>Location-Based Search</h3>
+            <p>
+              Location-based search enables you to find properties and information in specific neighborhoods and 
+              communities. Our search tool supports location searches using neighborhood names, zip codes, and 
+              community names. Effective location searches help you find properties and information in specific 
+              areas that match your location preferences.
+            </p>
+            <p>
+              Location search features include neighborhood searches, zip code searches, and community searches 
+              that help you find properties in specific areas. Our search tool provides location suggestions and 
+              autocomplete features that help you refine location searches. These location search features help you 
+              efficiently find properties and information in specific locations.
+            </p>
+
+            <h3>Category and Filter Search</h3>
+            <p>
+              Category and filter search enables you to find properties and information by category and specific 
+              criteria. Our search tool supports category searches including property types, price ranges, and 
+              features. Effective category searches help you find properties and information that match specific 
+              criteria and preferences.
+            </p>
+            <p>
+              Category search features include property type filters, price range filters, and feature filters that 
+              help you refine searches. Our search tool provides various filter options that help you narrow search 
+              results. These category search features help you efficiently find properties and information that match 
+              specific criteria.
+            </p>
+
+            <h2>Popular Search Categories</h2>
+            <p>
+              Popular search categories reflect common property searches and information requests from buyers and 
+              sellers. Our search tool indexes popular categories including luxury homes, new construction, 
+              investment properties, and real estate services. Understanding popular search categories helps you 
+              explore common property types and services.
+            </p>
+            <p>
+              Popular categories include luxury homes, new construction, investment properties, and neighborhood 
+              information that reflect common search interests. Our search tool provides easy access to popular 
+              categories through category links and suggestions. These popular categories help you efficiently explore 
+              common property types and services.
+            </p>
+            <p>
+              Category exploration includes browsing popular categories, reviewing category results, and exploring 
+              related categories. Our search tool provides category navigation that helps you explore property types 
+              and services. This category exploration helps you discover properties and information that match your 
+              interests.
+            </p>
+
+            <h3>Luxury Property Searches</h3>
+            <p>
+              Luxury property searches enable you to find high-end homes, custom estates, and premium properties in 
+              Las Vegas' most exclusive communities. Our search tool indexes luxury properties including custom 
+              estates, golf course homes, and mountain view properties. Luxury property searches help you find 
+              premium properties that match luxury buyer preferences.
+            </p>
+            <p>
+              Search features include luxury property filters, price range filters, and feature searches that help 
+              you find luxury properties. Our search tool provides detailed luxury property information including 
+              features, amenities, and location benefits. This luxury property search experience helps you explore 
+              premium properties and find homes that match luxury buyer criteria.
+            </p>
+
+            <h3>New Construction Searches</h3>
+            <p>
+              New construction searches enable you to find brand new homes, custom builds, and new development 
+              opportunities. Our search tool indexes new construction properties including model homes, custom 
+              builds, and new development communities. New construction searches help you find modern homes with 
+              current features and warranties.
+            </p>
+            <p>
+              Search features include new construction filters, builder searches, and development searches that help 
+              you find new construction properties. Our search tool provides detailed new construction information 
+              including floor plans, customization options, and builder information. This new construction search 
+              experience helps you explore modern homes and find new construction opportunities.
+            </p>
+
+            <h3>Investment Property Searches</h3>
+            <p>
+              Investment property searches enable you to find rental properties, fix-and-flip opportunities, and 
+              commercial real estate. Our search tool indexes investment properties including single-family rentals, 
+              multi-family properties, and commercial opportunities. Investment property searches help you find 
+              properties with strong investment potential.
+            </p>
+            <p>
+              Search features include investment property filters, ROI searches, and rental property searches that 
+              help you find investment opportunities. Our search tool provides detailed investment property 
+              information including rental potential, renovation opportunities, and market analysis. This investment 
+              property search experience helps you explore investment opportunities and find properties with strong 
+              potential.
+            </p>
+          </div>
+        </section>
+
         {/* Popular Searches */}
         <div class="bg-gray-50 rounded-lg p-8 mb-8">
           <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Popular Searches</h2>
@@ -208,6 +405,13 @@ export default component$(() => {
         </div>
         </div>
       </div>
+
+      {/* FAQ Section */}
+      <FAQSection 
+        faqs={realtorServiceFAQs}
+        title="Frequently Asked Questions About Property Search"
+        className="bg-gray-50"
+      />
     </>
   );
 });
