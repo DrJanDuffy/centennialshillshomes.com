@@ -3,14 +3,23 @@ import type { RequestHandler } from '@builder.io/qwik-city';
 /**
  * Google Search Console 2025 Optimized Sitemap Generator
  * 
- * CRITICAL FIX: Removed async and external dependencies to ensure it works in Vercel Edge
- * Following robots.txt.tsx pattern which works correctly
+ * DIAGNOSIS COMPLETE:
+ * ✅ Route exists at src/routes/sitemap.xml.tsx
+ * ✅ Function returns URLs array (75 pages)
+ * ✅ No async/await issues (synchronous like robots.txt)
+ * ✅ Base URL is defined (hardcoded HTTPS www)
+ * 
+ * FIX APPLIED:
+ * - Matches robots.txt.tsx pattern exactly (which works)
+ * - All 75 routes hardcoded directly (no external dependencies)
+ * - Proper XML structure with all required fields
+ * - Correct headers and content type
  */
 export const onGet: RequestHandler = (ev) => {
   const baseUrl = 'https://www.centennialhillshomesforsale.com';
   const currentDate = new Date().toISOString().split('T')[0];
 
-  // Direct route list - no external dependencies that might fail in Edge runtime
+  // All public routes - 75 pages total
   const pages = [
     { path: '/', priority: '1.0', changefreq: 'weekly' },
     { path: '/centennial-hills-homes', priority: '1.0', changefreq: 'daily' },
@@ -91,14 +100,40 @@ export const onGet: RequestHandler = (ev) => {
     { path: '/terms-of-service', priority: '0.3', changefreq: 'yearly' },
   ];
 
-  // Build XML sitemap - simple and direct like robots.txt
+  // Validate pages array
+  if (!pages || pages.length === 0) {
+    // Fallback: return at least homepage
+    const fallback = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>${baseUrl}/</loc>
+    <lastmod>${currentDate}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>`;
+    ev.headers.set('Content-Type', 'application/xml; charset=utf-8');
+    return ev.text(200, fallback);
+  }
+
+  // Build XML sitemap - exact format required by Google
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
   
+  // Generate each URL entry with all required fields
   pages.forEach((page) => {
-    const url = baseUrl + page.path;
+    const fullUrl = baseUrl + page.path;
+    
+    // XML escape special characters
+    const escapedUrl = fullUrl
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&apos;');
+    
     xml += '  <url>\n';
-    xml += `    <loc>${url}</loc>\n`;
+    xml += `    <loc>${escapedUrl}</loc>\n`;
     xml += `    <lastmod>${currentDate}</lastmod>\n`;
     xml += `    <changefreq>${page.changefreq}</changefreq>\n`;
     xml += `    <priority>${page.priority}</priority>\n`;
@@ -107,10 +142,10 @@ export const onGet: RequestHandler = (ev) => {
   
   xml += '</urlset>';
 
-  // Set headers exactly like robots.txt
+  // Set proper headers for XML sitemap
   ev.headers.set('Content-Type', 'application/xml; charset=utf-8');
   ev.headers.set('Cache-Control', 'public, max-age=3600, s-maxage=3600');
   
-  // Return XML
+  // Return XML - MUST return to complete the handler
   return ev.text(200, xml);
 };
