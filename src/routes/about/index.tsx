@@ -3,7 +3,7 @@ import type { DocumentHead } from '@builder.io/qwik-city';
 import FAQSection, { realtorServiceFAQs } from '../../components/faq-section';
 import SEOStructuredData from '../../components/seo-structured-data';
 import { pageSchemas } from '../../components/seo-structured-data';
-import Breadcrumbs from '~/components/breadcrumbs';
+import Breadcrumbs from '../../components/breadcrumbs';
 
 export default component$(() => {
   // Schema data for About page
