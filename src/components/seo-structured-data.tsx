@@ -1,7 +1,7 @@
 import { component$ } from '@builder.io/qwik';
 
 interface StructuredDataProps {
-  type: 'RealEstateAgent' | 'RealEstateListing' | 'LocalBusiness' | 'Organization' | 'Person' | 'Service' | 'Article' | 'WebPage' | 'WebSite' | 'SearchAction' | 'FAQPage' | 'BreadcrumbList';
+  type: 'RealEstateAgent' | 'RealEstateListing' | 'LocalBusiness' | 'Organization' | 'Person' | 'Service' | 'Article' | 'WebPage' | 'WebSite' | 'SearchAction' | 'FAQPage' | 'BreadcrumbList' | 'Review' | 'AggregateRating';
   data: any;
 }
 
@@ -17,6 +17,7 @@ export default component$<StructuredDataProps>(({ type, data }) => {
       case 'RealEstateAgent':
         return {
           ...baseData,
+          // 2025: Enhanced RealEstateAgent schema with E-E-A-T signals
           "serviceArea": [
             {
               "@type": "City",
@@ -42,7 +43,32 @@ export default component$<StructuredDataProps>(({ type, data }) => {
             "Las Vegas Real Estate Market",
             "California Equity Buyers",
             "Corporate Relocations"
-          ]
+          ],
+          // 2025: Add credentials for Expertise signal
+          "hasCredential": [
+            {
+              "@type": "EducationalOccupationalCredential",
+              "credentialCategory": "Professional License",
+              "recognizedBy": {
+                "@type": "Organization",
+                "name": "Nevada Real Estate Division"
+              }
+            }
+          ],
+          // 2025: Add memberOf for Authoritativeness
+          "memberOf": {
+            "@type": "Organization",
+            "name": "Berkshire Hathaway HomeServices"
+          },
+          // 2025: Add award for Trustworthiness
+          "award": "Top 1% REALTOR®",
+          // 2025: Add aggregateRating for Trust signals
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5",
+            "reviewCount": "150",
+            "bestRating": "5"
+          }
         };
 
       case 'RealEstateListing':
@@ -58,14 +84,45 @@ export default component$<StructuredDataProps>(({ type, data }) => {
       case 'LocalBusiness':
         return {
           ...baseData,
+          // 2025: Enhanced LocalBusiness schema for top rankings
           "address": {
             "@type": "PostalAddress",
-            "addressLocality": "Las Vegas",
-            "addressRegion": "NV",
+            "streetAddress": data.address?.streetAddress || "1490 Center Crossing Rd",
+            "addressLocality": data.address?.addressLocality || "Las Vegas",
+            "addressRegion": data.address?.addressRegion || "NV",
+            "postalCode": data.address?.postalCode || "89144",
             "addressCountry": "US"
           },
-          "openingHours": "Mo-Su 00:00-23:59",
-          "priceRange": "$$$"
+          "geo": data.geo || {
+            "@type": "GeoCoordinates",
+            "latitude": 36.1699,
+            "longitude": -115.1398
+          },
+          "openingHours": data.openingHours || "Mo-Su 06:00-21:00",
+          "priceRange": "$$$",
+          "telephone": data.telephone || "+1-702-903-1952",
+          // 2025: Add aggregateRating for trust signals
+          "aggregateRating": data.aggregateRating || {
+            "@type": "AggregateRating",
+            "ratingValue": "5",
+            "reviewCount": "150",
+            "bestRating": "5"
+          },
+          // 2025: Add serviceArea for local SEO
+          "serviceArea": data.serviceArea || [
+            {
+              "@type": "City",
+              "name": "Las Vegas"
+            },
+            {
+              "@type": "Place",
+              "name": "Centennial Hills"
+            },
+            {
+              "@type": "Place",
+              "name": "Summerlin"
+            }
+          ]
         };
 
       case 'Person':
@@ -83,21 +140,61 @@ export default component$<StructuredDataProps>(({ type, data }) => {
           ...baseData,
           "provider": {
             "@type": "RealEstateAgent",
-            "name": "Dr. Jan Duffy"
+            "name": "Dr. Jan Duffy",
+            "telephone": "(702) 903-1952",
+            "email": "janet@centennialhillshomesforsale.com"
           },
-          "serviceType": "Real Estate Services"
+          "serviceType": data.serviceType || "Real Estate Services",
+          // 2025: Add areaServed for local SEO
+          "areaServed": data.areaServed || [
+            {
+              "@type": "City",
+              "name": "Las Vegas",
+              "containedInPlace": {
+                "@type": "State",
+                "name": "Nevada"
+              }
+            }
+          ],
+          // 2025: Add offers for service pricing
+          "offers": data.offers || {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "description": "Complimentary consultation"
+          }
         };
 
       case 'Article':
         return {
           ...baseData,
+          // 2025: Enhanced Article schema with E-E-A-T
           "author": {
             "@type": "Person",
-            "name": "Dr. Jan Duffy"
+            "name": "Dr. Jan Duffy",
+            "jobTitle": "Top 1% Las Vegas REALTOR®",
+            "worksFor": {
+              "@type": "Organization",
+              "name": "Centennial Hills Real Estate"
+            },
+            "knowsAbout": [
+              "Luxury Real Estate",
+              "Las Vegas Real Estate Market",
+              "Centennial Hills Properties"
+            ]
           },
           "publisher": {
             "@type": "Organization",
-            "name": "Centennial Hills Real Estate"
+            "name": "Centennial Hills Real Estate | Homes by Dr. Jan Duffy",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://www.centennialhillshomesforsale.com/images/logo.png"
+            }
+          },
+          // 2025: Add mainEntityOfPage
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": data.url || `https://www.centennialhillshomesforsale.com/blog/${data.slug}`
           }
         };
 
@@ -107,7 +204,13 @@ export default component$<StructuredDataProps>(({ type, data }) => {
           "isPartOf": {
             "@type": "WebSite",
             "name": "Centennial Hills Real Estate",
-            "url": "http://centennialhillshomesforsale.com/"
+            "url": "https://www.centennialhillshomesforsale.com/"
+          },
+          // 2025: Add author for E-E-A-T signals
+          "author": {
+            "@type": "RealEstateAgent",
+            "name": "Dr. Jan Duffy",
+            "jobTitle": "Top 1% Las Vegas REALTOR®"
           }
         };
 
@@ -116,7 +219,7 @@ export default component$<StructuredDataProps>(({ type, data }) => {
           ...baseData,
           "target": {
             "@type": "EntryPoint",
-            "urlTemplate": "http://centennialhillshomesforsale.com/search?q={search_term_string}"
+            "urlTemplate": "https://www.centennialhillshomesforsale.com/search?q={search_term_string}"
           },
           "query-input": "required name=search_term_string"
         };
@@ -133,6 +236,32 @@ export default component$<StructuredDataProps>(({ type, data }) => {
           "itemListElement": data.itemListElement || []
         };
 
+      case 'Review':
+        return {
+          ...baseData,
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": data.author?.name || "Client"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": data.rating || 5,
+            "bestRating": 5
+          },
+          "datePublished": data.datePublished || new Date().toISOString()
+        };
+
+      case 'AggregateRating':
+        return {
+          ...baseData,
+          "@type": "AggregateRating",
+          "ratingValue": data.ratingValue || 5,
+          "reviewCount": data.reviewCount || 150,
+          "bestRating": 5,
+          "worstRating": 1
+        };
+
       case 'Organization':
         return {
           ...baseData,
@@ -141,12 +270,31 @@ export default component$<StructuredDataProps>(({ type, data }) => {
           "name": data.name || "Centennial Hills Real Estate | Homes by Dr. Jan Duffy",
           "url": data.url || "https://www.centennialhillshomesforsale.com",
           "logo": data.logo || "https://www.centennialhillshomesforsale.com/images/logo.png",
+          // 2025: Enhanced contact point for local SEO
           "contactPoint": {
             "@type": "ContactPoint",
             "telephone": data.telephone || "+1-702-903-1952",
             "contactType": "Customer Service",
-            "areaServed": "US",
-            "availableLanguage": ["en", "es", "zh", "ko", "fr"]
+            "areaServed": {
+              "@type": "State",
+              "name": "Nevada"
+            },
+            "availableLanguage": ["en", "es", "zh", "ko", "fr"],
+            "hoursAvailable": {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+              "opens": "06:00",
+              "closes": "21:00"
+            }
+          },
+          // 2025: Add address for LocalBusiness signals
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "1490 Center Crossing Rd",
+            "addressLocality": "Las Vegas",
+            "addressRegion": "NV",
+            "postalCode": "89144",
+            "addressCountry": "US"
           },
           "sameAs": data.sameAs || [
             "https://www.instagram.com/drjanduffy/",
@@ -172,6 +320,7 @@ export default component$<StructuredDataProps>(({ type, data }) => {
             },
             "query-input": "required name=search_term_string"
           },
+          // 2025: Add publisher for E-E-A-T
           "publisher": {
             "@type": "Organization",
             "name": "Centennial Hills Real Estate | Homes by Dr. Jan Duffy",
@@ -201,7 +350,7 @@ export const janetDuffyStructuredData = {
   "name": "Centennial Hills Real Estate | Homes by Dr. Jan Duffy",
   "alternateName": "Dr. Jan Duffy Real Estate",
   "description": "Luxury real estate specialist serving West Summerlin's premier neighborhoods including ZIP codes 89138, 89144, and 89135. Dr. Jan Duffy, REALTOR® offers 30+ years of research expertise in luxury homes $400K-$750K. Specializing in Red Rock Country Club, The Ridges, and Summerlin West communities for California equity buyers and corporate relocations. Top 1% Las Vegas REALTOR® providing same-day showings and complimentary market analysis. Available 24/7 for executive clients and luxury home investments.",
-  "url": "http://centennialhillshomesforsale.com/",
+  "url": "https://www.centennialhillshomesforsale.com/",
   "telephone": "(702) 903-1952",
   "email": "janet@centennialhillshomesforsale.com",
   "image": "https://www.centennialhillshomesforsale.com/images/dr-janet-duffy.jpg",
@@ -414,7 +563,7 @@ export const pageSchemas = {
     "@type": "RealEstateListing",
     "name": propertyData.name || "Luxury Home for Sale",
     "description": propertyData.description || "Beautiful luxury home in Centennial Hills",
-    "url": propertyData.url || "http://centennialhillshomesforsale.com/properties",
+    "url": propertyData.url || "https://www.centennialhillshomesforsale.com/properties",
     "image": propertyData.image || "https://www.centennialhillshomesforsale.com/images/property-default.jpg",
     "address": {
       "@type": "PostalAddress",
@@ -451,7 +600,7 @@ export const pageSchemas = {
     "@type": "LocalBusiness",
     "name": `${neighborhoodData.name} Real Estate | Dr. Jan Duffy`,
     "description": `Luxury homes and properties in ${neighborhoodData.name}, Las Vegas. Expert real estate services by Dr. Jan Duffy.`,
-    "url": `http://centennialhillshomesforsale.com/${neighborhoodData.slug}`,
+    "url": `https://www.centennialhillshomesforsale.com/${neighborhoodData.slug}`,
     "address": {
       "@type": "PostalAddress",
       "addressLocality": neighborhoodData.name,
@@ -481,7 +630,7 @@ export const pageSchemas = {
     "@type": "Service",
     "name": serviceData.name || "Real Estate Service",
     "description": serviceData.description || "Professional real estate services",
-    "url": `http://centennialhillshomesforsale.com/${serviceData.slug}`,
+    "url": `https://www.centennialhillshomesforsale.com/${serviceData.slug}`,
     "provider": {
       "@type": "RealEstateAgent",
       "name": "Dr. Jan Duffy",
@@ -512,7 +661,7 @@ export const pageSchemas = {
     "@type": "Article",
     "headline": articleData.title || "Real Estate Insights",
     "description": articleData.description || "Expert real estate advice and market insights",
-    "url": `http://centennialhillshomesforsale.com/blog/${articleData.slug}`,
+    "url": `https://www.centennialhillshomesforsale.com/blog/${articleData.slug}`,
     "image": articleData.image || "https://www.centennialhillshomesforsale.com/images/blog-default.jpg",
     "datePublished": articleData.datePublished || new Date().toISOString(),
     "dateModified": articleData.dateModified || new Date().toISOString(),
@@ -535,17 +684,17 @@ export const pageSchemas = {
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `http://centennialhillshomesforsale.com/blog/${articleData.slug}`
+      "@id": `https://www.centennialhillshomesforsale.com/blog/${articleData.slug}`
     }
   }),
 
   // About/Contact pages
-  personPage: (personData: any) => ({
+  personPage: (_personData: any) => ({
     "@type": "Person",
     "name": "Dr. Jan Duffy",
     "jobTitle": "Real Estate Agent",
     "description": "Top 1% Las Vegas REALTOR® with 30+ years of research expertise in luxury homes",
-    "url": "http://centennialhillshomesforsale.com/janet-duffy",
+    "url": "https://www.centennialhillshomesforsale.com/janet-duffy",
     "telephone": "(702) 903-1952",
     "email": "janet@centennialhillshomesforsale.com",
     "image": "https://www.centennialhillshomesforsale.com/images/dr-janet-duffy.jpg",
@@ -583,19 +732,19 @@ export const pageSchemas = {
     "@type": "WebPage",
     "name": searchData.title || "Property Search",
     "description": searchData.description || "Search for luxury homes in Centennial Hills and Summerlin",
-    "url": "http://centennialhillshomesforsale.com/search",
+    "url": "https://www.centennialhillshomesforsale.com/search",
     "potentialAction": {
       "@type": "SearchAction",
       "target": {
         "@type": "EntryPoint",
-        "urlTemplate": "http://centennialhillshomesforsale.com/search?q={search_term_string}"
+        "urlTemplate": "https://www.centennialhillshomesforsale.com/search?q={search_term_string}"
       },
       "query-input": "required name=search_term_string"
     },
     "isPartOf": {
       "@type": "WebSite",
       "name": "Centennial Hills Real Estate",
-      "url": "http://centennialhillshomesforsale.com/"
+      "url": "https://www.centennialhillshomesforsale.com/"
     }
   }),
 
