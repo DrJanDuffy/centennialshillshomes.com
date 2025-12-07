@@ -233,5 +233,37 @@ export const head: DocumentHead = {
       name: 'description',
       content: 'Contact Dr. Jan Duffy for Las Vegas real estate expertise. Call (702) 903-1952 for luxury homes, Centennial Hills properties, and personalized service. Luxury real estate specialist serving West Summerlin\'s premier neighborhoods. Top 1% Las Vegas REALTOR® providing same-day showings and complimentary market analysis. Available 24/7 for executive clients.',
     },
+    {
+      property: 'og:title',
+      content: 'Contact Dr. Jan Duffy - Las Vegas Real Estate Expert',
+    },
+    {
+      property: 'og:description',
+      content: 'Contact Dr. Jan Duffy for Las Vegas real estate expertise. Call (702) 903-1952 for luxury homes, Centennial Hills properties, and personalized service.',
+    },
+    {
+      property: 'og:type',
+      content: 'website',
+    },
+    {
+      property: 'og:url',
+      content: 'https://www.centennialhillshomesforsale.com/contact',
+    },
+    {
+      property: 'og:site_name',
+      content: 'Centennial Hills Real Estate',
+    },
+    {
+      name: 'twitter:card',
+      content: 'summary_large_image',
+    },
+    {
+      name: 'twitter:title',
+      content: 'Contact Dr. Jan Duffy - Las Vegas Real Estate Expert',
+    },
+    {
+      name: 'twitter:description',
+      content: 'Contact Dr. Jan Duffy for Las Vegas real estate expertise. Call (702) 903-1952 for luxury homes, Centennial Hills properties, and personalized service.',
+    },
   ],
 };

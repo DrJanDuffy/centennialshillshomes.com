@@ -217,6 +217,14 @@ export const head: DocumentHead = {
       content: 'website',
     },
     {
+      property: 'og:url',
+      content: 'https://www.centennialhillshomesforsale.com/area-explorer',
+    },
+    {
+      property: 'og:site_name',
+      content: 'Centennial Hills Real Estate',
+    },
+    {
       name: 'twitter:card',
       content: 'summary_large_image',
     },
