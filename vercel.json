@@ -13,6 +13,16 @@
       "permanent": true
     },
     {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/about-us",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
       "source": "/listings",
       "destination": "/mls-search",
       "permanent": true
@@ -20,6 +30,26 @@
     {
       "source": "/listings/",
       "destination": "/mls-search",
+      "permanent": true
+    },
+    {
+      "source": "/las-vegas-89166",
+      "destination": "/centennial-hills",
+      "permanent": true
+    },
+    {
+      "source": "/taskmaster",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/exclusive-access",
+      "destination": "/our-luxury-listings",
+      "permanent": true
+    },
+    {
+      "source": "/market-data",
+      "destination": "/market-reports",
       "permanent": true
     }
   ],
