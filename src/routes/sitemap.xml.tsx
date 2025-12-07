@@ -1,86 +1,116 @@
 import type { RequestHandler } from '@builder.io/qwik-city';
-import { discoverRoutes } from '../../utils/route-discovery';
 
 /**
  * Google Search Console 2025 Optimized Sitemap Generator
  * 
- * Follows latest 2025 Google Search Console guidelines:
- * - Only includes canonical URLs (no redirects, duplicates, or 4xx errors)
- * - Proper XML structure with UTF-8 encoding
- * - Accurate lastmod dates
- * - Mobile-first indexing support
- * - Proper priority and changefreq values
- * - HTTPS-only URLs
- * - Valid XML namespace declarations
- * 
- * Best Practices:
- * - Sitemap must be under 50MB and 50,000 URLs (we're well within limits)
- * - All URLs must be accessible (200 status)
- * - URLs must be absolute and use HTTPS
- * - lastmod should reflect actual content modification dates
+ * CRITICAL FIX: Removed async and external dependencies to ensure it works in Vercel Edge
+ * Following robots.txt.tsx pattern which works correctly
  */
-export const onGet: RequestHandler = async (ev) => {
+export const onGet: RequestHandler = (ev) => {
   const baseUrl = 'https://www.centennialhillshomesforsale.com';
   const currentDate = new Date().toISOString().split('T')[0];
 
-  // Dynamically discover all routes
-  const pages = discoverRoutes();
+  // Direct route list - no external dependencies that might fail in Edge runtime
+  const pages = [
+    { path: '/', priority: '1.0', changefreq: 'weekly' },
+    { path: '/centennial-hills-homes', priority: '1.0', changefreq: 'daily' },
+    { path: '/contact', priority: '0.9', changefreq: 'monthly' },
+    { path: '/centennial-hills', priority: '0.9', changefreq: 'weekly' },
+    { path: '/centennial-hills-homes-for-sale', priority: '0.9', changefreq: 'daily' },
+    { path: '/properties', priority: '0.9', changefreq: 'daily' },
+    { path: '/our-luxury-listings', priority: '0.9', changefreq: 'daily' },
+    { path: '/active-listings', priority: '0.9', changefreq: 'daily' },
+    { path: '/mls-search', priority: '0.9', changefreq: 'daily' },
+    { path: '/buy-a-home', priority: '0.9', changefreq: 'weekly' },
+    { path: '/sell-a-home', priority: '0.9', changefreq: 'weekly' },
+    { path: '/about', priority: '0.8', changefreq: 'monthly' },
+    { path: '/about-us', priority: '0.8', changefreq: 'monthly' },
+    { path: '/centennial-hills-luxury-homes', priority: '0.8', changefreq: 'weekly' },
+    { path: '/centennial-hills-new-construction', priority: '0.8', changefreq: 'weekly' },
+    { path: '/centennial-hills-89135', priority: '0.8', changefreq: 'weekly' },
+    { path: '/centennial-hills-89138', priority: '0.8', changefreq: 'weekly' },
+    { path: '/centennial-hills-89144', priority: '0.8', changefreq: 'weekly' },
+    { path: '/investment-properties', priority: '0.8', changefreq: 'weekly' },
+    { path: '/virtual-tours', priority: '0.8', changefreq: 'weekly' },
+    { path: '/recent-sales', priority: '0.8', changefreq: 'weekly' },
+    { path: '/luxury-estates', priority: '0.8', changefreq: 'weekly' },
+    { path: '/luxury-home-sales', priority: '0.8', changefreq: 'monthly' },
+    { path: '/buyers', priority: '0.8', changefreq: 'weekly' },
+    { path: '/first-time-homebuyers', priority: '0.8', changefreq: 'monthly' },
+    { path: '/luxury-home-buyers', priority: '0.8', changefreq: 'monthly' },
+    { path: '/california-equity-buyers', priority: '0.8', changefreq: 'monthly' },
+    { path: '/home-valuation', priority: '0.8', changefreq: 'weekly' },
+    { path: '/market-analysis', priority: '0.8', changefreq: 'weekly' },
+    { path: '/janet-duffy', priority: '0.8', changefreq: 'monthly' },
+    { path: '/neighborhoods', priority: '0.8', changefreq: 'weekly' },
+    { path: '/area-explorer', priority: '0.8', changefreq: 'weekly' },
+    { path: '/the-ridges', priority: '0.8', changefreq: 'weekly' },
+    { path: '/summerlin-west', priority: '0.8', changefreq: 'weekly' },
+    { path: '/summerlin', priority: '0.8', changefreq: 'weekly' },
+    { path: '/corporate-relocation-services', priority: '0.8', changefreq: 'monthly' },
+    { path: '/market-reports', priority: '0.8', changefreq: 'weekly' },
+    { path: '/centennial-hills-market-report', priority: '0.8', changefreq: 'weekly' },
+    { path: '/buying-guide', priority: '0.8', changefreq: 'monthly' },
+    { path: '/selling-guide', priority: '0.8', changefreq: 'monthly' },
+    { path: '/homes-400k-600k', priority: '0.8', changefreq: 'weekly' },
+    { path: '/homes-over-1m', priority: '0.8', changefreq: 'weekly' },
+    { path: '/blog', priority: '0.8', changefreq: 'weekly' },
+    { path: '/market-insights', priority: '0.8', changefreq: 'weekly' },
+    { path: '/new-construction', priority: '0.8', changefreq: 'weekly' },
+    { path: '/commute-calculator', priority: '0.8', changefreq: 'monthly' },
+    { path: '/testimonials', priority: '0.7', changefreq: 'monthly' },
+    { path: '/north-las-vegas', priority: '0.7', changefreq: 'weekly' },
+    { path: '/northwest-las-vegas', priority: '0.7', changefreq: 'weekly' },
+    { path: '/aliante', priority: '0.7', changefreq: 'weekly' },
+    { path: '/sky-canyon', priority: '0.7', changefreq: 'weekly' },
+    { path: '/providence', priority: '0.7', changefreq: 'weekly' },
+    { path: '/tule-springs', priority: '0.7', changefreq: 'weekly' },
+    { path: '/red-rock-country-club', priority: '0.7', changefreq: 'weekly' },
+    { path: '/lone-mountain', priority: '0.7', changefreq: 'weekly' },
+    { path: '/centennial-hills-schools', priority: '0.7', changefreq: 'monthly' },
+    { path: '/best-schools-centennial-hills', priority: '0.7', changefreq: 'monthly' },
+    { path: '/condos-centennial-hills', priority: '0.7', changefreq: 'weekly' },
+    { path: '/golf-course-homes', priority: '0.7', changefreq: 'weekly' },
+    { path: '/homes-under-400k', priority: '0.7', changefreq: 'weekly' },
+    { path: '/mortgage-calculator', priority: '0.7', changefreq: 'monthly' },
+    { path: '/affordability-calculator', priority: '0.7', changefreq: 'monthly' },
+    { path: '/blog/category/buyer-guide', priority: '0.7', changefreq: 'monthly' },
+    { path: '/blog/category/market-updates', priority: '0.7', changefreq: 'weekly' },
+    { path: '/blog/category/seller-guide', priority: '0.7', changefreq: 'monthly' },
+    { path: '/search', priority: '0.7', changefreq: 'daily' },
+    { path: '/moving-guide', priority: '0.7', changefreq: 'monthly' },
+    { path: '/move-up-buyers', priority: '0.7', changefreq: 'monthly' },
+    { path: '/centennial-hills-amenities', priority: '0.6', changefreq: 'monthly' },
+    { path: '/centennial-hills-vs-summerlin', priority: '0.6', changefreq: 'monthly' },
+    { path: '/press-media', priority: '0.6', changefreq: 'monthly' },
+    { path: '/faq', priority: '0.6', changefreq: 'monthly' },
+    { path: '/local-business-optimization', priority: '0.6', changefreq: 'monthly' },
+    { path: '/fair-housing', priority: '0.5', changefreq: 'yearly' },
+    { path: '/accessibility', priority: '0.4', changefreq: 'yearly' },
+    { path: '/privacy-policy', priority: '0.3', changefreq: 'yearly' },
+    { path: '/terms-of-service', priority: '0.3', changefreq: 'yearly' },
+  ];
 
-  // 2025: Filter out any invalid routes (shouldn't happen, but safety check)
-  const validPages = pages.filter(page => {
-    // Ensure path is valid and doesn't contain query parameters or fragments
-    if (!page.path || page.path.includes('?') || page.path.includes('#')) {
-      return false;
-    }
-    // Ensure priority is valid (0.0 to 1.0)
-    const priority = parseFloat(page.priority);
-    if (isNaN(priority) || priority < 0 || priority > 1) {
-      return false;
-    }
-    return true;
-  });
-
-  // Build XML sitemap following 2025 Google guidelines
-  const urlEntries: string[] = [];
+  // Build XML sitemap - simple and direct like robots.txt
+  let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
   
-  // Generate URL entries with proper XML escaping
-  validPages.forEach((page) => {
-    const fullUrl = baseUrl + page.path;
-    
-    // 2025: XML escape URLs to prevent issues
-    const escapedUrl = fullUrl
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&apos;');
-    
-    urlEntries.push('  <url>');
-    urlEntries.push(`    <loc>${escapedUrl}</loc>`);
-    urlEntries.push(`    <lastmod>${currentDate}</lastmod>`);
-    urlEntries.push(`    <changefreq>${page.changefreq}</changefreq>`);
-    urlEntries.push(`    <priority>${page.priority}</priority>`);
-    urlEntries.push('  </url>');
+  pages.forEach((page) => {
+    const url = baseUrl + page.path;
+    xml += '  <url>\n';
+    xml += `    <loc>${url}</loc>\n`;
+    xml += `    <lastmod>${currentDate}</lastmod>\n`;
+    xml += `    <changefreq>${page.changefreq}</changefreq>\n`;
+    xml += `    <priority>${page.priority}</priority>\n`;
+    xml += '  </url>\n';
   });
+  
+  xml += '</urlset>';
 
-  // Construct final XML with proper 2025 structure
-  const xmlContent = [
-    '<?xml version="1.0" encoding="UTF-8"?>',
-    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
-    '        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"',
-    '        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9',
-    '        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">',
-    ...urlEntries,
-    '</urlset>'
-  ].join('\n');
-
-  // 2025: Set proper headers for Google Search Console
+  // Set headers exactly like robots.txt
   ev.headers.set('Content-Type', 'application/xml; charset=utf-8');
   ev.headers.set('Cache-Control', 'public, max-age=3600, s-maxage=3600');
   
-  // 2025: Add CORS headers if needed (though not required for sitemaps)
-  ev.headers.set('X-Content-Type-Options', 'nosniff');
-  
   // Return XML
-  return ev.text(200, xmlContent);
+  return ev.text(200, xml);
 };
