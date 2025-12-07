@@ -47,12 +47,12 @@ export default component$(() => {
       <section class="hero-section">
         <div class="hero-content">
           <div class="hero-text">
-            <h1 class="hero-title">
-              Find Your Dream Home in <span class="text-blue-600">Centennial Hills</span>
-            </h1>
-            <p class="hero-subtitle">
-              Luxury real estate specialist serving West Summerlin's premier neighborhoods including ZIP codes 89138, 89144, and 89135. Dr. Jan Duffy, REALTOR® offers 30+ years of research expertise in luxury homes $400K-$750K. Specializing in <a href="/red-rock-country-club">Red Rock Country Club</a>, <a href="/the-ridges">The Ridges</a>, and <a href="/summerlin-west">Summerlin West</a> communities for <a href="/california-equity-buyers">California equity buyers</a> and <a href="/corporate-relocation-services">corporate relocations</a>. Top 1% Las Vegas REALTOR® providing same-day showings and complimentary <a href="/market-analysis">market analysis</a>. Available 24/7 for executive clients and luxury home investments.
-            </p>
+	            <h1 class="hero-title">
+	              Your Centennial Hills Real Estate Expert
+	            </h1>
+	            <p class="hero-subtitle">
+	              **Buying or Selling in Centennial Hills?** Dr. Jan Duffy, a Top 1% Las Vegas REALTOR® with 30+ years of expertise, specializes in luxury homes in ZIP codes 89138, 89144, and 89135. Get a competitive edge with our exclusive market insights and personalized, 24/7 service for both homebuyers and homesellers in the Centennial Hills area.
+	            </p>
             <div class="hero-stats">
               <div class="stat">
                 <div class="stat-number">$2.4M+</div>
@@ -68,12 +68,12 @@ export default component$(() => {
               </div>
             </div>
             <div class="hero-cta">
-              <a href="/home-valuation" class="btn btn-primary">
-                Get Free Home Valuation
-              </a>
-              <a href="/contact" class="btn btn-secondary">
-                Contact Dr. Duffy
-              </a>
+	              <a href="/centennial-hills-homes-for-sale" class="btn btn-primary">
+	                Find Your Centennial Hills Home
+	              </a>
+	              <a href="/home-valuation" class="btn btn-secondary">
+	                Get Your Home Value
+	              </a>
             </div>
           </div>
           <div class="hero-image">
