@@ -4,6 +4,12 @@ import type { RequestHandler } from '@builder.io/qwik-city';
  * SEO-Optimized Sitemap Generator
  * Generates comprehensive XML sitemap with all site pages
  * Optimized for Google Search Console and search engine indexing
+ * 
+ * 2025 Best Practices:
+ * - All URLs use HTTPS with www subdomain
+ * - Proper priority distribution (1.0 for homepage, 0.9 for key pages)
+ * - Accurate change frequencies (daily for listings, weekly for content)
+ * - Current lastmod dates for better indexing
  */
 export const onGet: RequestHandler = (ev) => {
   const baseUrl = 'https://www.centennialhillshomesforsale.com';
@@ -99,27 +105,29 @@ export const onGet: RequestHandler = (ev) => {
     { path: '/terms-of-service', priority: '0.3', changefreq: 'yearly' },
   ];
 
-  // Build XML sitemap string directly - simple and reliable
-  let sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n';
-  sitemap += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+  // Build XML sitemap - using simple string concatenation for reliability
+  let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
   
-  // Add each URL entry
-  pages.forEach((page) => {
+  // Add each URL entry - ensure every page gets a proper <url> tag
+  for (let i = 0; i < pages.length; i++) {
+    const page = pages[i];
     const url = `${baseUrl}${page.path}`;
-    sitemap += '  <url>\n';
-    sitemap += `    <loc>${url}</loc>\n`;
-    sitemap += `    <lastmod>${currentDate}</lastmod>\n`;
-    sitemap += `    <changefreq>${page.changefreq}</changefreq>\n`;
-    sitemap += `    <priority>${page.priority}</priority>\n`;
-    sitemap += '  </url>\n';
-  });
+    xml += '  <url>\n';
+    xml += `    <loc>${url}</loc>\n`;
+    xml += `    <lastmod>${currentDate}</lastmod>\n`;
+    xml += `    <changefreq>${page.changefreq}</changefreq>\n`;
+    xml += `    <priority>${page.priority}</priority>\n`;
+    xml += '  </url>\n';
+  }
   
-  sitemap += '</urlset>';
+  xml += '</urlset>';
 
-  // Set proper headers
+  // Set proper headers for XML content
   ev.headers.set('Content-Type', 'application/xml; charset=utf-8');
   ev.headers.set('Cache-Control', 'public, max-age=3600, s-maxage=3600');
   
-  // Return the sitemap
-  return ev.text(200, sitemap);
+  // Return the sitemap XML
+  return ev.text(200, xml);
 };
+
