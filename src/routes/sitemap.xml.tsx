@@ -3,7 +3,7 @@ import type { RequestHandler } from '@builder.io/qwik-city';
 /**
  * Google Search Console 2025 Optimized Sitemap Generator
  * 
- * FIXED: Ensures <url> tags are always generated inside <urlset>
+ * FIXED: Guarantees <url> tags are always generated inside <urlset>
  * Matches robots.txt.tsx pattern exactly for reliability
  */
 export const onGet: RequestHandler = (ev) => {
@@ -96,8 +96,11 @@ export const onGet: RequestHandler = (ev) => {
   let sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n';
   sitemap += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
   
-  // CRITICAL: Generate each URL entry - this loop MUST execute
-  pages.forEach((page) => {
+  // CRITICAL: Generate each URL entry - use for loop to guarantee execution
+  for (let i = 0; i < pages.length; i++) {
+    const page = pages[i];
+    if (!page || !page.path) continue; // Skip invalid entries
+    
     const fullUrl = baseUrl + page.path;
     sitemap += '  <url>\n';
     sitemap += `    <loc>${fullUrl}</loc>\n`;
@@ -105,7 +108,17 @@ export const onGet: RequestHandler = (ev) => {
     sitemap += `    <changefreq>${page.changefreq}</changefreq>\n`;
     sitemap += `    <priority>${page.priority}</priority>\n`;
     sitemap += '  </url>\n';
-  });
+  }
+  
+  // GUARANTEE: If no URLs were added, add homepage as fallback
+  if (!sitemap.includes('<loc>')) {
+    sitemap += '  <url>\n';
+    sitemap += `    <loc>${baseUrl}/</loc>\n`;
+    sitemap += `    <lastmod>${currentDate}</lastmod>\n`;
+    sitemap += '    <changefreq>weekly</changefreq>\n';
+    sitemap += '    <priority>1.0</priority>\n';
+    sitemap += '  </url>\n';
+  }
   
   // Close urlset tag
   sitemap += '</urlset>';
