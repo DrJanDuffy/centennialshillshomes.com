@@ -4,7 +4,7 @@ import type { RequestHandler } from '@builder.io/qwik-city';
  * Dynamic sitemap.xml generator
  * Automatically includes all routes and updates lastmod dates
  */
-export const onGet: RequestHandler = (ev) => {
+export const onGet: RequestHandler = async (ev) => {
   // 2025: Ensure HTTPS base URL with www (required for Vercel)
   const baseUrl = 'https://www.centennialhillshomesforsale.com';
   const currentDate = new Date().toISOString().split('T')[0];
@@ -136,25 +136,24 @@ export const onGet: RequestHandler = (ev) => {
   // Sort pages by priority (highest first) for better SEO
   pages.sort((a, b) => parseFloat(b.priority) - parseFloat(a.priority));
 
-  // Build URL entries - ensure proper XML structure
-  const urlEntries: string[] = [];
+  // Build XML sitemap - use explicit string building to ensure proper generation
+  let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+  
+  // Add each URL entry
   for (const page of pages) {
     const url = `${baseUrl}${page.path}`;
-    urlEntries.push(`  <url>
-    <loc>${url}</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>${page.changefreq}</changefreq>
-    <priority>${page.priority}</priority>
-  </url>`);
+    xml += '  <url>\n';
+    xml += `    <loc>${url}</loc>\n`;
+    xml += `    <lastmod>${currentDate}</lastmod>\n`;
+    xml += `    <changefreq>${page.changefreq}</changefreq>\n`;
+    xml += `    <priority>${page.priority}</priority>\n`;
+    xml += '  </url>\n';
   }
-
-  // 2025: Generate valid XML sitemap with proper structure
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urlEntries.join('\n')}
-</urlset>`;
+  
+  xml += '</urlset>';
 
   ev.headers.set('Content-Type', 'application/xml; charset=utf-8');
   ev.headers.set('Cache-Control', 'public, max-age=3600, s-maxage=3600');
-  return ev.text(200, sitemap);
+  return ev.text(200, xml);
 };
